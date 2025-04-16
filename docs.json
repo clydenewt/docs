@@ -1,102 +1,177 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+  "name": "Neutron Documentation",
+  "description": "Documentation for Neutron - The Integrated DeFi Blockchain",
+  "logo": {
+    "light": "/logo/neutron-light.svg",
+    "dark": "/logo/neutron-dark.svg"
   },
   "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#2AB673",
+    "light": "#55D799",
+    "dark": "#117866"
+  },
+  "theme": "maple",
+  "topbarLinks": [
+    {
+      "name": "Website",
+      "url": "https://neutron.org"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/neutron-org"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Launch App",
+    "url": "https://app.neutron.org"
+  },
+  "anchors": [
+    {
+      "name": "Discord",
+      "icon": "discord",
+      "url": "https://discord.com/invite/bzPBzbDvWC"
+    },
+    {
+      "name": "Twitter",
+      "icon": "twitter",
+      "url": "https://twitter.com/neutron_org"
+    }
+  ],
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Users",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Getting Started",
             "pages": [
-              "introduction",
-              "quickstart",
-              "development"
+              "users/overview",
+              "users/quickstart"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Core Concepts",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "concepts/integrated-architecture",
+              "concepts/opinionated-blockchains",
+              "concepts/staking-model",
+              "concepts/governance"
+            ]
+          },
+          {
+            "group": "DeFi on Neutron",
+            "pages": [
+              "users/defi/overview",
+              "users/defi/supervaults",
+              "users/defi/drop"
             ]
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Developers",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Modules",
             "pages": [
-              "api-reference/introduction"
+              "developers/modules/icq",
+              "developers/modules/cron",
+              "developers/modules/oracle",
+              "developers/modules/token-factory",
+              "developers/modules/admin",
+              "developers/modules/transfer"
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "How-To Guides",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "developers/how-to/run-neutron",
+              "developers/how-to/use-oracle",
+              "developers/how-to/add-cron-contract",
+              "developers/how-to/ethereum-auth"
+            ]
+          },
+          {
+            "group": "Tutorials",
+            "pages": [
+              "developers/tutorials/minimal-contract",
+              "developers/tutorials/integration-tests",
+              "developers/tutorials/indexers",
+              "developers/tutorials/relayer-setup"
+            ]
+          },
+          {
+            "group": "Tooling",
+            "pages": [
+              "developers/tooling/sdks",
+              "developers/tooling/integration-templates",
+              "developers/tooling/indexers",
+              "developers/tooling/gas-tools"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Validators",
+        "groups": [
+          {
+            "group": "Reference",
+            "pages": [
+              "validators/overview",
+              "validators/running-a-node",
+              "validators/becoming-a-validator",
+              "validators/validator-incentives"
+            ]
+          },
+          {
+            "group": "Technical",
+            "pages": [
+              "validators/technical/system-specs",
+              "validators/technical/selection-criteria",
+              "validators/technical/performance-metrics"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "groups": [
+          {
+            "group": "Developer Reference",
+            "pages": [
+              "resources/contract-apis",
+              "resources/rpc-cli",
+              "resources/chain-config"
+            ]
+          },
+          {
+            "group": "Community",
+            "pages": [
+              "resources/community/faq",
+              "resources/community/glossary",
+              "resources/community/roadmap"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+  "footerSocials": {
+    "twitter": "https://twitter.com/neutron_org",
+    "discord": "https://discord.com/invite/bzPBzbDvWC",
+    "telegram": "https://t.me/neutron_community"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+  "modeToggle": {
+    "default": "dark"
   },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+  "hero": {
+    "image": {
+      "light": "/images/hero-light.png",
+      "dark": "/images/hero-dark.png"
+    },
+    "title": "Neutron: The Integrated DeFi Blockchain",
+    "subtitle": "Build, stake, and govern the next generation of decentralized finance."
   }
 }
