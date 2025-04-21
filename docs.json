@@ -121,17 +121,11 @@
                 "icon": "database",
                 "pages": [
                   "developers/modules/oracle/overview",
-                  "developers/modules/oracle/concepts",
                   "developers/modules/oracle/explanation",
                   "developers/modules/oracle/how-to",
                   {
                     "group": "Reference",
                     "pages": [
-                      "developers/modules/oracle/reference",
-                      "developers/modules/oracle/messages",
-                      "developers/modules/oracle/events",
-                      "developers/modules/oracle/state",
-                      "developers/modules/oracle/client",
                       "developers/modules/oracle/api",
                       "developers/modules/oracle/known-bugs"
                     ]
