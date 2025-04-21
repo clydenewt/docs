@@ -84,21 +84,113 @@
           {
             "group": "Modules",
             "pages": [
-              "developers/modules/icq",
-              "developers/modules/cron",
-              "developers/modules/oracle",
-              "developers/modules/token-factory",
-              "developers/modules/admin",
-              "developers/modules/transfer"
+              "developers/modules/overview",
+              {
+                "group": "Interchain Queries (ICQ)",
+                "icon": "link",
+                "pages": [
+                  "developers/modules/interchain-queries/overview",
+                  "developers/modules/interchain-queries/concepts",
+                  "developers/modules/interchain-queries/explanation",
+                  "developers/modules/interchain-queries/how-to",
+                  {
+                    "group": "Reference",
+                    "pages": [
+                      "developers/modules/interchain-queries/reference",
+                      "developers/modules/interchain-queries/messages",
+                      "developers/modules/interchain-queries/events",
+                      "developers/modules/interchain-queries/state",
+                      "developers/modules/interchain-queries/client",
+                      "developers/modules/interchain-queries/api",
+                      "developers/modules/interchain-queries/known-bugs"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Cron",
+                "icon": "clock",
+                "pages": [
+                  "developers/modules/cron/overview",
+                  "developers/modules/cron/how-to",
+                  "developers/modules/cron/reference"
+                ]
+              },
+              {
+                "group": "Oracle",
+                "icon": "database",
+                "pages": [
+                  "developers/modules/oracle/overview",
+                  "developers/modules/oracle/concepts",
+                  "developers/modules/oracle/explanation",
+                  "developers/modules/oracle/how-to",
+                  {
+                    "group": "Reference",
+                    "pages": [
+                      "developers/modules/oracle/reference",
+                      "developers/modules/oracle/messages",
+                      "developers/modules/oracle/events",
+                      "developers/modules/oracle/state",
+                      "developers/modules/oracle/client",
+                      "developers/modules/oracle/api",
+                      "developers/modules/oracle/known-bugs"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Token Factory",
+                "icon": "coins",
+                "pages": [
+                  "developers/modules/token-factory/overview",
+                  "developers/modules/token-factory/how-to",
+                  "developers/modules/token-factory/reference"
+                ]
+              },
+              {
+                "group": "Admin",
+                "icon": "shield",
+                "pages": [
+                  "developers/modules/admin/overview",
+                  "developers/modules/admin/how-to",
+                  "developers/modules/admin/reference"
+                ]
+              },
+              {
+                "group": "Transfer",
+                "icon": "arrow-right-arrow-left",
+                "pages": [
+                  "developers/modules/transfer/overview",
+                  "developers/modules/transfer/how-to",
+                  "developers/modules/transfer/reference"
+                ]
+              }
             ]
           },
           {
             "group": "Tutorials",
             "pages": [
-              "developers/tutorials/minimal-contract",
-              "developers/tutorials/integration-tests",
-              "developers/tutorials/indexers",
-              "developers/tutorials/relayer-setup"
+              "developers/tutorials/overview",
+              {
+                "group": "Smart Contracts",
+                "pages": [
+                  "developers/tutorials/minimal-contract",
+                  "developers/tutorials/cosmwasm_icq"
+                ]
+              },
+              {
+                "group": "Integration",
+                "pages": [
+                  "developers/tutorials/integration-tests",
+                  "developers/tutorials/relayer-setup"
+                ]
+              },
+              {
+                "group": "Infrastructure",
+                "pages": [
+                  "developers/tutorials/indexers"
+                ]
+              }
             ]
           },
           {

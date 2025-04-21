@@ -1,80 +1,83 @@
 ---
-title: "Module Documentation"
-description: "Overview of Neutron's modules and their capabilities"
+title: "Neutron Modules"
+description: "Overview of the various modules available in Neutron"
 ---
 
-# Neutron Module Documentation
+# Neutron Modules
 
-Neutron extends the Cosmos SDK with several custom modules that provide unique functionality for developers. Each module is documented following the Divio documentation system, with clear explanations, how-to guides, and reference material.
+Neutron offers several specialized modules that provide unique functionality for developers building on the platform. Each module is designed to solve specific problems commonly encountered in DeFi applications.
 
-## Core Modules
+## Available Modules
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/overview">
-    <h3 className="text-lg font-semibold mb-1">Interchain Queries (ICQ)</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Query and verify data from any IBC-connected blockchain directly from smart contracts</p>
-  </a>
+<CardGroup cols={2}>
+  <Card title="Interchain Queries (ICQ)" icon="link" href="/developers/modules/interchain-queries/overview">
+    Query and verify data from any IBC-connected blockchain directly from Neutron smart contracts.
+  </Card>
   
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/cron">
-    <h3 className="text-lg font-semibold mb-1">Cron</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Schedule automated smart contract executions with precise timing</p>
-  </a>
+  <Card title="Cron" icon="clock" href="/developers/modules/cron/overview">
+    Schedule automated transactions and contract executions at predefined intervals.
+  </Card>
   
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/oracle">
-    <h3 className="text-lg font-semibold mb-1">Oracle</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Access high-frequency price data feeds for key financial assets</p>
-  </a>
-</div>
-
-## Financial Modules
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/token-factory">
-    <h3 className="text-lg font-semibold mb-1">Token Factory</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Create and manage custom tokens with advanced features</p>
-  </a>
+  <Card title="Oracle" icon="database" href="/developers/modules/oracle/overview">
+    Access reliable, high-frequency price data for a wide range of assets.
+  </Card>
   
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/transfer">
-    <h3 className="text-lg font-semibold mb-1">Transfer</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Enhanced IBC transfer module with additional capabilities</p>
-  </a>
-</div>
-
-## Governance Modules
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/admin">
-    <h3 className="text-lg font-semibold mb-1">Admin</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Handles administration and governance functions</p>
-  </a>
-</div>
-
-## Module Documentation Structure
-
-Each module is documented following the Divio documentation system, which organizes information into four categories:
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-lg font-semibold mb-1">Explanation</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Conceptual documentation that explains how the module works and why it exists. Provides context and background information.</p>
-  </div>
+  <Card title="Token Factory" icon="coins" href="/developers/modules/token-factory/overview">
+    Create and manage fungible tokens natively on Neutron.
+  </Card>
   
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-lg font-semibold mb-1">How-to Guides</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Practical step-by-step instructions for accomplishing specific tasks with the module.</p>
-  </div>
+  <Card title="Admin" icon="shield" href="/developers/modules/admin/overview">
+    Governance-controlled module for protocol administration and upgrades.
+  </Card>
   
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-lg font-semibold mb-1">Reference</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Technical reference documentation detailing the module's API, state, messages, events, and other technical specifications.</p>
-  </div>
-  
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-lg font-semibold mb-1">Tutorials</h3>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Learning-oriented guides that help you get started with the module through practical examples. These are found in the <a href="/developers/tutorials/overview" className="text-primary hover:underline">Tutorials section</a>.</p>
-  </div>
-</div>
+  <Card title="Transfer" icon="arrow-right-arrow-left" href="/developers/modules/transfer/overview">
+    Facilitate asset transfers between Neutron and other IBC-enabled chains.
+  </Card>
+</CardGroup>
 
-## Cosmos SDK Modules
+## Module Integration Pattern
 
-Neutron is built on the Cosmos SDK and inherits all standard Cosmos modules. For documentation on these modules, please refer to the [Cosmos SDK Documentation](https://docs.cosmos.network/main/modules). 
+Most Neutron modules follow a consistent integration pattern when used in CosmWasm smart contracts:
+
+1. **Import the Dependencies**
+   ```rust
+   use neutron_sdk::interchain_queries::...; // for the ICQ module
+   use neutron_sdk::bindings::...; // for other modules
+   ```
+
+2. **Create Module-Specific Messages**
+   ```rust
+   // Example for registering an interchain query
+   let msg = NeutronMsg::RegisterInterchainQuery { ... };
+   ```
+
+3. **Handle Response/Callbacks**
+   ```rust
+   // Most modules provide callbacks via Sudo messages
+   #[entry_point]
+   pub fn sudo(deps: DepsMut, env: Env, msg: SudoMsg) -> StdResult<Response> {
+       match msg {
+           SudoMsg::ModuleSpecificCallback { ... } => { ... }
+           _ => Err(StdError::generic_err("unsupported sudo message")),
+       }
+   }
+   ```
+
+## Choosing the Right Modules
+
+When building on Neutron, consider which modules best suit your application's needs:
+
+- **Cross-Chain Data Needs**: Use Interchain Queries (ICQ) to access data from other chains
+- **Automation Requirements**: Use Cron for scheduled operations
+- **Price Feed Requirements**: Use Oracle for reliable price data
+- **Token Creation Needs**: Use Token Factory for creating new tokens
+- **Administrative Functions**: Use Admin for privileged operations
+- **Asset Transfer Needs**: Use Transfer for cross-chain asset movement
+
+## Module Documentation
+
+Each module section provides:
+
+- **Overview**: Core concepts and capabilities
+- **How-to Guides**: Step-by-step instructions for common tasks
+- **Reference**: Detailed API and technical specifications 

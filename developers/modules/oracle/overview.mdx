@@ -1,0 +1,99 @@
+---
+title: "Oracle Module"
+description: "Access high-frequency price data for DeFi applications"
+---
+
+# Oracle Module
+
+The Oracle module provides reliable, high-frequency price data for a wide range of assets, enabling DeFi applications to operate with accurate and timely market information.
+
+## Overview
+
+Price oracles are a critical component of DeFi infrastructure, serving as the connection between blockchain smart contracts and external market data. The Neutron Oracle module:
+
+- Delivers price data with per-block updates
+- Provides robust security through multiple data sources
+- Enables governance-controlled price feed management
+- Integrates directly with smart contracts for seamless access
+
+## Key Features
+
+### High-Frequency Price Updates
+
+- **Per-Block Updates**: Price data is updated every block
+- **Low Latency**: Minimized delay between market price changes and on-chain availability
+- **Consistent Delivery**: Reliable delivery even during high volatility
+
+### Multiple Data Sources
+
+- **Aggregated Feeds**: Price data aggregated from multiple sources
+- **Weighted Averaging**: Advanced weighting algorithms for optimal accuracy
+- **Outlier Rejection**: Automatic filtering of anomalous data points
+
+### Extensive Asset Coverage
+
+- **Major Cryptocurrencies**: BTC, ETH, ATOM, and more
+- **Stablecoins**: USDC, USDT, DAI, and others
+- **Protocol Tokens**: NTRN and other ecosystem tokens
+- **Fiat Currencies**: USD, EUR, and other major currencies
+
+### Smart Contract Integration
+
+- **Simple Query Interface**: Easy-to-use query methods for contracts
+- **Multiple Price Types**: Spot prices, TWAPs, and other statistical measures
+- **Historical Data**: Access to recent historical prices for trend analysis
+
+## Architecture
+
+The Oracle module operates through a multi-layered architecture:
+
+1. **Data Collection Layer**: External relayers gather price data from exchanges and other sources
+2. **Aggregation Layer**: On-chain logic validates and combines multiple data points
+3. **Storage Layer**: Efficient state management optimized for frequent updates
+4. **Access Layer**: Query interfaces for smart contracts and other modules
+
+## Use Cases
+
+### Lending Protocols
+
+- Accurate collateral valuation
+- Precise liquidation thresholds
+- Dynamic interest rate determination
+
+### Automated Market Makers (AMMs)
+
+- Reduced impermanent loss through price-aware LP mechanisms
+- Enhanced arbitrage protection
+- Improved price discovery
+
+### Derivatives Protocols
+
+- Settlement price determination
+- Mark price calculation
+- Funding rate updates
+
+### Portfolio Management
+
+- Real-time portfolio valuation
+- Dynamic rebalancing triggers
+- Performance tracking
+
+## Getting Started
+
+To start using the Oracle module in your smart contracts:
+
+1. Review the [How-to Guide](/developers/modules/oracle/how-to) for practical examples
+2. Check the [Reference Documentation](/developers/modules/oracle/reference) for API details
+
+## Price Feed List
+
+| Asset | Ticker | Update Frequency | Sources |
+|-------|--------|------------------|---------|
+| Bitcoin | BTC/USD | Every block | Binance, Coinbase, Kraken |
+| Ethereum | ETH/USD | Every block | Binance, Coinbase, Kraken |
+| Cosmos | ATOM/USD | Every block | Binance, Coinbase, Kraken |
+| Neutron | NTRN/USD | Every block | Osmosis, multiple DEXes |
+| USDC | USDC/USD | Every block | Binance, Coinbase, Kraken |
+| USDT | USDT/USD | Every block | Binance, Coinbase, Kraken |
+
+For a complete and up-to-date list of supported price feeds, refer to the [Oracle module reference](/developers/modules/oracle/reference). 

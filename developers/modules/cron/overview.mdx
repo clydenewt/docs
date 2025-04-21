@@ -1,0 +1,72 @@
+---
+title: "Cron Module"
+description: "Schedule automated smart contract executions with precise timing"
+---
+
+# Cron Module
+
+The Cron module allows developers to schedule automatic smart contract executions at predefined times or intervals, similar to Unix cron jobs.
+
+## Overview
+
+In decentralized applications, scheduled operations are essential for many use cases but traditionally difficult to implement securely. The Cron module solves this by providing:
+
+- Precise timing controls for smart contract execution
+- Blockchain-enforced scheduling reliability
+- Gas-efficient execution of periodic tasks
+
+## Key Features
+
+### Time-Based Scheduling
+
+Schedule contract executions based on:
+- Block height (every N blocks)
+- Block time (specific timestamps)
+- Custom iterators for complex scheduling patterns
+
+### Secure Execution Context
+
+- Calls are executed within the secure context of the Neutron blockchain
+- Guaranteed execution order with proper error handling
+- Resource limits to prevent system abuse
+
+### Multi-Contract Workflow Support
+
+- Chain multiple contract calls in a scheduled operation
+- Set dependencies between scheduled operations
+- Handle successful/failed execution paths
+
+## Ideal Use Cases
+
+The Cron module is particularly useful for:
+
+- **Periodic Protocol Operations**: Rebalancing pools, calculating rewards
+- **Time-Sensitive Events**: Auction endings, governance execution
+- **Maintenance Tasks**: State cleanup, metric calculations
+- **Scheduled Fund Transfers**: Vesting releases, scheduled payments
+- **Interest and Yield Distribution**: Regular disbursement of earnings
+
+## Architecture
+
+The module maintains a schedule of tasks to be executed, with each task containing:
+- Execution time information
+- Contract address to call
+- Message to send to the contract
+- Optional dependencies and follow-up actions
+
+When a block is produced, the module scans for tasks due for execution and performs the specified calls.
+
+## Gas Model
+
+The Cron module uses a pre-paid gas model:
+- Task creators must pre-fund tasks with sufficient gas
+- Unused gas can be reclaimed when tasks are completed or canceled
+- Gas limits ensure system stability
+
+## Getting Started
+
+To start using the Cron module in your smart contracts:
+
+1. Review the [How-to Guide](/developers/modules/cron/how-to) for practical examples
+2. Check the [Reference Documentation](/developers/modules/cron/reference) for API details
+3. Explore example contracts in our [GitHub repository](https://github.com/neutron-org/neutron/tree/main/contracts/croncat) 
