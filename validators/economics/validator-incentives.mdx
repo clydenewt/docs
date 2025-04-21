@@ -1,0 +1,122 @@
+---
+title: "Validator Incentives"
+description: "Economic incentives for Neutron validators"
+---
+
+# Validator Incentives
+
+This document explains the economic incentives for running a Neutron validator node.
+
+## Rewards Structure
+
+Neutron's validator reward structure is unique compared to many other Cosmos-based chains. Instead of traditional inflation-based rewards, Neutron uses a DAO-driven, fixed-supply model.
+
+### Fixed Supply Model
+
+- **No Inflation**: Unlike most Cosmos chains, Neutron does not mint new tokens as rewards
+- **Fixed Supply**: The total supply of NTRN tokens is capped
+- **DAO-Distributed Rewards**: Validator rewards come from the community-controlled Treasury
+
+### Reward Sources
+
+Validators earn rewards from:
+
+1. **Transaction Fees**: A portion of transaction fees goes to validators
+2. **Treasury Allocation**: The Neutron DAO allocates funds to validators
+3. **MEV Extraction**: Validators can capture Maximal Extractable Value
+
+## Reward Distribution
+
+Validators receive rewards based on:
+
+- **Voting Power**: Proportional to the amount of NTRN staked/delegated
+- **Uptime**: Must maintain high uptime to receive full rewards
+- **Governance Participation**: Expected to participate in governance
+
+Rewards are distributed automatically at the end of each block.
+
+## Commission Rates
+
+Validators set their own commission rates within certain parameters:
+
+- **Commission Rate**: Percentage of rewards kept by the validator
+- **Maximum Rate**: Cannot exceed this value (set during creation)
+- **Maximum Change Rate**: Maximum daily adjustment allowed
+
+Recommended commission rates typically range from 5% to 10%, though this varies based on validator costs and services provided.
+
+## Reward Calculations
+
+The reward for a validator in a given period can be estimated as:
+
+```
+Validator Reward = (Stake Share * Total Rewards * (1 - Community Tax)) * (1 - Commission Rate)
+```
+
+Where:
+- **Stake Share** is the percentage of the total stake that the validator holds
+- **Total Rewards** is the sum of transaction fees and DAO allocations for the period
+- **Community Tax** is the percentage taken for the community pool
+- **Commission Rate** is the validator's commission percentage
+
+## No Slashing Risk
+
+One of Neutron's unique features is the absence of slashing penalties:
+
+- **No Slashing for Downtime**: Validators who go offline temporarily do not lose stake
+- **No Double-Sign Slashing**: While double-signing is prevented, it doesn't result in stake loss
+- **Curation Model**: Instead of slashing, Neutron uses a validator curation model
+
+This model reduces risk for delegators while maintaining network security through careful validator selection.
+
+## Validator Curation
+
+Neutron uses a curated validator set model:
+
+- **Selection Criteria**: Validators must meet technical, reputation, and community contribution criteria
+- **Periodic Review**: The validator set is regularly reviewed by the governance process
+- **Performance Metrics**: Validators are evaluated based on uptime, governance participation, and contributions
+
+## Delegator Rewards
+
+Delegators (token holders who stake with validators) receive rewards as follows:
+
+- **Automatic Distribution**: Rewards are automatically distributed
+- **Commission Deduction**: Validator's commission is deducted from rewards
+- **Compounding**: Rewards can be automatically re-staked for compounding returns
+
+## Economics of Running a Validator
+
+When considering running a validator, account for:
+
+### Costs
+
+- **Infrastructure**: Server costs, whether cloud or self-hosted
+- **Operations**: Monitoring, maintenance, security
+- **Team**: Technical and community support staff
+- **Security Measures**: HSMs, backup systems, etc.
+
+### Revenue
+
+- **Staking Rewards**: Based on stake amount and network activity
+- **Commission**: Percentage taken from delegator rewards
+- **Additional Services**: Some validators offer additional paid services
+
+## Tax Considerations
+
+Validator rewards may have tax implications that vary by jurisdiction:
+
+- **Income vs. Capital Gains**: Rewards might be treated as regular income or capital gains
+- **Cost Basis**: Understanding how rewards affect your cost basis is important
+- **Business Expenses**: Infrastructure and operational costs may be deductible
+
+*Consult with a tax professional for advice specific to your situation.*
+
+## Long-term Value
+
+Beyond immediate rewards, validators benefit from:
+
+- **Governance Influence**: Direct participation in protocol decisions
+- **Network Expertise**: Valuable knowledge and experience
+- **Community Standing**: Recognition and reputation within the ecosystem
+- **Ecosystem Growth**: Rising token value as the network grows 

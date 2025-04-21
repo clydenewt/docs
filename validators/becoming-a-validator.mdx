@@ -1,0 +1,109 @@
+---
+title: "Becoming a Validator"
+description: "Steps to register as a Neutron validator"
+---
+
+# Becoming a Validator
+
+This guide will walk you through the process of becoming a Neutron validator after you have [set up and synced your node](/validators/running-a-node).
+
+## Prerequisites
+
+Before continuing, make sure:
+
+- Your node is fully synced with the network
+- You have enough NTRN tokens for self-delegation (minimum 1 NTRN)
+- You have additional NTRN for transaction fees
+
+## Create a Wallet
+
+First, create a wallet for your validator:
+
+```bash
+neutrond keys add <wallet-name>
+```
+
+Save the mnemonic phrase in a secure location. This wallet will be used for managing your validator.
+
+## Obtain NTRN Tokens
+
+You'll need NTRN tokens to stake as a validator. These can be obtained from:
+
+- Exchanges that list NTRN
+- Purchasing ATOM and using IBC transfer to Neutron
+- The community (Discord/Telegram) for testnet tokens
+
+## Create Your Validator
+
+Once your node is synced and you have NTRN tokens, you can create your validator:
+
+```bash
+neutrond tx staking create-validator \
+  --amount=1000000untrn \
+  --pubkey=$(neutrond tendermint show-validator) \
+  --moniker="<your-validator-name>" \
+  --chain-id=neutron-1 \
+  --commission-rate="0.10" \
+  --commission-max-rate="0.20" \
+  --commission-max-change-rate="0.01" \
+  --min-self-delegation="1" \
+  --gas="auto" \
+  --gas-adjustment="1.5" \
+  --gas-prices="0.025untrn" \
+  --from=<wallet-name>
+```
+
+### Command Parameters Explained:
+
+- `amount`: The amount to self-delegate (in untrn)
+- `pubkey`: Your validator's public key
+- `moniker`: A name for your validator
+- `chain-id`: The network ID
+- `commission-rate`: Initial commission rate (e.g., 10%)
+- `commission-max-rate`: Maximum commission rate (e.g., 20%)
+- `commission-max-change-rate`: Maximum daily change in commission rate (e.g., 1%)
+- `min-self-delegation`: Minimum self-delegation amount
+- `from`: Your wallet name
+
+## Verify Your Validator
+
+After submitting the transaction, verify that your validator is in the active set:
+
+```bash
+neutrond query staking validators --limit 1000 -o json | jq '.validators[] | select(.description.moniker=="<your-validator-name>")'
+```
+
+You can also check your validator status on Neutron block explorers:
+
+- [Mintscan](https://www.mintscan.io/neutron)
+- [Ping.pub](https://ping.pub/neutron)
+
+## Validator Security
+
+Security is critical for a validator. Follow these best practices:
+
+1. **Use a dedicated machine**: Run your validator on a dedicated machine, not shared with other services
+2. **Firewall configuration**: Only allow necessary ports (26656, 26657, etc.)
+3. **SSH hardening**: Use key-based authentication, disable password login
+4. **Sentry nodes**: Set up sentry nodes to protect your validator from DDoS attacks
+5. **Hardware security module (HSM)**: Consider using an HSM for key management
+
+## Next Steps
+
+Now that your validator is active, you should:
+
+1. Set up monitoring and alerting
+2. Join the validator community
+3. Participate in governance
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+  <a className="card" href="/validators/technical/system-specs">
+    <h3>System Specifications</h3>
+    <p>Detailed hardware and software requirements</p>
+  </a>
+  
+  <a className="card" href="/validators/economics/validator-incentives">
+    <h3>Validator Economics</h3>
+    <p>Learn about rewards and incentives</p>
+  </a>
+</div> 

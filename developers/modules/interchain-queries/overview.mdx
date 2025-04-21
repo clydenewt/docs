@@ -1,0 +1,122 @@
+---
+title: "Interchain Queries Module"
+description: "Query and verify data from any IBC-connected blockchain directly from Neutron smart contracts"
+---
+
+# Interchain Queries Module
+
+## Abstract
+
+The Interchain Queries module allows Neutron smart contracts to retrieve data from remote chains connected to Neutron via IBC. This module is essential for cross-chain functionality, enabling contracts to access state and transaction data from other blockchains without requiring trust in third-party oracles.
+
+## Types of Queries
+
+The module supports two types of queries:
+
+1. **Key-Value queries (KV-queries)**: These queries allow retrieving values stored under specific keys in the remote chain's state.
+
+2. **Transactions queries (TX-queries)**: These queries allow searching for transactions on a remote chain based on specific filters.
+
+> **Warning**: There is a known bug when querying empty or nil values with KV-queries. If the value under a key is empty or nil, the query will not return any result. This limitation should be considered when designing applications that depend on KV-queries.
+
+## ICQ Relayer
+
+The Interchain Queries module relies on a specialized component called the ICQ Relayer to function properly. 
+
+### Operation Process
+
+The ICQ Relayer continuously monitors the Neutron chain for registered interchain queries. When a new query is registered or when it's time to update an existing query (based on its update period), the relayer:
+
+1. Fetches the requested data from the remote chain
+2. Verifies the data using cryptographic proofs
+3. Submits the results back to Neutron
+
+The submitted results are then made available to the smart contract that registered the query.
+
+### Submission Mechanism
+
+Any Neutron account can submit query results, not just the ICQ Relayer. This design provides redundancy and prevents centralization. However, in practice, most result submissions are handled by dedicated relayers.
+
+## Query Creation Deposit
+
+To prevent spam and incentivize proper management of queries, the module implements a deposit system:
+
+1. When a query is registered, the creator must provide a deposit in NTRN tokens.
+2. This deposit is locked as long as the query is active.
+3. The deposit can be reclaimed by the owner when they remove the query.
+4. If a query becomes outdated (no longer needed but not removed), anyone can remove it after a certain period and claim a portion of the deposit as a reward.
+
+### Permissions for Query Removal
+
+The `RemoveInterchainQuery` message can be executed by:
+- The query owner at any time
+- Any Neutron account after the query's "service period" has ended
+
+The service period is calculated as: `latest query result submission height + (query update period) * 20`
+
+## Transaction Filters
+
+For TX-queries, the module allows specifying filters to narrow down the transactions being queried. Filters can be constructed based on:
+
+- Transaction events
+- Message types
+- Specific fields within messages
+
+### Filter Strategy
+
+- **Using fewer filters**: Results in more transactions being returned, which may increase gas costs but ensures no relevant transactions are missed.
+- **Using more specific filters**: Reduces the number of transactions returned, lowering gas costs but risking missing relevant transactions if filters are too restrictive.
+
+## Integration with Smart Contracts
+
+Smart contracts interact with the Interchain Queries module through:
+
+1. **Registration**: Contracts can register new queries by sending the appropriate messages and providing the required deposit.
+2. **Result Access**: Query results are stored in the module's state and can be accessed by contracts through query methods.
+3. **Update and Removal**: Contracts can update their queries' parameters or remove them when no longer needed.
+
+The module is designed to be easily integrated with CosmWasm contracts, providing a simple interface for cross-chain data access.
+
+## Documentation Sections
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/explanation">
+    <h4 className="font-semibold mb-2">Technical Details</h4>
+    <p className="text-sm">Deep dive into how Interchain Queries work and their verification mechanisms</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/how-to.md">
+    <h4 className="font-semibold mb-2">How-to Guide</h4>
+    <p className="text-sm">Step-by-step instructions for using Interchain Queries in your contracts</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/messages">
+    <h4 className="font-semibold mb-2">Messages</h4>
+    <p className="text-sm">Message format specifications and processing details</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/events">
+    <h4 className="font-semibold mb-2">Events</h4>
+    <p className="text-sm">Event types and attributes emitted by the ICQ module</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/state">
+    <h4 className="font-semibold mb-2">State</h4>
+    <p className="text-sm">State objects and management details</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/client">
+    <h4 className="font-semibold mb-2">Client</h4>
+    <p className="text-sm">CLI commands and API endpoints for interaction</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/api">
+    <h4 className="font-semibold mb-2">API Reference</h4>
+    <p className="text-sm">Complete API documentation for the ICQ module</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/interchain-queries/known-bugs">
+    <h4 className="font-semibold mb-2">Known Bugs</h4>
+    <p className="text-sm">Known issues and limitations of the ICQ module</p>
+  </a>
+</div> 

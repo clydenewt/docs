@@ -1,0 +1,100 @@
+---
+title: "Validator Slashing"
+description: "Understanding Neutron's no-slashing model"
+---
+
+# Validator Slashing
+
+Neutron uses a unique approach to validator penalties and incentives that differs significantly from traditional Proof of Stake networks.
+
+## Neutron's No-Slashing Model
+
+Unlike most Cosmos chains, Neutron implements a **no-slashing model**. This means:
+
+- Validators and delegators are **not penalized with stake reduction** for downtime
+- Double-signing does not result in automatic stake slashing
+- Missing blocks does not trigger automatic penalties
+
+Instead, Neutron uses alternative mechanisms to ensure network security and validator performance.
+
+## Alternative Security Mechanisms
+
+### Validator Curation
+
+The primary mechanism that replaces slashing in Neutron is validator curation:
+
+- The validator set is carefully curated through governance
+- Validators must meet stringent technical and reputation requirements
+- Poor performance can result in removal from the validator set
+
+### Incentive Alignment
+
+In place of penalties, Neutron uses strong incentive alignment:
+
+- **Reward Distribution**: Well-performing validators receive greater rewards
+- **Jailing**: Validators who miss too many blocks may be temporarily jailed (suspended from validating)
+- **Reputation Systems**: Public performance metrics influence delegator decisions
+
+### Monitoring and Transparency
+
+Neutron emphasizes transparency in validator performance:
+
+- Public uptime and block signature statistics
+- Governance participation records
+- Historical performance data
+
+## Why No Slashing?
+
+Neutron's approach offers several advantages:
+
+1. **Lower Risk for Delegators**: Delegators don't face the risk of losing funds due to validator mistakes
+2. **Broader Participation**: Lower risk encourages greater staking participation
+3. **Focus on Quality**: Selection based on quality rather than penalty avoidance
+4. **Reduced Complexity**: Simpler mechanism design with fewer edge cases
+
+## Comparison with Traditional Slashing
+
+| Aspect | Traditional Slashing | Neutron's Model |
+|--------|----------------------|----------------|
+| Downtime Penalty | Loss of stake (e.g., 0.01-1%) | No direct stake loss |
+| Double-Sign Penalty | Severe stake loss (e.g., 5-100%) | Prevention without stake loss |
+| Recovery | Difficult to recover after slashing | Focus on improvement and rehabilitation |
+| Delegator Risk | Delegators lose funds for validator mistakes | Delegators protected from direct losses |
+| Security Model | Cryptoeconomic penalties | Curation, incentives, and reputation |
+
+## Validator Responsibilities
+
+Despite the absence of slashing, validators still have important responsibilities:
+
+- **Maintain High Uptime**: Consistently produce blocks when scheduled
+- **Prevent Double-Signing**: Implement proper key management and signer redundancy
+- **Participate in Governance**: Vote on proposals and contribute to network decisions
+- **Security Best Practices**: Follow security recommendations to protect the network
+
+## Jailing and Unjailing
+
+While Neutron doesn't slash, it still uses a jailing mechanism:
+
+- **Jailing Criteria**: Validators may be jailed for missing too many blocks in a window
+- **Unjailing Process**: Jailed validators can submit an unjail transaction after a waiting period
+- **Repeated Offenses**: May lead to governance proposals for validator removal
+
+## Delegator Considerations
+
+For delegators, Neutron's approach means:
+
+- **Reduced Risk**: No direct financial loss from validator mistakes
+- **Different Selection Criteria**: Focus on reputation and technical excellence rather than just security
+- **Importance of Research**: Still vital to choose validators carefully based on their track record
+
+## Future Evolution
+
+Neutron's governance may adjust these mechanisms over time:
+
+- **Parameter Changes**: Modifying jailing thresholds or waiting periods
+- **New Mechanisms**: Introducing additional quality assurance systems
+- **Hybrid Approaches**: Potentially adopting selective penalties for extreme cases
+
+## Conclusion
+
+Neutron's no-slashing approach represents an innovative alternative to traditional validator security models. By focusing on curation, incentives, and reputation rather than punitive measures, Neutron aims to create a more user-friendly staking experience while maintaining network security and performance. 

@@ -1,0 +1,130 @@
+---
+title: "Running a Node"
+description: "Set up and configure a Neutron validator node"
+---
+
+# Running a Neutron Node
+
+This guide will walk you through the process of setting up and running a Neutron validator node.
+
+## System Requirements
+
+Before you begin, make sure your system meets the following requirements:
+
+- **CPU**: 4+ cores (8+ cores recommended)
+- **RAM**: 16GB+ (32GB+ recommended)
+- **Storage**: 500GB+ SSD (1TB+ recommended)
+- **Network**: 100Mbps+ bandwidth
+- **Operating System**: Ubuntu 22.04 LTS or later
+
+## Setup Process
+
+### 1. Install Dependencies
+
+```bash
+# Update and install required packages
+sudo apt update && sudo apt upgrade -y
+sudo apt install build-essential jq wget git curl -y
+```
+
+### 2. Install Go
+
+```bash
+# Install Go 1.21 or higher
+wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
+rm go1.21.0.linux-amd64.tar.gz
+```
+
+Add Go to your PATH:
+
+```bash
+echo 'export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin' >> ~/.profile
+source ~/.profile
+```
+
+### 3. Build the Neutron Binary
+
+```bash
+git clone https://github.com/neutron-org/neutron.git
+cd neutron
+git checkout v2.0.0 # replace with the current version
+make install
+```
+
+### 4. Initialize the Node
+
+```bash
+neutrond init <your-moniker> --chain-id neutron-1
+```
+
+### 5. Download Genesis and Config Files
+
+```bash
+# Download genesis file
+wget -O $HOME/.neutrond/config/genesis.json https://snapshots.kjnodes.com/neutron/genesis.json
+
+# Download chain config
+wget -O $HOME/.neutrond/config/addrbook.json https://snapshots.kjnodes.com/neutron/addrbook.json
+```
+
+### 6. Configure Your Node
+
+```bash
+# Set minimum gas price
+sed -i 's/minimum-gas-prices = ""/minimum-gas-prices = "0.025untrn"/' $HOME/.neutrond/config/app.toml
+
+# Configure peers and seeds
+SEEDS="seeds_here"
+PEERS="peers_here"
+sed -i 's/seeds = ""/seeds = "'"$SEEDS"'"/' $HOME/.neutrond/config/config.toml
+sed -i 's/persistent_peers = ""/persistent_peers = "'"$PEERS"'"/' $HOME/.neutrond/config/config.toml
+```
+
+### 7. Start the Node
+
+```bash
+# Create a systemd service file
+sudo tee /etc/systemd/system/neutrond.service > /dev/null << EOF
+[Unit]
+Description=Neutron Node
+After=network-online.target
+
+[Service]
+User=$USER
+ExecStart=$(which neutrond) start
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Enable and start the service
+sudo systemctl daemon-reload
+sudo systemctl enable neutrond
+sudo systemctl start neutrond
+```
+
+## Syncing Your Node
+
+Monitor the sync status:
+
+```bash
+neutrond status 2>&1 | jq .SyncInfo
+```
+
+Alternatively, you can use a state sync or snapshot to speed up the process:
+
+```bash
+# Instructions for state sync or snapshot would go here
+```
+
+## Next Steps
+
+Once your node is fully synced, you can proceed to the next step:
+
+<div className="mt-8">
+  <a className="button-primary px-4 py-2 rounded text-white bg-primary hover:bg-opacity-90" href="/validators/becoming-a-validator">Continue to Becoming a Validator →</a>
+</div> 

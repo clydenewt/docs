@@ -1,0 +1,109 @@
+---
+title: "Modular Governance"
+description: "Leveraging the flexibility of smart contracts to bring efficiency and accountability to Cosmos governance"
+---
+
+# Neutron's Multi-Layered Governance System
+
+Neutron's governance system is multi-layered and modular, designed to remain secure and integral to the platform's economy as it evolves. It leverages the flexibility of smart contracts to bring efficiency and accountability to blockchain governance.
+
+## Overview
+
+Neutron is a decentralized network and a public good: it is self-owned and governed by its stakeholder community of users, developers, and tokenholders. Unlike typical blockchain governance systems, Neutron's approach is modular with multiple layers:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 mb-12">
+  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h3 className="text-xl font-semibold mb-2">Agora (Main DAO)</h3>
+    <p className="mb-4">The top layer governed by Neutron's stakeholders through the NTRN token, controlling network upgrades, crucial parameters, and committees.</p>
+  </div>
+  
+  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h3 className="text-xl font-semibold mb-2">Committees (subDAOs)</h3>
+    <p className="mb-4">Specialized governance entities with dedicated powers and resources for day-to-day operations like grants and incentive programs.</p>
+  </div>
+</div>
+
+Committees remain accountable to the Agora through a special mechanism called **Overrule**, where a small percentage of voting power can veto a committee's proposal before execution.
+
+## How is Neutron Governance Different?
+
+<div className="p-4 border-l-4 border-primary bg-primary/5 rounded mb-6">
+  <strong>Key differences from traditional Cosmos governance:</strong>
+  <ul className="mt-2">
+    <li>NTRN cannot be "staked" to generate staking rewards because Neutron is secured by $ATOM and the Cosmos Hub.</li>
+    <li>Voting power comes from bonding NTRN or DeFi tokens containing NTRN.</li>
+    <li>Specialized Committees handle routine governance to minimize voter fatigue.</li>
+    <li>Tokenholders can keep Committees accountable through "overrule proposals."</li>
+  </ul>
+</div>
+
+## Governance Layers in Detail
+
+### Agora (Main DAO)
+
+The Agora is governed by Neutron's stakeholders through the NTRN token. Voting power is calculated using dedicated smart contracts called **Voting Vaults**, controlled by the Agora through governance proposals.
+
+Voting Vaults are extremely flexible and can accept any tokenized position containing NTRN. At launch, the following Voting Vaults are available:
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
+  <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h4 className="font-semibold mb-2">NTRN Vault</h4>
+    <p className="text-sm">Accepts NTRN deposits and grants 1 point of voting power per token without lock-up.</p>
+  </div>
+  
+  <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h4 className="font-semibold mb-2">LP Token Vaults</h4>
+    <p className="text-sm">Similar to Superfluid staking on Osmosis, accepts LP token deposits and counts the underlying NTRN tokens. Both NTRN-ATOM and NTRN-USDC pairs have Voting Vaults at launch.</p>
+  </div>
+</div>
+
+The Agora handles the most critical governance decisions, including network upgrades and core parameter changes. This top layer has been designed to be "defensive" – obtaining approval requires significant consensus, ensuring only the most important decisions pass through this layer.
+
+### Committees (subDAOs)
+
+To handle day-to-day operations efficiently, the Agora can create specialized Committees with specific powers and resources. These subDAOs are highly customizable:
+
+- Who can participate
+- How votes are weighted
+- Specific parameters to meet objectives
+
+Committees operate autonomously, managing their operations and budgets independently from the Agora. They make decisions through specialized proposals that don't require token holder votes, only committee members' votes. This structure enables much faster decision-making and execution.
+
+### Overrule Mechanism
+
+The key to maintaining accountability is the **Overrule** mechanism:
+
+1. Proposals that pass a Committee's vote enter a 3-day timelock before execution
+2. During this period, any Agora stakeholder can vote to veto the proposal
+3. If just 2% of the Agora's voting power votes to overrule, the proposal is automatically canceled
+
+This mechanism forces Committees to act in the Agora's best interests. If they fail to do so, the Agora can block contentious proposals and force decisions to be settled by the entire tokenholder base.
+
+## Benefits of Modular Governance
+
+<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
+  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h4 className="font-semibold mb-2">Efficiency</h4>
+    <p className="text-sm">Specialized committees handle routine matters, reducing governance overhead and voter fatigue.</p>
+  </div>
+  
+  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h4 className="font-semibold mb-2">Accountability</h4>
+    <p className="text-sm">Committees are given autonomy while remaining accountable through the overrule mechanism.</p>
+  </div>
+  
+  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
+    <h4 className="font-semibold mb-2">Participation</h4>
+    <p className="text-sm">Voting Vaults allow community members to participate in governance and DeFi simultaneously, reducing opportunity costs.</p>
+  </div>
+</div>
+
+## Why Modular Governance Matters
+
+As a smart contract platform, Neutron serves as the foundation for numerous applications, businesses, and communities. This requires governance mechanisms that:
+
+- Recognize and reward diverse contributions to the network
+- Permit consensus or compromise across a heterogeneous set of participants
+- Support efficiency and specialization while preserving accountability
+
+The innovative, multi-layered approach of Neutron's governance system is designed to meet these challenges and allow its community to drive the platform's evolution effectively. 

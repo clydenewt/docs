@@ -1,7 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Neutron Documentation",
-  "description": "Documentation for Neutron - The Integrated DeFi Blockchain",
   "logo": {
     "light": "/logo/neutron-light.svg",
     "dark": "/logo/neutron-dark.svg"
@@ -42,13 +41,13 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Users",
+        "tab": "Home",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Introduction",
             "pages": [
-              "users/overview",
-              "users/quickstart"
+              "home",
+              "quickstart"
             ]
           },
           {
@@ -56,16 +55,17 @@
             "pages": [
               "concepts/integrated-architecture",
               "concepts/opinionated-blockchains",
-              "concepts/staking-model",
-              "concepts/governance"
+              "concepts/proof-of-liquid-staking",
+              "concepts/modular-governance",
+              "concepts/privileges-and-chain-managers"
             ]
           },
           {
             "group": "DeFi on Neutron",
             "pages": [
-              "users/defi/overview",
-              "users/defi/supervaults",
-              "users/defi/drop"
+              "defi/overview",
+              "defi/supervaults",
+              "defi/drop"
             ]
           }
         ]
@@ -73,6 +73,14 @@
       {
         "tab": "Developers",
         "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "developers/overview",
+              "developers/quickstart",
+              "developers/architecture"
+            ]
+          },
           {
             "group": "Modules",
             "pages": [
@@ -85,15 +93,6 @@
             ]
           },
           {
-            "group": "How-To Guides",
-            "pages": [
-              "developers/how-to/run-neutron",
-              "developers/how-to/use-oracle",
-              "developers/how-to/add-cron-contract",
-              "developers/how-to/ethereum-auth"
-            ]
-          },
-          {
             "group": "Tutorials",
             "pages": [
               "developers/tutorials/minimal-contract",
@@ -103,12 +102,11 @@
             ]
           },
           {
-            "group": "Tooling",
+            "group": "Reference",
             "pages": [
-              "developers/tooling/sdks",
-              "developers/tooling/integration-templates",
-              "developers/tooling/indexers",
-              "developers/tooling/gas-tools"
+              "developers/reference/contract-apis",
+              "developers/reference/rpc-cli",
+              "developers/reference/chain-config"
             ]
           }
         ]
@@ -117,12 +115,11 @@
         "tab": "Validators",
         "groups": [
           {
-            "group": "Reference",
+            "group": "Getting Started",
             "pages": [
               "validators/overview",
               "validators/running-a-node",
-              "validators/becoming-a-validator",
-              "validators/validator-incentives"
+              "validators/becoming-a-validator"
             ]
           },
           {
@@ -132,26 +129,13 @@
               "validators/technical/selection-criteria",
               "validators/technical/performance-metrics"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Resources",
-        "groups": [
-          {
-            "group": "Developer Reference",
-            "pages": [
-              "resources/contract-apis",
-              "resources/rpc-cli",
-              "resources/chain-config"
-            ]
           },
           {
-            "group": "Community",
+            "group": "Economics",
             "pages": [
-              "resources/community/faq",
-              "resources/community/glossary",
-              "resources/community/roadmap"
+              "validators/economics/validator-incentives",
+              "validators/economics/slashing",
+              "validators/economics/curation-policy"
             ]
           }
         ]
@@ -172,6 +156,6 @@
       "dark": "/images/hero-dark.png"
     },
     "title": "Neutron: The Integrated DeFi Blockchain",
-    "subtitle": "Build, stake, and govern the next generation of decentralized finance."
+    "subtitle": "Build, stake, and govern the next generation of decentralized finance"
   }
 }
