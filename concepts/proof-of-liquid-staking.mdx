@@ -1,0 +1,81 @@
+---
+title: "Proof of Liquid Staking"
+---
+
+Neutron's revolutionary staking model fundamentally reimagines the economics, incentives, and security model of Proof of Stake networks, creating a sustainable economic framework while encouraging active participation in DeFi.
+
+## A Fixed Supply Token
+
+At the heart of Neutron's staking model is the commitment to a fixed supply of NTRN tokens.
+
+- **No Inflation**: NTRN maintains a fixed total supply, with block rewards set to zero. This creates a deflationary dynamic as tokens are placed into productive use.
+- **DAO-Driven Rewards**: All staking rewards are paid directly from the Neutron DAO Treasury, rather than through new token issuance.
+- **Revenue Capture**: Network fees and revenue accrue to the Neutron DAO Treasury, creating a sustainable mechanism for funding rewards.
+
+This approach preserves the value of NTRN against dilution while still incentivizing network security through staking.
+
+## Staking Economics
+
+Neutron's staking model differs from traditional Proof of Stake in several important ways:
+
+### Validator Compensation
+
+Validators receive stable, predictable compensation based on their performance, regardless of market conditions:
+
+- **Base Compensation**: Validators automatically receive monthly compensation from the Neutron DAO Treasury to cover operational costs and provide a reasonable margin.
+- **Performance-Based**: Rewards are adjusted according to validators meeting specific thresholds for block signing and oracle price updates.
+- **No Commissions**: Unlike traditional models, validators don't charge commissions on delegator rewards, creating a clearer separation of roles.
+
+### Delegator Rewards
+
+Users who stake NTRN tokens receive rewards that are:
+
+- **Stable**: Target APR set by governance (initially 3%) provides predictable returns.
+- **DAO-Funded**: Rewards come directly from the treasury rather than inflation.
+- **Magnifiable**: Stakers can leverage their position through DeFi to potentially enhance returns.
+
+### Enhanced Security Without Slashing
+
+Neutron takes a different approach to network security:
+
+- **No Slashing**: Delegators don't face the risk of having their staked assets reduced due to validator misbehavior.
+- **Jailing and Tombstoning**: Validators who misbehave are removed from the active set without penalizing their delegators.
+- **DAO Delegations**: The Neutron DAO stakes a significant portion of the treasury with validators to ensure a stable, secure network.
+
+## Liquid Staking Integration
+
+Perhaps the most innovative aspect of Neutron's model is the deep integration of liquid staking:
+
+- **Native Support**: The network actively encourages the use of liquid staking derivatives (LSDs) like dNTRN.
+- **DeFi Composability**: Staked NTRN can be represented as a liquid token and used throughout the ecosystem.
+- **Enhanced Capital Efficiency**: Users can participate in network security while still utilizing their assets in DeFi.
+
+The approach allows NTRN to remain productive even while securing the network, avoiding the capital inefficiency that plagues many Proof of Stake networks.
+
+## Curated Validator Set
+
+Neutron implements a focused approach to validation:
+
+- **Specialized Role**: Validators focus on providing reliable, performant infrastructure rather than serving as governance representatives.
+- **Clear Separation**: Delegating stake does not confer governance voting power to validators, creating a clear separation between network security and governance.
+- **Performance Requirements**: Validators must maintain high standards for block signing (95%-99.5%) and price updates (95%-98%) to receive full rewards.
+
+## Benefits Over Traditional Models
+
+Neutron's Proof of Liquid Staking offers several advantages:
+
+- **Sustainable Economics**: No inflation means token value isn't diluted to pay for security.
+- **Predictable Rewards**: Both validators and delegators receive more stable, predictable compensation.
+- **Reduced Delegation Risk**: No slashing protects delegators from validator misbehavior.
+- **Capital Efficiency**: Liquid staking allows capital to simultaneously secure the network and participate in DeFi.
+- **Aligned Incentives**: The DAO, validators, and users share aligned goals for network growth and sustainability.
+
+## Implementation
+
+The governance model is implemented through several mechanisms:
+
+- **x/revenue Module**: Tracks validator performance and distributes rewards.
+- **Staked NTRN Voting Vault**: Ensures native stakers can participate in governance.
+- **DAO Treasury Management**: Strategic deployment of treasury assets to secure the network while fostering ecosystem growth.
+
+This innovative approach to staking creates a more sustainable, efficient, and user-friendly network that aligns the interests of all participants while maintaining robust security. 

@@ -64,7 +64,9 @@
             "group": "DeFi on Neutron",
             "pages": [
               "defi/overview",
+              "defi/duality",
               "defi/supervaults",
+              "defi/bull-vs-bear",
               "defi/drop"
             ]
           }
@@ -91,7 +93,6 @@
                 "pages": [
                   "developers/modules/interchain-queries/overview",
                   "developers/modules/interchain-queries/concepts",
-                  "developers/modules/interchain-queries/explanation",
                   "developers/modules/interchain-queries/how-to",
                   {
                     "group": "Reference",
@@ -112,8 +113,20 @@
                 "icon": "clock",
                 "pages": [
                   "developers/modules/cron/overview",
+                  "developers/modules/cron/concepts",
                   "developers/modules/cron/how-to",
-                  "developers/modules/cron/reference"
+                  {
+                    "group": "Reference",
+                    "pages": [
+                      "developers/modules/cron/reference",
+                      "developers/modules/cron/messages",
+                      "developers/modules/cron/events",
+                      "developers/modules/cron/state",
+                      "developers/modules/cron/client",
+                      "developers/modules/cron/api",
+                      "developers/modules/cron/known-bugs"
+                    ]
+                  }
                 ]
               },
               {
@@ -121,11 +134,12 @@
                 "icon": "database",
                 "pages": [
                   "developers/modules/oracle/overview",
-                  "developers/modules/oracle/explanation",
+                  "developers/modules/oracle/concepts",
                   "developers/modules/oracle/how-to",
                   {
                     "group": "Reference",
                     "pages": [
+                      "developers/modules/oracle/reference",
                       "developers/modules/oracle/api",
                       "developers/modules/oracle/known-bugs"
                     ]

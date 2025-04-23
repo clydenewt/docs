@@ -3,70 +3,114 @@ title: "Cron Module"
 description: "Schedule automated smart contract executions with precise timing"
 ---
 
-# Cron Module
+# Overview
 
-The Cron module allows developers to schedule automatic smart contract executions at predefined times or intervals, similar to Unix cron jobs.
+This document explains the `cron` module for the Neutron network.
 
-## Overview
+The Cron module allows developers to schedule automatic smart contract executions at predefined times or intervals, similar to Unix cron jobs. This feature is essential for creating time-based automation in blockchain applications, enabling scheduled operations without requiring external triggers.
 
-In decentralized applications, scheduled operations are essential for many use cases but traditionally difficult to implement securely. The Cron module solves this by providing:
+## Table of contents
 
-- Precise timing controls for smart contract execution
-- Blockchain-enforced scheduling reliability
-- Gas-efficient execution of periodic tasks
+- [Overview](/developers/modules/cron/overview) — a high-level description of the module.
+- [Explanation](/developers/modules/cron/explanation) — an explanation of the module's concepts and the reasoning behind its design choices.
+- [How To](/developers/modules/cron/how-to) — short guides on performing basic operations with the module.
+- **Reference**:
+  - [Reference](/developers/modules/cron/reference) — comprehensive technical details.
+  - [Messages](/developers/modules/cron/messages) — message format specifications.
+  - [Events](/developers/modules/cron/events) — events emitted by the module.
+  - [State](/developers/modules/cron/state) — state management details.
+  - [Client](/developers/modules/cron/client) — CLI and query client details.
+  - [API](/developers/modules/cron/api) — API endpoints.
+  - [Known Bugs](/developers/modules/cron/known-bugs) — known issues in the module.
 
-## Key Features
+## Concepts
 
-### Time-Based Scheduling
+The Cron module serves as an on-chain time-based scheduling system that enables smart contracts to:
 
-Schedule contract executions based on:
-- Block height (every N blocks)
-- Block time (specific timestamps)
-- Custom iterators for complex scheduling patterns
+- **Schedule Future Executions**: Register messages to be executed after a certain number of blocks
+- **Create Periodic Tasks**: Set up recurring executions at regular intervals
+- **Manage Time-Based Workflows**: Chain multiple contract executions in a sequence
 
-### Secure Execution Context
+### Key Features
 
-- Calls are executed within the secure context of the Neutron blockchain
-- Guaranteed execution order with proper error handling
-- Resource limits to prevent system abuse
+#### Block-Based Scheduling
 
-### Multi-Contract Workflow Support
+The module primarily works with block heights for scheduling:
 
-- Chain multiple contract calls in a scheduled operation
-- Set dependencies between scheduled operations
-- Handle successful/failed execution paths
+- **Period**: The number of blocks between recurring executions
+- **Boundary**: An optional starting point (specific block height)
+- **One-time Execution**: By setting period to 0, a schedule executes only once
 
-## Ideal Use Cases
+#### Secure Execution Context
 
-The Cron module is particularly useful for:
+- Tasks are executed within the blockchain's secure context
+- Execution is deterministic and follows the same rules as any other transaction
+- Schedules are identified by unique names for easy management
 
-- **Periodic Protocol Operations**: Rebalancing pools, calculating rewards
-- **Time-Sensitive Events**: Auction endings, governance execution
-- **Maintenance Tasks**: State cleanup, metric calculations
-- **Scheduled Fund Transfers**: Vesting releases, scheduled payments
-- **Interest and Yield Distribution**: Regular disbursement of earnings
+#### Gas Management
 
-## Architecture
+The module uses a pre-payment model for gas:
 
-The module maintains a schedule of tasks to be executed, with each task containing:
-- Execution time information
-- Contract address to call
-- Message to send to the contract
-- Optional dependencies and follow-up actions
+- Schedule creators specify a gas limit for each message execution
+- The module ensures each execution has sufficient gas
+- There's a network-wide limit on gas consumption per block
 
-When a block is produced, the module scans for tasks due for execution and performs the specified calls.
+## Operation Flow
 
-## Gas Model
+A typical workflow using the Cron module consists of:
 
-The Cron module uses a pre-paid gas model:
-- Task creators must pre-fund tasks with sufficient gas
-- Unused gas can be reclaimed when tasks are completed or canceled
-- Gas limits ensure system stability
+1. **Schedule Creation**: A contract creates a schedule by specifying:
+   - A unique name
+   - The execution period (in blocks)
+   - Messages to execute
+   - Gas limits for each message
 
-## Getting Started
+2. **Schedule Tracking**: The module maintains a registry of all schedules and tracks their execution status.
 
-To start using the Cron module in your smart contracts:
+3. **Automatic Execution**: When a block is produced, the module:
+   - Identifies schedules due for execution
+   - Executes their messages with the specified gas limits
+   - Updates their last execution height
 
-1. Review the [How-to Guide](/developers/modules/cron/how-to) for practical examples
-2. Check the [Reference Documentation](/developers/modules/cron/reference) for API details
-3. Explore example contracts in our [GitHub repository](https://github.com/neutron-org/neutron/tree/main/contracts/croncat) 
+4. **Schedule Management**: Contracts can:
+   - Update their schedules to modify periods or messages
+   - Remove schedules when they're no longer needed
+
+## Integration with Smart Contracts
+
+The Cron module integrates with smart contracts through:
+
+- **Schedule Creation**: Contracts send messages to create schedules
+- **Execution Callbacks**: The scheduled messages are sent to target contracts
+- **Schedule Management**: Contracts can update or remove their schedules
+
+This allows developers to implement various time-based functionalities such as:
+
+- Regular protocol maintenance operations
+- Vesting and distribution schedules
+- Time-sensitive DeFi operations
+- Auction deadlines and lifecycle management
+
+## Documentation Sections
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/cron/explanation">
+    <h4 className="font-semibold mb-2">Technical Details</h4>
+    <p className="text-sm">Deep dive into how the Cron module works and its architecture</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/cron/how-to">
+    <h4 className="font-semibold mb-2">How-to Guide</h4>
+    <p className="text-sm">Step-by-step instructions for using the Cron module in your contracts</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/cron/reference">
+    <h4 className="font-semibold mb-2">Reference</h4>
+    <p className="text-sm">Complete technical reference for the Cron module</p>
+  </a>
+  
+  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/cron/api">
+    <h4 className="font-semibold mb-2">API Reference</h4>
+    <p className="text-sm">API endpoints and message specifications</p>
+  </a>
+</div> 

@@ -683,4 +683,3 @@ Broadcast a [ExecuteMsg::RegisterUndelegationsQuery](https://github.com/neutron-
 - [Why is it mandatory to do contract's side verification of submitted TX Interchain Query results?](/neutron/modules/interchain-queries/explanation#why-is-it-mandatory-to-do-contracts-side-verification-of-submitted-tx-interchain-query-results)
 - [What are entry points and sudo calls?](/neutron/modules/interchain-queries/explanation#what-are-entry-points-and-sudo-calls)
 - [Limited gas for sudo calls](/neutron/modules/interchain-queries/explanation#limited-gas-for-sudo-calls)
-- [What happens if a sudo callback to a smart contract owning an Interchain Query fails?](/neutron/modules/interchain-queries/explanation#what-happens-if-a-sudo-callback-to-a-smart-contract-owning-an-interchain-query-fails)

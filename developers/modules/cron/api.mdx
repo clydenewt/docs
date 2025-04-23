@@ -1,0 +1,446 @@
+---
+title: "API"
+description: "Technical reference for the Cron module interface, including queries and messages"
+---
+
+# API
+
+This page describes the interface of the Cron module, including the queries and messages it provides. Each endpoint is detailed with information about request and response models, as well as example usage.
+
+**Endpoints**
+
+This section lists the public API of the Cron module.
+
+Queries:
+- [GetSchedules](#getschedules)
+- [GetSchedule](#getschedule)
+- [GetScheduleByName](#getschedulebyname)
+- [Params](#params)
+
+Messages:
+- [CreateSchedule](#createschedule)
+- [UpdateSchedule](#updateschedule)
+- [RemoveSchedule](#removeschedule)
+
+## Queries
+
+### GetSchedules
+
+Fetches all schedules registered in the module, with optional filtering by owner.
+
+<details>
+  <summary>Request and Response Models</summary>
+
+```protobuf
+// Request
+message QueryGetSchedulesRequest {
+  string name = 1;
+  string owner = 2;
+  cosmos.base.query.v1beta1.PageRequest pagination = 3;
+}
+
+// Response
+message QueryGetSchedulesResponse {
+  repeated Schedule schedules = 1;
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message Schedule {
+  string name = 1;
+  string owner = 2;
+  uint64 period = 3;
+  repeated ScheduleMsg msgs = 4;
+  optional uint64 boundary = 5;
+  optional uint64 last_execute_height = 6;
+}
+
+message ScheduleMsg {
+  string msg = 1;
+  optional uint64 gas_limit = 2;
+}
+```
+</details>
+
+<details>
+  <summary>Example</summary>
+
+```shell
+# Example querying all schedules
+curl -X 'GET' \
+  'https://rest.neutron.org/neutron/cron/schedules' \
+  -H 'accept: application/json'
+```
+
+```json
+{
+  "schedules": [
+    {
+      "name": "daily_reward_distribution",
+      "owner": "neutron14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s5c2epq",
+      "period": 7200,
+      "msgs": [
+        {
+          "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19",
+          "gas_limit": 200000
+        }
+      ],
+      "boundary": null,
+      "last_execute_height": 8764230
+    },
+    {
+      "name": "weekly_parameter_update",
+      "owner": "neutron14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s5c2epq",
+      "period": 50400,
+      "msgs": [
+        {
+          "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SndjbTl3YjNObElIdlpaSndaWEp3bVdWMFpYSWlPbnNpY0dGeVlXMWxkR1Z5Y3lJNmV5SndjbTl3YjNObFgzWmhiSFZsSWpvaUxqSXdJbjE5ZlE9PSIsImZ1bmRzIjpbXX19",
+          "gas_limit": 150000
+        }
+      ],
+      "boundary": 8800000,
+      "last_execute_height": 8749830
+    }
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "2"
+  }
+}
+```
+</details>
+
+### GetSchedule
+
+Fetches a specific schedule by its ID.
+
+<details>
+  <summary>Request and Response Models</summary>
+
+```protobuf
+// Request
+message QueryGetScheduleRequest {
+  string name = 1;
+}
+
+// Response
+message QueryGetScheduleResponse {
+  Schedule schedule = 1;
+}
+```
+</details>
+
+<details>
+  <summary>Example</summary>
+
+```shell
+# Example querying a specific schedule
+curl -X 'GET' \
+  'https://rest.neutron.org/neutron/cron/schedule/daily_reward_distribution' \
+  -H 'accept: application/json'
+```
+
+```json
+{
+  "schedule": {
+    "name": "daily_reward_distribution",
+    "owner": "neutron14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s5c2epq",
+    "period": 7200,
+    "msgs": [
+      {
+        "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19",
+        "gas_limit": 200000
+      }
+    ],
+    "boundary": null,
+    "last_execute_height": 8764230
+  }
+}
+```
+</details>
+
+### GetScheduleByName
+
+Alternative method to fetch a specific schedule by its name.
+
+<details>
+  <summary>Request and Response Models</summary>
+
+```protobuf
+// Request
+message QueryGetScheduleByNameRequest {
+  string name = 1;
+}
+
+// Response
+message QueryGetScheduleByNameResponse {
+  Schedule schedule = 1;
+}
+```
+</details>
+
+<details>
+  <summary>Example</summary>
+
+```shell
+# Example querying a specific schedule by name
+curl -X 'GET' \
+  'https://rest.neutron.org/neutron/cron/schedule_by_name/daily_reward_distribution' \
+  -H 'accept: application/json'
+```
+
+```json
+{
+  "schedule": {
+    "name": "daily_reward_distribution",
+    "owner": "neutron14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s5c2epq",
+    "period": 7200,
+    "msgs": [
+      {
+        "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19",
+        "gas_limit": 200000
+      }
+    ],
+    "boundary": null,
+    "last_execute_height": 8764230
+  }
+}
+```
+</details>
+
+### Params
+
+Fetches the current parameters of the Cron module.
+
+<details>
+  <summary>Request and Response Models</summary>
+
+```protobuf
+// Request
+message QueryParamsRequest {}
+
+// Response
+message QueryParamsResponse {
+  Params params = 1;
+}
+
+message Params {
+  uint64 max_gas_per_block = 1;
+  uint64 max_msg_size = 2;
+  uint64 max_msgs_per_schedule = 3;
+  uint64 max_name_length = 4;
+  uint64 min_period = 5;
+}
+```
+</details>
+
+<details>
+  <summary>Example</summary>
+
+```shell
+# Example querying module parameters
+curl -X 'GET' \
+  'https://rest.neutron.org/neutron/cron/params' \
+  -H 'accept: application/json'
+```
+
+```json
+{
+  "params": {
+    "max_gas_per_block": 6000000,
+    "max_msg_size": 10240,
+    "max_msgs_per_schedule": 10,
+    "max_name_length": 64,
+    "min_period": 5
+  }
+}
+```
+</details>
+
+## Messages
+
+### CreateSchedule
+
+Creates a new schedule for future execution.
+
+<details>
+  <summary>Request and Response Models</summary>
+
+```protobuf
+// Request
+message MsgCreateSchedule {
+  string name = 1;
+  uint64 period = 2;
+  repeated ScheduleMsg msgs = 3;
+  optional uint64 boundary = 4;
+  string sender = 5;
+}
+
+// Response
+message MsgCreateScheduleResponse {}
+```
+</details>
+
+Events emission on success:
+- `type=create_schedule`, attributes:
+    - `name`: The name of the created schedule
+    - `owner`: The address that created the schedule
+    - `period`: The execution period in blocks
+    - `msgs_count`: The number of messages in the schedule
+
+### UpdateSchedule
+
+Updates an existing schedule.
+
+<details>
+  <summary>Request and Response Models</summary>
+
+```protobuf
+// Request
+message MsgUpdateSchedule {
+  string name = 1;
+  uint64 period = 2;
+  repeated ScheduleMsg msgs = 3;
+  optional uint64 boundary = 4;
+  string sender = 5;
+}
+
+// Response
+message MsgUpdateScheduleResponse {}
+```
+</details>
+
+Events emission on success:
+- `type=update_schedule`, attributes:
+    - `name`: The name of the updated schedule
+    - `owner`: The address updating the schedule
+    - `period`: The new execution period
+    - `msgs_count`: The new number of messages
+
+### RemoveSchedule
+
+Removes an existing schedule.
+
+<details>
+  <summary>Request and Response Models</summary>
+
+```protobuf
+// Request
+message MsgRemoveSchedule {
+  string name = 1;
+  string sender = 2;
+}
+
+// Response
+message MsgRemoveScheduleResponse {}
+```
+</details>
+
+Events emission on success:
+- `type=remove_schedule`, attributes:
+    - `name`: The name of the removed schedule
+    - `owner`: The address that removed the schedule
+
+## Smart Contract Integration
+
+To integrate the Cron module into your smart contract, use the CosmWasm interface. Here's an example:
+
+```rust
+use cosmwasm_std::{to_json_binary, Response, SubMsg};
+use neutron_sdk::bindings::{msg::NeutronMsg, types::ScheduleMsg};
+
+// Create a new schedule
+pub fn create_schedule(
+    name: String,
+    period: u64,
+    contract_to_call: String,
+    msg_to_send: &impl serde::Serialize,
+    gas_limit: u64,
+) -> Response {
+    // Serialize the message to be sent to the target contract
+    let serialized_msg = to_json_binary(msg_to_send).unwrap();
+    
+    // Create the schedule message
+    let msg = NeutronMsg::CreateSchedule {
+        name,
+        period,
+        msgs: vec![ScheduleMsg {
+            msg: serialized_msg,
+            gas_limit: Some(gas_limit),
+        }],
+        boundary: None,
+    };
+    
+    // Return the response with the schedule message
+    Response::new().add_message(msg)
+}
+
+// Remove a schedule
+pub fn remove_schedule(name: String) -> Response {
+    let msg = NeutronMsg::RemoveSchedule { name };
+    Response::new().add_message(msg)
+}
+```
+
+## Message Format
+
+The `msg` field in a `ScheduleMsg` must be a base64-encoded JSON representation of a CosmWasm message. The format depends on the message type:
+
+### WasmExecute Format
+
+```json
+{
+  "wasm": {
+    "execute": {
+      "contract_addr": "neutron1...",
+      "msg": "base64_encoded_execute_msg",
+      "funds": []
+    }
+  }
+}
+```
+
+### Bank Send Format
+
+```json
+{
+  "bank": {
+    "send": {
+      "to_address": "neutron1...",
+      "amount": [
+        {
+          "denom": "untrn",
+          "amount": "1000000"
+        }
+      ]
+    }
+  }
+}
+```
+
+## CLI Usage
+
+### Creating a Schedule
+
+```bash
+neutrond tx cron create-schedule \
+  "weekly_task" \
+  50400 \
+  '[{"msg":"base64_encoded_msg","gas_limit":200000}]' \
+  --from mykey
+```
+
+### Querying Schedules
+
+```bash
+# Get all schedules
+neutrond q cron schedules
+
+# Get a specific schedule
+neutrond q cron schedule "weekly_task"
+```
+
+### Removing a Schedule
+
+```bash
+neutrond tx cron remove-schedule "weekly_task" --from mykey
+``` 
