@@ -3,13 +3,32 @@ title: "Validators Overview"
 description: "Guide for Neutron validators"
 ---
 
-# Validators Overview
+Welcome to the Neutron validator documentation. This section provides information on becoming a validator, running a node, and securing the Neutron network.
 
-Welcome to the Neutron validator documentation. This section provides all the information you need to become a validator, run a node, and participate in securing the Neutron network.
+## Sovereign Network Post-Mercury
+
+Following the Mercury upgrade in April 2024, Neutron has transitioned from Interchain Security (ICS) to a fully sovereign network. This transition enables NTRN staking and creates new opportunities for validators and NTRN token holders.
+
+The Mercury upgrade brought significant technical improvements:
+- Reduced latency (targeting ~100ms from ~1.8s)
+- Increased throughput (11x increase in gas per block)
+- Improved performance of core modules like the High Frequency Oracle and Duality DEX
+- Faster network upgrades and incident response
+
+## Neutron's Unique Validator Model
+
+Neutron's validator model differs from traditional Proof of Stake networks in several important ways:
+
+- **Fixed Supply**: NTRN remains a fixed-supply asset with no inflation-based block rewards
+- **DAO-Driven**: Rewards are paid by the Neutron DAO Treasury rather than through inflation
+- **Narrow Validator Scope**: Validators focus specifically on providing performant, reliable infrastructure
+- **No Slashing**: Instead of slashing, Neutron uses jailing, tombstoning, and a validator curation mechanism
+- **Base Compensation**: Validators receive stable monthly compensation based on performance
+- **No Commissions**: Delegator staking rewards are paid through an independent system targeting 3% APR
 
 ## What is a Validator?
 
-Validators are responsible for committing new blocks to the blockchain through voting. A validator's stake is slashed if they become unavailable or sign blocks at the same height. Validators and their delegators earn NTRN as block rewards and transaction fees.
+Validators are responsible for committing new blocks to the blockchain through voting. Validators who fail to maintain adequate uptime may be jailed and potentially removed from the active set. Validators receive base compensation from the Neutron DAO Treasury, while delegators receive staking rewards targeting approximately 3% APR.
 
 ## Getting Started
 
@@ -18,6 +37,7 @@ To become a Neutron validator, you'll need to:
 1. **Set up a node** - Configure and run a full Neutron node
 2. **Create a validator** - Submit a transaction to register as a validator 
 3. **Maintain your validator** - Keep your node secure and maintain high uptime
+4. **Meet performance criteria** - Maintain performance above required thresholds
 
 ## Sections
 
@@ -39,6 +59,6 @@ To become a Neutron validator, you'll need to:
   
   <a className="card" href="/validators/economics/validator-incentives">
     <h3>Economics</h3>
-    <p>Rewards, slashing, and incentives</p>
+    <p>Rewards, compensation, and incentives</p>
   </a>
 </div> 

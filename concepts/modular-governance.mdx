@@ -1,17 +1,16 @@
 ---
-title: "Modular Governance"
+title: "Modular Governance and Chain Management"
+description: "Neutron's governance system balances efficiency, security, and decentralization through a multi-layered architecture"
 ---
 
-Neutron's governance system is multi-layered and modular, designed to remain secure and integral to the platform's economy as it evolves, leveraging the flexibility of smart contracts to bring efficiency and accountability to blockchain governance.
+## Governance Architecture Overview
 
-## Overview
-
-Neutron is a decentralized network and a public good: it is self-owned and governed by its stakeholder community of users, developers, and tokenholders. Unlike typical blockchain governance systems, Neutron's approach is modular with multiple layers:
+Unlike traditional Cosmos SDK chains that rely on a standard governance module, Neutron's governance is built on a customized fork of [DAO DAO contracts](https://github.com/DA0-DA0). This creates a more flexible, modular governance system consisting of:
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 mb-12">
   <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Agora (Main DAO)</h3>
-    <p className="mb-4">The top layer governed by Neutron's stakeholders through the NTRN token, controlling network upgrades, crucial parameters, and committees.</p>
+    <h3 className="text-xl font-semibold mb-2">Neutron DAO (Agora)</h3>
+    <p className="mb-4">The primary governance entity with ultimate authority, governed by Neutron's stakeholders through the NTRN token. Controls network upgrades, crucial parameters, and committees.</p>
   </div>
   
   <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
@@ -20,7 +19,7 @@ Neutron is a decentralized network and a public good: it is self-owned and gover
   </div>
 </div>
 
-Committees remain accountable to the Agora through a special mechanism called **Overrule**, where a small percentage of voting power can veto a committee's proposal before execution.
+This architecture is complemented by the **Chain Manager** system, which mediates between governance and the blockchain's privileged functions through sophisticated permission strategies.
 
 ## How is Neutron Governance Different?
 
@@ -28,19 +27,56 @@ Committees remain accountable to the Agora through a special mechanism called **
   <strong>Key differences from traditional Cosmos governance:</strong>
   <ul className="mt-2">
     <li>NTRN cannot be "staked" to generate staking rewards because Neutron is secured by $ATOM and the Cosmos Hub.</li>
-    <li>Voting power comes from bonding NTRN or DeFi tokens containing NTRN.</li>
+    <li>Voting power comes from bonding NTRN or DeFi tokens containing NTRN through Voting Vaults.</li>
     <li>Specialized Committees handle routine governance to minimize voter fatigue.</li>
     <li>Tokenholders can keep Committees accountable through "overrule proposals."</li>
+    <li>Chain Manager implements granular permission controls for privileged operations.</li>
   </ul>
 </div>
 
-## Governance Layers in Detail
+## Chain Manager
 
-### Agora (Main DAO)
+The Chain Manager is a critical component that mediates between governance and the blockchain's privileged functions. It implements a permission system to control which entities can execute which types of privileged actions.
 
-The Agora is governed by Neutron's stakeholders through the NTRN token. Voting power is calculated using dedicated smart contracts called **Voting Vaults**, controlled by the Agora through governance proposals.
+### Permission Strategies
 
-Voting Vaults are extremely flexible and can accept any tokenized position containing NTRN. At launch, the following Voting Vaults are available:
+The Chain Manager uses two primary permission strategies:
+
+1. **ALLOW_ALL**: Grants an entity full access to all privileged functions
+2. **ALLOW_ONLY**: Permits an entity to execute only specific message types with possible additional restrictions
+
+These strategies create a nuanced permission model where privileged functions can be delegated precisely according to need.
+
+### Supported Privileged Messages
+
+The Chain Manager supports various privileged message types:
+
+| Message Type | Description | Possible Restrictions |
+|--------------|-------------|----------------------|
+| `params.ParamChangeProposal` | Changes parameters of modules using the deprecated params module | Specific modules and parameters |
+| `module_name.MsgUpdateParams` | Updates parameters of modules using the new-style param updates | Specific fields within the message |
+| `cron.AddSchedule` | Adds new execution schedules to the CRON module | None |
+| `cron.RemoveSchedule` | Removes schedules from the CRON module | None |
+| `upgrade.SoftwareUpgradeProposal` | Schedules a software upgrade | None |
+| `upgrade.CancelSoftwareUpgradeProposal` | Cancels a scheduled upgrade | None |
+
+### Permission Assignments
+
+Neutron assigns permissions to different entities:
+
+- **Neutron DAO Core Contract**: ALLOW_ALL strategy, granting comprehensive control
+- **Expedited Software Upgrades Multisig**: ALLOW_ONLY for software upgrade proposals and cancellations
+- **Tokenfactory Hooks Multisig**: ALLOW_ONLY for updating tokenfactory hook parameters
+
+This tiered approach enables emergency responses when needed while maintaining the DAO's ultimate authority.
+
+## Neutron DAO (Agora)
+
+The Neutron DAO, also known as Agora or "Main DAO", serves as the highest governance authority, with comprehensive control over the network, including the ability to grant and revoke permissions to committees.
+
+### Voting Power System
+
+In the Agora, voting power is calculated using dedicated smart contracts called **Voting Vaults**. These are extremely flexible and can accept any tokenized position containing NTRN. At launch, the following Voting Vaults are available:
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
   <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
@@ -54,11 +90,19 @@ Voting Vaults are extremely flexible and can accept any tokenized position conta
   </div>
 </div>
 
-The Agora handles the most critical governance decisions, including network upgrades and core parameter changes. This top layer has been designed to be "defensive" – obtaining approval requires significant consensus, ensuring only the most important decisions pass through this layer.
+There are also "virtual" vaults that track NTRN held in other contracts (e.g., lockdrops, vesting contracts), ensuring that all NTRN holders can participate in governance regardless of how their tokens are being used.
 
-### Committees (subDAOs)
+### Proposal Types
 
-To handle day-to-day operations efficiently, the Agora can create specialized Committees with specific powers and resources. These subDAOs are highly customizable:
+The Neutron DAO supports several proposal types:
+
+- **Single-choice Proposals**: Standard yes/no decisions with a 50% threshold
+- **Multiple-choice Proposals**: Decisions with multiple options where the most-voted option wins
+- **Overrule Proposals**: Special proposals with a lower threshold (0.5%) for overruling subDAO decisions
+
+## Committees (subDAOs)
+
+To handle day-to-day operations efficiently, the Agora can create specialized Committees with specific powers and resources. These subDAOs are highly customizable in terms of:
 
 - Who can participate
 - How votes are weighted
@@ -66,17 +110,26 @@ To handle day-to-day operations efficiently, the Agora can create specialized Co
 
 Committees operate autonomously, managing their operations and budgets independently from the Agora. They make decisions through specialized proposals that don't require token holder votes, only committee members' votes. This structure enables much faster decision-making and execution.
 
-### Overrule Mechanism
+### Timelocks & Overrules
 
-The key to maintaining accountability is the **Overrule** mechanism:
+A key innovation in Neutron's governance is the overrule mechanism:
 
-1. Proposals that pass a Committee's vote enter a 3-day timelock before execution
-2. During this period, any Agora stakeholder can vote to veto the proposal
-3. If just 2% of the Agora's voting power votes to overrule, the proposal is automatically canceled
+1. When a subDAO proposal passes, it enters a timelock period (typically 3 days)
+2. During this period, the main DAO can create an overrule proposal with a low threshold (0.5%)
+3. If the overrule proposal passes, the subDAO proposal is rejected
+4. If no overrule occurs, the subDAO proposal executes after the timelock period
 
-This mechanism forces Committees to act in the Agora's best interests. If they fail to do so, the Agora can block contentious proposals and force decisions to be settled by the entire tokenholder base.
+This creates a balance between efficiency and accountability, allowing subDAOs to act independently while remaining subject to main DAO oversight.
 
-## Benefits of Modular Governance
+### Security SubDAO
+
+Neutron includes a specialized Security subDAO that can only execute `pause()` methods on certain contracts, enabling rapid response to security incidents. This subDAO can:
+
+- Pause other subDAOs
+- Pause the Reserve contract
+- Pause the Distribution contract
+
+## Benefits of Neutron's Governance Model
 
 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
   <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
@@ -94,6 +147,30 @@ This mechanism forces Committees to act in the Agora's best interests. If they f
     <p className="text-sm">Voting Vaults allow community members to participate in governance and DeFi simultaneously, reducing opportunity costs.</p>
   </div>
 </div>
+
+Additional benefits include:
+
+- **Responsiveness**: Privileged entities can respond quickly to emergencies
+- **Precision**: Permissions can be granted with fine-grained control over specific functions
+- **Decentralization**: The main DAO retains ultimate authority over all aspects of the network
+
+## Governance Parameters
+
+Neutron's governance has carefully calibrated parameters:
+
+### Main DAO Proposals
+- **Deposit**: 1000 NTRN (refunded for passed proposals)
+- **Voting Period**: 2 weeks
+- **Quorum**: 5% of total voting power
+- **Threshold**: 50% for single-choice proposals
+
+### Overrule Proposals
+- **Deposit**: None (as they're created automatically)
+- **Voting Period**: 3 days
+- **Threshold**: 0.5% of total voting power (absolute percentage type)
+- **Revoting**: Disabled to enable immediate execution when threshold is met
+
+These parameters balance thorough consideration of regular proposals with rapid response for overrules.
 
 ## Why Modular Governance Matters
 

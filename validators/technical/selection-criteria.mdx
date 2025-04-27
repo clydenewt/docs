@@ -3,9 +3,16 @@ title: "Validator Selection Criteria"
 description: "Requirements for becoming a Neutron validator"
 ---
 
-# Validator Selection Criteria
+This document outlines the technical, operational, and community criteria for being selected as a Neutron validator following the Mercury upgrade.
 
-This document outlines the technical, operational, and community criteria for being selected as a Neutron validator.
+## Neutron's Validator Set
+
+Following the Mercury upgrade in April 2024, Neutron transitioned to a sovereign network with its own validator set structure:
+
+- **Fixed Size**: The network is currently limited to 20 validators
+- **Curated Selection**: Validators are selected based on proven performance and quality
+- **DAO Delegation**: The Neutron DAO delegates significant NTRN to validators
+- **Performance Focus**: Validators are specifically focused on infrastructure reliability
 
 ## Technical Requirements
 
@@ -16,11 +23,24 @@ Technical capability is the foundation of validator selection. Successful valida
 | Component | Minimum Requirement | Recommended |
 |-----------|---------------------|-------------|
 | CPU | 4 cores / 8 threads | 8+ cores / 16+ threads |
-| RAM | 16 GB | 32 GB+ |
-| Storage | 500 GB SSD | 2 TB+ NVMe SSD |
-| Network | 100 Mbps | 500+ Mbps |
+| RAM | 32 GB | 64 GB+ |
+| Storage | 1 TB NVMe SSD | 2 TB+ NVMe SSD |
+| Network | 200 Mbps | 1 Gbps+ |
 
 See our [System Specifications](/validators/technical/system-specs) page for detailed hardware requirements.
+
+### Performance Requirements
+
+Following the Mercury upgrade, validators must meet specific performance thresholds:
+
+| Metric | Minimum Threshold | Target Threshold | Impact |
+|--------|-------------------|------------------|--------|
+| Block Signing | 95% (30-day average) | 99.5%+ | Affects compensation |
+| Oracle Price Updates | 95% (30-day average) | 98%+ | Affects compensation |
+| Upgrade Response | Resume signing within 60 min of first block | Immediate | Affects eligibility |
+| Upgrade Preparation | Begin precommitting within 2 hrs of instructions | Immediate | Affects eligibility |
+
+Validators who fail to meet minimum thresholds receive no compensation for the period, and repeated failures may result in rotation from the validator set.
 
 ### Infrastructure Design
 
@@ -45,68 +65,82 @@ See our [System Specifications](/validators/technical/system-specs) page for det
 - **Patching**: Regular and timely system patching
 - **Security Audits**: Regular security reviews and penetration testing
 
-## Operational Track Record
+## Validator Rotation Framework
 
-Validators should demonstrate a history of reliable operation:
+After a one-month grace period following the Mercury upgrade, validators are subject to a formal rotation framework:
 
-### Performance Metrics
+### Performance-Based Offboarding
 
-- **Uptime**: 99.5%+ uptime on previous networks or testnets
-- **Block Production**: Consistent block production when scheduled
-- **Responsiveness**: Quick response to network issues or upgrade requirements
+A validator is considered for offboarding if any of the following conditions are met:
+
+1. **Consecutive Performance Issues**:
+   - Received no rewards from x/revenue for two consecutive months
+   - Notified after the first month with assistance offered
+   - Automatically flagged for rotation after the second consecutive month
+
+2. **Intermittent Performance Issues**:
+   - Received no rewards from x/revenue for three months in a 6-month period
+   - Notified after the second month in the period
+   - Automatically flagged for rotation after the third month in the period
+
+3. **Tombstoning**:
+   - Validator was tombstoned due to double-signing or critical security issues
+
+### Downtime-Based Offboarding
+
+A validator is considered for offboarding if either of these conditions are met:
+
+1. **Resumption Latency**:
+   - Failed to resume signing within 60 minutes of the first finalized block after an upgrade
+   - Notified on first occurrence, marked for rotation on second occurrence
+
+2. **Precommit Latency**:
+   - Failed to begin precommitting within 2 hours of the distribution of upgrade instructions
+   - Notified on first occurrence, marked for rotation on second occurrence
+
+## Validator Onboarding Process
+
+To join the active set when slots become available:
+
+### Eligibility Requirements
+
+1. **Network Participation**:
+   - Must run both mainnet and testnet nodes
+   - Must demonstrate technical capability and reliability
+
+2. **Selection Priority**:
+   - Validators are prioritized by reverse order of mainnet voting power
+   - This encourages decentralization by favoring smaller validators
+
+### Onboarding Procedure
+
+1. **Initial Delegation**:
+   - Selected operators receive a small delegation from the DAO
+   - Sufficient to participate but limited to minimize risk
+
+2. **Probation Period**:
+   - Must demonstrate adequate performance for three consecutive months
+   - Performance evaluated against the same metrics as existing validators
+
+3. **Full Delegation**:
+   - After successful probation, receive a full delegation from the DAO
+   - Failure during probation results in redelegation to the next operator in line
+
+## Community Contribution
+
+While Neutron's validator model focuses specifically on infrastructure reliability, community contributions remain valuable:
+
+### Development and Support
+
+- **Documentation**: Contributing to technical documentation
+- **Bug Reports**: Identifying and reporting issues
+- **Community Support**: Assisting users and other validators
 
 ### Network Participation
 
 - **Testnet Involvement**: Active participation in Neutron testnets
-- **Upgrade Support**: History of smooth handling of network upgrades
-- **Crisis Management**: Demonstrated ability to respond effectively during network incidents
-
-## Community Contribution
-
-A strong Neutron validator contributes to the ecosystem beyond just running nodes:
-
-### Development Contributions
-
-- **Code Contributions**: Pull requests, bug fixes, or feature development
-- **Technical Review**: Code review and technical feedback
-- **Tool Development**: Development of tools or utilities beneficial to the ecosystem
-
-### Documentation and Education
-
-- **Documentation**: Contributing to technical documentation
-- **Guides**: Creating guides or tutorials for users and other validators
-- **Educational Content**: Producing educational content about Neutron
-
-### Community Engagement
-
-- **Forum Participation**: Active participation in governance discussions
-- **Support**: Providing support to users and other validators
-- **Events**: Organizing or speaking at community events
-- **Outreach**: Helping grow the Neutron community
-
-## Governance Participation
-
-Validators are expected to actively participate in governance:
-
-- **Voting**: Consistently voting on governance proposals
-- **Proposal Creation**: Thoughtfully creating proposals when appropriate
-- **Discussion**: Constructively contributing to governance discussions
-- **Delegation Representation**: Effectively representing delegator interests
-
-## Business Considerations
-
-### Transparency
-
-- **Commission Strategy**: Clear communication about commission rates and changes
-- **Contact Information**: Publicly available contact information
-- **Team Information**: Disclosure of team members and expertise
-- **Operations Disclosure**: Transparency about infrastructure and security practices
-
-### Long-term Commitment
-
-- **Business Sustainability**: Demonstrated sustainable business model
-- **Team Redundancy**: Multiple team members capable of managing validator operations
-- **Long-term Vision**: Alignment with Neutron's long-term vision and roadmap
+- **Upgrade Support**: Timely implementation of network upgrades
+- **Crisis Response**: Effective coordination during network incidents
 
 ## Geographic Distribution
 
@@ -116,23 +150,20 @@ To enhance network resilience, validator geographic distribution is considered:
 - **Physical Distribution**: Physical location diversity to mitigate regional risks
 - **Network Diversity**: Diverse network providers and data centers
 
+## Transparency and Communication
+
+Validators are expected to maintain clear communication channels:
+
+- **Contact Information**: Accessible contact methods for urgent coordination
+- **Maintenance Announcements**: Advance notice of planned maintenance
+- **Incident Reporting**: Prompt reporting of any incidents or issues
+
 ## Application Process
 
-Prospective validators must complete:
+The application process for becoming a validator when slots open includes:
 
 1. **Technical Application**: Detailed information about technical setup
 2. **Team Background**: Information about the team and track record
-3. **Contribution Plan**: Proposal for ecosystem contributions
+3. **Performance History**: Evidence of reliable operation on other networks
 4. **Community Review**: Period of community feedback
-5. **Governance Approval**: Final governance vote for inclusion
-
-## Ongoing Evaluation
-
-Validators undergo continuous evaluation based on:
-
-- **Performance Metrics**: Automated tracking of node performance
-- **Contribution Tracking**: Documentation of ecosystem contributions
-- **Community Feedback**: Input from community members
-- **Regular Reviews**: Periodic comprehensive evaluation
-
-Meeting the initial selection criteria does not guarantee permanent validator status. Validators must maintain high standards and adapt to evolving requirements. 
+5. **Selection Decision**: Final decision based on the criteria outlined above 

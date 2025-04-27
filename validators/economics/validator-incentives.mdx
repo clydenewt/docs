@@ -3,120 +3,124 @@ title: "Validator Incentives"
 description: "Economic incentives for Neutron validators"
 ---
 
-# Validator Incentives
+This document explains the economic model for Neutron validators following the Mercury upgrade.
 
-This document explains the economic incentives for running a Neutron validator node.
+## Neutron's Unique Compensation Model
 
-## Rewards Structure
-
-Neutron's validator reward structure is unique compared to many other Cosmos-based chains. Instead of traditional inflation-based rewards, Neutron uses a DAO-driven, fixed-supply model.
+Neutron's validator compensation mechanism is designed around a fixed-supply token model with DAO-driven incentives, rather than traditional inflation-based rewards.
 
 ### Fixed Supply Model
 
-- **No Inflation**: Unlike most Cosmos chains, Neutron does not mint new tokens as rewards
-- **Fixed Supply**: The total supply of NTRN tokens is capped
-- **DAO-Distributed Rewards**: Validator rewards come from the community-controlled Treasury
+- **No Inflation**: NTRN remains a fixed-supply asset with no inflation-based block rewards
+- **Treasury Allocation**: Validator rewards come from the Neutron DAO Treasury
+- **Stable Compensation**: Target compensation is set in USD value, not token count
+- **Revenue Module**: Implemented through the new x/revenue module
 
-### Reward Sources
+### Base Compensation
 
-Validators earn rewards from:
+Validators receive a stable monthly compensation from the Neutron DAO Treasury:
 
-1. **Transaction Fees**: A portion of transaction fees goes to validators
-2. **Treasury Allocation**: The Neutron DAO allocates funds to validators
-3. **MEV Extraction**: Validators can capture Maximal Extractable Value
+- **Target Compensation**: $3,000 USD per month per validator
+- **Token Conversion**: Calculated in NTRN tokens based on oracle price
+- **Automatic Distribution**: Handled by the x/revenue module
+- **Performance Based**: Full rewards require meeting performance thresholds
 
-## Reward Distribution
+## Performance Thresholds
 
-Validators receive rewards based on:
+Validator compensation is directly tied to performance metrics:
 
-- **Voting Power**: Proportional to the amount of NTRN staked/delegated
-- **Uptime**: Must maintain high uptime to receive full rewards
-- **Governance Participation**: Expected to participate in governance
+| Performance Level | Block Signing (30D) | Price Updates (30D) | Reward |
+|-------------------|---------------------|---------------------|--------|
+| Above threshold   | ≥ 99.5%             | ≥ 98%               | Full rewards |
+| Medium performance| 95% - 99.5%         | 95% - 98%           | Partial rewards |
+| Below threshold   | < 95%               | < 95%               | No rewards |
 
-Rewards are distributed automatically at the end of each block.
+> **Important**: Validators who fail to meet the minimum performance for any criteria receive no reward for the period, regardless of their performance in other criteria.
 
-## Commission Rates
+## Validator Offboarding
 
-Validators set their own commission rates within certain parameters:
+After a one-month grace period following the Mercury upgrade, validators are subject to rotation criteria:
 
-- **Commission Rate**: Percentage of rewards kept by the validator
-- **Maximum Rate**: Cannot exceed this value (set during creation)
-- **Maximum Change Rate**: Maximum daily adjustment allowed
+### Performance-Based Offboarding
 
-Recommended commission rates typically range from 5% to 10%, though this varies based on validator costs and services provided.
+A validator may be offboarded for:
+- Receiving no rewards for two consecutive months
+- Receiving no rewards for three months in a 6-month period
+- Being tombstoned
 
-## Reward Calculations
+### Downtime-Based Offboarding
 
-The reward for a validator in a given period can be estimated as:
+A validator may be offboarded for:
+- Failing to resume signing within 60 minutes of the first finalized block after an upgrade
+- Failing to begin precommitting within 2 hours of upgrade instructions distribution
 
-```
-Validator Reward = (Stake Share * Total Rewards * (1 - Community Tax)) * (1 - Commission Rate)
-```
-
-Where:
-- **Stake Share** is the percentage of the total stake that the validator holds
-- **Total Rewards** is the sum of transaction fees and DAO allocations for the period
-- **Community Tax** is the percentage taken for the community pool
-- **Commission Rate** is the validator's commission percentage
-
-## No Slashing Risk
-
-One of Neutron's unique features is the absence of slashing penalties:
-
-- **No Slashing for Downtime**: Validators who go offline temporarily do not lose stake
-- **No Double-Sign Slashing**: While double-signing is prevented, it doesn't result in stake loss
-- **Curation Model**: Instead of slashing, Neutron uses a validator curation model
-
-This model reduces risk for delegators while maintaining network security through careful validator selection.
-
-## Validator Curation
-
-Neutron uses a curated validator set model:
-
-- **Selection Criteria**: Validators must meet technical, reputation, and community contribution criteria
-- **Periodic Review**: The validator set is regularly reviewed by the governance process
-- **Performance Metrics**: Validators are evaluated based on uptime, governance participation, and contributions
+In both cases, validators are notified on first occurrence and marked for rotation on the second.
 
 ## Delegator Rewards
 
-Delegators (token holders who stake with validators) receive rewards as follows:
+Unlike traditional Cosmos chains, delegator rewards are handled separately:
 
-- **Automatic Distribution**: Rewards are automatically distributed
-- **Commission Deduction**: Validator's commission is deducted from rewards
-- **Compounding**: Rewards can be automatically re-staked for compounding returns
+- **Target APR**: 3% annual percentage rate
+- **DAO Funded**: Rewards come from the Neutron DAO Treasury
+- **No Validator Commission**: Validators do not take a commission from delegator rewards
+- **Separate System**: Rewards are distributed through a separate mechanism from validator base compensation
 
-## Economics of Running a Validator
+## Validator Selection and Delegation
 
-When considering running a validator, account for:
+The Neutron DAO actively participates in validator selection:
 
-### Costs
+- **Initial Set**: Carefully selected based on historical performance and quality
+- **Maximum Size**: Currently limited to 20 validators
+- **DAO Delegations**: The DAO delegates a significant portion of NTRN to validators
+- **Prioritization**: New validators are prioritized by reverse order of mainnet voting power
 
-- **Infrastructure**: Server costs, whether cloud or self-hosted
+## Validator Onboarding Process
+
+To join the validator set when a slot opens:
+
+1. **Run Both Networks**: Maintain both mainnet and testnet nodes
+2. **Initial Delegation**: Receive a small delegation from the DAO
+3. **Probation Period**: Demonstrate adequate performance for three months
+4. **Full Delegation**: Receive full delegation after successful probation
+
+If performance is inadequate during probation, the DAO will redelegate to the next operator in line.
+
+## Governance Participation
+
+While validators focus on infrastructure rather than governance representation:
+
+- **Separate Voting Power**: Delegated stake does not confer governance voting power
+- **Optional Participation**: Validators may opt to participate in governance, but it's not required
+- **Staked NTRN Voting**: Native stakers can access governance voting power through the Staked NTRN voting vault
+
+## Practical Considerations
+
+### Costs of Running a Validator
+
+- **Infrastructure**: Server costs, bandwidth, and storage
 - **Operations**: Monitoring, maintenance, security
-- **Team**: Technical and community support staff
-- **Security Measures**: HSMs, backup systems, etc.
+- **Redundancy**: Backup systems and failover mechanisms
+- **Team**: Technical support and operations staff
 
-### Revenue
+### Revenue Sources
 
-- **Staking Rewards**: Based on stake amount and network activity
-- **Commission**: Percentage taken from delegator rewards
-- **Additional Services**: Some validators offer additional paid services
+- **Base Compensation**: Approximately $3,000 USD per month from the DAO
+- **Self-Delegated Rewards**: 3% APR on self-delegated NTRN
 
-## Tax Considerations
+## Comparison with Traditional Models
 
-Validator rewards may have tax implications that vary by jurisdiction:
+| Aspect | Traditional PoS Model | Neutron's Model |
+|--------|----------------------|----------------|
+| Reward Source | Inflation | DAO Treasury |
+| Reward Mechanism | Proportional to stake | Fixed base compensation + stake rewards |
+| Commission | Validators set commission rates | No commission on delegator rewards |
+| Slashing | Financial penalties | Jailing and possible removal |
+| Delegation Incentive | Higher rewards with trusted validators | Consistent 3% APR regardless of validator |
 
-- **Income vs. Capital Gains**: Rewards might be treated as regular income or capital gains
-- **Cost Basis**: Understanding how rewards affect your cost basis is important
-- **Business Expenses**: Infrastructure and operational costs may be deductible
+## Future Evolution
 
-*Consult with a tax professional for advice specific to your situation.*
-
-## Long-term Value
-
-Beyond immediate rewards, validators benefit from:
-
-- **Governance Influence**: Direct participation in protocol decisions
-- **Network Expertise**: Valuable knowledge and experience
-- **Community Standing**: Recognition and reputation within the ecosystem
-- **Ecosystem Growth**: Rising token value as the network grows 
+The validator compensation model may evolve through governance:
+- **Parameter Adjustments**: Changes to compensation amounts or performance thresholds
+- **Additional Criteria**: New performance metrics or requirements
+- **Validation Set Size**: Potential changes to the number of active validators
+- **Delegation Strategy**: Updates to how the DAO allocates delegations 

@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/docs.json",
   "name": "Neutron Documentation",
   "logo": {
-    "light": "/logo/neutron-light.svg",
-    "dark": "/logo/neutron-dark.svg"
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
@@ -56,8 +56,7 @@
               "concepts/integrated-architecture",
               "concepts/opinionated-blockchains",
               "concepts/proof-of-liquid-staking",
-              "concepts/modular-governance",
-              "concepts/privileges-and-chain-managers"
+              "concepts/modular-governance"
             ]
           },
           {
@@ -179,24 +178,27 @@
             "group": "Tutorials",
             "pages": [
               "developers/tutorials/overview",
+              "developers/tutorials/introduction_to_cosmwasm",
+              "developers/tutorials/cosmwasm_remix",
+              "developers/tutorials/cosmwasm_wasmkit",
+              "developers/tutorials/cosmwasm_ica",
+              "developers/tutorials/cosmwasm_icq",
               {
-                "group": "Smart Contracts",
+                "group": "Onboarding",
                 "pages": [
-                  "developers/tutorials/minimal-contract",
-                  "developers/tutorials/cosmwasm_icq"
+                  "developers/tutorials/onboarding/overview"
                 ]
               },
               {
-                "group": "Integration",
+                "group": "Integration tests",
                 "pages": [
-                  "developers/tutorials/integration-tests",
-                  "developers/tutorials/relayer-setup"
+                  "developers/tutorials/integration-tests/overview"
                 ]
               },
               {
-                "group": "Infrastructure",
+                "group": "Indexers",
                 "pages": [
-                  "developers/tutorials/indexers"
+                  "developers/tutorials/indexers/overview"
                 ]
               }
             ]
