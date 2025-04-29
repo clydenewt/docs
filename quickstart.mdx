@@ -3,35 +3,28 @@ title: "Quickstart"
 description: "Get started with Neutron in under 5 minutes"
 ---
 
-# Quickstart Guide
-
-This guide will help you quickly get started with Neutron, whether you're a user, developer, or validator.
-
 ## For Users
 
 <Steps>
-  <Step title="Access Neutron App">
-    Visit [app.neutron.org](https://app.neutron.org) to access the Neutron application.
+  <Step title="Access the Neutron App">
+    Visit [app.neutron.org](https://app.neutron.org/) to access the Neutron DeFi ecosystem.
   </Step>
-  <Step title="Connect Wallet">
-    Connect your Keplr, Leap, or other Cosmos-compatible wallet.
-    
+  <Step title="Connect Your Wallet">
+    Connect a compatible wallet to the Neutron app by clicking "Connect Wallet" and selecting your preferred wallet provider.
     <Note>
-      If you don't have a wallet yet, we recommend installing [Keplr](https://www.keplr.app/) or [Leap Wallet](https://www.leapwallet.io/).
+      We recommend checking out wallets like [Keplr](https://www.keplr.app/get) and [Leap](https://www.leapwallet.io/download) for the best experience.
     </Note>
   </Step>
-  <Step title="Start Liquid Staking">
-    Once connected:
-    - Navigate to "Stake" in the menu
-    - Select "Liquid Stake With Drop"
-    - Click "Continue"
+  <Step title="Explore Neutron's DeFi Ecosystem">
+    Neutron offers a comprehensive DeFi ecosystem with multiple ways to participate:
     
-    <Note>
-      Liquid staking with Drop allows you to:
-      - Stay liquid while earning rewards
-      - Help secure the Neutron network
-      - Receive additional Droplets
-    </Note>
+    - **Supervaults**: Automatically compound your yields across multiple strategies
+    - **Liquid Staking**: Stake NTRN and receive liquid staking tokens you can use throughout the ecosystem
+    - **Lending & Borrowing**: Access capital markets for a variety of assets
+    - **Trading**: Swap assets easily with minimal slippage 
+    - **Governance**: Participate in shaping Neutron's future
+    
+    For more information on Neutron's DeFi features, check out our [DeFi Guide](/defi/overview).
   </Step>
 </Steps>
 
@@ -46,14 +39,36 @@ This guide will help you quickly get started with Neutron, whether you're a user
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     
     # Install Go
-    wget https://go.dev/dl/go1.19.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xzf go1.19.linux-amd64.tar.gz
+    wget https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xzf go1.23.1.linux-amd64.tar.gz
     ```
   </Step>
   <Step title="Clone Neutron Repository">
     ```bash
     git clone https://github.com/neutron-org/neutron.git
     cd neutron
+    ```
+  </Step>
+  <Step title="Build and Install Neutron">
+    ```bash
+    # Build the neutrond binary
+    make install
+    
+    # Add to PATH (add this to your .bashrc or .zshrc for persistence)
+    export PATH=$PATH:$(go env GOPATH)/bin
+    
+    # Verify installation
+    neutrond version
+    ```
+  </Step>
+  <Step title="Start a CosmWasm Project (Optional)">
+    ```bash
+    # Generate a new CosmWasm project using the template
+    cargo generate --git https://github.com/CosmWasm/cw-template.git --name neutron-ica-example
+    cd neutron-ica-example
+    
+    # Build the contract
+    cargo wasm
     ```
   </Step>
   <Step title="Explore Developer Documentation">

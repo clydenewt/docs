@@ -3,8 +3,6 @@ title: "Integrated Architecture"
 description: "How Neutron's DeFi-focused infrastructure combines app-specific features with atomic composability"
 ---
 
-# Integrated Architecture
-
 Unlike generalized L1s that provide generic infrastructure, Neutron implements an integrated blockchain architecture focusing exclusively on DeFi by making highly-performant, application-specific infrastructure available to protocols within a shared execution environment.
 
 ## What is an Integrated Architecture?
@@ -31,7 +29,7 @@ This tailored approach allows entrepreneurs to build new types of protocols that
   <Card title="Automated Execution" icon="clock">
     Native automation through the Cron module, allowing scheduled and conditional contract execution with protocol-level reliability.
   </Card>
-  <Card title="Interchain Transactions (ICTX)" icon="arrows-left-right">
+  <Card title="Interchain Accounts (ICA)" icon="arrows-left-right">
     Built-in interchain account management enabling seamless cross-chain operations with consensus-enforced security.
   </Card>
 </CardGroup>
@@ -84,7 +82,7 @@ Supervaults represent a new approach to liquidity provision that overcomes the l
 - Lower the cost of capital acquisition
 
 ### Cross-Chain Liquid Staking
-Protocols can utilize Neutron's custom Interchain Transactions (ICTX) and Interchain Queries (ICQ) modules to:
+Protocols can utilize Neutron's Interchain Accounts (ICA) and Interchain Queries (ICQ) modules to:
 
 - Read the state of other blockchains
 - Adjust delegations made by remotely controlled accounts
@@ -103,7 +101,7 @@ Protocols can utilize Neutron's custom Interchain Transactions (ICTX) and Interc
   <Card title="Cron Module" icon="clock" href="/developers/modules/cron">
     Automated and scheduled execution
   </Card>
-  <Card title="ICA Module" icon="arrows-left-right" href="/developers/modules/interchain-accounts">
+  <Card title="ICA Module" icon="arrows-left-right" href="/developers/tutorials/cosmwasm_ica">
     Interchain account management
   </Card>
 </CardGroup>

@@ -7,44 +7,56 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#2AB673",
-    "light": "#55D799",
-    "dark": "#117866"
+    "primary": "#0F8CFF",
+    "light": "#6FC2FF",
+    "dark": "#0062B3"
   },
-  "theme": "maple",
-  "topbarLinks": [
-    {
-      "name": "Website",
-      "url": "https://neutron.org"
-    },
-    {
-      "name": "GitHub",
-      "url": "https://github.com/neutron-org"
+  "theme": "mint",
+  "navbar": {
+    "links": [
+      {
+        "label": "Website",
+        "href": "https://neutron.org"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/neutron-org"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Launch App",
+      "href": "https://app.neutron.org"
     }
-  ],
-  "topbarCtaButton": {
-    "name": "Launch App",
-    "url": "https://app.neutron.org"
   },
-  "anchors": [
-    {
-      "name": "Discord",
-      "icon": "discord",
-      "url": "https://discord.com/invite/bzPBzbDvWC"
-    },
-    {
-      "name": "Twitter",
-      "icon": "twitter",
-      "url": "https://twitter.com/neutron_org"
-    }
-  ],
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Discord",
+          "icon": "discord",
+          "href": "https://discord.com/invite/bzPBzbDvWC"
+        },
+        {
+          "anchor": "Twitter",
+          "icon": "twitter",
+          "href": "https://twitter.com/neutron_org"
+        },
+        {
+          "anchor": "GitHub",
+          "icon": "github",
+          "href": "https://github.com/neutron-org"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Home",
+        "icon": "home",
         "groups": [
           {
             "group": "Introduction",
+            "icon": "book-open",
             "pages": [
               "home",
               "quickstart"
@@ -52,6 +64,7 @@
           },
           {
             "group": "Core Concepts",
+            "icon": "lightbulb",
             "pages": [
               "concepts/integrated-architecture",
               "concepts/opinionated-blockchains",
@@ -61,6 +74,7 @@
           },
           {
             "group": "DeFi on Neutron",
+            "icon": "chart-line",
             "pages": [
               "defi/overview",
               "defi/duality",
@@ -73,9 +87,11 @@
       },
       {
         "tab": "Developers",
+        "icon": "code",
         "groups": [
           {
             "group": "Getting Started",
+            "icon": "rocket",
             "pages": [
               "developers/overview",
               "developers/quickstart",
@@ -84,6 +100,7 @@
           },
           {
             "group": "Modules",
+            "icon": "cubes",
             "pages": [
               "developers/modules/overview",
               {
@@ -92,9 +109,9 @@
                 "pages": [
                   "developers/modules/interchain-queries/overview",
                   "developers/modules/interchain-queries/concepts",
-                  "developers/modules/interchain-queries/how-to",
                   {
                     "group": "Reference",
+                    "icon": "book",
                     "pages": [
                       "developers/modules/interchain-queries/reference",
                       "developers/modules/interchain-queries/messages",
@@ -116,6 +133,7 @@
                   "developers/modules/cron/how-to",
                   {
                     "group": "Reference",
+                    "icon": "book",
                     "pages": [
                       "developers/modules/cron/reference",
                       "developers/modules/cron/messages",
@@ -137,6 +155,7 @@
                   "developers/modules/oracle/how-to",
                   {
                     "group": "Reference",
+                    "icon": "book",
                     "pages": [
                       "developers/modules/oracle/reference",
                       "developers/modules/oracle/api",
@@ -176,6 +195,7 @@
           },
           {
             "group": "Tutorials",
+            "icon": "graduation-cap",
             "pages": [
               "developers/tutorials/overview",
               "developers/tutorials/introduction_to_cosmwasm",
@@ -185,18 +205,21 @@
               "developers/tutorials/cosmwasm_icq",
               {
                 "group": "Onboarding",
+                "icon": "user-plus",
                 "pages": [
                   "developers/tutorials/onboarding/overview"
                 ]
               },
               {
                 "group": "Integration tests",
+                "icon": "vial",
                 "pages": [
                   "developers/tutorials/integration-tests/overview"
                 ]
               },
               {
                 "group": "Indexers",
+                "icon": "database",
                 "pages": [
                   "developers/tutorials/indexers/overview"
                 ]
@@ -205,6 +228,7 @@
           },
           {
             "group": "Reference",
+            "icon": "book",
             "pages": [
               "developers/reference/contract-apis",
               "developers/reference/rpc-cli",
@@ -215,9 +239,11 @@
       },
       {
         "tab": "Validators",
+        "icon": "server",
         "groups": [
           {
             "group": "Getting Started",
+            "icon": "flag",
             "pages": [
               "validators/overview",
               "validators/running-a-node",
@@ -226,6 +252,7 @@
           },
           {
             "group": "Technical",
+            "icon": "server",
             "pages": [
               "validators/technical/system-specs",
               "validators/technical/selection-criteria",
@@ -234,6 +261,7 @@
           },
           {
             "group": "Economics",
+            "icon": "coins",
             "pages": [
               "validators/economics/validator-incentives",
               "validators/economics/slashing",
@@ -244,13 +272,13 @@
       }
     ]
   },
-  "footerSocials": {
-    "twitter": "https://twitter.com/neutron_org",
-    "discord": "https://discord.com/invite/bzPBzbDvWC",
-    "telegram": "https://t.me/neutron_community"
-  },
-  "modeToggle": {
-    "default": "dark"
+  "footer": {
+    "socials": {
+      "twitter": "https://twitter.com/neutron_org",
+      "discord": "https://discord.com/invite/bzPBzbDvWC",
+      "telegram": "https://t.me/neutron_community",
+      "github": "https://github.com/neutron-org"
+    }
   },
   "hero": {
     "image": {
