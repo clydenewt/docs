@@ -1,31 +1,14 @@
 ---
 title: "Duality DEX"
 description: "High-performance DEX combining the advantages of orderbooks and AMMs into a single capital-efficient trading venue"
+icon: "arrow-right-arrow-left"
 ---
 
-## Next Evolution in DeFi Trading
-
-Duality is a high-performance DEX built into Neutron that combines the advantages of orderbooks and AMMs into a single trading venue. It is optimized to offer the best prices by supporting all market participants — professional market makers, traders, and passive liquidity providers — with advanced order types and features.
-
-## What is Duality?
-
-<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
-  Duality is a protocol-native DEX integrated directly into Neutron's core infrastructure. Unlike traditional DEXs implemented as smart contracts, Duality is built at the protocol level, giving it significant performance advantages and deeper integration with other Neutron features. It enables professional-grade market making with Just-In-Time (JIT) orders, limit orders, and other advanced features to create a more efficient trading environment.
-</div>
+Duality is a protocol-native DEX integrated directly into Neutron's core infrastructure that merges the strengths of orderbooks and AMMs into a unified, capital-efficient design. Unlike traditional DEXs implemented as smart contracts, Duality is built at the protocol level, giving it significant performance advantages and deeper integration with other Neutron features.
 
 ## Key Features
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">JIT Orders</h3>
-    <p className="mb-4">Just-In-Time orders enable market makers to provide liquidity at specified prices for one block only, minimizing adverse selection risk and enabling tighter spreads.</p>
-  </div>
-  
   <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
     <div className="text-primary text-3xl mb-3">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
@@ -44,7 +27,7 @@ Duality is a high-performance DEX built into Neutron that combines the advantage
       </svg>
     </div>
     <h3 className="text-xl font-semibold mb-2">Vault Integration</h3>
-    <p className="mb-4">Partners like Margined, Astroport and Blockwave enable passive liquidity providers to participate in professional-grade trading strategies.</p>
+    <p className="mb-4">Partners like Margined, Astroport and others enable passive liquidity providers to participate in professional-grade trading strategies.</p>
   </div>
   
   <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
@@ -58,39 +41,6 @@ Duality is a high-performance DEX built into Neutron that combines the advantage
   </div>
 </div>
 
-## How Duality Works
-
-### Just-In-Time (JIT) Orders: The Game Changer
-
-JIT orders represent a significant innovation in on-chain market making:
-
-```mermaid
-sequenceDiagram
-    participant MM as Market Maker
-    participant Duality as Duality DEX
-    participant Chain as Blockchain
-    participant Trader as Trader
-    
-    MM->>Duality: Submit JIT order for one block
-    Duality->>Chain: Include in current block
-    Note over Duality,Chain: Order valid only for current block
-    Trader->>Duality: Submit trade
-    alt Trade matches JIT order
-        Duality->>MM: Execute trade at JIT price
-    else Block changes
-        Duality->>MM: Automatically cancel JIT order
-        Note over Duality,MM: No adverse selection risk
-    end
-```
-
-Traditional market making is challenging on-chain because market makers can't cancel stale orders fast enough when prices change, leading to adverse selection. JIT orders solve this by:
-
-1. Providing liquidity at a specified price for one block only
-2. Automatically canceling if not filled within that block
-3. Allowing market makers to refresh their orders each block with updated prices
-
-This enables market makers to provide deeper liquidity at tighter spreads since they have less value at risk from adverse selection.
-
 ## Technical Architecture
 
 Duality is built directly into Neutron's core infrastructure as a native protocol module, making it highly capital-efficient and integrated with other Neutron applications:
@@ -98,7 +48,7 @@ Duality is built directly into Neutron's core infrastructure as a native protoco
 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
   <div className="flex flex-col">
     <h4 className="font-semibold mb-2">1. Orderbook Structure</h4>
-    <p className="text-sm">Maintains a full limit orderbook for precise price discovery and execution, while supporting both traditional and JIT orders.</p>
+    <p className="text-sm">Maintains a full limit orderbook for precise price discovery and execution, while supporting diverse order types.</p>
   </div>
   
   <div className="flex flex-col">
@@ -138,11 +88,10 @@ Duality serves as the base layer for spot liquidity on Neutron, enhancing capita
 <div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
   <strong>Key integrations:</strong>
   <ul className="mt-2">
-    <li><strong>Mars:</strong> Efficiently routes liquidations through Duality to safely offer higher lending deposit caps and borrowing capacity.</li>
-    <li><strong>Astroport:</strong> Increases LP rewards by enabling passive concentrated liquidity pool LPs to provide liquidity on Duality.</li>
+    <li><strong>Mars:</strong> Efficiently routes liquidations and onramping to positions through Duality to safely offer higher lending deposit caps and borrowing capacity.</li>
+    <li><strong>Astroport:</strong> Increases LP rewards by enabling <a href="https://docs.astroport.fi/docs/learn/astro-pools/passive-concentrated-liquidity-pools/passive-concentrated-liquidity-pools-intro">PCL pools</a> to provide liquidity on Duality.</li>
     <li><strong>Margined:</strong> Enables off-chain market-making strategy vaults for Duality markets.</li>
-    <li><strong>Blockwave Labs:</strong> Allows anyone to arbitrage Duality markets without complexity via arbitrage vaults.</li>
-    <li><strong>Drop:</strong> Collaborating with Margined to develop profitable market-making strategy vaults for dAsset markets.</li>
+    <li><strong>Drop:</strong> Collaborating with Margined and Supervaults to develop profitable market-making strategy vaults for dAsset markets.</li>
     <li><strong>Eclipse Fi:</strong> Coordinating with Margined to release arbitrage vaults for Duality pairs.</li>
   </ul>
 </div>
@@ -152,12 +101,20 @@ Duality serves as the base layer for spot liquidity on Neutron, enhancing capita
 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
   <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
     <h3 className="text-xl font-semibold mb-2">Limit Orders</h3>
-    <p className="mb-4">Place buy and sell orders at specific prices, ensuring optimal execution. Your order will only execute when the market reaches your specified price.</p>
+    <p className="mb-4">Place buy and sell orders at specific prices, ensuring optimal execution. Duality support a number of expressive limit order types:</p>
+    <ul className="mb-4 list-disc pl-6">
+      <li>Fill-Or-Kill: Only execute if the entire order can be filled</li>
+      <li>Immediate-Or-Cancel: Execute as much of the order as possible below the specified limit price</li>
+      <li>Good-Til-Canceled: Maker order that sits on orderbook until filled or canceled</li>
+      <li>Good-Til-Time: Maker order with an expiration time</li>
+      <li>Just-In-Time: Good-Til-Time limit order that expires after exactly 1 block</li>
+    </ul>
   </div>
   
   <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
     <h3 className="text-xl font-semibold mb-2">Market Swaps</h3>
     <p className="mb-4">Execute instant token swaps with minimal slippage, making it easy to trade one token for another in just a few clicks.</p>
+    <p className="mb-4">MultiHopSwaps Trade through multiple pairs in a single atomic trade. Multihop swaps use on-chain route finding to find the optimal set of trades and avoid front-running.</p>
   </div>
 </div>
 
@@ -166,7 +123,7 @@ Duality serves as the base layer for spot liquidity on Neutron, enhancing capita
 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
   <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="https://app.neutron.org/orderbook/NTRN/USDC" target="_blank">
     <h4 className="font-semibold mb-2">Trade Now</h4>
-    <p className="text-sm">Start trading NTRN, TIA, ATOM and other assets on Duality</p>
+    <p className="text-sm">Start trading NTRN, TIA, ATOM, WBTC, WETH, OSMO, DYDX and other assets on Duality</p>
   </a>
   
   <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/dex" target="_blank">
@@ -179,7 +136,3 @@ Duality serves as the base layer for spot liquidity on Neutron, enhancing capita
     <p className="text-sm">Discuss Duality in the Neutron Community Telegram group</p>
   </a>
 </div>
-
-<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
-  <strong>Note:</strong> Start trading today with zero fees on NTRN, TIA, and ATOM pairs. Additional markets like wBTC and ETH are launching soon.
-</div> 

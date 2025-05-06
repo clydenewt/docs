@@ -37,24 +37,47 @@ Validator compensation is directly tied to performance metrics:
 
 > **Important**: Validators who fail to meet the minimum performance for any criteria receive no reward for the period, regardless of their performance in other criteria.
 
-## Validator Offboarding
+## Validator Set and Delegation Management Policy
 
-After a one-month grace period following the Mercury upgrade, validators are subject to rotation criteria:
+The Neutron network maintains a formalized policy for validator set management to ensure long-term performance, security, and decentralization. This policy was established through governance proposal [neutron..kx6fytr](https://neutron.celat.one/proposals/32) (April 18).
 
-### Performance-Based Offboarding
+### Validator Set Rotation Framework
 
-A validator may be offboarded for:
-- Receiving no rewards for two consecutive months
-- Receiving no rewards for three months in a 6-month period
-- Being tombstoned
+#### Performance-Based Offboarding
 
-### Downtime-Based Offboarding
+A validator is considered for offboarding if any of the following is true:
 
-A validator may be offboarded for:
-- Failing to resume signing within 60 minutes of the first finalized block after an upgrade
-- Failing to begin precommitting within 2 hours of upgrade instructions distribution
+- **Consecutive Performance**: Received no rewards from x/revenue for two months in a row
+  - They are notified the first month, with core teams assisting in troubleshooting
+  - The second consecutive month, they are automatically flagged for rotation
+  
+- **Intermittent Performance**: Received no rewards from x/revenue for three months in a 6 months period
+  - They are notified the second month within a 6-month period (unless there are 4 months in-between incidents)
+  - The third missed month in a 6-month period, they are automatically flagged for rotation
+  
+- **Tombstoning**: Validator was tombstoned
 
-In both cases, validators are notified on first occurrence and marked for rotation on the second.
+#### Downtime-Based Offboarding
+
+A validator is considered for offboarding if any of the following is true:
+
+- **Resumption Latency**: Failed to resume signing within 60 minutes of the first finalized block after a successful upgrade
+- **Precommit Latency**: Failed to begin precommitting within 2 hours of the distribution of correct upgrade instructions
+
+In both cases, validators are notified on the first occurrence and marked for rotation on the second.
+
+### Validator Onboarding Process
+
+To join the validator set when a slot opens:
+
+1. **Dual Network Requirement**: Must run both mainnet and testnet nodes
+2. **Prioritization**: Eligible operators are prioritized by reverse order of mainnet voting power (e.g., highest voting power first)
+3. **Probationary Period**: 
+   - Selected operators receive a small delegation from the DAO
+   - After demonstrating adequate performance for three months, they receive a full delegation
+   - If performance is inadequate during probation, the DAO redelegates to the next operator in line
+
+To maximize chances of receiving DAO delegations, validators should seek to attract NTRN delegations to their validators.
 
 ## Delegator Rewards
 
@@ -73,17 +96,6 @@ The Neutron DAO actively participates in validator selection:
 - **Maximum Size**: Currently limited to 20 validators
 - **DAO Delegations**: The DAO delegates a significant portion of NTRN to validators
 - **Prioritization**: New validators are prioritized by reverse order of mainnet voting power
-
-## Validator Onboarding Process
-
-To join the validator set when a slot opens:
-
-1. **Run Both Networks**: Maintain both mainnet and testnet nodes
-2. **Initial Delegation**: Receive a small delegation from the DAO
-3. **Probation Period**: Demonstrate adequate performance for three months
-4. **Full Delegation**: Receive full delegation after successful probation
-
-If performance is inadequate during probation, the DAO will redelegate to the next operator in line.
 
 ## Governance Participation
 

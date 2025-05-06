@@ -3,8 +3,6 @@ title: "Known Bugs"
 description: "Current known issues and limitations of the Cron module"
 ---
 
-# Known bugs
-
 ### Execution delay during high network congestion
 
 During periods of high network congestion, the Cron module's execution might be delayed. This is because the module has a per-block gas limit (`max_gas_per_block`) that restricts how many scheduled tasks can execute in a single block. If there are more due schedules than can fit within this gas limit, some will be postponed to subsequent blocks.

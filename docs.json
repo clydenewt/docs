@@ -69,7 +69,8 @@
               "concepts/integrated-architecture",
               "concepts/opinionated-blockchains",
               "concepts/proof-of-liquid-staking",
-              "concepts/modular-governance"
+              "concepts/modular-governance",
+              "concepts/tokenomics"
             ]
           },
           {
@@ -93,9 +94,7 @@
             "group": "Getting Started",
             "icon": "rocket",
             "pages": [
-              "developers/overview",
-              "developers/quickstart",
-              "developers/architecture"
+              "developers/overview"
             ]
           },
           {
@@ -108,18 +107,19 @@
                 "icon": "link",
                 "pages": [
                   "developers/modules/interchain-queries/overview",
-                  "developers/modules/interchain-queries/concepts",
+                  "developers/modules/interchain-queries/explanation",
+                  "developers/modules/interchain-queries/how-to",
+                  "developers/modules/interchain-queries/known-bugs",
                   {
                     "group": "Reference",
                     "icon": "book",
                     "pages": [
                       "developers/modules/interchain-queries/reference",
+                      "developers/modules/interchain-queries/api",
                       "developers/modules/interchain-queries/messages",
                       "developers/modules/interchain-queries/events",
                       "developers/modules/interchain-queries/state",
-                      "developers/modules/interchain-queries/client",
-                      "developers/modules/interchain-queries/api",
-                      "developers/modules/interchain-queries/known-bugs"
+                      "developers/modules/interchain-queries/client"
                     ]
                   }
                 ]
@@ -129,8 +129,9 @@
                 "icon": "clock",
                 "pages": [
                   "developers/modules/cron/overview",
-                  "developers/modules/cron/concepts",
+                  "developers/modules/cron/explanation",
                   "developers/modules/cron/how-to",
+                  "developers/modules/cron/known-bugs",
                   {
                     "group": "Reference",
                     "icon": "book",
@@ -140,8 +141,7 @@
                       "developers/modules/cron/events",
                       "developers/modules/cron/state",
                       "developers/modules/cron/client",
-                      "developers/modules/cron/api",
-                      "developers/modules/cron/known-bugs"
+                      "developers/modules/cron/api"
                     ]
                   }
                 ]
@@ -151,15 +151,15 @@
                 "icon": "database",
                 "pages": [
                   "developers/modules/oracle/overview",
-                  "developers/modules/oracle/concepts",
+                  "developers/modules/oracle/explanation",
                   "developers/modules/oracle/how-to",
+                  "developers/modules/oracle/known-bugs",
                   {
                     "group": "Reference",
                     "icon": "book",
                     "pages": [
                       "developers/modules/oracle/reference",
-                      "developers/modules/oracle/api",
-                      "developers/modules/oracle/known-bugs"
+                      "developers/modules/oracle/api"
                     ]
                   }
                 ]
@@ -207,7 +207,8 @@
                 "group": "Onboarding",
                 "icon": "user-plus",
                 "pages": [
-                  "developers/tutorials/onboarding/overview"
+                  "developers/tutorials/onboarding/overview",
+                  "developers/tutorials/onboarding/cosmopark"
                 ]
               },
               {

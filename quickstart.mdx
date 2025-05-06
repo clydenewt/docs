@@ -71,6 +71,44 @@ description: "Get started with Neutron in under 5 minutes"
     cargo wasm
     ```
   </Step>
+  <Step title="Set Up Cosmopark for IBC Testing (Optional)">
+    Cosmopark provides a complete local development environment with interconnected Neutron and Gaia nodes, Hermes IBC Relayer, and Neutron ICQ Relayer.
+    
+    Prerequisites:
+    - Docker engine
+    - Go 1.23+
+    
+    ```bash
+    # 1. Clone required repositories in the same parent directory
+    git clone -b main https://github.com/neutron-org/neutron.git
+    git clone https://github.com/neutron-org/neutron-integration-tests.git
+    git clone https://github.com/neutron-org/neutron-query-relayer.git
+    git clone https://github.com/cosmos/gaia.git
+    
+    # 2. Checkout specific Gaia version
+    cd gaia
+    git checkout v23.1.1
+    cd ..
+    
+    # 3. Build Docker images
+    cd neutron-integration-tests/setup
+    make build-all
+    
+    # 4. Download Neutron DAO contracts
+    npx @neutron-org/get-artifacts neutron-dao -b main -d contracts
+    
+    # 5. Start Cosmopark
+    make start-cosmopark
+    
+    # To view logs
+    docker-compose logs -f
+    
+    # To stop Cosmopark
+    make stop-cosmopark
+    ```
+    
+    For more details on using Cosmopark, see the [Cosmopark Tutorial](/developers/tutorials/onboarding/cosmopark).
+  </Step>
   <Step title="Explore Developer Documentation">
     Visit the [Developer Overview](/developers/overview) for detailed guides on:
     - Building smart contracts
