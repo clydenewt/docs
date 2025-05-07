@@ -1,0 +1,89 @@
+---
+title: "Introduction to Indexers"
+description: "Understanding the role of indexers in blockchain applications"
+---
+
+Indexers facilitate efficient data retrieval within blockchain systems by creating structured indexes. In the context of blockchain and dApps, indexers extract on-chain data into optimized database structures for efficient querying of transaction histories, smart contract states, event logs, and more.
+
+## Why Use Indexers?
+
+Querying data directly from a blockchain node can be:
+
+1. **Slow**: On-chain queries are limited in complexity
+2. **Resource-intensive**: Full node queries can be expensive and inefficient
+3. **Limited**: Many query patterns are impossible on-chain
+4. **Unreliable**: Direct node queries can time out or fail under load
+
+Indexers address these issues by:
+
+- Providing optimized databases for fast, complex queries
+- Supporting real-time data feeds for applications
+- Enabling complex analytics that would be impossible on-chain
+- Reducing load on blockchain nodes
+- Supporting historical data analysis
+
+## Types of Indexer Solutions
+
+Several indexer solutions are available for Neutron, each offering different levels of:
+
+- Decentralization
+- Ease of development
+- Performance
+- Customizability
+- Query capabilities
+
+### Popular Indexer Options
+
+<CardGroup cols={2}>
+  <Card title="SubQuery" icon="database" href="/developers/tutorials/indexers/subquery">
+    A flexible and developer-friendly indexing solution with GraphQL support.
+  </Card>
+  <Card title="Ceramic" icon="layer-group">
+    A decentralized data network for Web3 applications.
+  </Card>
+  <Card title="The Graph" icon="chart-network">
+    A decentralized protocol for indexing and querying blockchain data.
+  </Card>
+  <Card title="Custom Indexers" icon="code">
+    Build your own using databases like PostgreSQL, MongoDB, or Elasticsearch.
+  </Card>
+</CardGroup>
+
+## Use Cases for Indexers
+
+Indexers enable a wide range of applications and services:
+
+- **Block Explorers**: Providing detailed information about transactions, blocks, and accounts
+- **DeFi Dashboards**: Tracking token prices, liquidity pools, and user positions
+- **Analytics Platforms**: Analyzing trends, user behavior, and protocol metrics
+- **Wallet Applications**: Showing transaction history and token balances
+- **dApp Backends**: Powering user interfaces with fast data access
+- **Trading Bots**: Monitoring real-time data for trading opportunities
+
+## Core Concepts
+
+Understanding these core concepts will help you work effectively with indexers:
+
+### Data Sources
+
+Indexers typically connect to blockchain nodes via RPC endpoints to retrieve data. They may also use event subscriptions or other methods to get real-time updates.
+
+### Data Processing
+
+Raw blockchain data must be transformed, normalized, and enriched before being stored in the index.
+
+### Data Storage
+
+Indexed data is stored in optimized databases designed for fast queries and analytics.
+
+### Query Interface
+
+Most indexers provide APIs (often GraphQL or REST) for querying the indexed data.
+
+## Getting Started with Indexers
+
+To learn more about specific indexer solutions for Neutron, check out our tutorial on [SubQuery for Neutron](/developers/tutorials/indexers/subquery), which walks through setting up and using SubQuery to index Neutron data.
+
+<Note>
+  When choosing an indexer solution, consider your specific requirements for data freshness, query complexity, and the level of decentralization needed for your application.
+</Note> 

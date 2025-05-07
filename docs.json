@@ -390,14 +390,18 @@
                 "group": "Integration tests",
                 "icon": "vial",
                 "pages": [
-                  "developers/tutorials/integration-tests/overview"
+                  "developers/tutorials/integration-tests/overview",
+                  "developers/tutorials/integration-tests/chain",
+                  "developers/tutorials/integration-tests/smart_contracts"
                 ]
               },
               {
                 "group": "Indexers",
                 "icon": "database",
                 "pages": [
-                  "developers/tutorials/indexers/overview"
+                  "developers/tutorials/indexers/overview",
+                  "developers/tutorials/indexers/intro",
+                  "developers/tutorials/indexers/subquery"
                 ]
               }
             ]

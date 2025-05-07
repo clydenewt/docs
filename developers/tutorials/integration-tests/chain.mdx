@@ -1,0 +1,155 @@
+---
+title: "Chain Integration Tests"
+description: "Learn how to write comprehensive tests for Neutron chain modules and features"
+---
+
+Neutron provides integration tests covering its main features. These tests are essential if you're developing smart contracts for Neutron or working on a Neutron module.
+
+## Installation
+
+To set up the testing environment:
+
+```bash
+git clone git@github.com:neutron-org/neutron-integration-tests.git
+git clone -b v3.0.2 git@github.com:neutron-org/neutron.git
+git clone -b v0.2.0 git@github.com:neutron-org/neutron-query-relayer.git
+git clone -b v15.0.0 git@github.com:cosmos/gaia.git
+cd neutron-integration-tests
+make -C setup build-all  # Only for the first run to build relayers and containers
+yarn
+```
+
+Make sure you have Docker installed and the Docker daemon running.
+
+## Running the Tests
+
+You can run different test suites depending on what you want to test:
+
+```bash
+yarn test            # Run all tests
+yarn test:simple     # Run basic tests
+yarn test:interchaintx  # Run interchain txs test
+yarn test:interchain_tx_query_plain  # Run interchain tx query test
+yarn test:interchain_tx_query_resubmit  # Run interchain tx query test #2
+yarn test:interchain_kv_query  # Run interchain kv query test
+```
+
+## Environment Variables
+
+You can customize the test environment by setting these variables:
+
+```
+APP_DIR - Applications directory where Neutron, Gaia and Neutron query relayer are located
+NEUTRON_DENOM - Neutron network denom
+COSMOS_DENOM - Gaia (CosmosHub) network denom
+IBC_ATOM_DENOM - Denom of a native token used as fake IBC transferred ATOM
+IBC_USDC_DENOM - Denom of a native token used as fake IBC transferred USDC
+CONTRACTS_PATH - Path to contracts used in tests
+NEUTRON_ADDRESS_PREFIX - Address prefix for Neutron controller network
+COSMOS_ADDRESS_PREFIX - Address prefix for Gaia (CosmosHub) host network
+NODE1_URL - URL to the first node
+NODE1_WS_URL - URL to websocket of the first node
+NODE2_URL - URL to the second node
+NODE2_WS_URL - URL to websocket of the second node
+BLOCKS_COUNT_BEFORE_START - How many blocks to wait before starting first test
+NO_DOCKER - Do not start cosmopark for tests
+NO_REBUILD - Skip containers rebuilding
+```
+
+## Creating Your Own Tests
+
+### Creating Your Contract
+
+To create a new contract, refer to the [Neutron Cosmwasm SDK Repository](https://github.com/neutron-org/neutron-sdk) to understand how to use Neutron SDK.
+
+### Updating Artifacts
+
+Update artifacts in the `./contracts` folder if you've created a new contract. Place your contract(s) into `./contracts/artifacts` folder.
+
+### Writing Your First Test
+
+Create a file named `new_one.test.ts` in `./src/testcases/parallel` with the following code:
+
+```javascript
+import { TestStateLocalCosmosTestNet } from './common_localcosmosnet';
+import {
+  NEUTRON_DENOM,
+  CosmosWrapper,
+  WalletWrapper,
+} from '../../helpers/cosmos';
+
+describe('Neutron / My test', () => {
+  let testState: TestStateLocalCosmosTestNet;
+  let neutronChain: CosmosWrapper;
+  let neutronAccount: WalletWrapper;
+  let codeId: string;
+  let contractAddress: string;
+
+  beforeAll(async () => {
+    testState = new TestStateLocalCosmosTestNet();
+    await testState.init();
+
+    neutronChain = new CosmosWrapper(
+      testState.sdk1,
+      testState.blockWaiter1,
+      NEUTRON_DENOM,
+    );
+    neutronAccount = new WalletWrapper(
+      neutronChain,
+      testState.wallets.qaNeutron.genQaWal1,
+    );
+  });
+
+  test('store contract', async () => {
+    codeId = await neutronAccount.storeWasm('my_contract.wasm');
+    expect(codeId).toBeGreaterThan(0);
+  });
+  
+  test('instantiate', async () => {
+    const res = await neutronAccount.instantiateContract(
+      codeId,
+      '{}',
+      'my_contract',
+    );
+    contractAddress = res[0]._contract_address;
+    expect(contractAddress).toStartWith('neutron');
+  });
+  
+  test('execute contract', async () => {
+    const res = await neutronAccount.executeContract(
+      contractAddress,
+      JSON.stringify({
+        my_method: {
+          //we assume you have this method in the contract
+          foo: 'bar',
+        },
+      }),
+    );
+    expect(res.code).toEqual(0);
+  });
+});
+```
+
+<Note>
+  Use `src/testcases/run_in_band` folder for your test if it cannot be run in parallel!
+  This is usually the case if the test mutates some global chain state that other tests use directly or indirectly.
+</Note>
+
+Then update `package.json` in the root folder:
+
+```json
+{
+  // ...other entries
+  "scripts": {
+    // ...other scripts
+    "test:new_one": "jest --runInBand -b src/testcases/parallel/new_one",
+    // ...other scripts
+  }
+}
+```
+
+Now you can run your test:
+
+```bash
+yarn test:new_one
+``` 
