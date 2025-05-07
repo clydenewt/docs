@@ -4,181 +4,283 @@ description: "Neutron's governance system balances efficiency, security, and dec
 icon: "scale-balanced"
 ---
 
-## Governance Architecture Overview
+Neutron's governance model uses a customized fork of DAO DAO contracts to create a flexible, multi-layered system where specialized committees handle day-to-day operations while remaining accountable to tokenholders through innovative oversight mechanisms.
 
-Unlike traditional Cosmos SDK chains that rely on a standard governance module, Neutron's governance is built on a customized fork of [DAO DAO contracts](https://github.com/DA0-DA0). This creates a more flexible, modular governance system consisting of:
+## Governance Architecture
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 mb-12">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Neutron DAO (Agora)</h3>
-    <p className="mb-4">The primary governance entity with ultimate authority, governed by Neutron's stakeholders through the NTRN token. Controls network upgrades, crucial parameters, and committees.</p>
-  </div>
+<CardGroup cols={2}>
+  <Card title="Neutron DAO (Agora)" icon="building-columns" iconType="duotone">
+    The primary governance entity with ultimate authority, governed by Neutron's stakeholders through the NTRN token. Controls network upgrades, crucial parameters, and committees.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Committees (subDAOs)</h3>
-    <p className="mb-4">Specialized governance entities with dedicated powers and resources for day-to-day operations like grants and incentive programs.</p>
-  </div>
-</div>
-
-This architecture is complemented by the **Chain Manager** system, which mediates between governance and the blockchain's privileged functions through sophisticated permission strategies.
+  <Card title="Committees (subDAOs)" icon="sitemap" iconType="duotone">
+    Specialized governance entities with dedicated powers and resources for day-to-day operations like grants and incentive programs.
+  </Card>
+  
+  <Card title="Chain Manager" icon="gears" iconType="duotone">
+    Mediates between governance and the blockchain's privileged functions through sophisticated permission strategies, enabling granular control of network operations.
+  </Card>
+  
+  <Card title="Voting Vaults" icon="vault" iconType="duotone">
+    Smart contracts that calculate governance power based on various tokenized positions containing NTRN.
+  </Card>
+</CardGroup>
 
 ## How is Neutron Governance Different?
 
 <div className="p-4 border-l-4 border-primary bg-primary/5 rounded mb-6">
   <strong>Key differences from traditional Cosmos governance:</strong>
   <ul className="mt-2">
-    <li>NTRN cannot be "staked" to generate staking rewards because Neutron is secured by $ATOM and the Cosmos Hub.</li>
-    <li>Voting power comes from bonding NTRN or DeFi tokens containing NTRN through Voting Vaults.</li>
-    <li>Specialized Committees handle routine governance to minimize voter fatigue.</li>
-    <li>Tokenholders can keep Committees accountable through "overrule proposals."</li>
-    <li>Chain Manager implements granular permission controls for privileged operations.</li>
+    <li>Following the Mercury upgrade, Neutron is now a sovereign chain with its own validator set and staking model</li>
+    <li>Voting power comes from bonding NTRN or DeFi tokens containing NTRN through Voting Vaults</li>
+    <li>Native stakers can participate in governance through the Staked NTRN Voting Vault</li>
+    <li>Specialized Committees handle routine governance to minimize voter fatigue</li>
+    <li>Tokenholders can keep Committees accountable through "overrule proposals"</li>
+    <li>Chain Manager implements granular permission controls for privileged operations</li>
   </ul>
 </div>
 
 ## Chain Manager
 
-The Chain Manager is a critical component that mediates between governance and the blockchain's privileged functions. It implements a permission system to control which entities can execute which types of privileged actions.
+The Chain Manager implements a permission system to control which entities can execute privileged actions on the blockchain.
 
 ### Permission Strategies
 
-The Chain Manager uses two primary permission strategies:
-
-1. **ALLOW_ALL**: Grants an entity full access to all privileged functions
-2. **ALLOW_ONLY**: Permits an entity to execute only specific message types with possible additional restrictions
-
-These strategies create a nuanced permission model where privileged functions can be delegated precisely according to need.
+<CardGroup cols={2}>
+  <Card title="ALLOW_ALL" icon="check-double" iconType="duotone">
+    Grants an entity full access to all privileged functions without restriction.
+  </Card>
+  
+  <Card title="ALLOW_ONLY" icon="filter" iconType="duotone">
+    Permits an entity to execute only specific message types with possible additional restrictions.
+  </Card>
+</CardGroup>
 
 ### Supported Privileged Messages
 
-The Chain Manager supports various privileged message types:
-
-| Message Type | Description | Possible Restrictions |
-|--------------|-------------|----------------------|
-| `params.ParamChangeProposal` | Changes parameters of modules using the deprecated params module | Specific modules and parameters |
-| `module_name.MsgUpdateParams` | Updates parameters of modules using the new-style param updates | Specific fields within the message |
-| `cron.AddSchedule` | Adds new execution schedules to the CRON module | None |
-| `cron.RemoveSchedule` | Removes schedules from the CRON module | None |
-| `upgrade.SoftwareUpgradeProposal` | Schedules a software upgrade | None |
-| `upgrade.CancelSoftwareUpgradeProposal` | Cancels a scheduled upgrade | None |
+<div className="overflow-x-auto">
+  <table className="w-full my-4 text-sm">
+    <thead>
+      <tr>
+        <th className="p-2 border-b-2 border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">Message Type</th>
+        <th className="p-2 border-b-2 border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">Description</th>
+        <th className="p-2 border-b-2 border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">Possible Restrictions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700 font-mono text-xs">`params.ParamChangeProposal`</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Changes parameters of modules using the deprecated params module</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Specific modules and parameters</td>
+      </tr>
+      <tr>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700 font-mono text-xs">`module_name.MsgUpdateParams`</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Updates parameters of modules using the new-style param updates</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Specific fields within the message</td>
+      </tr>
+      <tr>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700 font-mono text-xs">`cron.AddSchedule`</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Adds new execution schedules to the CRON module</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">None</td>
+      </tr>
+      <tr>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700 font-mono text-xs">`cron.RemoveSchedule`</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Removes schedules from the CRON module</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">None</td>
+      </tr>
+      <tr>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700 font-mono text-xs">`upgrade.SoftwareUpgradeProposal`</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Schedules a software upgrade</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">None</td>
+      </tr>
+      <tr>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700 font-mono text-xs">`upgrade.CancelSoftwareUpgradeProposal`</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Cancels a scheduled upgrade</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">None</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Permission Assignments
 
-Neutron assigns permissions to different entities:
-
-- **Neutron DAO Core Contract**: ALLOW_ALL strategy, granting comprehensive control
-- **Expedited Software Upgrades Multisig**: ALLOW_ONLY for software upgrade proposals and cancellations
-- **Tokenfactory Hooks Multisig**: ALLOW_ONLY for updating tokenfactory hook parameters
-
-This tiered approach enables emergency responses when needed while maintaining the DAO's ultimate authority.
+<CardGroup cols={3}>
+  <Card title="Neutron DAO Core Contract" icon="building-columns" iconType="duotone">
+    ALLOW_ALL strategy, granting comprehensive control over all network operations
+  </Card>
+  
+  <Card title="Expedited Upgrades Multisig" icon="bolt" iconType="duotone">
+    ALLOW_ONLY for software upgrade proposals and cancellations
+  </Card>
+  
+  <Card title="Tokenfactory Hooks Multisig" icon="link" iconType="duotone">
+    ALLOW_ONLY for updating tokenfactory hook parameters
+  </Card>
+</CardGroup>
 
 ## Neutron DAO (Agora)
 
-The Neutron DAO, also known as Agora or "Main DAO", serves as the highest governance authority, with comprehensive control over the network, including the ability to grant and revoke permissions to committees.
+The Neutron DAO serves as the highest governance authority, with comprehensive control over the network, including permissions for committees.
 
 ### Voting Power System
 
-In the Agora, voting power is calculated using dedicated smart contracts called **Voting Vaults**. These are extremely flexible and can accept any tokenized position containing NTRN. At launch, the following Voting Vaults are available:
+Neutron uses dedicated smart contracts called **Voting Vaults** to calculate governance power. These vaults can accept any tokenized position containing NTRN.
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
-  <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">NTRN Vault</h4>
-    <p className="text-sm">Accepts NTRN deposits and grants 1 point of voting power per token without lock-up.</p>
-  </div>
+<CardGroup cols={2}>
+  <Card title="NTRN Vault" icon="coins" iconType="duotone">
+    Accepts NTRN deposits and grants 1 point of voting power per token without lock-up.
+  </Card>
   
-  <div className="p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">LP Token Vaults</h4>
-    <p className="text-sm">Similar to Superfluid staking on Osmosis, accepts LP token deposits and counts the underlying NTRN tokens. Both NTRN-ATOM and NTRN-USDC pairs have Voting Vaults at launch.</p>
-  </div>
-</div>
+  <Card title="LP Token Vaults" icon="chart-pie" iconType="duotone">
+    Accepts LP token deposits and counts the underlying NTRN. Both NTRN-ATOM and NTRN-USDC pairs have Voting Vaults.
+  </Card>
 
-There are also "virtual" vaults that track NTRN held in other contracts (e.g., lockdrops, vesting contracts), ensuring that all NTRN holders can participate in governance regardless of how their tokens are being used.
+  <Card title="Staked NTRN Vault" icon="lock" iconType="duotone">
+    Added during the Mercury upgrade, this vault grants 1 point of governance power per NTRN delegated to validators via native staking.
+  </Card>
+  
+  <Card title="Virtual Vaults" icon="ghost" iconType="duotone">
+    Track NTRN held in other contracts (lockdrops, vesting contracts), ensuring all NTRN holders can participate in governance.
+  </Card>
+</CardGroup>
 
 ### Proposal Types
 
-The Neutron DAO supports several proposal types:
-
-- **Single-choice Proposals**: Standard yes/no decisions with a 50% threshold
-- **Multiple-choice Proposals**: Decisions with multiple options where the most-voted option wins
-- **Overrule Proposals**: Special proposals with a lower threshold (0.5%) for overruling subDAO decisions
+<CardGroup cols={3}>
+  <Card title="Single-choice Proposals" icon="check" iconType="duotone">
+    Standard yes/no decisions with a 50% threshold
+  </Card>
+  
+  <Card title="Multiple-choice Proposals" icon="list-check" iconType="duotone">
+    Decisions with multiple options where the most-voted option wins
+  </Card>
+  
+  <Card title="Overrule Proposals" icon="ban" iconType="duotone">
+    Special proposals with a lower threshold (0.5%) for overruling subDAO decisions
+  </Card>
+</CardGroup>
 
 ## Committees (subDAOs)
 
-To handle day-to-day operations efficiently, the Agora can create specialized Committees with specific powers and resources. These subDAOs are highly customizable in terms of:
+The Agora can create specialized Committees with specific powers and resources for day-to-day operations. These subDAOs are customizable in terms of membership, voting, and other parameters.
 
-- Who can participate
-- How votes are weighted
-- Specific parameters to meet objectives
-
-Committees operate autonomously, managing their operations and budgets independently from the Agora. They make decisions through specialized proposals that don't require token holder votes, only committee members' votes. This structure enables much faster decision-making and execution.
+<CardGroup cols={3}>
+  <Card title="Membership" icon="users" iconType="duotone">
+    Define who can participate in committee governance, either by role or token ownership
+  </Card>
+  
+  <Card title="Voting Weight" icon="scale-balanced" iconType="duotone">
+    Configure how votes are weighted within the committee's decision-making process
+  </Card>
+  
+  <Card title="Execution Rights" icon="key" iconType="duotone">
+    Set specific parameters and permissions to meet the committee's objectives
+  </Card>
+</CardGroup>
 
 ### Timelocks & Overrules
 
-A key innovation in Neutron's governance is the overrule mechanism:
-
-1. When a subDAO proposal passes, it enters a timelock period (typically 3 days)
-2. During this period, the main DAO can create an overrule proposal with a low threshold (0.5%)
-3. If the overrule proposal passes, the subDAO proposal is rejected
-4. If no overrule occurs, the subDAO proposal executes after the timelock period
-
-This creates a balance between efficiency and accountability, allowing subDAOs to act independently while remaining subject to main DAO oversight.
+<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
+  <strong>The overrule mechanism works as follows:</strong>
+  <ol className="mt-2 space-y-2">
+    <li>When a subDAO proposal passes, it enters a timelock period (typically 3 days)</li>
+    <li>During this period, the main DAO can create an overrule proposal with a low threshold (0.5%)</li>
+    <li>If the overrule proposal passes, the subDAO proposal is rejected</li>
+    <li>If no overrule occurs, the subDAO proposal executes after the timelock period</li>
+  </ol>
+</div>
 
 ### Security SubDAO
 
-Neutron includes a specialized Security subDAO that can only execute `pause()` methods on certain contracts, enabling rapid response to security incidents. This subDAO can:
-
-- Pause other subDAOs
-- Pause the Reserve contract
-- Pause the Distribution contract
+<CardGroup cols={1}>
+  <Card title="Security SubDAO" icon="shield-halved" iconType="duotone">
+    <div className="mt-2">
+      <p className="mb-3">A specialized subDAO that can only execute `pause()` methods on certain contracts, enabling rapid response to security incidents. This subDAO can:</p>
+      <ul className="space-y-1">
+        <li>Pause other subDAOs</li>
+        <li>Pause the Reserve contract</li>
+        <li>Pause the Distribution contract</li>
+      </ul>
+    </div>
+  </Card>
+</CardGroup>
 
 ## Benefits of Neutron's Governance Model
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Efficiency</h4>
-    <p className="text-sm">Specialized committees handle routine matters, reducing governance overhead and voter fatigue.</p>
-  </div>
+<CardGroup cols={3}>
+  <Card title="Efficiency" icon="gauge-high" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Specialized committees handle routine matters</li>
+      <li>Reduces governance overhead</li>
+      <li>Minimizes voter fatigue</li>
+    </ul>
+  </Card>
   
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Accountability</h4>
-    <p className="text-sm">Committees are given autonomy while remaining accountable through the overrule mechanism.</p>
-  </div>
+  <Card title="Accountability" icon="scale-balanced" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Committees are given autonomy</li>
+      <li>Main DAO can overrule with low threshold</li>
+      <li>Timelock periods ensure transparency</li>
+    </ul>
+  </Card>
   
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Participation</h4>
-    <p className="text-sm">Voting Vaults allow community members to participate in governance and DeFi simultaneously, reducing opportunity costs.</p>
-  </div>
-</div>
-
-Additional benefits include:
-
-- **Responsiveness**: Privileged entities can respond quickly to emergencies
-- **Precision**: Permissions can be granted with fine-grained control over specific functions
-- **Decentralization**: The main DAO retains ultimate authority over all aspects of the network
+  <Card title="Participation" icon="users" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Voting Vaults enable DeFi participation</li>
+      <li>Reduces opportunity costs</li>
+      <li>Multiple ways to gain governance power</li>
+    </ul>
+  </Card>
+</CardGroup>
 
 ## Governance Parameters
 
-Neutron's governance has carefully calibrated parameters:
+<CardGroup cols={2}>
+  <Card title="Main DAO Proposals" icon="landmark" iconType="duotone">
+    <ul className="mt-2 space-y-2">
+      <li><strong>Deposit:</strong> 1000 NTRN (refunded for passed proposals)</li>
+      <li><strong>Voting Period:</strong> 2 weeks</li>
+      <li><strong>Quorum:</strong> 5% of total voting power</li>
+      <li><strong>Threshold:</strong> 50% for single-choice proposals</li>
+    </ul>
+  </Card>
+  
+  <Card title="Overrule Proposals" icon="ban" iconType="duotone">
+    <ul className="mt-2 space-y-2">
+      <li><strong>Deposit:</strong> None (created automatically)</li>
+      <li><strong>Voting Period:</strong> 3 days</li>
+      <li><strong>Threshold:</strong> 0.5% of total voting power</li>
+      <li><strong>Revoting:</strong> Disabled for immediate execution</li>
+    </ul>
+  </Card>
+</CardGroup>
 
-### Main DAO Proposals
-- **Deposit**: 1000 NTRN (refunded for passed proposals)
-- **Voting Period**: 2 weeks
-- **Quorum**: 5% of total voting power
-- **Threshold**: 50% for single-choice proposals
+## Mercury Upgrade and Sovereignty
 
-### Overrule Proposals
-- **Deposit**: None (as they're created automatically)
-- **Voting Period**: 3 days
-- **Threshold**: 0.5% of total voting power (absolute percentage type)
-- **Revoting**: Disabled to enable immediate execution when threshold is met
+The Mercury upgrade in April 2025 marked a significant transition for Neutron:
 
-These parameters balance thorough consideration of regular proposals with rapid response for overrules.
-
-## Why Modular Governance Matters
-
-As a smart contract platform, Neutron serves as the foundation for numerous applications, businesses, and communities. This requires governance mechanisms that:
-
-- Recognize and reward diverse contributions to the network
-- Permit consensus or compromise across a heterogeneous set of participants
-- Support efficiency and specialization while preserving accountability
-
-The innovative, multi-layered approach of Neutron's governance system is designed to meet these challenges and allow its community to drive the platform's evolution effectively. 
+<CardGroup cols={3}>
+  <Card title="Network Sovereignty" icon="flag" iconType="duotone">
+    <p className="mt-2">Migrated from Interchain Security (ICS) to become a fully sovereign network with its own validator set</p>
+  </Card>
+  
+  <Card title="Native Staking" icon="lock" iconType="duotone">
+    <p className="mt-2">Implemented native NTRN staking with a novel staking model while maintaining fixed token supply</p>
+  </Card>
+  
+  <Card title="Governance Integration" icon="handshake" iconType="duotone">
+    <p className="mt-2">Deployed the Staked NTRN Voting Vault to ensure native stakers can participate in governance</p>
+  </Card>
+  
+  <Card title="Validator Model" icon="server" iconType="duotone">
+    <p className="mt-2">Established a curated set of 20 initial validators with performance-based compensation</p>
+  </Card>
+  
+  <Card title="Economic Model" icon="coins" iconType="duotone">
+    <p className="mt-2">$3,000 USD monthly validator compensation and 3% annual staking APR for delegators</p>
+  </Card>
+  
+  <Card title="Performance Standards" icon="chart-line" iconType="duotone">
+    <p className="mt-2">Set thresholds for validators (block signing: 95%-99.5%, price updates: 95%-98%)</p>
+  </Card>
+</CardGroup> 

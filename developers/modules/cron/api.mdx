@@ -14,9 +14,9 @@ Queries:
 - [Params](#params)
 
 Messages:
-- [CreateSchedule](#createschedule)
-- [UpdateSchedule](#updateschedule)
+- [AddSchedule](#addschedule)
 - [RemoveSchedule](#removeschedule)
+- [UpdateParams](#updateparams)
 
 ## Queries
 
@@ -29,30 +29,42 @@ Fetches all schedules registered in the module, with optional filtering by owner
 
 ```protobuf
 // Request
-message QueryGetSchedulesRequest {
-  string name = 1;
-  string owner = 2;
-  cosmos.base.query.v1beta1.PageRequest pagination = 3;
+message QuerySchedulesRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
 // Response
-message QueryGetSchedulesResponse {
-  repeated Schedule schedules = 1;
+message QuerySchedulesResponse {
+  repeated Schedule schedules = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 message Schedule {
+  // Name of schedule
   string name = 1;
-  string owner = 2;
-  uint64 period = 3;
-  repeated ScheduleMsg msgs = 4;
-  optional uint64 boundary = 5;
-  optional uint64 last_execute_height = 6;
+  // Period in blocks
+  uint64 period = 2;
+  // Msgs that will be executed every certain number of blocks, specified in the `period` field
+  repeated MsgExecuteContract msgs = 3 [(gogoproto.nullable) = false];
+  // Last execution's block height
+  uint64 last_execute_height = 4;
+  // Stage when messages will be executed
+  ExecutionStage execution_stage = 5;
 }
 
-message ScheduleMsg {
-  string msg = 1;
-  optional uint64 gas_limit = 2;
+message MsgExecuteContract {
+  // The address of the smart contract
+  string contract = 1;
+  // JSON encoded message to be passed to the contract
+  string msg = 2;
+}
+
+// Defines when messages will be executed in the block
+enum ExecutionStage {
+  // Execution at the end of the block
+  EXECUTION_STAGE_END_BLOCKER = 0;
+  // Execution at the beginning of the block
+  EXECUTION_STAGE_BEGIN_BLOCKER = 1;
 }
 ```
 </details>
@@ -63,7 +75,7 @@ message ScheduleMsg {
 ```shell
 # Example querying all schedules
 curl -X 'GET' \
-  'https://rest.neutron.org/neutron/cron/schedules' \
+  'https://rest.neutron.org/neutron/cron/schedule' \
   -H 'accept: application/json'
 ```
 
@@ -72,29 +84,27 @@ curl -X 'GET' \
   "schedules": [
     {
       "name": "daily_reward_distribution",
-      "owner": "neutron14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s5c2epq",
       "period": 7200,
       "msgs": [
         {
-          "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19",
-          "gas_limit": 200000
+          "contract": "neutron16c4umnp37pg89vl24a2m1gp6qpnewwt8pzwhx3qdvu7h7sysw7daruqmem0wdg",
+          "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19"
         }
       ],
-      "boundary": null,
-      "last_execute_height": 8764230
+      "last_execute_height": 8764230,
+      "execution_stage": "EXECUTION_STAGE_END_BLOCKER"
     },
     {
       "name": "weekly_parameter_update",
-      "owner": "neutron14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s5c2epq",
       "period": 50400,
       "msgs": [
         {
-          "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SndjbTl3YjNObElIdlpaSndaWEp3bVdWMFpYSWlPbnNpY0dGeVlXMWxkR1Z5Y3lJNmV5SndjbTl3YjNObFgzWmhiSFZsSWpvaUxqSXdJbjE5ZlE9PSIsImZ1bmRzIjpbXX19",
-          "gas_limit": 150000
+          "contract": "neutron16c4umnp37pg89vl24a2m1gp6qpnewwt8pzwhx3qdvu7h7sysw7daruqmem0wdg",
+          "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SndjbTl3YjNObElIdlpaSndaWEp3bVdWMFpYSWlPbnNpY0dGeVlXMWxkR1Z5Y3lJNmV5SndjbTl3YjNObFgzWmhiSFZsSWpvaUxqSXdJbjE5ZlE9PSIsImZ1bmRzIjpbXX19"
         }
       ],
-      "boundary": 8800000,
-      "last_execute_height": 8749830
+      "last_execute_height": 8749830,
+      "execution_stage": "EXECUTION_STAGE_END_BLOCKER"
     }
   ],
   "pagination": {
@@ -107,7 +117,7 @@ curl -X 'GET' \
 
 ### GetSchedule
 
-Fetches a specific schedule by its ID.
+Fetches a specific schedule by its name.
 
 <details>
   <summary>Request and Response Models</summary>
@@ -120,7 +130,7 @@ message QueryGetScheduleRequest {
 
 // Response
 message QueryGetScheduleResponse {
-  Schedule schedule = 1;
+  Schedule schedule = 1 [(gogoproto.nullable) = false];
 }
 ```
 </details>
@@ -139,16 +149,15 @@ curl -X 'GET' \
 {
   "schedule": {
     "name": "daily_reward_distribution",
-    "owner": "neutron14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s5c2epq",
     "period": 7200,
     "msgs": [
       {
-        "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19",
-        "gas_limit": 200000
+        "contract": "neutron16c4umnp37pg89vl24a2m1gp6qpnewwt8pzwhx3qdvu7h7sysw7daruqmem0wdg",
+        "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19"
       }
     ],
-    "boundary": null,
-    "last_execute_height": 8764230
+    "last_execute_height": 8764230,
+    "execution_stage": "EXECUTION_STAGE_END_BLOCKER"
   }
 }
 ```
@@ -188,16 +197,15 @@ curl -X 'GET' \
 {
   "schedule": {
     "name": "daily_reward_distribution",
-    "owner": "neutron14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s5c2epq",
     "period": 7200,
     "msgs": [
       {
-        "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19",
-        "gas_limit": 200000
+        "contract": "neutron16c4umnp37pg89vl24a2m1gp6qpnewwt8pzwhx3qdvu7h7sysw7daruqmem0wdg",
+        "msg": "eyJleGVjdXRlX2NvbnRyYWN0Ijp7ImNvbnRyYWN0X2FkZHIiOiJuZXV0cm9uMTZjNHVtbnAzN3BnODl2bDI0YTJtMWdwNnFwcW5ld3d0OHB6d2h4M3FkdnU3aDd5c3l3N2RhcnVxbWVtMHdkZyIsIm1zZyI6ImV5SnNiMkZrY21WM1lYSmtjeUk2ZXlKMllXeHBaR0YwYjNJaU9pSmphR0Z1Ym1Wc0xUVXlJaXdpY21WemEybHBZblYwWlNJNlptRnNjMlY5ZlE9PSIsImZ1bmRzIjpbXX19"
       }
     ],
-    "boundary": null,
-    "last_execute_height": 8764230
+    "last_execute_height": 8764230,
+    "execution_stage": "EXECUTION_STAGE_END_BLOCKER"
   }
 }
 ```
@@ -216,15 +224,14 @@ message QueryParamsRequest {}
 
 // Response
 message QueryParamsResponse {
-  Params params = 1;
+  Params params = 1 [(gogoproto.nullable) = false];
 }
 
 message Params {
-  uint64 max_gas_per_block = 1;
-  uint64 max_msg_size = 2;
-  uint64 max_msgs_per_schedule = 3;
-  uint64 max_name_length = 4;
-  uint64 min_period = 5;
+  // Security address that can remove schedules
+  string security_address = 1;
+  // Limit of schedules executed in one block
+  uint64 limit = 2;
 }
 ```
 </details>
@@ -242,11 +249,8 @@ curl -X 'GET' \
 ```json
 {
   "params": {
-    "max_gas_per_block": 6000000,
-    "max_msg_size": 10240,
-    "max_msgs_per_schedule": 10,
-    "max_name_length": 64,
-    "min_period": 5
+    "security_address": "neutron1qes75ltewmh3ghtj2q4h0zh04c76m9jj5yekjc",
+    "limit": 20
   }
 }
 ```
@@ -254,7 +258,7 @@ curl -X 'GET' \
 
 ## Messages
 
-### CreateSchedule
+### AddSchedule
 
 Creates a new schedule for future execution.
 
@@ -263,54 +267,34 @@ Creates a new schedule for future execution.
 
 ```protobuf
 // Request
-message MsgCreateSchedule {
-  string name = 1;
-  uint64 period = 2;
-  repeated ScheduleMsg msgs = 3;
-  optional uint64 boundary = 4;
-  string sender = 5;
+message MsgAddSchedule {
+  option (amino.name) = "cron/MsgAddSchedule";
+  option (cosmos.msg.v1.signer) = "authority";
+
+  // The address of the governance account.
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Name of the schedule
+  string name = 2;
+  // Period in blocks
+  uint64 period = 3;
+  // Msgs that will be executed every certain number of blocks, specified in the `period` field
+  repeated MsgExecuteContract msgs = 4 [(gogoproto.nullable) = false];
+  // Stage when messages will be executed
+  ExecutionStage execution_stage = 5;
 }
 
 // Response
-message MsgCreateScheduleResponse {}
+message MsgAddScheduleResponse {}
 ```
 </details>
 
 Events emission on success:
-- `type=create_schedule`, attributes:
+- `type=add_schedule`, attributes:
     - `name`: The name of the created schedule
-    - `owner`: The address that created the schedule
+    - `authority`: The address that created the schedule
     - `period`: The execution period in blocks
     - `msgs_count`: The number of messages in the schedule
-
-### UpdateSchedule
-
-Updates an existing schedule.
-
-<details>
-  <summary>Request and Response Models</summary>
-
-```protobuf
-// Request
-message MsgUpdateSchedule {
-  string name = 1;
-  uint64 period = 2;
-  repeated ScheduleMsg msgs = 3;
-  optional uint64 boundary = 4;
-  string sender = 5;
-}
-
-// Response
-message MsgUpdateScheduleResponse {}
-```
-</details>
-
-Events emission on success:
-- `type=update_schedule`, attributes:
-    - `name`: The name of the updated schedule
-    - `owner`: The address updating the schedule
-    - `period`: The new execution period
-    - `msgs_count`: The new number of messages
+    - `execution_stage`: The stage when messages will be executed (BEGIN_BLOCKER or END_BLOCKER)
 
 ### RemoveSchedule
 
@@ -322,8 +306,13 @@ Removes an existing schedule.
 ```protobuf
 // Request
 message MsgRemoveSchedule {
-  string name = 1;
-  string sender = 2;
+  option (amino.name) = "cron/MsgRemoveSchedule";
+  option (cosmos.msg.v1.signer) = "authority";
+
+  // The address of the governance account.
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Name of the schedule
+  string name = 2;
 }
 
 // Response
@@ -334,7 +323,50 @@ message MsgRemoveScheduleResponse {}
 Events emission on success:
 - `type=remove_schedule`, attributes:
     - `name`: The name of the removed schedule
-    - `owner`: The address that removed the schedule
+    - `authority`: The address that removed the schedule
+
+### UpdateParams
+
+Updates the parameters of the Cron module.
+
+<details>
+  <summary>Request and Response Models</summary>
+
+```protobuf
+// Request
+message MsgUpdateParams {
+  option (amino.name) = "cron/MsgUpdateParams";
+  option (cosmos.msg.v1.signer) = "authority";
+
+  // The address of the governance account.
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // Defines the x/cron parameters to update.
+  //
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+
+// Response
+message MsgUpdateParamsResponse {}
+```
+</details>
+
+Events emission on success:
+- `type=update_params`, attributes:
+    - `authority`: The address that updated the parameters
+
+## ExecutionStage Parameter
+
+The `execution_stage` parameter determines when a schedule's messages will be executed in the block lifecycle:
+
+- **EXECUTION_STAGE_END_BLOCKER (0)**: Messages are executed at the end of the block
+- **EXECUTION_STAGE_BEGIN_BLOCKER (1)**: Messages are executed at the beginning of the block
+
+This parameter is important for dependencies between operations. If your scheduled operation needs to happen after other operations in the block, use END_BLOCKER. If it needs to happen before other operations, use BEGIN_BLOCKER.
 
 ## Smart Contract Integration
 
@@ -342,28 +374,27 @@ To integrate the Cron module into your smart contract, use the CosmWasm interfac
 
 ```rust
 use cosmwasm_std::{to_json_binary, Response, SubMsg};
-use neutron_sdk::bindings::{msg::NeutronMsg, types::ScheduleMsg};
+use neutron_sdk::bindings::{msg::NeutronMsg, types::{MsgExecuteContract, ExecutionStage}};
 
 // Create a new schedule
-pub fn create_schedule(
+pub fn add_schedule(
     name: String,
     period: u64,
     contract_to_call: String,
     msg_to_send: &impl serde::Serialize,
-    gas_limit: u64,
 ) -> Response {
     // Serialize the message to be sent to the target contract
     let serialized_msg = to_json_binary(msg_to_send).unwrap();
     
     // Create the schedule message
-    let msg = NeutronMsg::CreateSchedule {
+    let msg = NeutronMsg::AddSchedule {
         name,
         period,
-        msgs: vec![ScheduleMsg {
+        msgs: vec![MsgExecuteContract {
+            contract: contract_to_call,
             msg: serialized_msg,
-            gas_limit: Some(gas_limit),
         }],
-        boundary: None,
+        execution_stage: ExecutionStage::EndBlocker,
     };
     
     // Return the response with the schedule message
@@ -379,49 +410,18 @@ pub fn remove_schedule(name: String) -> Response {
 
 ## Message Format
 
-The `msg` field in a `ScheduleMsg` must be a base64-encoded JSON representation of a CosmWasm message. The format depends on the message type:
-
-### WasmExecute Format
-
-```json
-{
-  "wasm": {
-    "execute": {
-      "contract_addr": "neutron1...",
-      "msg": "base64_encoded_execute_msg",
-      "funds": []
-    }
-  }
-}
-```
-
-### Bank Send Format
-
-```json
-{
-  "bank": {
-    "send": {
-      "to_address": "neutron1...",
-      "amount": [
-        {
-          "denom": "untrn",
-          "amount": "1000000"
-        }
-      ]
-    }
-  }
-}
-```
+The `msg` field in a `MsgExecuteContract` must be a base64-encoded JSON message to be passed to the contract.
 
 ## CLI Usage
 
 ### Creating a Schedule
 
 ```bash
-neutrond tx cron create-schedule \
+neutrond tx cron add-schedule \
   "weekly_task" \
   50400 \
-  '[{"msg":"base64_encoded_msg","gas_limit":200000}]' \
+  '[{"contract":"neutron1...","msg":"base64_encoded_msg"}]' \
+  --execution-stage="end-blocker" \
   --from mykey
 ```
 

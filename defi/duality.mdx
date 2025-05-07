@@ -1,85 +1,68 @@
 ---
 title: "Duality DEX"
 description: "High-performance DEX combining the advantages of orderbooks and AMMs into a single capital-efficient trading venue"
-icon: "arrow-right-arrow-left"
+icon: "arrows-rotate"
 ---
 
 Duality is a protocol-native DEX integrated directly into Neutron's core infrastructure that merges the strengths of orderbooks and AMMs into a unified, capital-efficient design. Unlike traditional DEXs implemented as smart contracts, Duality is built at the protocol level, giving it significant performance advantages and deeper integration with other Neutron features.
 
 ## Key Features
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M3 6a3 3 0 013-3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm4.5 7.5a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zm3.75-1.5a.75.75 0 00-1.5 0v4.5a.75.75 0 001.5 0V12zm2.25-3a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0V9.75A.75.75 0 0113.5 9zm3.75-1.5a.75.75 0 00-1.5 0v9a.75.75 0 001.5 0v-9z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Dynamic Trade Routing</h3>
-    <p className="mb-4">Automatically finds the best price and mitigates the effects of extractive behaviors like sandwiching and front-running.</p>
-  </div>
+<CardGroup cols={2}>
+  <Card title="Dynamic Trade Routing" icon="route" iconType="duotone">
+    Automatically finds the best price and mitigates the effects of extractive behaviors like sandwiching and front-running.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M4.5 3.75a3 3 0 00-3 3v.75h21v-.75a3 3 0 00-3-3h-15z" />
-        <path fillRule="evenodd" d="M22.5 9.75h-21v7.5a3 3 0 003 3h15a3 3 0 003-3v-7.5zm-18 3.75a.75.75 0 01.75-.75h6a.75.75 0 010 1.5h-6a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3a.75.75 0 000-1.5h-3z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Vault Integration</h3>
-    <p className="mb-4">Partners like Margined, Astroport and others enable passive liquidity providers to participate in professional-grade trading strategies.</p>
-  </div>
+  <Card title="Vault Integration" icon="piggy-bank" iconType="duotone">
+    Partners like Margined, Astroport and others enable passive liquidity providers to participate in professional-grade trading strategies.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.684 1.657A4.505 4.505 0 0018.75 7.5H5.25z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Flexible Order Types</h3>
-    <p className="mb-4">Place limit orders directly on the orderbook or use the Market tab to execute instant token swaps with optimal execution.</p>
-  </div>
-</div>
+  <Card title="Flexible Order Types" icon="layer-group" iconType="duotone">
+    Place limit orders directly on the orderbook or use the Market tab to execute instant token swaps with optimal execution.
+  </Card>
+  
+  <Card title="Protocol Integration" icon="puzzle-piece" iconType="duotone">
+    As a core protocol module rather than a smart contract, Duality gains performance advantages and serves as the base liquidity layer.
+  </Card>
+</CardGroup>
 
 ## Technical Architecture
 
 Duality is built directly into Neutron's core infrastructure as a native protocol module, making it highly capital-efficient and integrated with other Neutron applications:
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
-  <div className="flex flex-col">
-    <h4 className="font-semibold mb-2">1. Orderbook Structure</h4>
-    <p className="text-sm">Maintains a full limit orderbook for precise price discovery and execution, while supporting diverse order types.</p>
-  </div>
+<CardGroup cols={3}>
+  <Card title="Orderbook Structure" icon="chart-line" iconType="duotone">
+    Maintains a full limit orderbook for precise price discovery and execution, while supporting diverse order types.
+  </Card>
   
-  <div className="flex flex-col">
-    <h4 className="font-semibold mb-2">2. Protocol Integration</h4>
-    <p className="text-sm">As a core protocol module rather than a smart contract, Duality gains performance advantages and can serve as the base liquidity layer for other applications.</p>
-  </div>
+  <Card title="Protocol Integration" icon="microchip" iconType="duotone">
+    As a core protocol module rather than a smart contract, Duality gains performance advantages and can serve as the base liquidity layer.
+  </Card>
   
-  <div className="flex flex-col">
-    <h4 className="font-semibold mb-2">3. Open Composability</h4>
-    <p className="text-sm">Fully open-source and designed for other applications to build on top, enhancing overall ecosystem liquidity.</p>
-  </div>
+  <Card title="Open Composability" icon="code-branch" iconType="duotone">
+    Fully open-source and designed for other applications to build on top, enhancing overall ecosystem liquidity.
+  </Card>
+</CardGroup>
+
+<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
+  <strong>Explore the module code:</strong> For developers interested in the technical implementation, check out the <a href="/developers/modules/dex" className="text-primary hover:underline">DEX module documentation</a> for a complete code breakdown of the Duality implementation.
 </div>
 
 ## Benefits for Different Users
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">For Professional Market Makers</h3>
-    <p className="mb-4">Advanced order types support better prices at higher frequencies and with less risk of adverse selection.</p>
-  </div>
+<CardGroup cols={3}>
+  <Card title="For Professional Market Makers" icon="user-tie" iconType="duotone">
+    Advanced order types support better prices at higher frequencies and with less risk of adverse selection.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">For Traders</h3>
-    <p className="mb-4">Better prices, less slippage, and protection from predatory trading behaviors like sandwiching and front-running.</p>
-  </div>
+  <Card title="For Traders" icon="chart-simple" iconType="duotone">
+    Better prices, less slippage, and protection from predatory trading behaviors like sandwiching and front-running.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">For Passive LPs</h3>
-    <p className="mb-4">Vault providers enable participation in sophisticated strategies without sacrificing convenience, offering professional-grade profitability.</p>
-  </div>
-</div>
+  <Card title="For Passive LPs" icon="coins" iconType="duotone">
+    Vault providers enable participation in sophisticated strategies without sacrificing convenience, offering professional-grade profitability.
+  </Card>
+</CardGroup>
 
 ## Ecosystem Integration
 
@@ -98,10 +81,9 @@ Duality serves as the base layer for spot liquidity on Neutron, enhancing capita
 
 ## Trading on Duality
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Limit Orders</h3>
-    <p className="mb-4">Place buy and sell orders at specific prices, ensuring optimal execution. Duality support a number of expressive limit order types:</p>
+<CardGroup cols={2}>
+  <Card title="Limit Orders" icon="list-check" iconType="duotone">
+    <p>Place buy and sell orders at specific prices, ensuring optimal execution. Duality supports a number of expressive limit order types:</p>
     <ul className="mb-4 list-disc pl-6">
       <li>Fill-Or-Kill: Only execute if the entire order can be filled</li>
       <li>Immediate-Or-Cancel: Execute as much of the order as possible below the specified limit price</li>
@@ -109,30 +91,26 @@ Duality serves as the base layer for spot liquidity on Neutron, enhancing capita
       <li>Good-Til-Time: Maker order with an expiration time</li>
       <li>Just-In-Time: Good-Til-Time limit order that expires after exactly 1 block</li>
     </ul>
-  </div>
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Market Swaps</h3>
-    <p className="mb-4">Execute instant token swaps with minimal slippage, making it easy to trade one token for another in just a few clicks.</p>
-    <p className="mb-4">MultiHopSwaps Trade through multiple pairs in a single atomic trade. Multihop swaps use on-chain route finding to find the optimal set of trades and avoid front-running.</p>
-  </div>
-</div>
+  <Card title="Market Swaps" icon="arrows-rotate" iconType="duotone">
+    <p>Execute instant token swaps with minimal slippage, making it easy to trade one token for another in just a few clicks.</p>
+    <p>MultiHopSwaps Trade through multiple pairs in a single atomic trade. Multihop swaps use on-chain route finding to find the optimal set of trades and avoid front-running.</p>
+  </Card>
+</CardGroup>
 
 ## Get Started with Duality
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="https://app.neutron.org/orderbook/NTRN/USDC" target="_blank">
-    <h4 className="font-semibold mb-2">Trade Now</h4>
-    <p className="text-sm">Start trading NTRN, TIA, ATOM, WBTC, WETH, OSMO, DYDX and other assets on Duality</p>
-  </a>
+<CardGroup cols={3}>
+  <Card title="Trade Now" icon="rocket" iconType="duotone" href="https://app.neutron.org/orderbook/NTRN/USDC" target="_blank">
+    Start trading NTRN, TIA, ATOM, WBTC, WETH, OSMO, DYDX and other assets on Duality
+  </Card>
   
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules/dex" target="_blank">
-    <h4 className="font-semibold mb-2">Developer Docs</h4>
-    <p className="text-sm">Learn how to integrate with and build on top of Duality</p>
-  </a>
+  <Card title="Developer Docs" icon="code" iconType="duotone" href="/developers/modules/dex">
+    Learn how to integrate with and build on top of Duality
+  </Card>
   
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="https://t.me/neutronzone" target="_blank">
-    <h4 className="font-semibold mb-2">Join Community</h4>
-    <p className="text-sm">Discuss Duality in the Neutron Community Telegram group</p>
-  </a>
-</div>
+  <Card title="Join Community" icon="users" iconType="duotone" href="https://t.me/neutronzone" target="_blank">
+    Discuss Duality in the Neutron Community Telegram group
+  </Card>
+</CardGroup>

@@ -37,31 +37,16 @@ description: "Get started with Neutron in under 5 minutes"
     ```bash
     # Install Rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    rustup default stable
+    rustup target add wasm32-unknown-unknown
     
     # Install Go
     wget https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
     sudo tar -C /usr/local -xzf go1.23.1.linux-amd64.tar.gz
+    export PATH=$PATH:/usr/local/go/bin
     ```
   </Step>
-  <Step title="Clone Neutron Repository">
-    ```bash
-    git clone https://github.com/neutron-org/neutron.git
-    cd neutron
-    ```
-  </Step>
-  <Step title="Build and Install Neutron">
-    ```bash
-    # Build the neutrond binary
-    make install
-    
-    # Add to PATH (add this to your .bashrc or .zshrc for persistence)
-    export PATH=$PATH:$(go env GOPATH)/bin
-    
-    # Verify installation
-    neutrond version
-    ```
-  </Step>
-  <Step title="Start a CosmWasm Project (Optional)">
+  <Step title="Start a CosmWasm Project">
     ```bash
     # Generate a new CosmWasm project using the template
     cargo generate --git https://github.com/CosmWasm/cw-template.git --name neutron-ica-example
@@ -70,8 +55,10 @@ description: "Get started with Neutron in under 5 minutes"
     # Build the contract
     cargo wasm
     ```
+    
+    For more detailed guides on building CosmWasm contracts for Neutron, see our [Developer Tutorials](/developers/tutorials/overview).
   </Step>
-  <Step title="Set Up Cosmopark for IBC Testing (Optional)">
+  <Step title="Set Up Cosmopark for Testing and Deployment">
     Cosmopark provides a complete local development environment with interconnected Neutron and Gaia nodes, Hermes IBC Relayer, and Neutron ICQ Relayer.
     
     Prerequisites:
@@ -110,9 +97,10 @@ description: "Get started with Neutron in under 5 minutes"
     For more details on using Cosmopark, see the [Cosmopark Tutorial](/developers/tutorials/onboarding/cosmopark).
   </Step>
   <Step title="Explore Developer Documentation">
-    Visit the [Developer Overview](/developers/overview) for detailed guides on:
+    Visit the [Developer Overview](/developers/overview) and [Tutorials](/developers/tutorials/overview) for detailed guides on:
     - Building smart contracts
     - Using Neutron's modules
+    - Testing and deploying your contracts
     - Setting up a local testnet
   </Step>
 </Steps>
@@ -121,12 +109,16 @@ description: "Get started with Neutron in under 5 minutes"
 
 <Steps>
   <Step title="Prepare System Requirements">
-    Ensure your system meets the minimum requirements:
+    Ensure your system meets these requirements for optimal performance:
     
-    - 4 CPU cores
-    - 16GB RAM
-    - 500GB SSD
-    - Ubuntu 20.04 or later
+    - **CPU**: High single-thread performance (≥3.5 GHz base clock), 16+ cores
+    - **RAM**: 64GB minimum, 128GB recommended
+    - **Storage**: 500GB+ NVMe SSD
+    - **Network**: 100+ Mbps, stable connection
+
+    <Note>
+      For best results, bare metal servers from providers like Hetzner (AX102) or OVH (Advance-4) are recommended over cloud VMs.
+    </Note>
   </Step>
   <Step title="Set Up a Neutron Node">
     Follow our [Running a Node](/validators/running-a-node) guide to set up your Neutron full node.
@@ -152,3 +144,4 @@ description: "Get started with Neutron in under 5 minutes"
     Join our Discord community
   </Card>
 </CardGroup>
+

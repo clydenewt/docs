@@ -4,60 +4,77 @@ description: "How Neutron's DeFi-focused infrastructure combines app-specific fe
 icon: "puzzle-piece"
 ---
 
-Unlike generalized L1s that provide generic infrastructure, Neutron implements an integrated blockchain architecture focusing exclusively on DeFi by making highly-performant, application-specific infrastructure available to protocols within a shared execution environment.
-
-## What is an Integrated Architecture?
-
-An integrated architecture combines critical DeFi infrastructure directly at the protocol layer rather than as smart contracts or external services. This approach ensures guaranteed execution, native cross-chain communication, atomic composability, and predictable performance.
+Neutron implements an integrated blockchain architecture that combines critical DeFi infrastructure directly at the protocol layer. This design ensures guaranteed execution, native cross-chain communication, atomic composability, and predictable performance—creating a shared environment where DeFi protocols benefit from specialized infrastructure without sacrificing interoperability.
 
 ## Core Infrastructure Components
 
 <CardGroup cols={2}>
-  <Card title="Oracle Module" icon="bolt" href="/developers/modules/oracle">
+  <Card title="Oracle Module" icon="bolt" iconType="duotone" href="/developers/modules/oracle">
     Native price feeds updated every block with hardware-based security, eliminating dependence on external oracles and providing superior execution guarantees.
   </Card>
-  <Card title="Interchain Queries (ICQ)" icon="network-wired" href="/developers/modules/interchain-queries">
+  <Card title="Interchain Queries (ICQ)" icon="network-wired" iconType="duotone" href="/developers/modules/interchain-queries">
     Direct state queries across any IBC-connected chain, enabling real-time cross-chain data access without trusted third parties.
   </Card>
-  <Card title="Cron Module" icon="clock" href="/developers/modules/cron">
+  <Card title="Cron Module" icon="clock" iconType="duotone" href="/developers/modules/cron">
     Native automation allowing scheduled and conditional contract execution with protocol-level reliability.
   </Card>
-  <Card title="Interchain Accounts" icon="arrows-left-right" href="/developers/tutorials/cosmwasm_ica">
+  <Card title="Interchain Accounts" icon="arrows-left-right" iconType="duotone" href="/developers/tutorials/cosmwasm_ica">
     Built-in interchain account functionality enabling seamless cross-chain operations with consensus-enforced security.
   </Card>
 </CardGroup>
 
 ## Benefits of Integration
 
-### 1. Capital Efficiency
-- Optimized liquidity utilization across protocols
-- Reduced capital requirements through composability
-
-### 2. Reliability
-- Infrastructure failures are consensus failures
-- Guaranteed execution within block boundaries
-
-### 3. Performance
-- Direct state access without contract calls
-- High-frequency oracle updates every block
-
-### 4. Security
-- Protocol-level validation of all operations
-- No trusted external oracles or bridges
+<CardGroup cols={2}>
+  <Card title="Capital Efficiency" icon="coins" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Optimized liquidity utilization across protocols</li>
+      <li>Reduced capital requirements through composability</li>
+    </ul>
+  </Card>
+  
+  <Card title="Reliability" icon="shield-check" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Infrastructure failures are consensus failures</li>
+      <li>Guaranteed execution within block boundaries</li>
+    </ul>
+  </Card>
+  
+  <Card title="Performance" icon="bolt" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Direct state access without contract calls</li>
+      <li>High-frequency oracle updates every block</li>
+    </ul>
+  </Card>
+  
+  <Card title="Security" icon="lock" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Protocol-level validation of all operations</li>
+      <li>No trusted external oracles or bridges</li>
+    </ul>
+  </Card>
+</CardGroup>
 
 ## Atomic Composability
 
-Neutron's integrated architecture enables true atomic composability across all protocol features:
+Neutron enables true atomic composability across all protocol features within a single transaction:
 
 ```mermaid
-graph TD
-    A[Smart Contract] -->|Atomic Transaction| B[Oracle Price]
-    B --> C[Token Transfer]
-    C --> D[Interchain Query]
-    D --> E[Automated Execution]
+graph LR
+  A[Smart Contract] --> B[Oracle Module]
+  A --> C[Token Transfer]
+  A --> D[Interchain Query]
+  A --> E[Cron Automation]
+  
+  B & C & D & E -.-> F[Unified Transaction State]
+  
+  classDef default fill:#f5f5f5,stroke:#d9d9d9,color:#333
+  classDef contract fill:#0ea5e9,stroke:#0284c7,color:white
+  
+  class A contract
 ```
 
-All operations within a transaction either succeed together or fail together, with no partial execution states.
+All operations execute atomically in a single transaction context, providing developers with strong guarantees while eliminating interoperability risks.
 
 ## Real-World Applications
 
@@ -75,8 +92,4 @@ Protocols can utilize Neutron's Interchain Accounts and Interchain Queries (ICQ)
 - Read the state of other blockchains
 - Adjust delegations made by remotely controlled accounts
 - Onboard new assets from connected chains with a single transaction
-- Provide users with a seamless cross-chain staking experience
-
-<Note>
-  Neutron's integrated architecture overcomes the limitations of both generalized L1s and app-specific chains by providing tailored DeFi infrastructure with atomic composability, creating a more capital-efficient, profitable, and convenient decentralized economy.
-</Note> 
+- Provide users with a seamless cross-chain staking experiences

@@ -12,27 +12,15 @@ Unlike traditional yield vaults or static liquidity pools, Supervaults actively 
 - Maximize fees earned by liquidity providers
 - Reduce impermanent loss through dynamic position management
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 mb-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">For Liquidity Providers</h3>
-    <p className="mb-4">Supervaults offer enhanced returns through strategic liquidity placement, fee optimization, and potential reduction of impermanent loss.</p>
-  </div>
+<CardGroup cols={2}>
+  <Card title="For Liquidity Providers" icon="coins" iconType="duotone">
+    Supervaults offer enhanced returns through strategic liquidity placement, fee optimization, and potential reduction of impermanent loss.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">For Traders</h3>
-    <p className="mb-4">Supervaults provide deeper liquidity at current price points, resulting in significantly reduced slippage for large trades and better execution quality.</p>
-  </div>
-</div>
+  <Card title="For Traders" icon="chart-line" iconType="duotone">
+    Supervaults provide deeper liquidity at current price points, resulting in significantly reduced slippage for large trades and better execution quality.
+  </Card>
+</CardGroup>
 
 ## How Supervaults Work
 
@@ -40,39 +28,19 @@ Supervaults are integrated with Neutron's core modules to enable continuous, tru
 
 ### Dynamic Positioning with Oracle and Cron
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
-  <div className="flex flex-col">
-    <div className="text-primary text-2xl mb-2">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h4 className="font-semibold mb-2">1. Oracle Integration</h4>
-    <p className="text-sm">Supervaults leverage Neutron's high-frequency oracle to receive accurate price data every block, enabling precise liquidity positioning.</p>
-  </div>
+<CardGroup cols={3}>
+  <Card title="Oracle Integration" icon="globe" iconType="duotone">
+    Supervaults leverage Neutron's high-frequency oracle to receive accurate price data every block, enabling precise liquidity positioning.
+  </Card>
   
-  <div className="flex flex-col">
-    <div className="text-primary text-2xl mb-2">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h4 className="font-semibold mb-2">2. Automated Rebalancing</h4>
-    <p className="text-sm">The Cron module triggers rebalancing operations when needed, allowing vaults to reposition liquidity as market conditions change without requiring off-chain bots.</p>
-  </div>
+  <Card title="Automated Rebalancing" icon="clock" iconType="duotone">
+    The Cron module triggers rebalancing operations when needed, allowing vaults to reposition liquidity as market conditions change without requiring off-chain bots.
+  </Card>
   
-  <div className="flex flex-col">
-    <div className="text-primary text-2xl mb-2">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path d="M21 6.375c0 2.692-4.03 4.875-9 4.875S3 9.067 3 6.375 7.03 1.5 12 1.5s9 2.183 9 4.875z" />
-        <path d="M12 12.75c-2.685 0-5.19-.586-7.078-1.609a8.283 8.283 0 001.897-.908c1.482-.908 3.13-1.428 5.181-1.428 2.05 0 3.7.52 5.18 1.428a8.283 8.283 0 001.897.908C17.19 12.164 14.685 12.75 12 12.75zM12 16.5c-2.685 0-5.19-.586-7.078-1.609a8.283 8.283 0 001.897-.908c1.482-.908 3.13-1.428 5.181-1.428 2.05 0 3.7.52 5.18 1.428a8.283 8.283 0 001.897.908C17.19 15.914 14.685 16.5 12 16.5z" />
-        <path d="M12 20.25c-2.685 0-5.19-.586-7.078-1.609a8.283 8.283 0 001.897-.908c1.482-.908 3.13-1.428 5.181-1.428 2.05 0 3.7.52 5.18 1.428a8.283 8.283 0 001.897.908C17.19 19.664 14.685 20.25 12 20.25z" />
-      </svg>
-    </div>
-    <h4 className="font-semibold mb-2">3. Capital Deployment</h4>
-    <p className="text-sm">Liquidity is concentrated around current market prices, maximizing efficiency and ensuring capital is always productively deployed.</p>
-  </div>
-</div>
+  <Card title="Capital Deployment" icon="money-bill-transfer" iconType="duotone">
+    Liquidity is concentrated around current market prices, maximizing efficiency and ensuring capital is always productively deployed.
+  </Card>
+</CardGroup>
 
 ### Technical Architecture
 
@@ -104,51 +72,23 @@ All of this happens on-chain, with no reliance on external keepers or off-chain 
 
 Supervaults achieve exceptional capital efficiency through several mechanisms:
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5a3 3 0 00-2.684 1.657zM2.25 12a3 3 0 013-3h13.5a3 3 0 013 3v6a3 3 0 01-3 3H5.25a3 3 0 01-3-3v-6zM5.25 7.5c-.41 0-.806.055-1.184.157A3 3 0 016.75 6h10.5a3 3 0 012.684 1.657A4.505 4.505 0 0018.75 7.5H5.25z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Concentrated Liquidity</h3>
-    <p className="mb-4">Unlike passive AMMs that spread liquidity across wide price ranges, Supervaults focus capital precisely where it's needed, around current market prices.</p>
-  </div>
+<CardGroup cols={2}>
+  <Card title="Concentrated Liquidity" icon="layer-group" iconType="duotone">
+    Unlike passive AMMs that spread liquidity across wide price ranges, Supervaults focus capital precisely where it's needed, around current market prices.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M3 6a3 3 0 013-3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm4.5 7.5a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zm3.75-1.5a.75.75 0 00-1.5 0v4.5a.75.75 0 001.5 0V12zm2.25-3a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0V9.75A.75.75 0 0113.5 9zm3.75-1.5a.75.75 0 00-1.5 0v9a.75.75 0 001.5 0v-9z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Multi-Asset Strategies</h3>
-    <p className="mb-4">Supervaults can manage complex positions across multiple asset pairs, optimizing for overall portfolio returns rather than individual pairings.</p>
-  </div>
+  <Card title="Multi-Asset Strategies" icon="chart-pie" iconType="duotone">
+    Supervaults can manage complex positions across multiple asset pairs, optimizing for overall portfolio returns rather than individual pairings.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
-        <path fillRule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z" clipRule="evenodd" />
-        <path d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Yield Compounding</h3>
-    <p className="mb-4">Through automated reinvestment of earned fees, Supervaults maximize the compounding effect for long-term holders.</p>
-  </div>
+  <Card title="Yield Compounding" icon="arrow-trend-up" iconType="duotone">
+    Through automated reinvestment of earned fees, Supervaults maximize the compounding effect for long-term holders.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M21 6.375c0 2.692-4.03 4.875-9 4.875S3 9.067 3 6.375 7.03 1.5 12 1.5s9 2.183 9 4.875z" />
-        <path d="M12 12.75c-2.685 0-5.19-.586-7.078-1.609a8.283 8.283 0 001.897-.908c1.482-.908 3.13-1.428 5.181-1.428 2.05 0 3.7.52 5.18 1.428a8.283 8.283 0 001.897.908C17.19 12.164 14.685 12.75 12 12.75zM12 16.5c-2.685 0-5.19-.586-7.078-1.609a8.283 8.283 0 001.897-.908c1.482-.908 3.13-1.428 5.181-1.428 2.05 0 3.7.52 5.18 1.428a8.283 8.283 0 001.897.908C17.19 15.914 14.685 16.5 12 16.5z" />
-        <path d="M12 20.25c-2.685 0-5.19-.586-7.078-1.609a8.283 8.283 0 001.897-.908c1.482-.908 3.13-1.428 5.181-1.428 2.05 0 3.7.52 5.18 1.428a8.283 8.283 0 001.897.908C17.19 19.664 14.685 20.25 12 20.25z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Multi-Layer Yield</h3>
-    <p className="mb-4">By integrating with other DeFi primitives, Supervaults can layer multiple yield sources on the same capital, such as trading fees, staking rewards, and incentives.</p>
-  </div>
-</div>
+  <Card title="Multi-Layer Yield" icon="database" iconType="duotone">
+    By integrating with other DeFi primitives, Supervaults can layer multiple yield sources on the same capital, such as trading fees, staking rewards, and incentives.
+  </Card>
+</CardGroup>
 
 ## Comparison to Traditional Approaches
 
@@ -199,39 +139,19 @@ Supervaults achieve exceptional capital efficiency through several mechanisms:
 
 ## Get Started with Supervaults
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="#">
-    <div className="text-primary text-2xl mb-2">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
-        <path fillRule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 14.625v-9.75zM8.25 9.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM18.75 9a.75.75 0 00-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 00.75-.75V9.75a.75.75 0 00-.75-.75h-.008zM4.5 9.75A.75.75 0 015.25 9h.008a.75.75 0 01.75.75v.008a.75.75 0 01-.75.75H5.25a.75.75 0 01-.75-.75V9.75z" clipRule="evenodd" />
-        <path d="M2.25 18a.75.75 0 000 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 00-.75-.75H2.25z" />
-      </svg>
-    </div>
-    <h4 className="font-semibold mb-2">Deposit Assets</h4>
-    <p className="text-sm">Provide liquidity to earn optimized yields with minimal management</p>
-  </a>
+<CardGroup cols={3}>
+  <Card title="Deposit Assets" icon="wallet" iconType="duotone">
+    Provide liquidity to earn optimized yields with minimal management
+  </Card>
   
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="#">
-    <div className="text-primary text-2xl mb-2">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path fillRule="evenodd" d="M3 6a3 3 0 013-3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm4.5 7.5a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zm3.75-1.5a.75.75 0 00-1.5 0v4.5a.75.75 0 001.5 0V12zm2.25-3a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0V9.75A.75.75 0 0113.5 9zm3.75-1.5a.75.75 0 00-1.5 0v9a.75.75 0 001.5 0v-9z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h4 className="font-semibold mb-2">View Analytics</h4>
-    <p className="text-sm">Monitor performance metrics and yield statistics</p>
-  </a>
+  <Card title="View Analytics" icon="chart-column" iconType="duotone">
+    Monitor performance metrics and yield statistics
+  </Card>
   
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="#">
-    <div className="text-primary text-2xl mb-2">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-        <path fillRule="evenodd" d="M2.25 2.25a.75.75 0 000 1.5H3v10.5a3 3 0 003 3h1.21l-1.172 3.513a.75.75 0 001.424.474l.329-.987h8.418l.33.987a.75.75 0 001.422-.474l-1.17-3.513H18a3 3 0 003-3V3.75h.75a.75.75 0 000-1.5H2.25zm6.54 15h6.42l.5 1.5H8.29l.5-1.5zm8.085-8.995a.75.75 0 10-.75-1.299 12.81 12.81 0 00-3.558 3.05L11.03 8.47a.75.75 0 00-1.06 0l-3 3a.75.75 0 101.06 1.06l2.47-2.47 1.617 1.618a.75.75 0 001.146-.102 11.312 11.312 0 013.612-3.321z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h4 className="font-semibold mb-2">Trade with Low Slippage</h4>
-    <p className="text-sm">Execute large trades with minimal price impact</p>
-  </a>
-</div>
+  <Card title="Trade with Low Slippage" icon="bolt" iconType="duotone">
+    Execute large trades with minimal price impact
+  </Card>
+</CardGroup>
 
 <div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
   <strong>Coming Soon:</strong> Additional Supervault strategies across multiple asset classes. Stay tuned for announcements on new vault deployments.

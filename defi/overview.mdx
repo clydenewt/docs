@@ -8,90 +8,34 @@ Neutron is purpose-built for next-generation decentralized finance, offering int
 
 ## Native Financial Infrastructure
 
-Neutron's DeFi capabilities are built on a foundation of integrated core modules that provide key services directly at the protocol level.
-
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Duality DEX</h3>
-    <p className="mb-4">Built-in high-performance DEX that combines the advantages of orderbooks and AMMs, offering professional-grade market making capabilities with JIT (Just-in-Time) orders, limit orders, and other advanced features.</p>
-    <a className="text-primary hover:underline mt-auto" href="https://app.neutron.org/orderbook/NTRN/USDC" target="_blank">Trade on Duality →</a>
-  </div>
-  
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">High-Frequency Oracle</h3>
-    <p className="mb-4">Per-block price updates with hardware and consensus stability improvements ensure real-time, trustworthy data for DeFi applications.</p>
-    <a className="text-primary hover:underline mt-auto" href="/developers/modules/oracle">Documentation →</a>
-  </div>
-  
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 000-1.5h-3.75V6z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Automated Execution</h3>
-    <p className="mb-4">The Cron module enables scheduled and conditional contract execution without relying on external keepers or bots, ensuring reliable automation.</p>
-    <a className="text-primary hover:underline mt-auto" href="/developers/modules/cron">Documentation →</a>
-  </div>
-  
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Interchain Capabilities</h3>
-    <p className="mb-4">Native interchain queries and transactions allow DeFi applications to interact with other blockchains trustlessly, expanding liquidity and use cases.</p>
-    <a className="text-primary hover:underline mt-auto" href="/developers/modules/interchain-queries">Documentation →</a>
-  </div>
-</div>
+<CardGroup cols={2}>
+  <Card title="Duality DEX" icon="arrows-rotate" iconType="duotone">
+    Built-in high-performance DEX that combines orderbooks and AMMs, offering professional-grade market making with JIT orders and advanced features.
+  </Card>
+  <Card title="High-Frequency Oracle" icon="chart-line" iconType="duotone">
+    Per-block price updates with hardware and consensus stability improvements ensure real-time, trustworthy data for DeFi applications.
+  </Card>
+  <Card title="Automated Execution" icon="clock" iconType="duotone">
+    The Cron module enables scheduled and conditional contract execution without relying on external keepers or bots, ensuring reliable automation.
+  </Card>
+  <Card title="Interchain Capabilities" icon="link" iconType="duotone">
+    Native interchain queries and transactions allow DeFi applications to interact with other blockchains trustlessly, expanding liquidity and use cases.
+  </Card>
+</CardGroup>
 
 ## Flagship DeFi Applications
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-12">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M21.721 12.752a9.711 9.711 0 00-.945-5.003 12.754 12.754 0 01-4.339 2.708 18.991 18.991 0 01-.214 4.772 17.165 17.165 0 005.498-2.477zM14.634 15.55a17.324 17.324 0 00.332-4.647c-.952.227-1.945.347-2.966.347-1.021 0-2.014-.12-2.966-.347a17.515 17.515 0 00.332 4.647 17.385 17.385 0 005.268 0zM9.772 17.119a18.963 18.963 0 004.456 0A17.182 17.182 0 0112 21.724a17.18 17.18 0 01-2.228-4.605zM7.777 15.23a18.87 18.87 0 01-.214-4.774 12.753 12.753 0 01-4.34-2.708 9.711 9.711 0 00-.944 5.004 17.165 17.165 0 005.498 2.477zM21.356 14.752a9.765 9.765 0 01-7.478 6.817 18.64 18.64 0 001.988-4.718 18.627 18.627 0 005.49-2.098zM2.644 14.752c1.682.971 3.53 1.688 5.49 2.099a18.64 18.64 0 001.988 4.718 9.765 9.765 0 01-7.478-6.816zM13.878 2.43a9.755 9.755 0 016.116 3.986 11.267 11.267 0 01-3.746 2.504 18.63 18.63 0 00-2.37-6.49zM12 2.276a17.152 17.152 0 012.805 7.121c-.897.23-1.837.353-2.805.353-.968 0-1.908-.122-2.805-.353A17.151 17.151 0 0112 2.276zM10.122 2.43a18.629 18.629 0 00-2.37 6.49 11.266 11.266 0 01-3.746-2.504 9.754 9.754 0 016.116-3.985z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Supervaults</h3>
-    <p className="mb-4">Next-generation liquidity provisioning with automated rebalancing and capital-efficient yield strategies powered by Neutron's integrated modules.</p>
-    <a href="/defi/supervaults" className="text-primary hover:underline mt-auto">Learn more →</a>
-  </div>
-
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Drop Protocol</h3>
-    <p className="mb-4">Multi-chain liquid staking solution built on Neutron that leverages interchain capabilities to provide liquid staking across the Cosmos ecosystem.</p>
-    <a href="https://docs.drop.money/" target="_blank" className="text-primary hover:underline mt-auto">Official Documentation →</a>
-  </div>
-  
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M12 21.75c5.385 0 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25 2.25 6.615 2.25 12s4.365 9.75 9.75 9.75zM6.262 6.072a8.25 8.25 0 1010.562-.766 4.5 4.5 0 01-1.318 1.357L14.25 7.5l.165.33a.809.809 0 01-1.086 1.085l-.604-.302a1.125 1.125 0 00-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 01-2.288 4.04l-.723.724a1.125 1.125 0 01-1.298.21l-.153-.076a1.125 1.125 0 01-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 01-.21-1.298L9.75 12l-1.64-1.64a6 6 0 01-1.676-3.257l-.172-1.03z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Bull vs. Bear</h3>
-    <p className="mb-4">Advanced trading platform that enables users to create and execute long-short strategies using Clusters for targeted exposure to market narratives.</p>
-    <a href="https://app.neutron.org" className="text-primary hover:underline mt-auto">Try it out →</a>
-  </div>
-</div>
+<CardGroup cols={3}>
+  <Card title="Supervaults" icon="vault" iconType="duotone" href="/defi/supervaults">
+    Next-generation liquidity provisioning with automated rebalancing and capital-efficient yield strategies powered by Neutron's integrated modules.
+  </Card>
+  <Card title="Drop Protocol" icon="droplet" iconType="duotone" href="/defi/drop">
+    Multi-chain liquid staking solution that leverages interchain capabilities to provide liquid staking across the Cosmos ecosystem.
+  </Card>
+  <Card title="Bull vs. Bear" icon="chart-simple" iconType="duotone" href="/defi/bull-vs-bear">
+    Advanced trading platform that enables users to create and execute long-short strategies using Clusters for targeted market exposure.
+  </Card>
+</CardGroup>
 
 ## Capital Efficiency & Integration
 
@@ -109,67 +53,53 @@ Neutron's architectural advantage comes from how its core modules work together 
 
 ## Clusters: Narrative-based Trading
 
-<div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg my-6">
-  <h3 className="text-xl font-semibold mb-2">Introducing Clusters</h3>
-  <p className="mb-4">
+<Card title="Introducing Clusters">
+  <p>
     Cryptocurrencies are often driven by narratives. Clusters make it easy to long and short narratives by combining multiple long and short positions into one.
   </p>
-  <p className="mb-4">
+  <p className="mt-2">
     Bullish on BTC dominance? Create a cluster that longs BTC and shorts assets you're bearish on. Bearish on Ethereum L2s? Create a cluster that shorts ARB, OP, and ZK.
   </p>
-  <p className="mb-4">
+  <p className="mt-2">
     Explore pre-made clusters or create your own to get targeted exposure to specific market narratives.
   </p>
-  <a href="https://app.neutron.org" className="text-primary hover:underline mt-auto">Explore Clusters →</a>
-</div>
+  <div className="mt-4">
+    <a href="https://bullbear.zone/clusters" className="text-primary hover:underline">Explore Clusters →</a>
+  </div>
+</Card>
 
 ## Thriving DeFi Ecosystem
 
 Neutron hosts a diverse ecosystem of DeFi applications, all benefiting from the chain's integrated architecture.
 
-<div className="grid grid-cols-1 md:grid-cols-4 gap-4 my-8">
-  <div className="flex flex-col p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Mars</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">The galaxy's most powerful credit protocol</p>
-  </div>
-  
-  <div className="flex flex-col p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Astroport</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Neutron's leading decentralized exchange</p>
-  </div>
-  
-  <div className="flex flex-col p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Levana</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Fully collateralized perpetual futures</p>
-  </div>
-  
-  <div className="flex flex-col p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Margined</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Institutional vaults and tooling</p>
-  </div>
-  
-  <div className="flex flex-col p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Amulet</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Self-repaying loans on staked assets</p>
-  </div>
-  
-  <div className="flex flex-col p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Apy.Zone</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Aggregating yields across Neutron</p>
-  </div>
-  
-  <div className="flex flex-col p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Eclipse</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Neutron's first decentralized launchpad</p>
-  </div>
-  
-  <div className="flex flex-col p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Hydro</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-400">Get more from your ATOM</p>
-  </div>
-</div>
+<CardGroup cols={4}>
+  <Card title="Mars" href="https://marsprotocol.io/" target="_blank">
+    Leveraged yield and cross-collateralized trading
+  </Card>
+  <Card title="Astroport" href="https://astroport.fi/" target="_blank">
+    Permissionless liquidity network
+  </Card>
+  <Card title="Levana" href="https://www.levana.finance/" target="_blank">
+    Fully collateralized perpetual futures
+  </Card>
+  <Card title="Margined" href="https://www.margined.io/" target="_blank">
+    Institutional vaults and tooling
+  </Card>
+  <Card title="Valence" href="https://www.valence.zone/" target="_blank">
+    Unified stack for cross-chain DeFi apps
+  </Card>
+  <Card title="Neve" href="https://neve-lend.com/" target="_blank">
+    Clean, simple lending and borrowing platform
+  </Card>
+  <Card title="Eclipse" href="https://www.eclipsefi.io/" target="_blank">
+    Neutron's first decentralized launchpad
+  </Card>
+  <Card title="Hydro" href="https://hydro.cosmos.network/" target="_blank">
+    Get more from your ATOM
+  </Card>
+</CardGroup>
 
-<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
+<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6 mt-8">
   <strong>Ecosystem Integration Examples:</strong>
   <ul className="mt-2">
     <li><strong>Mars:</strong> Efficiently routes liquidations through Duality for safer lending</li>
@@ -181,19 +111,14 @@ Neutron hosts a diverse ecosystem of DeFi applications, all benefiting from the 
 
 ## Get Started with Neutron DeFi
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-8">
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="https://app.neutron.org" target="_blank">
-    <h4 className="font-semibold mb-2">Launch App</h4>
-    <p className="text-sm">Use the Neutron dApp to access the full suite of DeFi applications</p>
-  </a>
-  
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/developers/modules">
-    <h4 className="font-semibold mb-2">Developer Docs</h4>
-    <p className="text-sm">Learn how to build and integrate with Neutron's modules</p>
-  </a>
-  
-  <a className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-900" href="/validators/overview">
-    <h4 className="font-semibold mb-2">Run a Validator</h4>
-    <p className="text-sm">Help secure the network and earn rewards</p>
-  </a>
-</div> 
+<CardGroup cols={3}>
+  <Card title="Launch App" icon="rocket" iconType="duotone" href="https://app.neutron.org" target="_blank">
+    Use the Neutron dApp to access the full suite of DeFi applications
+  </Card>
+  <Card title="Developer Docs" icon="code" iconType="duotone" href="/developers/modules">
+    Learn how to build and integrate with Neutron's modules
+  </Card>
+  <Card title="Run a Validator" icon="server" iconType="duotone" href="/validators/overview">
+    Help secure the network and earn rewards
+  </Card>
+</CardGroup> 

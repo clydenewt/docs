@@ -4,64 +4,66 @@ description: "How Neutron's deliberate design choices create an optimal environm
 icon: "cube"
 ---
 
-Neutron takes an opinionated approach to blockchain design, making deliberate choices about infrastructure, security, and user experience to create an optimal environment for DeFi applications.
-
-## What are Opinionated Blockchains?
-
-Opinionated blockchains make explicit architectural decisions about core infrastructure, rather than leaving these choices to application developers. This approach:
-
-- Ensures consistent behavior across the ecosystem
-- Reduces duplicated infrastructure
-- Guarantees security properties at the protocol level
-- Creates a more unified developer and user experience
+Neutron takes an opinionated approach to blockchain design, making deliberate architectural decisions about core infrastructure rather than leaving these choices to application developers. This ensures consistent behavior, reduces duplicated infrastructure, guarantees protocol-level security, and creates a unified user experience.
 
 ## Core Opinions
 
 <CardGroup cols={2}>
-  <Card title="Infrastructure First" icon="layer-group">
+  <Card title="Infrastructure First" icon="layer-group" iconType="duotone">
     Critical DeFi infrastructure is built directly into the protocol layer, ensuring reliability and composability.
   </Card>
-  <Card title="Security by Design" icon="shield-halved">
+  <Card title="Security by Design" icon="shield-halved" iconType="duotone">
     Security properties are guaranteed by consensus rather than delegated to external systems.
   </Card>
-  <Card title="User-Centric" icon="users">
+  <Card title="User-Centric" icon="users" iconType="duotone">
     Protocol design prioritizes user experience and accessibility over maximum flexibility.
   </Card>
-  <Card title="Atomic Composability" icon="puzzle-piece">
+  <Card title="Atomic Composability" icon="puzzle-piece" iconType="duotone">
     All operations within the system must maintain atomic composability for predictable behavior.
   </Card>
 </CardGroup>
 
 ## Key Design Decisions
 
-### 1. Protocol-Level Infrastructure
-- Oracle price feeds are consensus-validated
-- Cross-chain communication is native and trustless
-- Automation is guaranteed by the protocol
-- Token standards are enforced at the protocol level
-
-### 2. Security Model
-- No slashing in the proof-of-stake system
-- Curated validator set for enhanced security
-- Hardware-based security for critical operations
-- Protocol-enforced rate limiting
-
-### 3. User Experience
-- Predictable gas costs
-- Simplified staking mechanics
-- Transparent governance processes
-- Consistent behavior across applications
+<CardGroup cols={3}>
+  <Card title="Protocol-Level Infrastructure" icon="server" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Oracle price feeds with consensus validation</li>
+      <li>Native trustless cross-chain communication</li>
+      <li>Protocol-guaranteed automation</li>
+      <li>Enforced token standards</li>
+    </ul>
+  </Card>
+  
+  <Card title="Security Model" icon="shield-halved" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>No slashing in proof-of-stake</li>
+      <li>Curated validator set</li>
+      <li>Hardware-based security for critical ops</li>
+      <li>Protocol-enforced rate limiting</li>
+    </ul>
+  </Card>
+  
+  <Card title="User Experience" icon="user-check" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Predictable gas costs</li>
+      <li>Simplified staking mechanics</li>
+      <li>Transparent governance</li>
+      <li>Consistent application behavior</li>
+    </ul>
+  </Card>
+</CardGroup>
 
 ## Benefits of Opinionation
 
 <CardGroup cols={2}>
-  <Card title="For Developers" icon="code">
+  <Card title="For Developers" icon="code" iconType="duotone">
     - Reduced infrastructure overhead
     - Standardized interfaces
     - Guaranteed security properties
     - Simplified integration
   </Card>
-  <Card title="For Users" icon="user">
+  <Card title="For Users" icon="user" iconType="duotone">
     - Consistent experience
     - Predictable costs
     - Enhanced security
@@ -71,33 +73,44 @@ Opinionated blockchains make explicit architectural decisions about core infrast
 
 ## Comparison with Other Approaches
 
-### Traditional L1s
-- Maximally flexible but require duplicate infrastructure
-- Security properties vary by application
-- Inconsistent user experience
-- Limited composability
+<CardGroup cols={3}>
+  <Card title="Traditional L1s" icon="network-wired" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Maximally flexible</li>
+      <li>Requires duplicate infrastructure</li>
+      <li>Variable security properties</li>
+      <li>Inconsistent user experience</li>
+      <li>Limited composability</li>
+    </ul>
+  </Card>
+  
+  <Card title="App-Specific Chains" icon="box" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Optimized for single use case</li>
+      <li>Limited flexibility</li>
+      <li>Isolated ecosystems</li>
+      <li>Complex cross-chain communication</li>
+      <li>Requires own validator set</li>
+    </ul>
+  </Card>
+  
+  <Card title="Neutron's Approach" icon="atom" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Optimized for DeFi</li>
+      <li>Maintains flexibility</li>
+      <li>Consistent security</li>
+      <li>Native cross-chain communication</li>
+      <li>True atomic composability</li>
+    </ul>
+  </Card>
+</CardGroup>
 
-### App-Specific Chains
-- Optimized for single use case
-- Limited flexibility
-- Isolated ecosystems
-- Complex cross-chain communication
+### Block Validity Conditions
+By programming block validity conditions, Neutron can ensure:
+- Per-block inclusion guarantees for time-sensitive operations
+- Socialized gas costs for critical infrastructure
+- Reduced reliance on trusted third parties
 
-### Neutron's Approach
-- Optimized for DeFi while maintaining flexibility
-- Consistent security and behavior
-- Native cross-chain communication
-- True atomic composability
-
-## Real-World Impact
-
-### DeFi Protocols
-```mermaid
-graph LR
-    A[Protocol] -->|Uses Native Oracle| B[Reliable Prices]
-    A -->|Uses Native Automation| C[Guaranteed Execution]
-    A -->|Uses Native ICQ| D[Cross-Chain Data]
-```
 
 ### User Benefits
 - No unexpected slashing events
@@ -108,10 +121,10 @@ graph LR
 ## Protocol Examples
 
 <CardGroup cols={2}>
-  <Card title="Supervaults" icon="vault" href="/users/defi/supervaults">
+  <Card title="Supervaults" icon="vault" iconType="duotone" href="/users/defi/supervaults">
     Leverages native infrastructure for automated yield strategies
   </Card>
-  <Card title="Drop Protocol" icon="droplet" href="/users/defi/drop">
+  <Card title="Drop Protocol" icon="droplet" iconType="duotone" href="/users/defi/drop">
     Uses integrated staking and cross-chain communication
   </Card>
 </CardGroup>

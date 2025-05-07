@@ -4,17 +4,7 @@ description: "Economic model, token utility, and validator incentives for the NT
 icon: "coins"
 ---
 
-The Neutron token (NTRN) powers the economic model of the Neutron blockchain, enabling the secure operation of the network while incentivizing participation in the ecosystem.
-
-## Token Supply and Inflation
-
-Unlike many proof-of-stake networks, Neutron maintains a **fixed token supply** with zero inflation. 
-
-- **Total Supply**: 1,000,000,000 NTRN
-- **Inflation Rate**: 0% (fixed supply)
-- **Block Rewards**: None (rewards come from the DAO Treasury)
-
-This deflationary model ensures that NTRN token value isn't diluted over time through continuous issuance, promoting long-term value preservation.
+The Neutron token (NTRN) powers the network's economic model with a fixed supply of 1,000,000,000 tokens and zero inflation, ensuring long-term value preservation without dilution through continuous issuance.
 
 ## Token Distribution
 
@@ -32,6 +22,31 @@ NTRN tokens were initially distributed across various stakeholders:
 | Advisors | 1.00% | 10,000,000 |
 
 ![NTRN Token Supply](/images/ntrn_tokensupply.png)
+
+## Token Generation Event
+
+The initial distribution of NTRN tokens was facilitated through a multi-component Token Generation Event (TGE) designed to distribute tokens fairly while building initial liquidity:
+
+<CardGroup cols={3}>
+  <Card title="Airdrop" icon="parachute-box">
+    <p className="mt-2">7% of NTRN supply was airdropped to ATOM stakers and other qualifying Cosmos ecosystem participants to bootstrap the initial community.</p>
+  </Card>
+  
+  <Card title="Lockdrop" icon="lock">
+    <p className="mt-2">Users locked LP tokens from axlrUSDC/NTRN and ATOM/NTRN pools for various durations to receive NTRN tokens proportional to their contribution.</p>
+  </Card>
+  
+  <Card title="Liquidity Bootstrap Auction" icon="chart-line">
+    <p className="mt-2">5% of NTRN was allocated to bootstrap initial liquidity pools, with participants receiving both LP tokens and additional NTRN incentives.</p>
+  </Card>
+</CardGroup>
+
+The TGE utilized several smart contracts working together:
+- **Credits Contract**: Managed token vesting and distribution
+- **Airdrop Contract**: Distributed tokens to eligible addresses using Merkle proofs
+- **Auction Contract**: Facilitated NTRN-NATIVE pool initialization
+- **Lockdrop Contract**: Enabled users to lock LP tokens to receive NTRN
+- **Vesting LP Contract**: Managed the vesting of LP positions over a 90-day period
 
 ### Token Unlock Schedule
 

@@ -1,0 +1,123 @@
+---
+title: "Frequently Asked Questions"
+description: "Answers to common technical questions about Neutron development"
+icon: "circle-question"
+---
+
+## Developer Resources
+
+<CardGroup cols={3}>
+  <Card title="Community Channels" icon="users" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li><a href="https://t.me/+Q6C_kb0xLaoxYzE1" target="_blank" className="text-primary hover:underline">Neutron Builders Announcements</a></li>
+      <li><a href="https://t.me/+b9f8m8iybLdhYjE9" target="_blank" className="text-primary hover:underline">Neutron Builders Chat</a></li>
+      <li><a href="https://t.me/+GK5KVutIvQhhNmNi" target="_blank" className="text-primary hover:underline">Neutron Dev Blog</a></li>
+    </ul>
+  </Card>
+  
+  <Card title="Technical Support" icon="headset" iconType="duotone">
+    Join our <a href="https://discord.gg/neutron" target="_blank" className="text-primary hover:underline">Discord</a> for technical help and discussions in the #developers channel.
+  </Card>
+  
+  <Card title="Bug Bounty" icon="bug" iconType="duotone" href="https://immunefi.com/bug-bounty/neutron" target="_blank">
+    Found a security vulnerability? Report it through our Immunefi bug bounty program.
+  </Card>
+</CardGroup>
+
+## Technical Questions
+
+<div className="space-y-8 mt-8">
+  <div>
+    <h3 className="text-xl font-semibold mb-3">I am a developer who builds on Neutron. How can I get in touch with the dev team?</h3>
+    <p>There are three official channels for technical communication:</p>
+    <ul className="list-disc pl-6 mt-2">
+      <li><a href="https://t.me/+Q6C_kb0xLaoxYzE1" target="_blank" className="text-primary hover:underline">Neutron Builders Announcements</a>: Official announcements channel</li>
+      <li><a href="https://t.me/+b9f8m8iybLdhYjE9" target="_blank" className="text-primary hover:underline">Neutron Builders Chat</a>: Technical discussion for smart contract developers (note: non-technical questions and spam may result in ban)</li>
+      <li><a href="https://t.me/+GK5KVutIvQhhNmNi" target="_blank" className="text-primary hover:underline">Neutron Dev Blog</a>: Technical notes from the development team</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3 className="text-xl font-semibold mb-3">I think I've found a vulnerability, what should I do?</h3>
+    <p>Check out our bug bounty program on <a href="https://immunefi.com/bug-bounty/neutron" target="_blank" className="text-primary hover:underline">Immunefi</a>.</p>
+  </div>
+
+  <div>
+    <h3 className="text-xl font-semibold mb-3">Where is the block explorer?</h3>
+    <p>We recommend using the following block explorers:</p>
+    <ul className="list-disc pl-6 mt-2">
+      <li><strong>Mintscan Explorer</strong>:
+        <ul className="list-disc pl-6">
+          <li><a href="https://mintscan.io/neutron" target="_blank" className="text-primary hover:underline">Mainnet (neutron-1)</a></li>
+          <li><a href="https://mintscan.io/neutron-testnet" target="_blank" className="text-primary hover:underline">Testnet (pion-1)</a></li>
+        </ul>
+      </li>
+      <li><strong>Celatone Smart Contract Explorer</strong>: Provides a great UI to upload, query and execute contracts.</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3 className="text-xl font-semibold mb-3">Where can I download the latest snapshots?</h3>
+    <p>If you're looking to spin up your own archive node, our snapshot service provides a convenient solution, enabling you to skip syncing from scratch. We also offer small pruned snapshots for quick server bootstrapping.</p>
+    <p className="mt-2"><a href="https://cosmos-snapshots.neutron.org/" target="_blank" className="text-primary hover:underline">Snapshot Service</a></p>
+  </div>
+
+  <div>
+    <h3 className="text-xl font-semibold mb-3">Where can I get the public REST and RPC nodes?</h3>
+    <p>You can check the Cosmos Chain Registry for public endpoints:</p>
+    <ul className="list-disc pl-6 mt-2">
+      <li><a href="https://github.com/cosmos/chain-registry/tree/master/neutron" target="_blank" className="text-primary hover:underline">Mainnet (neutron-1)</a></li>
+      <li><a href="https://github.com/cosmos/chain-registry/tree/master/testnets/neutrontestnet" target="_blank" className="text-primary hover:underline">Testnet (pion-1)</a></li>
+    </ul>
+    <p className="mt-2">For a list of available endpoints, see our <a href="/resources/endpoints" className="text-primary hover:underline">Endpoints Reference</a>.</p>
+  </div>
+
+  <div>
+    <h3 className="text-xl font-semibold mb-3">How can I check the current status of Neutron's RPCs?</h3>
+    <p>For the most current information on the status of our RPCs and any scheduled maintenance, please visit our <a href="https://status.neutron.org/" target="_blank" className="text-primary hover:underline">Neutron Status</a> page.</p>
+    <p className="mt-2">This page provides real-time updates and alerts regarding the operational status of all Neutron services.</p>
+  </div>
+
+  <div>
+    <h3 className="text-xl font-semibold mb-3">What CosmWasm version is used?</h3>
+    <p>We are using a patched 0.51.0 version of wasmd.</p>
+  </div>
+
+  <div>
+    <h3 className="text-xl font-semibold mb-3">Where is the testnet faucet?</h3>
+    <p>You can request tokens from the Testnet (pion-1) Faucet through two channels:</p>
+    <ol className="list-decimal pl-6 mt-2">
+      <li><strong>Discord</strong>: Post in the #testnet-faucet channel on <a href="https://discord.gg/neutron" target="_blank" className="text-primary hover:underline">Neutron's Discord server</a> with the command:<br />
+      <code className="bg-gray-100 dark:bg-gray-800 p-1 rounded">$request &lt;NEUTRON-ADDRESS&gt;</code></li>
+      <li><strong>Telegram</strong>: Use the <a href="https://t.me/NeutronTestnetFaucet_bot" target="_blank" className="text-primary hover:underline">Telegram Faucet Bot</a> with the command:<br />
+      <code className="bg-gray-100 dark:bg-gray-800 p-1 rounded">/request &lt;NEUTRON-ADDRESS&gt;</code></li>
+    </ol>
+    <p className="mt-2">Where <code>&lt;NEUTRON-ADDRESS&gt;</code> is a <code>neutron1******</code> generated address.</p>
+  </div>
+</div>
+
+## Network Resources
+
+<CardGroup cols={3}>
+  <Card title="Chain Parameters" icon="sliders" iconType="duotone" href="/resources/chain-parameters">
+    Reference for Neutron network parameters and configurations
+  </Card>
+  
+  <Card title="Network Endpoints" icon="network-wired" iconType="duotone" href="/resources/endpoints">
+    Public API, RPC, and gRPC endpoints for mainnet and testnet
+  </Card>
+  
+  <Card title="Peer Nodes" icon="server" iconType="duotone" href="/resources/peers">
+    Persistent peers and seed nodes for connecting to the network
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="IBC Denoms" icon="coins" iconType="duotone" href="/resources/ibc-denoms">
+    Information about IBC denominations on Neutron
+  </Card>
+  
+  <Card title="TokenFactory Denoms" icon="money-bill" iconType="duotone" href="/resources/tokenfactory-denoms">
+    Details on TokenFactory denominations and their creation
+  </Card>
+</CardGroup> 

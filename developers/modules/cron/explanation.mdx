@@ -22,26 +22,26 @@ The Cron module enables on-chain time-based automation through several component
 
 ### Schedule Registration
 
-When a smart contract creates a schedule, it specifies:
+When a governance action creates a schedule, it specifies:
 - A unique name for identification
 - The execution period (in blocks)
 - One or more messages to execute
-- Gas limits for each message
+- The execution stage (BEGIN_BLOCKER or END_BLOCKER)
 
-The module stores this schedule in its state, associating it with the creator's address.
+The module stores this schedule in its state.
 
 ### Execution Mechanism
 
 The module hooks into Neutron's block production process to check for schedules due for execution:
 
-1. During each block's `EndBlock` phase, the module queries for all schedules where:
+1. During each block's `BeginBlock` or `EndBlock` phase (depending on the schedule's execution_stage), the module queries for all schedules where:
    ```
    current_block_height ≥ (last_execution_height + period)
    ```
 
 2. For each schedule that meets this condition, the module:
    - Constructs the message(s) specified in the schedule
-   - Executes them with the predefined gas limits
+   - Executes them
    - Updates the schedule's `last_execution_height` to the current block height
 
 3. If a schedule has a non-zero period, it remains in the state for future executions. If the period is zero (one-time execution), it is removed after execution.
@@ -53,34 +53,38 @@ A schedule is the core data structure in the Cron module that represents a time-
 | Property | Description |
 |----------|-------------|
 | `name` | Unique identifier for the schedule |
-| `owner` | Address that created and controls the schedule |
 | `period` | Number of blocks between executions |
 | `msgs` | Messages to execute when the schedule is triggered |
-| `boundary` | Optional starting block height |
 | `last_execute_height` | Block height when the schedule was last executed |
+| `execution_stage` | When in the block to execute (BEGIN_BLOCKER or END_BLOCKER) |
 
 Schedules can be:
 - **Periodic**: Executing at regular intervals (when `period > 0`)
 - **One-time**: Executing once at a specified future block (when `period = 0`)
 
-### Schedule Ownership and Management
+### Execution Stages
 
-Each schedule is owned by the address that created it, which is typically a smart contract. Only the owner can:
-- Update the schedule's parameters (period, messages, etc.)
-- Remove the schedule explicitly
+The Cron module supports two execution stages:
 
-This ownership model ensures that schedules are properly managed and can't be tampered with by unauthorized parties.
+1. **BEGIN_BLOCKER**: Schedules are executed at the beginning of the block, before any transactions. This is useful for operations that need to happen before other transactions in the block.
+
+2. **END_BLOCKER**: Schedules are executed at the end of the block, after all transactions. This is useful for operations that should occur after all other transactions in the block have been processed.
+
+The choice of execution stage is important for dependencies between operations. For example, if a scheduled operation depends on the state resulting from regular transactions, it should use the END_BLOCKER stage.
+
+### Schedule Management
+
+Schedules can only be created, modified, or removed through governance or by an authorized security address. This ensures that critical automated processes cannot be tampered with by unauthorized parties.
 
 ## Security Model
 
 The Cron module implements several mechanisms to ensure security and prevent abuse:
 
-### Gas Limitation
+### Execution Limits
 
 To prevent DoS attacks and excessive resource consumption:
-- Each schedule specifies gas limits for its messages
-- There's a network-wide `max_gas_per_block` parameter that limits the total gas used by scheduled tasks in a single block
-- If executing all due schedules would exceed this limit, some are delayed until subsequent blocks
+- There's a network-wide `limit` parameter that restricts the number of schedules processed in a single block
+- If more schedules are due than the limit allows, some are delayed until subsequent blocks
 
 ### Message Validation
 
@@ -94,6 +98,7 @@ The module validates messages before execution:
 The module's state can only be modified through its exposed message handlers:
 - Direct state manipulation is not possible
 - All state changes follow proper authorization checks
+- Only governance or the designated security address can manage schedules
 
 ## Design Decisions
 
@@ -117,13 +122,15 @@ Supporting multiple messages in a single schedule enables more complex workflows
 
 This approach simplifies common patterns like "update state, then transfer funds" or "check condition, then execute action."
 
-### Why use a pre-paid gas model?
+### Why have different execution stages?
 
-The pre-paid gas model where creators specify gas limits upfront:
+Having both BEGIN_BLOCKER and END_BLOCKER execution stages provides flexibility for different types of automated tasks:
 
-1. **Prevents abuse**: Ensures scheduled tasks can't consume unlimited resources
-2. **Provides predictability**: Network operators can estimate maximum gas usage
-3. **Encourages efficiency**: Developers must consider the gas requirements of their scheduled tasks
+1. **State Preparation**: BEGIN_BLOCKER allows setting up state before any transactions in the block
+2. **Post-Processing**: END_BLOCKER enables operations that should occur after all transactions
+3. **Dependency Management**: Different stages help manage dependencies between automated operations
+
+This design allows for more complex automation workflows that respect the natural ordering of blockchain operations.
 
 ## Implementation Considerations
 
@@ -131,8 +138,7 @@ The pre-paid gas model where creators specify gas limits upfront:
 
 When multiple schedules are due for execution in the same block, they are processed in a deterministic order based on:
 1. First by `last_execution_height` (older executions first)
-2. Then by schedule creation time (older schedules first)
-3. Finally by name (alphabetical order)
+2. Then by name (alphabetical order)
 
 This ordering ensures fairness and prevents starvation of older schedules.
 
@@ -145,41 +151,16 @@ If a scheduled message fails during execution:
 
 This approach ensures that temporary failures don't permanently break scheduling logic.
 
-### Schedule Limits
-
-The module implements reasonable limits to prevent abuse:
-- Maximum name length for schedules
-- Maximum number of messages per schedule
-- Maximum size for each message
-- Minimum period (to prevent excessive execution frequency)
-
 ## Module Parameters
 
-Network-wide parameters can be adjusted through governance:
+Network-wide parameters that can be adjusted through governance:
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
-| `max_gas_per_block` | Maximum gas for scheduled tasks per block | 6,000,000 |
-| `max_msg_size` | Maximum size for scheduled messages | 10,240 bytes |
-| `max_msgs_per_schedule` | Maximum number of messages in a schedule | 10 |
-| `max_name_length` | Maximum length of schedule names | 64 characters |
-| `min_period` | Minimum blocks between executions | 5 blocks |
+| `security_address` | Address authorized to manage schedules | (governance-set address) |
+| `limit` | Maximum number of schedules executed in one block | 20 |
 
 ## Best Practices for Integration
-
-### Gas Estimation
-
-When creating schedules, it's important to:
-- Estimate gas requirements conservatively
-- Include a buffer for potential future changes
-- Test different scenarios to find optimal limits
-
-```rust
-// Example of setting gas with a safety buffer
-let estimated_gas = 50_000;
-let gas_buffer = 20_000;
-let gas_limit = estimated_gas + gas_buffer;
-```
 
 ### Error Handling
 
@@ -193,7 +174,7 @@ Since schedules might fail for various reasons, contracts should:
 For complex applications:
 - Use a consistent naming scheme for schedules
 - Create separate schedules for independent operations
-- Consider schedule dependencies in your design
+- Consider execution stages in your design to manage dependencies
 
 ## Typical Use Cases
 
@@ -222,12 +203,11 @@ The Cron module supports a wide range of time-based tasks:
 ### Current Limitations
 
 - **Block Height Dependency**: Schedule timing is sensitive to block time variations
-- **Gas Estimation**: Developers must accurately estimate gas requirements
+- **Governance-Only Access**: Only governance or the security address can manage schedules
 - **No Conditional Execution**: Schedules execute regardless of external conditions
 
 ### Planned Enhancements
 
 - **Conditional Schedules**: Allow schedules to execute only if certain conditions are met
-- **Dynamic Gas Adjustment**: Automatically adjust gas based on previous executions
 - **Schedule Dependencies**: Define explicit dependencies between schedules
 - **Improved Monitoring**: Better tools for tracking and managing schedules 

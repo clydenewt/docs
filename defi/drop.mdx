@@ -16,27 +16,23 @@ For comprehensive documentation on Drop Protocol, please visit the [official Dro
 
 Drop Protocol showcases the power of Neutron's integrated architecture by utilizing several core modules:
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Interchain Transactions (ICTX)</h3>
-    <p className="mb-4">Enables Drop to control staking operations across multiple chains without requiring separate validators or infrastructure for each chain.</p>
-  </div>
+<CardGroup cols={2}>
+  <Card title="Interchain Transactions (ICTX)" icon="arrow-right-arrow-left" iconType="duotone">
+    Enables Drop to control staking operations across multiple chains without requiring separate validators or infrastructure for each chain.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Interchain Queries (ICQ)</h3>
-    <p className="mb-4">Allows Drop to fetch and verify staking data from source chains in a trust-minimized way, ensuring accurate reward calculations and security.</p>
-  </div>
+  <Card title="Interchain Queries (ICQ)" icon="magnifying-glass" iconType="duotone">
+    Allows Drop to fetch and verify staking data from source chains in a trust-minimized way, ensuring accurate reward calculations and security.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Duality DEX</h3>
-    <p className="mb-4">Provides deep liquidity pools for dAssets (Drop's liquid staking tokens), enabling efficient trading with minimal slippage.</p>
-  </div>
+  <Card title="Duality DEX" icon="arrows-rotate" iconType="duotone">
+    Provides deep liquidity pools for dAssets (Drop's liquid staking tokens), enabling efficient trading with minimal slippage.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h3 className="text-xl font-semibold mb-2">Supervaults Integration</h3>
-    <p className="mb-4">Allows dAssets to be deployed in Supervaults for additional yield on top of staking rewards, enhancing capital efficiency.</p>
-  </div>
-</div>
+  <Card title="Supervaults Integration" icon="vault" iconType="duotone">
+    Allows dAssets to be deployed in Supervaults for additional yield on top of staking rewards, enhancing capital efficiency.
+  </Card>
+</CardGroup>
 
 ## Capital Efficiency Through Integration
 
@@ -56,11 +52,22 @@ The true power of Drop on Neutron comes from how it integrates with the broader 
 
 For detailed information on how to use Drop Protocol, supported assets, and technical documentation, please visit:
 
-<div className="flex items-center justify-center p-8 my-8 border border-gray-200 dark:border-gray-800 rounded-lg">
-  <a href="https://docs.drop.money/" target="_blank" className="flex items-center text-primary text-xl font-semibold">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 mr-2">
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-.53 14.03a.75.75 0 001.06 0l3-3a.75.75 0 10-1.06-1.06l-1.72 1.72V8.25a.75.75 0 00-1.5 0v5.69l-1.72-1.72a.75.75 0 00-1.06 1.06l3 3z" clipRule="evenodd" />
-    </svg>
-    Visit the Drop Documentation
-  </a>
-</div> 
+<CardGroup cols={1}>
+  <Card title="Visit the Drop Documentation" icon="book-open" iconType="duotone" href="https://docs.drop.money/" target="_blank">
+    Comprehensive guides on using Drop Protocol, supported assets, and technical details
+  </Card>
+</CardGroup>
+
+<CardGroup cols={3}>
+  <Card title="Stake Assets" icon="coins" iconType="duotone" href="https://app.neutron.org" target="_blank">
+    Start earning staking rewards while maintaining liquidity
+  </Card>
+  
+  <Card title="Explore dAssets" icon="droplet" iconType="duotone" href="https://docs.drop.money/tokens/assets" target="_blank">
+    Learn about the liquid staking tokens in the Drop ecosystem
+  </Card>
+  
+  <Card title="Join Community" icon="users" iconType="duotone" href="https://discord.gg/neutron" target="_blank">
+    Discuss Drop Protocol with the community
+  </Card>
+</CardGroup> 

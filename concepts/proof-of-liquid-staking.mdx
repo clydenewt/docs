@@ -4,80 +4,178 @@ description: "Neutron's revolutionary staking model that combines network securi
 icon: "lock"
 ---
 
-Neutron's revolutionary staking model fundamentally reimagines the economics, incentives, and security model of Proof of Stake networks, creating a sustainable economic framework while encouraging active participation in DeFi.
+Neutron's proof-of-liquid-staking model reimagines traditional PoS economics with a fixed token supply, delegator protection, and deep liquid staking integration—creating a sustainable security framework while enabling capital to remain productive in DeFi.
 
-## A Fixed Supply Token
+## Core Principles
 
-At the heart of Neutron's staking model is the commitment to a fixed supply of NTRN tokens.
+<CardGroup cols={2}>
+  <Card title="Fixed Supply" icon="coins" iconType="duotone">
+    No inflation or block rewards. All staking rewards come directly from the Neutron DAO Treasury, preserving long-term token value.
+  </Card>
+  
+  <Card title="Performance-Based" icon="chart-line" iconType="duotone">
+    Validators receive compensation based on meeting strict performance metrics rather than token inflation.
+  </Card>
 
-- **No Inflation**: NTRN maintains a fixed total supply, with block rewards set to zero. This creates a deflationary dynamic as tokens are placed into productive use.
-- **DAO-Driven Rewards**: All staking rewards are paid directly from the Neutron DAO Treasury, rather than through new token issuance.
-- **Revenue Capture**: Network fees and revenue accrue to the Neutron DAO Treasury, creating a sustainable mechanism for funding rewards.
-
-This approach preserves the value of NTRN against dilution while still incentivizing network security through staking.
+  <Card title="Delegator Protection" icon="shield-halved" iconType="duotone">
+    No slashing for delegators, eliminating the risk of asset reduction due to validator misbehavior.
+  </Card>
+  
+  <Card title="Capital Efficiency" icon="money-bill-transfer" iconType="duotone">
+    Staked NTRN can be represented as liquid tokens and used throughout the ecosystem, maintaining productivity.
+  </Card>
+</CardGroup>
 
 ## Staking Economics
 
-Neutron's staking model differs from traditional Proof of Stake in several important ways:
+<CardGroup cols={3}>
+  <Card title="Validator Model" icon="server" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>$3,000 USD per month base compensation</li>
+      <li>Performance-based rewards adjustment</li>
+      <li>No commissions on delegator rewards</li>
+      <li>Clear separation of roles and responsibilities</li>
+    </ul>
+  </Card>
+  
+  <Card title="Delegator Rewards" icon="users" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Stable 3% target APR</li>
+      <li>Treasury-funded rewards</li>
+      <li>Option to magnify returns through DeFi</li>
+      <li>No slashing risk</li>
+    </ul>
+  </Card>
+  
+  <Card title="Security Model" icon="shield-check" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Jailing and tombstoning for misbehavior</li>
+      <li>DAO stakes significant treasury portion</li>
+      <li>Curated validator set selection</li>
+      <li>Performance requirements for block signing and oracle updates</li>
+    </ul>
+  </Card>
+</CardGroup>
 
-### Validator Compensation
+## Performance Requirements
 
-Validators receive stable, predictable compensation based on their performance, regardless of market conditions:
-
-- **Base Compensation**: Validators automatically receive monthly compensation from the Neutron DAO Treasury to cover operational costs and provide a reasonable margin.
-- **Performance-Based**: Rewards are adjusted according to validators meeting specific thresholds for block signing and oracle price updates.
-- **No Commissions**: Unlike traditional models, validators don't charge commissions on delegator rewards, creating a clearer separation of roles.
-
-### Delegator Rewards
-
-Users who stake NTRN tokens receive rewards that are:
-
-- **Stable**: Target APR set by governance (initially 3%) provides predictable returns.
-- **DAO-Funded**: Rewards come directly from the treasury rather than inflation.
-- **Magnifiable**: Stakers can leverage their position through DeFi to potentially enhance returns.
-
-### Enhanced Security Without Slashing
-
-Neutron takes a different approach to network security:
-
-- **No Slashing**: Delegators don't face the risk of having their staked assets reduced due to validator misbehavior.
-- **Jailing and Tombstoning**: Validators who misbehave are removed from the active set without penalizing their delegators.
-- **DAO Delegations**: The Neutron DAO stakes a significant portion of the treasury with validators to ensure a stable, secure network.
+<div className="overflow-x-auto">
+  <table className="w-full my-4 text-sm">
+    <thead>
+      <tr>
+        <th className="p-2 border-b-2 border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">Performance Metric</th>
+        <th className="p-2 border-b-2 border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">Minimum Threshold</th>
+        <th className="p-2 border-b-2 border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">Target Threshold</th>
+        <th className="p-2 border-b-2 border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">Result if Below Minimum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Block Signing</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">95%</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">99.5%</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Partial or no rewards</td>
+      </tr>
+      <tr>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Oracle Price Updates</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">95%</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">98%</td>
+        <td className="p-2 border-b border-gray-200 dark:border-gray-700">Partial or no rewards</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## Liquid Staking Integration
 
-Perhaps the most innovative aspect of Neutron's model is the deep integration of liquid staking:
+<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
+  <strong>The most innovative aspect of Neutron's staking model is its deep integration of liquid staking:</strong>
+  <ul className="mt-3 space-y-2">
+    <li>The network actively encourages the use of liquid staking derivatives like dNTRN</li>
+    <li>Staked NTRN can be represented as a liquid token and used throughout the ecosystem</li>
+    <li>Capital can simultaneously secure the network and participate in DeFi applications</li>
+  </ul>
+</div>
 
-- **Native Support**: The network actively encourages the use of liquid staking derivatives (LSDs) like dNTRN.
-- **DeFi Composability**: Staked NTRN can be represented as a liquid token and used throughout the ecosystem.
-- **Enhanced Capital Efficiency**: Users can participate in network security while still utilizing their assets in DeFi.
-
-The approach allows NTRN to remain productive even while securing the network, avoiding the capital inefficiency that plagues many Proof of Stake networks.
+<CardGroup cols={3}>
+  <Card title="Liquid Staking Derivatives" icon="arrow-right-arrow-left" iconType="duotone">
+    <p className="mt-2">Tokens like dNTRN represent staked positions, enabling users to participate in DeFi while still earning staking rewards.</p>
+  </Card>
+  
+  <Card title="DAO Delegations" icon="building-columns" iconType="duotone">
+    <p className="mt-2">The Neutron DAO stakes a significant portion of the Treasury with validators to ensure network security and stability.</p>
+  </Card>
+  
+  <Card title="Composable Governance" icon="scale-balanced" iconType="duotone">
+    <p className="mt-2">Staked NTRN provides governance voting power through dedicated voting vaults without unstaking.</p>
+  </Card>
+</CardGroup>
 
 ## Curated Validator Set
 
-Neutron implements a focused approach to validation:
+Neutron implements a focused approach to validation where validators focus on providing reliable infrastructure rather than serving as governance representatives.
 
-- **Specialized Role**: Validators focus on providing reliable, performant infrastructure rather than serving as governance representatives.
-- **Clear Separation**: Delegating stake does not confer governance voting power to validators, creating a clear separation between network security and governance.
-- **Performance Requirements**: Validators must maintain high standards for block signing (95%-99.5%) and price updates (95%-98%) to receive full rewards.
+<CardGroup cols={2}>
+  <Card title="Specialized Roles" icon="user-gear" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Validators focus on reliable infrastructure</li>
+      <li>Clear separation from governance responsibilities</li>
+      <li>Performance-based incentives</li>
+    </ul>
+  </Card>
+  
+  <Card title="Selection Criteria" icon="filter" iconType="duotone">
+    <ul className="mt-2 space-y-1">
+      <li>Historical performance record</li>
+      <li>Technical expertise and reliability</li>
+      <li>Commit to maintaining high uptime</li>
+      <li>Regular oracle price updates</li>
+    </ul>
+  </Card>
+</CardGroup>
 
 ## Benefits Over Traditional Models
 
-Neutron's Proof of Liquid Staking offers several advantages:
-
-- **Sustainable Economics**: No inflation means token value isn't diluted to pay for security.
-- **Predictable Rewards**: Both validators and delegators receive more stable, predictable compensation.
-- **Reduced Delegation Risk**: No slashing protects delegators from validator misbehavior.
-- **Capital Efficiency**: Liquid staking allows capital to simultaneously secure the network and participate in DeFi.
-- **Aligned Incentives**: The DAO, validators, and users share aligned goals for network growth and sustainability.
+<CardGroup cols={3}>
+  <Card title="Sustainable Economics" icon="chart-line" iconType="duotone">
+    <p className="mt-2">No inflation means token value isn't diluted to pay for security, creating a more sustainable economic model.</p>
+  </Card>
+  
+  <Card title="Predictable Rewards" icon="calendar-check" iconType="duotone">
+    <p className="mt-2">Both validators and delegators receive stable, predictable compensation regardless of market conditions.</p>
+  </Card>
+  
+  <Card title="Reduced Risk" icon="shield-check" iconType="duotone">
+    <p className="mt-2">No slashing protects delegators from validator misbehavior, making staking more accessible and less risky.</p>
+  </Card>
+  
+  <Card title="Capital Efficiency" icon="money-bills" iconType="duotone">
+    <p className="mt-2">Liquid staking allows capital to simultaneously secure the network and participate in DeFi, avoiding opportunity cost.</p>
+  </Card>
+  
+  <Card title="Aligned Incentives" icon="handshake" iconType="duotone">
+    <p className="mt-2">The DAO, validators, and users share aligned goals for network growth and sustainability.</p>
+  </Card>
+  
+  <Card title="Lower Entry Barriers" icon="door-open" iconType="duotone">
+    <p className="mt-2">Simplified staking mechanics and reduced risk encourages broader participation in network security.</p>
+  </Card>
+</CardGroup>
 
 ## Implementation
 
-The governance model is implemented through several mechanisms:
+The liquid staking model is implemented through several mechanisms that work together to create a cohesive system:
 
-- **x/revenue Module**: Tracks validator performance and distributes rewards.
-- **Staked NTRN Voting Vault**: Ensures native stakers can participate in governance.
-- **DAO Treasury Management**: Strategic deployment of treasury assets to secure the network while fostering ecosystem growth.
-
-This innovative approach to staking creates a more sustainable, efficient, and user-friendly network that aligns the interests of all participants while maintaining robust security. 
+<CardGroup cols={3}>
+  <Card title="x/revenue Module" icon="chart-line" iconType="duotone" href="/developers/modules/revenue/overview">
+    Tracks validator performance and distributes rewards according to service quality metrics. See the <a href="/developers/modules/revenue/overview">Revenue Module</a> for technical details.
+  </Card>
+  
+  <Card title="Staked NTRN Voting Vault" icon="vault" iconType="duotone">
+    Ensures native stakers can participate in governance without unstaking their tokens.
+  </Card>
+  
+  <Card title="DAO Treasury Management" icon="piggy-bank" iconType="duotone">
+    Strategic deployment of treasury assets to secure the network while fostering ecosystem growth.
+  </Card>
+</CardGroup> 
