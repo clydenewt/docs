@@ -29,67 +29,69 @@ Our developer documentation follows the [Divio documentation system](https://doc
 
 ## Getting Started
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path d="M5.566 4.657A4.505 4.505 0 016.75 4.5h10.5c.41 0 .806.055 1.183.157A3 3 0 0015.75 3h-7.5A3 3 0 005.25 6v12a3 3 0 003 3h7.5a3 3 0 003-3v-3a3 3 0 00-3-3h-7.5a3 3 0 00-3 3v.75l.9-.3a3.765 3.765 0 01-.684-2.202V4.657z" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">Cosmopark Development Environment</h3>
-    <p className="mb-4">Set up a complete local development environment with Neutron node, Gaia node, and IBC relayers.</p>
-    <a href="/developers/tutorials/onboarding/cosmopark" className="text-primary hover:underline mt-auto">Setup guide →</a>
-  </div>
+<CardGroup cols={2}>
+  <Card title="Cosmopark Development Environment" icon="cubes" href="/developers/tutorials/onboarding/cosmopark">
+    Set up a complete local development environment with Neutron node, Gaia node, and IBC relayers.
+  </Card>
   
-  <div className="flex flex-col p-6 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <div className="text-primary text-3xl mb-3">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-        <path fillRule="evenodd" d="M14.447 3.027a.75.75 0 01.527.92l-4.5 16.5a.75.75 0 01-1.448-.394l4.5-16.5a.75.75 0 01.921-.526zM16.72 6.22a.75.75 0 011.06 0l5.25 5.25a.75.75 0 010 1.06l-5.25 5.25a.75.75 0 11-1.06-1.06L21.44 12l-4.72-4.72a.75.75 0 010-1.06zm-9.44 0a.75.75 0 010 1.06L2.56 12l4.72 4.72a.75.75 0 11-1.06 1.06L.97 12.53a.75.75 0 010-1.06l5.25-5.25a.75.75 0 011.06 0z" clipRule="evenodd" />
-      </svg>
-    </div>
-    <h3 className="text-xl font-semibold mb-2">CosmWasm Smart Contracts</h3>
-    <p className="mb-4">Learn how to create, test, and deploy smart contracts on Neutron.</p>
-    <a href="/developers/tutorials/introduction_to_cosmwasm" className="text-primary hover:underline mt-auto">CosmWasm guide →</a>
-  </div>
-</div>
+  <Card title="CosmWasm Smart Contracts" icon="code" href="/developers/tutorials/introduction_to_cosmwasm">
+    Learn how to create, test, and deploy smart contracts on Neutron.
+  </Card>
+</CardGroup>
 
 ## About Cosmopark
 
 Cosmopark is our recommended local development environment that sets up multiple interconnected components:
 
-<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
-  <ul className="mt-2">
-    <li><strong>Neutron node</strong>: A fully-functional local Neutron blockchain</li>
-    <li><strong>Gaia node</strong>: A Cosmos Hub node connected via IBC</li>
-    <li><strong>Hermes IBC Relayer</strong>: Maintains IBC connections and transfers packets</li>
-    <li><strong>Neutron ICQ Relayer</strong>: Facilitates cross-chain state queries</li>
-  </ul>
-</div>
+<CardGroup cols={2}>
+  <Card title="Neutron Node" icon="server">
+    A fully-functional local Neutron blockchain
+  </Card>
+  
+  <Card title="Gaia Node" icon="globe">
+    A Cosmos Hub node connected via IBC
+  </Card>
+  
+  <Card title="Hermes IBC Relayer" icon="arrows-left-right">
+    Maintains IBC connections and transfers packets
+  </Card>
+  
+  <Card title="Neutron ICQ Relayer" icon="magnifying-glass">
+    Facilitates cross-chain state queries
+  </Card>
+</CardGroup>
 
-This environment is ideal for testing Interchain Accounts (ICA), Interchain Queries (ICQ), and other Neutron-specific features. [Learn more about Cosmopark →](/developers/tutorials/onboarding/cosmopark)
+<div className="mt-4">
+  <p>This environment is ideal for testing Interchain Accounts (ICA), Interchain Queries (ICQ), and other Neutron-specific features.</p>
+  <a href="/developers/tutorials/onboarding/cosmopark" className="text-primary hover:underline">Learn more about Cosmopark →</a>
+</div>
 
 ## Development Tools
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 mb-8">
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Remix IDE Plugin</h4>
-    <p className="text-sm">Build and deploy CosmWasm contracts with the familiar Remix interface.</p>
-    <a href="/developers/tutorials/cosmwasm_remix" className="text-primary hover:underline mt-auto text-sm">Get started →</a>
-  </div>
+<CardGroup cols={3}>
+  <Card title="Remix IDE Plugin" icon="puzzle-piece" href="/developers/tutorials/cosmwasm_remix">
+    Build and deploy CosmWasm contracts with the familiar Remix interface.
+  </Card>
   
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">WasmKit</h4>
-    <p className="text-sm">Complete development toolchain for CosmWasm smart contracts.</p>
-    <a href="/developers/tutorials/cosmwasm_wasmkit" className="text-primary hover:underline mt-auto text-sm">Get started →</a>
-  </div>
+  <Card title="WasmKit" icon="toolbox" href="/developers/tutorials/cosmwasm_wasmkit">
+    Complete development toolchain for CosmWasm smart contracts.
+  </Card>
   
-  <div className="flex flex-col p-5 border border-gray-200 dark:border-gray-800 rounded-lg">
-    <h4 className="font-semibold mb-2">Neutron SDK</h4>
-    <p className="text-sm">TypeScript and Go SDKs for building applications and services.</p>
-    <a href="https://github.com/neutron-org/neutron-sdk" className="text-primary hover:underline mt-auto text-sm" target="_blank" rel="noopener noreferrer">Get started →</a>
-  </div>
-</div>
+  <Card title="Neutron SDK" icon="code" href="https://github.com/neutron-org/neutron-sdk" target="_blank" rel="noopener noreferrer">
+    TypeScript and Go SDKs for building applications and services.
+  </Card>
+</CardGroup>
 
-<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
-  <strong>Need help?</strong> Join our <a href="https://discord.gg/neutron" className="text-primary hover:underline">Discord</a> and check out the #developers channel for support from the Neutron team and community.
-</div> 
+<Card className="mt-6">
+  <div className="flex items-center">
+    <div className="mr-3">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-primary">
+        <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 00-1.032-.211 50.89 50.89 0 00-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 002.433 3.984L7.28 21.53A.75.75 0 016 21v-4.03a48.527 48.527 0 01-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979z" />
+        <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 001.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0015.75 7.5z" />
+      </svg>
+    </div>
+    <div>
+      <strong>Need help?</strong> Join our <a href="https://discord.gg/neutron" className="text-primary hover:underline">Discord</a> and check out the #developers channel for support from the Neutron team and community.
+    </div>
+  </div>
+</Card> 
