@@ -1,0 +1,46 @@
+---
+title: "Strategic Context"
+description: "Unlock Bitcoin's potential with Neutron's revolutionary DeFi infrastructure - featuring maxBTC leverage looping and basis trading strategies"
+icon: "bitcoin"
+---
+
+## The Problem
+
+**Bitcoin holders and miners want yield**, but current options offer only inflationary rewards or speculative points, and since Babylon launched, the yields are going down. **Billions of dollars have been deployed into Babylon, BTC LSTs, and points farms**, and as Babylon points dry out, Liquidity Providers (e.g. LPs / wealthy individuals) **are scrambling to find scalable yield sources.**
+
+Furthermore, **DeFi is dominated by two trades**: Leverage Looping, and Basis Trading.
+
+These two trades account for the majority of the TVL in the whole of DeFi. To illustrate, leverage looping ETH on Aave alone represents a \$6bn market. Ethena, the only basis trading product on-chain, account for another \$4bn.
+
+<CardGroup cols={2}>
+  <Card title="Leverage Looping" icon="repeat" id="leverage-looping">
+    Use a yield-bearing asset (e.g. wstETH) as collateral to borrow the underlying (e.g. ETH), mint more wstETH, and repeat.
+
+    Because the assets are correlated, liquidation risk is minimal. When borrowing costs are low and yields are high, the delta can be multiplied via leverage (up to 10x on Mars) to generate attractive net returns.
+  </Card>
+
+  <Card title="Basis Trading" icon="chart-line" id="basis-trading">
+    Use a yield-bearing asset (e.g. wstETH) as collateral and short the underlying (e.g. ETH) using perpetuals. The user earns both the yield from the derivative and the funding rate on the short perp. Again, with leverage up to 10x, this becomes one of the highest-yielding strategies in DeFi when executed efficiently.
+  </Card>
+</CardGroup>
+
+And yet, both of these trades are currently inaccessible to Bitcoin: there are no real yield-bearing Bitcoin derivatives to leverage loop against or use as collateral, and there are no on-chain perpetuals protocol that supports yield-bearing Bitcoin as collateral.
+
+## What Makes This Possible
+
+The introduction of maxBTC creates the first opportunity for Bitcoin holders to access sophisticated DeFi strategies previously only available to Ethereum holders. Combined with Mars Protocol's unique cross-collateral perpetuals, Bitcoin can now participate in the two dominant DeFi trades.
+
+## Campaign Goals
+
+BTC Summer aims to establish the foundational market conditions needed to make these strategies viable at scale:
+
+- **Deep Lending Markets**: Sufficient supply depth ensures high leverage capacity and competitive borrowing rates, maximizing the yield spreads that make these strategies profitable.
+- **Robust Liquidity**: Deep liquidity pools minimize slippage and enable efficient position entry/exit, even during volatile market conditions. This also allows for safe high-leverage operations without systemic risk.
+
+## Technical Infrastructure
+
+The underlying protocols have been designed specifically to support capital-efficient DeFi strategies:
+
+- **[Amber Protocol](https://amber.fi/app)** provides leveraged looping and basis trading strategies through Mars Protocol's cross-collateralized infrastructure. Users can access lending markets, leveraged positions up to 10x, and basis trading with maxBTC collateral for institutional-grade risk management.
+- **[Supervaults](/defi/supervaults)** deliver institutional-grade automated market making. These vaults automatically manage liquidity positions with tight spreads and minimal adverse selection, providing steady yield opportunities while maintaining deep liquidity for traders.
+

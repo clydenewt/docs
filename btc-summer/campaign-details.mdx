@@ -1,0 +1,132 @@
+---
+title: "Campaign Details"
+description: "Complete guide to BTC Summer campaign mechanics, epochs, rewards, and participation requirements"
+icon: "calendar-days"
+---
+
+The Bitcoin Summer campaign is Neutron's comprehensive incentive program designed to bootstrap Bitcoin DeFi liquidity and demonstrate the power of integrated blockchain infrastructure. The campaign distributes up to **$10M in NTRN rewards** over multiple epochs to participants who provide liquidity and engage with Neutron's DeFi protocols.
+
+<Info>
+For detailed reward and incentive mechanics, see [Rewards](/btc-summer/rewards).
+</Info>
+
+## Campaign Structure
+
+### Epochs & Timeline
+
+The campaign is structured in successive **2-month epochs**, with at least 6 epochs planned (12+ months total duration). Each epoch has predetermined parameters set before launch:
+
+- **Epoch Budget**: Dollar value distributed as incentives (e.g., Epoch 1: $250,000)
+- **Eligible Opportunities**: List of participating vaults and protocols
+- **Reward Multipliers**: Boost mechanisms and qualification criteria
+
+Earlier epochs have smaller budgets to account for initial visibility, while later epochs scale up to drive broader participation.
+
+![Epoch Timeline](/images/epoch.png)
+
+### Total Budget & Distribution
+
+- **Total Allocation**: $10M or up to 10% of NTRN supply (whichever is lower)
+- **Duration**: 6-12 epochs over 12-24 months  
+- **Budget Growth**: Later epochs receive larger allocations to scale the campaign
+
+---
+
+## How Rewards Work
+
+The campaign rewards actual **DeFi positions on Neutron**, not just vault deposits. This means:
+
+- **Vault participants** receive pro-rata shares of rewards earned by their vault's underlying positions
+- **Direct participants** earn rewards by depositing directly into eligible Neutron protocols
+- **Tiered accounting** ensures fair distribution across multiple layers of deposits
+
+Whether you deposit through Ethereum vaults or directly on Neutron, you're earning rewards from the same underlying DeFi positions.
+
+### Dollar-Denominated Rewards
+
+Unlike traditional token farming, rewards are calculated in **dollar terms** throughout each epoch and converted to NTRN tokens at epoch end based on the final NTRN price.
+
+**Example:**
+- Alice deposits 1 BTC ($100,000) at epoch start
+- Earns $1,660 in rewards over 2 months (~10% APR)
+- At epoch end, if NTRN = $1, Alice receives ~1,660 NTRN tokens
+
+This structure means campaign costs decrease if NTRN price appreciates, aligning incentives with network growth.
+
+### Points System
+
+Rewards use a points-based accounting system to ensure fair distribution:
+
+$$
+\text{Points} = \text{USD Value of Deposit} \times \text{Days Staked} \times (1 + \text{Bonus Multipliers})
+$$
+
+- **Daily Calculation**: Points accrue daily based on USD deposit value  
+- **Pro-rata Distribution**: Epoch budget distributed proportionally to total points earned
+- **Bonus Multipliers**: Additional rewards for advanced strategies ([learn more](/btc-summer/rewards))
+- **Protection from Dilution**: Daily calculation locks in dollar-denominated rewards
+
+---
+
+## Reward Claiming & Vesting
+
+After each epoch ends, participants have multiple claiming options:
+
+1. **Instant Claim**: Immediate access with 50% penalty
+2. **Standard Vesting**: Full rewards vested over 2 months
+3. **Enhanced Staking**: Lock rewards for additional benefits ([details](/btc-summer/rewards))
+
+The vesting mechanism promotes long-term ecosystem participation and prevents sudden token supply releases.
+
+---
+
+## Vault Incentive Model
+
+### Soft-Lock Structure
+
+Campaign vaults use a "forfeitable" reward structure to encourage full epoch participation:
+
+- **No Principal Lock**: Users can withdraw deposits at any time
+- **Reward Forfeiture**: Early withdrawal forfeits pro-rata share of accrued rewards for that epoch
+- **Full Epoch Participation**: To secure rewards, maintain deposits throughout the entire 2-month epoch
+
+**Example**: If you deposit 10 BTC at epoch start but withdraw 5 BTC mid-epoch, you forfeit rewards corresponding to the withdrawn amount.
+
+### Withdrawal Process
+
+- **Ethereum Vaults**: Withdrawals processed on Neutron side
+- **What You Receive**: Supervault LP tokens + any lending assets directly to your wallet
+- **Timeline**: Processing depends on underlying protocol liquidity
+- **Finding Positions**: Track positions through Neutron interfaces
+
+---
+
+### Participation Requirements
+- **Minimum Deposit**: No minimum (gas fees apply)
+- **Geographic Restrictions**: Open globally (check local regulations)
+- **KYC Requirements**: Required for certain vault strategies only
+
+### Terms & Conditions
+- Rewards subject to network participation requirements
+- Early withdrawal penalties apply to campaign rewards
+- Technical risks associated with smart contract interactions
+- Regulatory compliance is user responsibility
+
+---
+
+## Choose Your Participation Path
+
+<CardGroup cols={2}>
+  <Card title="Coming from Ethereum" icon="ethereum" href="/btc-summer/ethereum-path">
+    **Best for**: Simple exposure with MetaMask and EVM wallets. 
+    
+    Automated vault strategies with deposits bridged to Neutron DeFi. Earn yields + NTRN incentives.
+  </Card>
+  
+  <Card title="Native Neutron" icon={<svg width="16" height="16" viewBox="0 0 12 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M10.3873 12.715L7.69336 9.20263C7.23462 9.55387 6.649 9.76269 6.02433 9.76269C4.51145 9.76269 3.28163 8.53808 3.28163 7.0192C3.28163 6.39266 3.49636 5.81364 3.84774 5.34849L0.285156 2.6145V12.715H10.3873Z" fill="currentColor"/><path d="M11.7151 1.28519H1.61304L4.34598 4.84506C4.80472 4.48432 5.39034 4.2755 6.01501 4.2755C7.52789 4.2755 8.75772 5.50005 8.75772 7.01893C8.75772 7.64546 8.54299 8.22455 8.19161 8.6897L11.7054 11.3857V1.28519H11.7151Z" fill="currentColor"/></svg>} href="/btc-summer/neutron-path">
+    **Best for**: Maximum control and advanced features
+    
+    Use Keplr and Cosmos wallets. Direct protocol interaction with immediate boost access and higher reward potential.
+  </Card>
+</CardGroup>
+

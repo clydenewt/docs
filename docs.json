@@ -19,6 +19,9 @@
       }
   },
   "theme": "mint",
+  "interaction": {
+    "drilldown": true
+  },
   "navbar": {
     "links": [  
       {
@@ -90,6 +93,43 @@
               "defi/supervaults",
               "defi/bull-vs-bear",
               "defi/drop"
+            ]
+          },
+          {
+            "group": "BTC Summer",
+            "icon": "bitcoin",
+            "pages": [
+              "btc-summer/overview",
+              "btc-summer/campaign-details",
+              {
+                "group": "Ethereum Path",
+                "icon": "ethereum",
+                "pages": [
+                  "btc-summer/ethereum-path",
+                  "btc-summer/ethereum-path/epoch-1"
+                ]
+              },
+              {
+                "group": "Neutron Path",
+                "icon": "circle-dot",
+                "pages": [
+                  "btc-summer/neutron-path",
+                  "btc-summer/neutron-path/epoch-1"
+                ]
+              },
+              "btc-summer/rewards",
+              "btc-summer/strategic-context",
+              "btc-summer/faq",
+              {
+                "group": "Technical Documentation",
+                "icon": "code",
+                "pages": [
+                  "btc-summer/technical/overview",
+                  "btc-summer/technical/integrators",
+                  "btc-summer/technical/address-linking",
+                  "btc-summer/technical/reference"
+                ]
+              }
             ]
           }
         ]

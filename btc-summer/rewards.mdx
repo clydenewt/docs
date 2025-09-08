@@ -1,141 +1,242 @@
 ---
-title: "Rewards & Boosts"
-description: "Understanding BTC Summer reward mechanisms, multipliers, and how to maximize your earnings"
-icon: "gift"
+title: "Rewards Guide"
+description: "Learn about the $10M NTRN points dedicated to BTC Summer, boost mechanisms, and reward optimization strategies"
+icon: "chart-line"
 ---
 
-
-The BTC Summer campaign distributes **up to $10M in NTRN rewards** to participants through a sophisticated points-based system that rewards both deposit size and ecosystem engagement.
-
-## Base Rewards
-
-All participants earn base rewards calculated using this formula:
-
-$$
-\text{Points} = \text{USD Value of Deposit} × \text{Days Staked} × (1 + \text{Bonus Boost})
-$$
-
-Where:
-- **USD Value of Deposit** = token amount × USD price each day
-- **Days Staked** = number of full days the deposit remained in the vault
-- **Bonus Boost** = any additional multipliers from advanced mechanisms
-
-Your final reward share is calculated as: `(Your Points / Total Points) × Total Rewards`
-
-## Advanced Reward Mechanisms
-
-Beyond base rewards, participants can significantly increase their earnings through two advanced mechanisms:
-
-### 1. NTRN Locking Boost
-
-Lock NTRN tokens for up to 4 years to earn substantial reward multipliers:
-
-**How it works:**
-- Choose your lock amount and duration (up to 4 years)
-- Receive a transferable receipt NFT representing your locked position
-- Your boost is calculated based on your locked NTRN relative to your BTC deposits
-
-**Boost Formula:**
-$$
-\text{Boost} = \min(2, \frac{\text{NTRN}_{\text{Locked}}}{\text{TVL}_{\text{Deposited}}} × \frac{\text{Duration}_{\text{user}}}{\text{Duration}_{\text{max}}} × 2)
-$$
-
-**Key Benefits:**
-- Up to **triple your reward rate** (2x boost, 3x total) based on locked NTRN vs deposits
-- Earn **3% APR** on locked NTRN through liquid staking with Drop
-- Receipt NFTs are transferable, but boost benefits only apply to the current holder
-- Secondary markets may develop on platforms like Superbolt
-- Locked positions appear on [app.neutron.org/staking](https://app.neutron.org/staking)
-- Long-term alignment with Neutron ecosystem
-
-<Note>
-The boost calculation ensures that larger stakes relative to deposits and longer lock periods provide maximum multipliers.
-</Note>
-
-### 2. NFT Collection Boosts
-
-Own NFTs from Neutron-based collections listed on Superbolt to earn additional multipliers:
-
-**Boost Tiers:**
-| Threshold | Multiplier | Tier |
-|-----------|------------|------|
-| 1 NFT | +1% | Wooden |
-| 1% of collection | +2% | Bronze |
-| 5% of collection | +3% | Silver |
-| 15% of collection | +4% | Gold |
-| 30% of collection | +5% | Platinum |
-
-**Collection Rules:**
-- Only NFTs from collections listed on **Superbolt on Neutron** count
-- Users can earn boosts from up to **5 collections**
-- If eligible for more than 5 collections, the highest boosts are selected
-- Rarity within collections doesn't affect boost amount
-
-**Example:**
-Bob holds 600 CEWTs, enough Quarks for 1% of collection, 1 Neutrinos, 1 Stonerneuts, 1 Dr Ank, and 10 Bad Kids:
-- Bad Kids don't count (not on Neutron)
-- 600 CEWTs > 30% of collection → +5% boost (Platinum)
-- Quarks ≥ 1% of collection → +2% boost (Bronze)
-- 1 Neutrinos → +1% boost (Wooden)  
-- 1 Stonerneuts → +1% boost (Wooden)
-- 1 Dr Ank → +1% boost (Wooden)
-- **Total: +10% boost**
-
-If Bob buys 400 Meme Ducks (100% of collection):
-- Top 5 boosts: +5% (CEWTs) + 5% (Ducks) + 2% (Quarks) + 1% + 1% = **+14% total boost**
-
-Note: Exact threshold numbers depend on each collection's max supply (e.g., 414 CEWTs needed for 30% of CEWT's 1,379 total supply).
-
-## Wallet Linking
-
-Since deposits can happen on Ethereum (via vaults) or Neutron (direct), but boosts only apply on Neutron, users must "link" their addresses:
-
-**The Process:**
-1. When activating NTRN or NFT boosts, specify which address holds your BTC deposits
-2. This creates a "pointer" connecting your Neutron-based boosts to your deposit address
-3. The system calculates your total rewards using both deposit and boost information
-
-**Best Practices:**
-- **Consistency is key**: Use the same deposit address throughout the campaign
-- **Ethereum deposits**: Point all boosts to your Ethereum address
-- **Neutron deposits**: Point all boosts to your Neutron address
-- **Avoid splitting**: Don't deposit on both networks unless necessary
+The BTC Summer campaign distributes **[$10M in NTRN rewards](https://daodao.zone/dao/neutron1suhgf5svhu4usrurvxzlgn54ksxmn8gljarjtxqnapv8kjnp4nrstdxvff/proposals/A80)** approved by Neutron DAO to participants through a sophisticated points-based system. This guide explains the reward categories, boost mechanisms, and strategies for maximizing your earnings.
 
 <Warning>
-Splitting deposits across Ethereum and Neutron addresses can create complications in reward calculations. Choose one primary address for the best experience.
+This information is for educational purposes only and does not constitute financial advice (NFA). Always do your own research and understand the risks before participating.
 </Warning>
 
-For detailed technical information about the cross-chain coordination system, see [Address Linking](/btc-summer/address-linking).
+---
 
-## Multiplier Stacking
+## Available Reward Categories
 
-All eligible boosts stack together for maximum rewards:
+### Asset Rewards
+- **maxBTC rewards**: Earnings from maxBTC ecosystem participation
+- **LST rewards**: Benefits from BTC LST (Liquid Staking Token) positions
+- **Base asset yields**: Returns from underlying BTC derivative strategies
 
-**Example Calculation:**
-- Bob locks NTRN for a +100% multiplier
-- Bob holds NFTs providing +4% total boost
-- Bob's final multiplier: **+104%**
-- This doubles his share of the total reward pool
+### Neutron Campaign Rewards  
+- **NTRN incentives**: Primary $10M campaign rewards distributed as NTRN tokens
+- **Boost multipliers**: Enhanced rewards through NTRN locking (up to 3x total)
+- **Epoch bonuses**: Additional incentives for full epoch participation
 
-## Maximizing Your Rewards
+### DeFi Protocol Rewards
+- **Supervault trading fees**: Earnings from automated market-making activities
+- **Amber lending rewards**: Yields from lending positions and leverage strategies  
+- **Mars points**: Future rewards from Mars Protocol participation
 
-**For Maximum Efficiency:**
-1. **Lock NTRN early** - The earlier you lock, the more days you benefit from the multiplier
-2. **Acquire strategic NFTs** - Focus on collections where you can reach higher percentage thresholds
-3. **Maintain consistent deposits** - Keep your BTC derivatives deposited throughout epochs
-4. **Use one primary address** - Avoid complications by consolidating on either Ethereum or Neutron
+### Asset Issuer Rewards
+- **Solv rewards**: Additional incentives from Solv Protocol for solvBTC holders
+- **Lombard benefits**: Extra rewards for LBTC participants
+- **Other LST issuer programs**: Varies by asset and issuer partnerships
 
-**Advanced Strategy:**
-Users often buy and lock NTRN specifically to dilute other participants' rewards while maximizing their own share of the pool.
+---
 
-## Technical Implementation
+## How NTRN Rewards Are Distributed
 
-The reward system integrates seamlessly with Neutron's infrastructure:
-- **NTRN locking** sends tokens to escrow, which liquid stakes with Drop for Droplets and ease of rewards management
-- **NFT verification** connects with Superbolt marketplace data for Neutron-based collections only
-- **Cross-chain tracking** handles deposits from both Ethereum vaults and direct Neutron protocols
-- **Real-time calculations** provide live reward projections in the campaign interface
+### General Reward Context
+
+NTRN campaign rewards are distributed based on:
+- **Position value**: USD value of your eligible DeFi positions
+- **Duration**: How long you maintain positions (daily calculations)
+- **Boost multipliers**: Additional rewards from NTRN locking mechanisms
+
+### Where to Check Eligibility
+
+Monitor which positions earn rewards:
+- Campaign dashboard at [app.neutron.org](https://app.neutron.org)
+- Individual protocol interfaces (Amber, Supervaults)
+- Real-time reward projections and calculations
+
+---
+
+## Boost Mechanisms & Multipliers
+
+### Understanding Multipliers
+
+**Base concept**: Multipliers increase your share of the total reward pool by enhancing your points calculation.
+
+**Formula**:
+$$
+\text{Points} = \text{USD Value} \times \text{Days} \times (1 + \text{Boost Multiplier})
+$$
+
+### NTRN Locking Boost
+
+**Primary mechanism** for reward enhancement:
+
+#### How It Works
+1. **Lock NTRN tokens** for up to 4 years
+2. **Receive receipt NFT** representing your locked position  
+3. **Earn 3% APR** on locked NTRN through liquid staking with Drop
+4. **Get boost multiplier** based on lock amount and duration
+
+#### Boost Formula
+$$
+\text{Boost} = \min(2, \frac{\text{NTRN}_{\text{Locked}}}{\text{TVL}_{\text{Deposited}}} \times \frac{\text{Duration}_{\text{user}}}{\text{Duration}_{\text{max}}} \times 2)
+$$
+
+**Key factors**:
+- **Locked NTRN amount** relative to your BTC deposits
+- **Lock duration** (longer = higher boost)
+- **Maximum boost**: 2x multiplier (3x total rewards)
+
+#### Receipt NFT Benefits
+- **Transferable**: Can be traded on secondary markets (e.g., Superbolt)
+- **Liquid staking**: Automatically stakes with Drop for additional 3% APR
+- **Visible tracking**: Appears on [app.neutron.org/staking](https://app.neutron.org/staking)
+
+---
+
+## Boost Pointing & Address Linking
+
+### Critical Rule: One Address at a Time
+
+**You can only boost 1 address at a time**. Updating your boost target automatically updates all previous boosts to the new address.
+
+### Proper Boost Pointing
+
+**Essential requirement**: Point your boost to the address where you deposited TVL.
+
+- **If you deposited via Ethereum vaults**: Point boost to your **EVM address**
+- **If you deposited directly on Neutron**: Point boost to your **Neutron address**
+
+### Address Linking Process
+
+<Steps>
+  <Step title="Acquire NTRN">
+    Get NTRN tokens through exchanges, swaps, or bridges
+  </Step>
+  <Step title="Choose Lock Parameters">
+    Select lock amount and duration (up to 4 years for maximum boost)
+  </Step>
+  <Step title="Specify Target Address">
+    **Critical**: Enter the address where your BTC deposits are located
+  </Step>
+  <Step title="Confirm Lock">
+    Complete the transaction and receive your receipt NFT
+  </Step>
+  <Step title="Verify Boost">
+    Check that boost is correctly applied to your deposit address
+  </Step>
+</Steps>
+
+<Warning>
+**Important**: The boost only works if properly pointed to your deposit address. Incorrect pointing means no boost benefits.
+</Warning>
+
+---
+
+## Reward Calculation Examples
+
+### Example 1: Basic Participation
+- **Deposit**: 1 BTC ($100,000) for full epoch (60 days)
+- **No boost**: Standard 1x multiplier
+- **Points**: $100,000 × 60 × 1 = 6,000,000 points
+- **Estimated rewards**: Based on your share of total points
+
+### Example 2: With NTRN Locking
+- **Deposit**: 1 BTC ($100,000) for full epoch
+- **NTRN locked**: $50,000 worth for 2 years
+- **Boost calculation**: (50,000/100,000) × (2/4) × 2 = 0.5 boost
+- **Total multiplier**: 1 + 0.5 = 1.5x
+- **Points**: $100,000 × 60 × 1.5 = 9,000,000 points
+
+### Example 3: Maximum Boost
+- **Deposit**: 1 BTC ($100,000) for full epoch
+- **NTRN locked**: $200,000 worth for 4 years  
+- **Boost calculation**: (200,000/100,000) × (4/4) × 2 = 4.0, capped at 2.0
+- **Total multiplier**: 1 + 2.0 = 3x
+- **Points**: $100,000 × 60 × 3 = 18,000,000 points
+
+---
+
+## Strategy Considerations
+
+### When Amber Lending Makes Sense
+- **Market conditions**: Low borrowing costs, high yield spreads
+- **Risk tolerance**: Comfortable with leverage and liquidation risk
+- **Capital efficiency**: Want to maximize exposure with limited capital
+- **Active management**: Can monitor and adjust positions
+
+### When Supervaults Are Preferable  
+- **Market conditions**: High trading volume, stable price ranges
+- **Risk tolerance**: Prefer steady yields over leveraged exposure
+- **Passive approach**: Want automated position management
+- **Diversification**: Seeking exposure to trading fees vs lending rates
+
+### NTRN Locking Strategy
+- **Lock early**: Maximize days benefiting from boost
+- **Lock duration**: Longer locks = higher boosts (up to 4 years)
+- **Amount optimization**: Balance NTRN lock size with BTC deposit size
+- **Address consistency**: Always point to your primary deposit address
 
 <Note>
-Receipt NFTs from NTRN locking are fully transferable, creating potential secondary markets for locked positions on platforms like Superbolt.
+**Risk consideration**: Locking NTRN reduces liquidity. Consider your overall portfolio and risk tolerance.
 </Note>
+
+---
+
+## Advanced Optimization
+
+### Maximizing Reward Efficiency
+
+1. **Start with base positions**: Establish BTC deposits first
+2. **Calculate optimal NTRN lock**: Balance lock amount with deposit size
+3. **Choose lock duration**: Longer = better boost (up to 4 years)
+4. **Monitor performance**: Track both DeFi yields and campaign rewards
+5. **Stay for full epochs**: Avoid early withdrawal penalties
+
+### Risk Management
+
+**Protocol risks**: Understand underlying DeFi protocol mechanics
+**Market risks**: BTC volatility affects reward calculations  
+**Lock risks**: NTRN locked for chosen duration
+**Boost risks**: Incorrect pointing eliminates boost benefits
+
+### Portfolio Considerations
+
+- **Diversification**: Don't put all assets in one strategy
+- **Liquidity needs**: Consider lock-up periods and withdrawal timing
+- **Risk budget**: Balance high-yield strategies with stable positions
+- **Time horizon**: Align lock durations with investment timeline
+
+---
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="Amber Protocol" icon="external-link" href="https://app.amberfi.io/">
+    Access lending and leverage strategies (deposit page)
+  </Card>
+  
+  <Card title="Amber Strategies" icon="chart-line" href="https://app.amberfi.io/strategies">
+    Explore available leveraged looping and basis trading strategies
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Campaign Details" icon="info" href="/btc-summer/campaign-details">
+    Complete campaign mechanics and reward distribution
+  </Card>
+  
+  <Card title="FAQ" icon="circle-question" href="/btc-summer/faq">
+    Common questions about rewards and optimization strategies
+  </Card>
+</CardGroup>
+
+---
+
+## Disclaimer
+
+This guide provides general information about reward mechanisms and is not financial advice. Always:
+- Do your own research (DYOR)
+- Understand the risks involved
+- Consider your personal financial situation
+- Consult qualified financial advisors if needed
+
+**NFA**: No financial advice. Participate at your own risk.

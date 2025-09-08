@@ -1,0 +1,308 @@
+---
+title: "Technical Reference"
+description: "Complete technical specifications, contract addresses, token denominations, and implementation details"
+icon: "book"
+---
+
+Complete technical reference for BTC Summer campaign implementation, including smart contract addresses, token denominations, API specifications, and integration details.
+
+---
+
+## Smart Contract Addresses
+
+### Points & Rewards Contracts
+
+<Note>
+Contract addresses will be added upon deployment. Check the [GitHub repository](https://github.com/neutron-org/neutron-points-crawler/tree/feat/maxbtc-points-contract) for the latest contract implementations.
+</Note>
+
+```jsx
+Points Contract:        [Deployment pending]
+Boost Pointer Contract: [Deployment pending]
+Vesting Contract:       [Deployment pending]
+NTRN Lock Contract:     [Deployment pending]
+```
+
+### Supervault Addresses
+
+#### Vaults paired with wBTC.atom
+
+```jsx
+fbtc:    neutron1ct00dzd944axt0pw9ak25a3ar40n8tmdwwnqxv6dpxxy6v3ysz9sw7n3jd
+lbtc:    neutron1720ank30032ml4h6rsygv0j9q4kdg9yr5g57yn55rmw3mnstg24q2keq2y
+ebtc:    neutron1s8k6gcrnsfrs9rj3j8757w4e0ttmzsdmjvwfwxruhu2t8xjgwxaqegzjgt
+pumpbtc: neutron16x9rk787mdaatmd58cevex6sc3p55uhshjmzyf3aa9atx0dgauvs8u8tj0
+solvbtc: neutron1vve4kr2j8ftydrh3gjqpns4p86l8x5unpvvheqdwlhpvawarea2suu8972
+unibtc:  neutron1704tmu9nvgk0l8xmpua0su6dq3r89mht0adlx8gxte695qapstks6lzmma
+```
+
+---
+
+## Token Denominations
+
+### Bitcoin LST Denominations
+
+```jsx
+FBTC:     ibc/2EB30350120BBAFC168F55D0E65551A27A724175E8FBCC7B37F9A71618FE136B
+LBTC:     ibc/B7BF60BB54433071B49D586F54BD4DED5E20BEFBBA91958E87488A761115106B
+solvBTC:  ibc/C0F284F165E6152F6DDDA900537C1BC8DA1EA00F03B9C9EC1841FA7E004EF7A3
+eBTC:     ibc/E2A000FD3EDD91C9429B473995CE2C7C555BCC8CFC1D0A3D02F514392B7A80E8
+pumpBTC:  ibc/1075520501498E008B02FD414CD8079C0A2BAF9657278F8FB8F7D37A857ED668
+uniBTC:   ibc/3F1D988D9EEA19EB0F3950B4C19664218031D8BCE68CE7DE30F187D5ACEA0463
+```
+
+### Base Assets
+
+```jsx
+WBTCd.atom: ibc/0E293A7622DC9A6439DB60E6D234B5AF446962E27CA3AB44D0590603DFF6968E
+eth.atom:   ibc/694A6B26A43A2FBECCFFEAC022DEACB39578E54207FDD32005CD976B57B98004
+eth.axl:    ibc/A585C2D15DCD3B010849B453A2CFCB5E213208A5AB665691792684C26274304D
+```
+
+---
+
+## Oracle Addresses
+
+### Price Feed Contracts
+
+```jsx
+FBTC:    neutron14edzq3zw8unmtjke0jaay6hcmyjdgku6s60uu02e79pdkfcte59syemhm0
+LBTC:    neutron1w29vh2hjnjef9e2dujc5j4ear4g5th955vetjrx42m7eedeg8ydq3v9zee
+solvbtc: neutron1fec8mrq5kx0waxd7ga9pu7y72su7tj9ux75x4u9gqr7jnm33v2dq8p68ln
+pumpbtc: neutron1grunp28407u85dtmxpxv7hl5tsvr65xemzgcquc05vmwj7w32jsseey5ta
+unibtc:  neutron137a45rpg358gyyvl9e0fqrsqr6w34djcnmp9vn9zczls7wlcnpkqjmcuh8
+ebtc:    neutron15kejswf0xwghy6jj89y0wvdkxuztdrhpacx29l448zlfkl206u5q2vjwt2
+```
+
+---
+
+## API Specifications
+
+<Warning>
+The Points API is currently in development. The specifications below are preliminary and will be updated as implementation progresses.
+</Warning>
+
+### Planned API Endpoints
+
+**Base URL**: TBD (API in development)
+
+#### Planned User Data Endpoints
+```
+GET /points/{address}     # User points and rewards
+GET /positions/{address}  # Eligible positions
+GET /boost-status/{address} # Boost configuration
+```
+
+#### Planned Campaign Data Endpoints
+```
+GET /campaign/status      # Current epoch and campaign status
+GET /epochs              # Epoch information
+GET /eligible-protocols  # Qualifying protocols and multipliers
+```
+
+### Current Integration Options
+
+While the dedicated API is in development, integrators can:
+- **Query smart contracts directly**: Use CosmWasm query methods
+- **Use Neutron RPC**: Access on-chain data via standard Cosmos RPC
+- **Monitor events**: Listen to contract events for real-time updates
+
+See [Neutron Developer Documentation](/developers/overview) for current integration patterns.
+
+---
+
+## Smart Contract ABIs
+
+### Points Contract Interface
+
+```solidity
+interface IPointsContract {
+    struct UserBalance {
+        uint256 nonForfeitableBalance;
+        uint256 forfeitableBalance;
+        uint256 totalPoints;
+        uint256 lastUpdateBlock;
+    }
+    
+    function getUserBalance(address user) external view returns (UserBalance memory);
+    function getCurrentEpoch() external view returns (uint256);
+    function getEpochInfo(uint256 epochId) external view returns (EpochInfo memory);
+    function bindAddresses(address ethAddress, address neutronAddress) external;
+}
+```
+
+### Boost Pointer Contract Interface
+
+```solidity
+interface IBoostPointer {
+    struct BoostInfo {
+        address target;
+        uint256 multiplier;
+        uint256 lastUpdate;
+        bool active;
+    }
+    
+    function pointBoost(address target) external;
+    function getBoostInfo(address user) external view returns (BoostInfo memory);
+    function updateBoostTarget(address newTarget) external;
+    function getActiveBoosts(address target) external view returns (address[] memory);
+}
+```
+
+---
+
+## Network Configuration
+
+### Neutron Mainnet
+
+```jsx
+Chain ID: neutron-1
+RPC: https://rpc-neutron.keplr.app
+REST: https://rest-neutron.keplr.app
+Explorer: https://neutron.celat.one/neutron-1
+```
+
+### Supported Bridges
+
+```jsx
+Ethereum → Neutron: Eureka Bridge
+Noble → Neutron: IBC
+Osmosis → Neutron: IBC
+Cosmos Hub → Neutron: IBC
+```
+
+---
+
+## Integration Examples
+
+### Frontend Integration
+
+```javascript
+// Initialize campaign integration
+import { CampaignClient } from '@neutron/btc-summer-sdk';
+
+const client = new CampaignClient({
+  apiUrl: 'https://api.neutron.org/btc-summer/v1/',
+  apiKey: process.env.CAMPAIGN_API_KEY,
+  network: 'mainnet'
+});
+
+// Get user campaign data
+const getUserData = async (address) => {
+  const [points, positions, rewards] = await Promise.all([
+    client.getPoints(address),
+    client.getPositions(address),
+    client.getRewards(address)
+  ]);
+  
+  return { points, positions, rewards };
+};
+```
+
+### Smart Contract Integration
+
+```javascript
+// Contract interaction example
+import { CosmWasmClient } from '@cosmjs/cosmwasm-stargate';
+
+const client = await CosmWasmClient.connect('https://rpc-neutron.keplr.app');
+
+// Query user points
+const userPoints = await client.queryContractSmart(
+  'neutron1[points_contract_address]',
+  { get_user_balance: { address: userAddress } }
+);
+
+// Point boost to address
+const pointBoost = async (targetAddress) => {
+  await client.execute(
+    senderAddress,
+    'neutron1[boost_pointer_address]',
+    { point_boost: { target: targetAddress } },
+    fee
+  );
+};
+```
+
+---
+
+## Error Codes & Troubleshooting
+
+### Common Error Codes
+
+| Code | Description | Resolution |
+|------|-------------|------------|
+| `INVALID_ADDRESS` | Address format not recognized | Verify Ethereum (0x) or Neutron (neutron1) format |
+| `NO_DEPOSITS` | No eligible deposits found | Check deposit addresses and protocol eligibility |
+| `BOOST_MISMATCH` | Boost pointed to address without deposits | Point boost to address with active deposits |
+| `INSUFFICIENT_BALANCE` | Not enough tokens for operation | Verify token balances and allowances |
+| `EPOCH_ENDED` | Operation not allowed after epoch end | Wait for next epoch or claim rewards |
+
+### Debugging Tools
+
+**Network Status**: Check Neutron network health and connectivity
+**Contract Status**: Verify smart contract operational status  
+**API Status**: Monitor API endpoint availability and performance
+**Bridge Status**: Check cross-chain bridge operational status
+
+---
+
+## Development Resources
+
+### Development Libraries
+
+<Note>
+Dedicated BTC Summer SDKs are planned for future development. Currently, use standard Cosmos and Neutron development tools.
+</Note>
+
+**Current Integration Options**:
+- **CosmJS**: JavaScript/TypeScript Cosmos SDK
+- **Neutron SDK**: [Developer Tools](/developers/sdk)
+- **CosmWasm**: [Smart Contract Development](/developers/tutorials/introduction_to_cosmwasm)
+- **Integration Examples**: [Developer Tutorials](/developers/tutorials/overview)
+
+### Testing Resources
+
+**Testnet Configuration**:
+- Neutron testnet endpoints
+- Test token faucets
+- Mock contract deployments
+- Integration test suites
+
+**Documentation**:
+- API documentation with OpenAPI spec
+- Smart contract documentation
+- Integration examples and tutorials
+
+---
+
+## Support & Maintenance
+
+### Technical Support Channels
+
+- **Developer Discord**: [Neutron Developer Channel](https://discord.com/invite/bzPBzbDvWC)
+- **GitHub Issues**: Technical bug reports and feature requests
+- **Documentation**: Complete guides and troubleshooting
+
+### Maintenance Schedule
+
+- **API updates**: Announced 48 hours in advance
+- **Contract upgrades**: Governance-approved with migration guides
+- **Network maintenance**: Coordinated with Neutron validator set
+
+<Note>
+This technical reference is actively maintained and updated. For the latest information, always check the most recent version of this documentation.
+</Note>
+
+---
+
+## Usage Notes
+
+- **Token denoms** are used for IBC transfers and protocol interactions
+- **Contract addresses** are specific to Neutron mainnet
+- **Oracle addresses** provide price feeds for campaign calculations
+- **API endpoints** require authentication for production use
+
+<Warning>
+All addresses and denominations are specific to the BTC Summer campaign implementation on Neutron mainnet. Verify current addresses before integration.
+</Warning>

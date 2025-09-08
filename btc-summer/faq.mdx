@@ -1,0 +1,391 @@
+---
+title: "FAQ"
+description: "Common questions, troubleshooting, and step-by-step guidance for BTC Summer participation"
+icon: "circle-question"
+---
+
+This FAQ answers common questions about the Bitcoin Summer campaign, participation paths, and reward mechanisms. 
+
+<Note>
+Didn't find your answer? Ask in the [Neutron Community Discord](https://discord.com/invite/bzPBzbDvWC) or [Telegram](https://t.me/neutron_community).
+</Note>
+
+
+## Campaign Basics
+
+<AccordionGroup>
+  <Accordion title="What is BTC Summer and how does it work?">
+    Bitcoin Summer is a campaign designed to jumpstart bitcoin finance on Neutron - turning BTC into a productive asset on-chain capable of offering real yield beyond price appreciation. 
+    
+    Users can participate by depositing into campaign vaults or eligible DeFi positions to earn:
+    - **NTRN incentives** from the $10M campaign budget
+    - **Partner airdrops** from asset issuers like Lombard, Solv, EtherFi
+    - **DeFi yield** from underlying protocol activities
+    
+    At the end of each epoch (2 months), users can claim rewards or lock them for boosted future rewards.
+    
+    Read more: [Campaign Details](/btc-summer/campaign-details)
+  </Accordion>
+
+  <Accordion title="How much can I earn?">
+    Rewards depend on:
+    - **Deposit size**: Larger deposits earn more points
+    - **Duration**: Full epoch participation maximizes rewards  
+    - **Boost mechanisms**: NTRN locking can triple your rewards (up to 3x total)
+    - **Epoch budget**: Epoch 1 has $250,000, later epochs will be larger
+    
+    Learn more: [Rewards Guide](/btc-summer/rewards)
+  </Accordion>
+
+  <Accordion title="What are forfeitable terms?">
+    The Bitcoin Summer campaign uses "soft-lock" incentives: Rewards are distributed at the end of each 2-month epoch. You can withdraw at any time, but withdrawing during an epoch forfeits the pro-rata share of rewards accumulated during that epoch.
+    
+    **Example**: If you deposit 10 BTC and withdraw 5 BTC mid-epoch, you forfeit rewards corresponding to the withdrawn amount.
+  </Accordion>
+
+  <Accordion title="Should I use Ethereum vaults or direct Neutron deposits?">
+    **Choose Ethereum Path if**:
+    - You're comfortable with MetaMask/EVM wallets
+    - You want automated strategies with simple deposits
+    - You're new to the Neutron ecosystem
+    
+    **Choose Neutron Path if**:
+    - You're familiar with Keplr/Cosmos wallets
+    - You want direct control over positions
+    - You want immediate access to boost mechanisms
+    
+    Compare: [Ethereum Path](/btc-summer/ethereum-path) vs [Neutron Path](/btc-summer/neutron-path)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## About maxBTC
+
+<AccordionGroup>
+  <Accordion title="What is maxBTC?">
+    maxBTC is liquid, yield-bearing Bitcoin that offers real BTC yield through on- and off-chain strategies.
+    
+    **Key features:**
+    - **Real BTC Yield**: Attractive BTC-denominated yield from tested strategies, not emissions
+    - **LST-like Form Factor**: Composable design for DeFi integrations
+    - **Liquid**: Withdraw anytime or trade via DEXs with minimal slippage
+    - **Transparent and Secure**: Clear strategy mechanics and risk metrics
+    - **Scalable**: Supports multiple strategies without manual capital rotation
+    
+    maxBTC is developed by **Structured**. Learn more at [structured.money](https://structured.money/).
+  </Accordion>
+
+  <Accordion title="How does maxBTC generate yield?">
+    maxBTC generates yield through tested on- and off-chain strategies. The initial strategy is based on the Jupiter Liquidity Provider (JLP) pool, which backs leveraged positions on Jupiter Perps and earns fees from trader activity.
+    
+    **Fee sources:**
+    - Opening and closing fees on trades
+    - Borrowing fees paid by leveraged traders
+    - Protocol trading fees
+    - Liquidation fees
+    
+    The strategy allocates ~70% to JLP and ~30% as collateral for hedging, converting trading activity into BTC-denominated yield.
+  </Accordion>
+
+  <Accordion title="Why is KYC required to mint and redeem maxBTC?">
+    KYC ensures compliance with anti-money laundering (AML) laws and regulations. Because minting and redeeming involve direct interaction with Structured's vaults, verification protects both participants and the protocol.
+    
+    **KYC options**:
+    - **Individuals**: Complete KYC through zkMe with ID and proof of address
+    - **Entities**: Manual verification with the Structured team
+  </Accordion>
+
+  <Accordion title="Where can I buy maxBTC?">
+    maxBTC can be purchased on Neutron's built-in [orderbook](https://app.neutron.org/orderbook) or through campaign vaults that provide maxBTC exposure.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## About Protocols
+
+<AccordionGroup>
+  <Accordion title="What is Amber Protocol?">
+    Amber Finance is a BTC-native DeFi platform built on Mars Protocol infrastructure. It lets you put your Bitcoin to work while preserving value and earning yield.
+    
+    **Available strategies**:
+    - **Lend BTC**: Earn passive yield from lending markets
+    - **Loop BTC**: Boost exposure and earn higher returns with leverage
+    - **Basis trading**: Use BTC as collateral for structured strategies
+    - **Borrow against BTC**: Access liquidity without selling
+    
+    **Access**: [amber.fi/app](https://amber.fi/app) | **Strategies**: [app.amberfi.io/strategies](https://app.amberfi.io/strategies)
+  </Accordion>
+
+  <Accordion title="What are Supervaults and how do they work?">
+    Supervaults provide institutional-grade automated market making with CEX-level performance.
+    
+    **Key features**:
+    - **Automated LP management**: Optimal position management without manual intervention
+    - **Tight spreads**: CEX-grade market-making performance
+    - **Minimal adverse selection**: Advanced algorithms protect against MEV
+    - **Steady yields**: Earn from trading fees + campaign rewards
+    
+    **Learn more**: [Supervaults Documentation](/defi/supervaults) | **Access**: [app.neutron.org/supervaults](https://app.neutron.org/supervaults)
+  </Accordion>
+
+  <Accordion title="What is leveraged looping and why is it important for BTC?">
+    Leverage looping maximizes yield by using a yield-bearing token as collateral to borrow the underlying asset, then converting it back to the yield-bearing token and repeating.
+    
+    **For Bitcoin**: This strategy was previously impossible because there were no high-yielding Bitcoin tokens. maxBTC (yielding 5-10% APR) is the engine that powers leverage looping for Bitcoin on Neutron.
+    
+    **How it works on Amber**:
+    1. Deposit maxBTC as collateral
+    2. Borrow BTC derivatives (eBTC, etc.)
+    3. Swap borrowed assets for more maxBTC
+    4. Repeat to amplify exposure and yield
+    
+    Learn more about [Amber strategies](https://app.amberfi.io/strategies).
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Wallets & Setup
+
+<AccordionGroup>
+  <Accordion title="I don't have a Neutron wallet. How can I participate?">
+    Navigate to [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) and deposit into Bitcoin Summer Vaults. All Ethereum wallets (MetaMask, Coinbase Wallet, etc.) are compatible.
+    
+    **Simple path**: Use familiar EVM wallets for automated vault strategies.
+    
+    Get started: [Ethereum Path](/btc-summer/ethereum-path)
+  </Accordion>
+
+  <Accordion title="I have a Neutron wallet. How can I participate?">
+    Navigate to [app.neutron.org](https://app.neutron.org) and deposit directly into eligible DeFi positions:
+    - **Amber lending**: Lend BTC derivatives for yield
+    - **Supervaults**: Provide liquidity to automated market-making vaults
+    
+    **Advanced path**: Direct protocol interaction with immediate boost access.
+    
+    Get started: [Neutron Path](/btc-summer/neutron-path)
+  </Accordion>
+
+  <Accordion title="Which wallets are compatible with Neutron?">
+    **For Neutron DeFi**: Keplr, Leap, and Cosmostation wallets
+    **For Bitcoin Summer Vaults**: MetaMask, Phantom, or Coinbase Wallet
+    
+    **Recommended setup**:
+    - **Ethereum Path**: MetaMask for vault deposits
+    - **Neutron Path**: Keplr for direct protocol interaction
+    - **Boost rewards**: Keplr needed for NTRN locking (both paths)
+  </Accordion>
+
+  <Accordion title="What tokens does Neutron support as gas?">
+    Neutron supports multiple gas tokens including:
+    - **Primary**: NTRN, USDC, ATOM, TIA, DYDX
+    - **Staking derivatives**: wstETH, dNTRN, dATOM, dTIA
+    - **BTC derivatives**: LBTC, solvBTC, eBTC, pumpBTC, uniBTC, axl.wBTC
+    - **Cross-chain**: axlUSDC, atom.ETH, axl.WETH
+    
+    **Tip**: Users who pay gas in NTRN receive a 30% discount vs other gas tokens.
+  </Accordion>
+
+  <Accordion title="How can I bridge to Neutron?">
+    Visit [app.neutron.org/bridge](https://app.neutron.org/bridge) to bridge assets to and from Neutron in seconds from almost any network.
+    
+    **Supported bridges**: Ethereum, Cosmos Hub, Osmosis, Noble, and 100+ other networks.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Rewards & Boosts
+
+<AccordionGroup>
+  <Accordion title="How do NTRN locking boosts work?">
+    1. **Lock NTRN** for up to 4 years to earn substantial reward multipliers
+    2. **Receive receipt NFT** representing your locked position
+    3. **Point boost** to the address where you deposited BTC
+    4. **Earn multiplier** up to 2x boost (3x total rewards)
+    5. **Additional yield**: 3% APR on locked NTRN through Drop staking
+    
+    **Formula**: Boost = min(2, (NTRN_Locked / TVL_Deposited) × (Duration_user / Duration_max) × 2)
+    
+    Learn more: [Rewards Guide](/btc-summer/rewards)
+  </Accordion>
+
+  <Accordion title="Can I boost multiple addresses?">
+    **No** - you can only boost 1 address at a time. Updating your boost target automatically moves all previous boosts to the new address.
+    
+    **Critical rule**: Point boost to the same address where you deposited BTC.
+  </Accordion>
+
+  <Accordion title="What happens if I point my boost to the wrong address?">
+    Your boost won't work correctly. Make sure to:
+    - **Ethereum deposits**: Point boost to your **EVM address**
+    - **Neutron deposits**: Point boost to your **Neutron address**
+    - **Update if needed**: You can change your boost target anytime
+    
+    Technical details: [Address Linking System](/btc-summer/technical/address-linking)
+  </Accordion>
+
+  <Accordion title="Are boost NFTs tradeable?">
+    Yes, receipt NFTs from NTRN locking are transferable:
+    - Can be traded on secondary markets (e.g., [Superbolt](https://superbolt.wtf/))
+    - Boost benefits only apply to current holder
+    - New holder must stake NFT to activate boost
+    - Original holder loses boost benefits upon transfer
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## About Neutron
+
+<AccordionGroup>
+  <Accordion title="What is Neutron?">
+    Neutron is a Rust-based, public PoS blockchain that enables BTC holders to earn sustainable yield through an expanding suite of products and services.
+    
+    **Built-in infrastructure**:
+    - High-frequency oracle for accurate price feeds
+    - Cron module for automated execution
+    - On-chain orderbook for efficient trading
+    - Interchain Transactions (ICTX) and Queries (ICQ) for cross-chain coordination
+    
+    **Value capture**: As demand for BTC yield increases, NTRN stakers capture network value through transaction fees and reduced token supply.
+    
+    Learn more: [About Neutron](/home)
+  </Accordion>
+
+  <Accordion title="What is Neutron's mission?">
+    Democratize access to the best financial opportunities.
+    
+    Learn more: [Core Concepts](/concepts/integrated-architecture)
+  </Accordion>
+
+  <Accordion title="How does Neutron enable real yield on BTC?">
+    Real BTC yield on Neutron comes from:
+    - **maxBTC**: Asset that tokenizes real BTC yield through on- and off-chain strategies
+    - **Lending yield**: Sourced from [Amber Finance](https://amber.fi/app)
+    - **Trading fees**: Paid by users who trade on the network via [Supervaults](/defi/supervaults)
+    - **Automated market making**: Through institutional-grade [Supervaults](/defi/supervaults)
+  </Accordion>
+
+  <Accordion title="What is NTRN and what can I do with it?">
+    With a fixed supply of 1B and zero inflation, NTRN is the native token that powers Neutron's decentralized economy.
+    
+    **Use cases**:
+    - **Staking**: Secure the network and earn staking rewards
+    - **Gas fees**: 30% discount when paying gas in NTRN vs other tokens
+    - **Governance**: Vote on network proposals and DeFi protocols
+    - **DeFi**: LP on Supervaults, lend for yield, use as collateral
+    - **Bitcoin Summer**: Lock NTRN to boost campaign rewards up to 3x
+    
+    **Trading**: Available on [Binance](https://www.binance.com/en/trade/NTRN_USDT), [Kraken](https://www.kraken.com/convert/ntrn), [KuCoin](https://www.kucoin.com/trade/NTRN-USDT), [Bybit](https://www.bybit.com/trade/usdt/NTRNUSDT), and [Neutron DEXs](https://app.neutron.org/bridge?src_chain=1&src_asset=ETH&dest_chain=neutron-1&dest_asset=NTRN).
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Technical Questions
+
+<AccordionGroup>
+  <Accordion title="How are rewards calculated?">
+    Rewards use a points-based system with daily calculations:
+    
+    **Formula**: Points = USD Value × Days Staked × (1 + Boost Multiplier)
+    
+    - **Daily calculations**: Points accrue each day based on USD value
+    - **Pro-rata distribution**: Your share = (Your Points / Total Points) × Epoch Budget
+    - **Dollar-denominated**: Converted to NTRN at epoch end
+    
+    Details: [Campaign Details](/btc-summer/campaign-details)
+  </Accordion>
+
+  <Accordion title="Where do I find my positions after withdrawal?">
+    **Depends on your participation path**:
+    
+    **Simple Lending Vaults** (Ethereum Path):
+    - Underlying assets (wBTC, eBTC) sent back to your original Ethereum wallet
+    - No additional setup needed
+    
+    **LP Strategy Vaults** (Ethereum Path):
+    - Supervault LP tokens sent to your Neutron wallet
+    - Track at [app.neutron.org/balance](https://app.neutron.org/balance)
+    
+    **Direct Neutron Deposits**:
+    - Positions remain in your Neutron wallet
+    - Manage through protocol interfaces
+  </Accordion>
+
+  <Accordion title="What happens when I withdraw early?">
+    - **Principal**: Always available (no lock on deposits)
+    - **Campaign rewards**: Forfeit pro-rata share for current epoch
+    - **Previous epochs**: Completed epoch rewards remain safe
+    - **DeFi yields**: Keep any earned protocol yields
+  </Accordion>
+
+  <Accordion title="My boost isn't working - what should I check?">
+    **Common issues**:
+    - Boost pointed to wrong address (must match deposit address)
+    - NFT not properly staked to boost contract
+    - Conflicting wallet connections (use one primary wallet)
+    - Address linking not completed properly
+    
+    **Fix**: Ensure boost points to the same address where you deposited BTC.
+    
+    Technical help: [Address Linking System](/btc-summer/technical/address-linking)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Strategic Context
+
+<AccordionGroup>
+  <Accordion title="Why is Neutron running this campaign?">
+    **Market opportunity**: Bitcoin holders want yield, but current options offer only inflationary rewards or speculative points.
+    
+    **Technical capability**: Neutron is uniquely positioned to deliver Bitcoin DeFi through:
+    - Integrated blockchain infrastructure purpose-built for DeFi
+    - maxBTC enabling leverage looping and basis trading for Bitcoin
+    - Cross-collateralized perpetuals and automated market making
+    
+    **Timing**: As Babylon points dry up, LPs need new scalable yield sources.
+    
+    Complete context: [Strategic Context](/btc-summer/strategic-context)
+  </Accordion>
+
+  <Accordion title="What makes this different from other yield farming campaigns?">
+    BTC Summer isn't just token distribution - it's bootstrapping the first real yield strategies for Bitcoin:
+    
+    - **Real infrastructure**: Purpose-built protocols for Bitcoin DeFi
+    - **Sustainable strategies**: Leverage looping and basis trading (dominant DeFi trades)
+    - **Market size**: Targeting $10B+ markets previously inaccessible to Bitcoin
+    - **Long-term value**: Building lasting Bitcoin DeFi ecosystem on Neutron
+    
+    Learn more: [Strategic Context](/btc-summer/strategic-context)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Get Support
+
+<CardGroup cols={2}>
+  <Card title="Discord Community" icon="discord" href="https://discord.com/invite/bzPBzbDvWC">
+    Join the Neutron Discord for real-time support and discussions
+  </Card>
+  
+  <Card title="Telegram" icon="telegram" href="https://t.me/neutron_community">
+    Connect with the Neutron community on Telegram
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Technical Docs" icon="code" href="/btc-summer/technical/overview">
+    Technical documentation for developers and integrators
+  </Card>
+  
+  <Card title="Strategic Context" icon="lightbulb" href="/btc-summer/strategic-context">
+    Why we're running this campaign and the Bitcoin DeFi opportunity
+  </Card>
+</CardGroup>
