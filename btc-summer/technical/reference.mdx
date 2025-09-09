@@ -17,10 +17,10 @@ Contract addresses will be added upon deployment. Check the [GitHub repository](
 </Note>
 
 ```jsx
-Points Contract:        [Deployment pending]
-Boost Pointer Contract: [Deployment pending]
-Vesting Contract:       [Deployment pending]
-NTRN Lock Contract:     [Deployment pending]
+Points Contract:        [Contract address will be added upon deployment]
+Boost Pointer Contract: [Contract address will be added upon deployment]
+Vesting Contract:       [Contract address will be added upon deployment]
+NTRN Lock Contract:     [Contract address will be added upon deployment]
 ```
 
 ### Supervault Addresses
@@ -84,7 +84,7 @@ The Points API is currently in development. The specifications below are prelimi
 
 ### Planned API Endpoints
 
-**Base URL**: TBD (API in development)
+**Base URL**: [API endpoint will be announced when available]
 
 #### Planned User Data Endpoints
 ```
@@ -178,24 +178,22 @@ Cosmos Hub → Neutron: IBC
 ### Frontend Integration
 
 ```javascript
-// Initialize campaign integration
-import { CampaignClient } from '@neutron/btc-summer-sdk';
+// Example integration using standard Cosmos SDK
+// Dedicated BTC Summer SDK in development
+import { CosmWasmClient } from '@cosmjs/cosmwasm-stargate';
 
-const client = new CampaignClient({
-  apiUrl: 'https://api.neutron.org/btc-summer/v1/',
-  apiKey: process.env.CAMPAIGN_API_KEY,
-  network: 'mainnet'
-});
+// Connect to Neutron
+const client = await CosmWasmClient.connect('https://rpc-neutron.keplr.app');
 
-// Get user campaign data
-const getUserData = async (address) => {
-  const [points, positions, rewards] = await Promise.all([
-    client.getPoints(address),
-    client.getPositions(address),
-    client.getRewards(address)
-  ]);
+// Query user campaign data (when contracts are deployed)
+const getUserData = async (address, pointsContractAddress) => {
+  // Query points contract directly
+  const userPoints = await client.queryContractSmart(
+    pointsContractAddress,
+    { get_user_balance: { address } }
+  );
   
-  return { points, positions, rewards };
+  return userPoints;
 };
 ```
 
@@ -207,17 +205,17 @@ import { CosmWasmClient } from '@cosmjs/cosmwasm-stargate';
 
 const client = await CosmWasmClient.connect('https://rpc-neutron.keplr.app');
 
-// Query user points
+// Query user points (when contract is deployed)
 const userPoints = await client.queryContractSmart(
-  'neutron1[points_contract_address]',
+  pointsContractAddress, // Contract address will be provided upon deployment
   { get_user_balance: { address: userAddress } }
 );
 
-// Point boost to address
-const pointBoost = async (targetAddress) => {
+// Point boost to address (when contract is deployed)
+const pointBoost = async (targetAddress, boostPointerAddress) => {
   await client.execute(
     senderAddress,
-    'neutron1[boost_pointer_address]',
+    boostPointerAddress, // Contract address will be provided upon deployment
     { point_boost: { target: targetAddress } },
     fee
   );

@@ -102,15 +102,15 @@ The system uses a priority system when both wallets are connected:
 
 | Scenario | ETH Connected | Neutron Connected | Both Connected |
 |----------|---------------|-------------------|----------------|
-| ETH deposits, no boost | ✅ Shows deposits | ❌ Empty | ✅ Shows deposits |
-| Neutron deposits, no boost | ❌ Empty | ✅ Shows deposits | ✅ Shows deposits |
-| ETH deposits + ETH-pointed boost | ✅ Complete view | ❌ Empty | ✅ Complete view |
-| ETH deposits + Neutron-pointed boost | ✅ Deposits only | ✅ Boost only | ⚠️ **Conflict** |
-| Neutron deposits + ETH-pointed boost | ✅ Boost only | ✅ Deposits only | ⚠️ **Conflict** |
-| Neutron deposits + Neutron-pointed boost | ❌ Empty | ✅ Complete view | ✅ Complete view |
-| Both networks deposits, no boost | ✅ ETH balance | ✅ Neutron balance | ⚠️ **Conflict** |
-| Both networks deposits + ETH boost | ✅ Complete ETH | ✅ Neutron only | ⚠️ **Conflict** |
-| Both networks deposits + Neutron boost | ✅ ETH only | ✅ Complete Neutron | ⚠️ **Conflict** |
+| ETH deposits, no boost | Shows deposits | Empty | Shows deposits |
+| Neutron deposits, no boost | Empty | Shows deposits | Shows deposits |
+| ETH deposits + ETH-pointed boost | Complete view | Empty | Complete view |
+| ETH deposits + Neutron-pointed boost | Deposits only | Boost only | **Conflict** |
+| Neutron deposits + ETH-pointed boost | Boost only | Deposits only | **Conflict** |
+| Neutron deposits + Neutron-pointed boost | Empty | Complete view | Complete view |
+| Both networks deposits, no boost | ETH balance | Neutron balance | **Conflict** |
+| Both networks deposits + ETH boost | Complete ETH | Neutron only | **Conflict** |
+| Both networks deposits + Neutron boost | ETH only | Complete Neutron | **Conflict** |
 
 ---
 
@@ -235,18 +235,16 @@ const ConflictResolution = ({ conflicts, onResolve }) => {
 ### Test Implementation
 
 ```javascript
+// Example test structure for address linking integration
 describe('Address Linking Integration', () => {
   test('handles single wallet connection', async () => {
-    const ethWallet = mockEthereumWallet();
-    const result = await resolveAddresses([ethWallet]);
-    expect(result.conflicts).toHaveLength(0);
+    // Test single wallet scenarios
+    // Implementation details will be provided with SDK
   });
   
   test('detects cross-network conflicts', async () => {
-    const ethWallet = mockEthereumWallet({ deposits: true });
-    const neutronWallet = mockNeutronWallet({ boosts: true });
-    const result = await resolveAddresses([ethWallet, neutronWallet]);
-    expect(result.conflicts).toContain('CROSS_NETWORK_BOOST');
+    // Test multi-wallet conflict detection  
+    // Implementation details will be provided with SDK
   });
 });
 ```
@@ -280,12 +278,12 @@ contract BoostPointer {
 
 **Ethereum addresses**: Standard 0x format
 ```
-0x742d35Cc6634C0532925a3b8D4e8F0532E7C45
+0x742d35Cc6634C0532925a3b8D4e8F0532E7C45 (example format)
 ```
 
 **Neutron addresses**: Bech32 format with neutron prefix
 ```
-neutron1w29vh2hjnjef9e2dujc5j4ear4g5th955vetjrx42m7eedeg8ydq3v9zee
+neutron1w29vh2hjnjef9e2dujc5j4ear4g5th955vetjrx42m7eedeg8ydq3v9zee (example format)
 ```
 
 ---
