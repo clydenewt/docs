@@ -106,7 +106,7 @@
                 "icon": "ethereum",
                 "pages": [
                   "btc-summer/ethereum-path",
-                  "btc-summer/ethereum-path/epoch-1"
+                  "btc-summer/ethereum-path/phase-1"
                 ]
               },
               {
@@ -114,7 +114,7 @@
                 "icon": "circle-dot",
                 "pages": [
                   "btc-summer/neutron-path",
-                  "btc-summer/neutron-path/epoch-1"
+                  "btc-summer/neutron-path/phase-1"
                 ]
               },
               "btc-summer/rewards",

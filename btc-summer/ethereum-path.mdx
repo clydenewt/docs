@@ -7,7 +7,7 @@ icon: "ethereum"
 **Best for**: Users coming from Ethereum who want to participate with familiar wallets like MetaMask while accessing Bitcoin DeFi opportunities through automated vault strategies.
 
 <Note>
-This guide covers the evergreen process for Ethereum participation in BTC Summer. For current Epoch 1 specific vault listings and reward budgets, see [Epoch 1 Details](/btc-summer/ethereum-path/epoch-1).
+This guide covers the evergreen process for Ethereum participation in BTC Summer. For current Phase 1 specific vault listings and reward budgets, see [Phase 1 Details](/btc-summer/ethereum-path/phase-1).
 </Note>
 
 ## How It Works
@@ -19,7 +19,7 @@ When you deposit through Ethereum vaults, your assets are automatically:
 3. **Earning** rewards from both DeFi yields and NTRN campaign incentives
 
 <Info>
-Simple lending vaults and rewards can be fully managed through an EVM wallet, whereas LP strategies require a Neutron wallet to withdraw LP tokens. For detailed cross-chain coordination, see [Address Linking System](/btc-summer/technical/address-linking).
+All vault withdrawals and campaign rewards are processed on Neutron - you'll need a Neutron wallet to receive both your NTRN campaign rewards and withdrawn assets (Supervault LP tokens, lending assets) regardless of vault strategy. For detailed cross-chain coordination, see [Address Linking System](/btc-summer/technical/address-linking).
 </Info>
 
 
@@ -28,11 +28,11 @@ Simple lending vaults and rewards can be fully managed through an EVM wallet, wh
 ## Available Vault Categories
 
 ### Simple Lending Vaults
-**Best for**: Risk-averse users wanting straightforward yield and management fully through EVM wallets (deposit and withdraw)
+**Best for**: Risk-averse users wanting straightforward yield (deposit with EVM wallet, receive rewards on Neutron)
 
 - **Just Lend - wBTC on Amber**: 100% lending on [Amber Protocol](https://amber.fi/app)
 - **Just Lend - wBTC on Mars**: 100% lending on Mars Protocol
-- **Requirements**: No KYC, no deposit caps
+- **Requirements**: No KYC, no deposit caps, Neutron wallet needed for rewards
 - **Strategy**: Pure lending exposure with stable yields
 
 ### Hybrid Strategy Vaults  
@@ -75,7 +75,7 @@ Simple lending vaults and rewards can be fully managed through an EVM wallet, wh
 - USDC (for USDC-maxBTC vault only)
 
 <Info>
-**For LP Strategy Withdrawals**: You'll need a Neutron wallet (Keplr recommended) to receive Supervault LP tokens. Simple lending vaults can withdraw to your original wallet.
+**Important**: You'll need a Neutron wallet (Keplr recommended) to receive both campaign rewards and withdrawn assets. All rewards are distributed on Neutron regardless of where you deposit.
 </Info>
 
 ### 2. Navigate to Bitcoin Summer
@@ -126,16 +126,17 @@ Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access
 
 ### What You Receive
 
-**Depending on your vault strategy**:
+**All withdrawals go to your Neutron wallet**:
 
 **Simple Lending Vaults** (Just Lend):
-- **Underlying assets** (wBTC, eBTC, etc.) sent back to your original wallet
-- **No Neutron wallet needed** for pure lending strategies
+- **Underlying assets** (wBTC, eBTC, etc.) sent to your Neutron wallet
+- **Campaign rewards** (NTRN tokens) sent to your Neutron wallet
 
 **LP Strategy Vaults** (Hybrid, LST Main, maxBTC):
 - **Supervault LP tokens** (Neutron-native tokens)
 - **Lending assets** (underlying BTC derivatives)
-- **Neutron wallet required** to receive LP tokens
+- **Campaign rewards** (NTRN tokens)
+- **All sent to your Neutron wallet**
 
 ### How to Find Your Positions
 
@@ -154,7 +155,7 @@ Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access
 ### Timing Considerations
 
 - **No Principal Lock**: Withdraw deposits anytime
-- **Reward Forfeiture**: Early withdrawal forfeits pro-rata epoch rewards
+- **Reward Forfeiture**: Early withdrawal forfeits pro-rata phase rewards
 - **Processing Time**: Depends on underlying protocol liquidity
 - **Cross-chain delay**: Allow time for bridging and position deployment
 
@@ -168,21 +169,25 @@ Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access
 
 ### Address Linking for Boosts
 
-**Critical Rule**: If you deposited using your **EVM address**, you must boost that **same EVM address**.
+**Important**: If you deposited using your **EVM address**, you must boost that **same EVM address**.
 
 **Quick process**:
 1. Set up a Neutron wallet (Keplr recommended)
 2. Acquire NTRN tokens  
 3. Use the "Unlock your booster" feature on the Bitcoin Summer page
-4. **Important**: Select "Boost this wallet" if using the same EVM wallet, or "Link an address" to specify your EVM deposit address
+4. **Critical**: Do NOT select "Boost this wallet" (that boosts your Neutron wallet). Instead, select "Link an address" to specify your EVM deposit address
 5. Lock NTRN and earn up to 3x total rewards
 
 ### Boost Coordination
 
-Since boosts require a Neutron wallet but your deposits are on Ethereum:
-- You'll connect both wallets during the boost process
-- The system will help you link your EVM deposit address to your Neutron boost
+**For Ethereum depositors** (this page's audience):
+- **Do NOT select "Boost this wallet"** - that boosts your connected Neutron wallet
+- **You MUST select "Link an address"** to specify your EVM deposit address
+- Connect or paste your EVM address that you used for deposits
+- The system links your Neutron boost to your EVM deposits
 - Monitor your boost status on the [Balance page](https://app.neutron.org/balance)
+
+**Key Understanding**: "Boost this wallet" always boosts your currently connected Neutron wallet, NOT your EVM wallet.
 
 <Info>
 For complete boost strategies, NTRN locking mechanics, and detailed guidance, see [Rewards Guide](/btc-summer/rewards). For technical implementation details, see [Address Linking System](/btc-summer/technical/address-linking).
@@ -191,11 +196,11 @@ For complete boost strategies, NTRN locking mechanics, and detailed guidance, se
 
 ---
 
-## Epoch-Specific Information
+## Phase-Specific Information
 
-Current epoch details change over time. For the most up-to-date information:
+Current phase details change over time. For the most up-to-date information:
 
-<Card title="Epoch 1 Details" icon="calendar" href="/btc-summer/ethereum-path/epoch-1">
+<Card title="Phase 1 Details" icon="calendar" href="/btc-summer/ethereum-path/phase-1">
   Current vault listings, reward budgets, deposit caps, and availability status
 </Card>
 

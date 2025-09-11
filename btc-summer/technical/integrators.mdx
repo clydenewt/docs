@@ -37,7 +37,7 @@ GET /points/{address}
 {
   "address": "neutron1...",
   "total_points": 1500000,
-  "current_epoch_points": 500000,
+  "current_phase_points": 500000,
   "projected_rewards_usd": 125.50,
   "boost_multiplier": 1.5,
   "last_updated": "2024-01-15T10:30:00Z"
@@ -53,9 +53,9 @@ GET /campaign/status
 **Response**:
 ```json
 {
-  "current_epoch": 1,
-  "epoch_start": "2024-01-01T00:00:00Z",
-  "epoch_end": "2024-03-01T00:00:00Z",
+  "current_phase": 1,
+  "phase_start": "2024-01-01T00:00:00Z",
+  "phase_end": "2024-03-01T00:00:00Z",
   "total_budget_usd": 250000,
   "total_participants": 1250,
   "total_tvl_usd": 5000000
@@ -122,7 +122,7 @@ GET /assets/{asset_denom}/performance
   "active_participants": 450,
   "avg_deposit_size_usd": 3333,
   "reward_distribution_usd": 15000,
-  "epoch_performance": {
+  "phase_performance": {
     "yield_generated": 0.12,
     "campaign_rewards": 0.08
   }

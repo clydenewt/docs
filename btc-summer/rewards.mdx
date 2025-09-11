@@ -22,7 +22,7 @@ This information is for educational purposes only and does not constitute financ
 ### Neutron Campaign Rewards  
 - **NTRN incentives**: Primary $10M campaign rewards distributed as NTRN tokens
 - **Boost multipliers**: Enhanced rewards through NTRN locking (up to 3x total)
-- **Epoch bonuses**: Additional incentives for full epoch participation
+- **Phase bonuses**: Additional incentives for full phase participation
 
 ### DeFi Protocol Rewards
 - **Supervault trading fees**: Earnings from automated market-making activities
@@ -102,8 +102,11 @@ $$
 
 **Essential requirement**: Point your boost to the address where you deposited TVL.
 
-- **If you deposited via Ethereum vaults**: Point boost to your **EVM address**
-- **If you deposited directly on Neutron**: Point boost to your **Neutron address**
+**UI Guidance**:
+- **Ethereum vault depositors**: Select "Link an address" → Enter your **EVM address**
+- **Direct Neutron depositors**: Select "Boost this wallet" → Boosts your **Neutron address**
+
+**Important**: "Boost this wallet" always boosts your currently connected Neutron wallet, regardless of where you deposited.
 
 ### Address Linking Process
 
@@ -115,7 +118,9 @@ $$
     Select lock amount and duration (up to 4 years for maximum boost)
   </Step>
   <Step title="Specify Target Address">
-    **Critical**: Enter the address where your BTC deposits are located
+    **Critical UI Choice**:
+    - **"Boost this wallet"**: Boosts your connected Neutron wallet (only use if you deposited on Neutron)
+    - **"Link an address"**: Specify your EVM deposit address (use this if you deposited via Ethereum vaults)
   </Step>
   <Step title="Confirm Lock">
     Complete the transaction and receive your receipt NFT
@@ -134,20 +139,20 @@ $$
 ## Reward Calculation Examples
 
 ### Example 1: Basic Participation
-- **Deposit**: 1 BTC ($100,000) for full epoch (60 days)
+- **Deposit**: 1 BTC ($100,000) for full phase (60 days)
 - **No boost**: Standard 1x multiplier
 - **Points**: $100,000 × 60 × 1 = 6,000,000 points
 - **Estimated rewards**: Based on your share of total points
 
 ### Example 2: With NTRN Locking
-- **Deposit**: 1 BTC ($100,000) for full epoch
+- **Deposit**: 1 BTC ($100,000) for full phase
 - **NTRN locked**: $50,000 worth for 2 years
 - **Boost calculation**: (50,000/100,000) × (2/4) × 2 = 0.5 boost
 - **Total multiplier**: 1 + 0.5 = 1.5x
 - **Points**: $100,000 × 60 × 1.5 = 9,000,000 points
 
 ### Example 3: Maximum Boost
-- **Deposit**: 1 BTC ($100,000) for full epoch
+- **Deposit**: 1 BTC ($100,000) for full phase
 - **NTRN locked**: $200,000 worth for 4 years  
 - **Boost calculation**: (200,000/100,000) × (4/4) × 2 = 4.0, capped at 2.0
 - **Total multiplier**: 1 + 2.0 = 3x
@@ -189,7 +194,7 @@ $$
 2. **Calculate optimal NTRN lock**: Balance lock amount with deposit size
 3. **Choose lock duration**: Longer = better boost (up to 4 years)
 4. **Monitor performance**: Track both DeFi yields and campaign rewards
-5. **Stay for full epochs**: Avoid early withdrawal penalties
+5. **Stay for full phases**: Avoid early withdrawal penalties
 
 ### Risk Management
 

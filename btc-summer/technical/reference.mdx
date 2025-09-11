@@ -95,8 +95,8 @@ GET /boost-status/{address} # Boost configuration
 
 #### Planned Campaign Data Endpoints
 ```
-GET /campaign/status      # Current epoch and campaign status
-GET /epochs              # Epoch information
+GET /campaign/status      # Current phase and campaign status
+GET /phases              # Epoch information
 GET /eligible-protocols  # Qualifying protocols and multipliers
 ```
 
@@ -126,7 +126,7 @@ interface IPointsContract {
     
     function getUserBalance(address user) external view returns (UserBalance memory);
     function getCurrentEpoch() external view returns (uint256);
-    function getEpochInfo(uint256 epochId) external view returns (EpochInfo memory);
+    function getEpochInfo(uint256 phaseId) external view returns (EpochInfo memory);
     function bindAddresses(address ethAddress, address neutronAddress) external;
 }
 ```
@@ -234,7 +234,7 @@ const pointBoost = async (targetAddress, boostPointerAddress) => {
 | `NO_DEPOSITS` | No eligible deposits found | Check deposit addresses and protocol eligibility |
 | `BOOST_MISMATCH` | Boost pointed to address without deposits | Point boost to address with active deposits |
 | `INSUFFICIENT_BALANCE` | Not enough tokens for operation | Verify token balances and allowances |
-| `EPOCH_ENDED` | Operation not allowed after epoch end | Wait for next epoch or claim rewards |
+| `EPOCH_ENDED` | Operation not allowed after phase end | Wait for next phase or claim rewards |
 
 ### Debugging Tools
 
