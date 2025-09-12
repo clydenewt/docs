@@ -5,7 +5,7 @@
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
-  "favicon": "/favicon.ico",
+  "favicon": "/favicon.svg",
   "colors": {
     "primary": "#404040",
     "light": "#F5F5F4",

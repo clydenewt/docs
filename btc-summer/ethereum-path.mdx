@@ -12,53 +12,22 @@ This guide covers the evergreen process for Ethereum participation in BTC Summer
 
 ## How It Works
 
-When you deposit through Ethereum vaults, your assets are automatically:
+When you deposit through BTC Summer vaults, your assets are automatically:
 
 1. **Bridged** to Neutron via secure cross-chain infrastructure
 2. **Deployed** to eligible DeFi protocols ([Amber](https://amber.fi/app) lending, [Supervaults](https://app.neutron.org/supervaults) LP)
 3. **Earning** rewards from both DeFi yields and NTRN campaign incentives
 
 <Info>
-All vault withdrawals and campaign rewards are processed on Neutron - you'll need a Neutron wallet to receive both your NTRN campaign rewards and withdrawn assets (Supervault LP tokens, lending assets) regardless of vault strategy. For detailed cross-chain coordination, see [Address Linking System](/btc-summer/technical/address-linking).
+All vault withdrawals and campaign rewards are processed on Neutron - you'll need a Neutron wallet to receive both your NTRN campaign rewards and withdrawn assets (Supervault LP tokens, lending assets) regardless of vault strategy. For Neutron wallet setup, see our [User Quickstart Guide](/quickstart#for-users). For detailed cross-chain coordination, see [Address Linking System](/btc-summer/technical/address-linking).
 </Info>
 
 
----
+**Current vault offerings change by phase**. For specific vault listings, caps, and availability:
 
-## Available Vault Categories
-
-### Simple Lending Vaults
-**Best for**: Risk-averse users wanting straightforward yield (deposit with EVM wallet, receive rewards on Neutron)
-
-- **Just Lend - wBTC on Amber**: 100% lending on [Amber Protocol](https://amber.fi/app)
-- **Just Lend - wBTC on Mars**: 100% lending on Mars Protocol
-- **Requirements**: No KYC, no deposit caps, Neutron wallet needed for rewards
-- **Strategy**: Pure lending exposure with stable yields
-
-### Hybrid Strategy Vaults  
-**Best for**: Users wanting diversified exposure
-
-- **wBTC with LST LP**: Combines lending with liquidity provision
-- **Available pairs**: eBTC, SolvBTC, uniBTC
-- **Strategy**: Split between [Amber](https://amber.fi/app) lending and [Supervault](https://app.neutron.org/supervaults) LP positions
-- **Requirements**: No KYC required
-
-### maxBTC Access Vaults
-**Best for**: Users wanting exposure to maxBTC ecosystem
-
-- **MaxBTC Liquidity Vault**: Provides liquidity to maxBTC-wBTC pool (**KYC required**)
-- **MaxBTC Deposit Vault**: Direct maxBTC holding strategy (**KYC required**)
-- **Just LP - USDC maxBTC**: USDC deposits to maxBTC-USDC pool (**No KYC required**)
-- **Requirements**: KYC only required for MaxBTC Liquidity and MaxBTC Deposit vaults
-
-### LST Main Vaults
-**Best for**: LST holders wanting maxBTC exposure
-
-- **Available LSTs**: eBTC, SolvBTC, uniBTC
-- **Strategy**: Lend LST + provide liquidity to maxBTC-LST pools
-- **Requirements**: No KYC, direct LST deposits
-
----
+<Card title="Phase 1 Vault Listings" icon="table" href="/btc-summer/ethereum-path/phase-1">
+  Complete vault tables with caps, KYC requirements, and allocation details for Phase 1
+</Card>
 
 ## Step-by-Step Process
 
@@ -66,35 +35,21 @@ All vault withdrawals and campaign rewards are processed on Neutron - you'll nee
 
 **Compatible Wallets**:
 - MetaMask (recommended)
-- Coinbase Wallet
-- WalletConnect compatible wallets
 
 **Required Assets**: 
 - Supported BTC derivatives (wBTC, eBTC, SolvBTC, uniBTC)
 - ETH for gas fees
 - USDC (for USDC-maxBTC vault only)
 
-<Info>
-**Important**: You'll need a Neutron wallet (Keplr recommended) to receive both campaign rewards and withdrawn assets. All rewards are distributed on Neutron regardless of where you deposit.
-</Info>
-
 ### 2. Navigate to Bitcoin Summer
 
 Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access the vault interface.
-
-**Supported assets**: WBTC, eBTC, solvBTC, uniBTC, and USDC
-
-**Selection criteria**:
-- **Asset type**: What BTC derivatives you currently hold
-- **Risk tolerance**: Simple lending vs LP strategies
-- **KYC willingness**: Only maxBTC vaults require KYC
-- **Reward goals**: Different strategies offer different yield profiles
 
 ### 3. Complete Deposit
 
 <Steps>
   <Step title="Select Vault">
-    Choose a vault from the available options (note: some may be in beta)
+    Choose a vault from the available options
   </Step>
   <Step title="Connect Ethereum Wallet">
     Connect your Ethereum wallet when prompted at the bottom of the deposit modal
@@ -120,14 +75,14 @@ Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access
 
 ## Withdrawal Process
 
-<Warning>
+<Info>
 **Important**: Withdrawals are processed on the Neutron side. You'll receive the underlying positions directly to your wallet, not back through the vault interface.
-</Warning>
+</Info>
+
+**Need to set up a Neutron wallet?** See our [User Quickstart Guide](/quickstart#for-users) for step-by-step wallet setup instructions.
+
 
 ### What You Receive
-
-**All withdrawals go to your Neutron wallet**:
-
 **Simple Lending Vaults** (Just Lend):
 - **Underlying assets** (wBTC, eBTC, etc.) sent to your Neutron wallet
 - **Campaign rewards** (NTRN tokens) sent to your Neutron wallet
@@ -138,70 +93,44 @@ Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access
 - **Campaign rewards** (NTRN tokens)
 - **All sent to your Neutron wallet**
 
-### How to Find Your Positions
-
-**Depends on your vault strategy**:
-
-**Simple Lending Vaults**:
-- **Underlying assets** (wBTC, eBTC) sent to your Neutron wallet
-- **Campaign rewards** (NTRN tokens) sent to your Neutron wallet
-
-**LP Strategy Vaults**:
-- **Important**: Supervault LP tokens appear on the [Balance page](https://app.neutron.org/balance), not directly visible in your Keplr wallet
-- **Lending portions** may be sent as underlying assets (visible in Keplr, Leap)
-- **Manage positions**: Use Neutron DeFi apps to interact with LP positions
-
-### Timing Considerations
-
-- **No Principal Lock**: Withdraw deposits anytime
-- **Reward Forfeiture**: Early withdrawal forfeits pro-rata phase rewards
-- **Processing Time**: Depends on underlying protocol liquidity
-- **Cross-chain delay**: Allow time for bridging and position deployment
+Your positions can be tracked on the [Balance page of the Neutron App](https://app.neutron.org/balance)
 
 ---
 
 ## Maximize Your Rewards
 
 <Note>
-**Want to boost your rewards up to 3x?** You'll need to set up a Neutron wallet and lock NTRN tokens, then point the boost to your EVM deposit address. This requires cross-chain coordination but can significantly increase your earnings.
+**Want to boost your rewards up to 3x?** You'll need to set up a Neutron wallet and lock NTRN tokens, then point the boost to your EVM deposit address.
 </Note>
 
 ### Address Linking for Boosts
 
 **Important**: If you deposited using your **EVM address**, you must boost that **same EVM address**.
 
-**Quick process**:
-1. Set up a Neutron wallet (Keplr recommended)
-2. Acquire NTRN tokens  
-3. Use the "Unlock your booster" feature on the Bitcoin Summer page
-4. **Critical**: Do NOT select "Boost this wallet" (that boosts your Neutron wallet). Instead, select "Link an address" to specify your EVM deposit address
-5. Lock NTRN and earn up to 3x total rewards
-
-### Boost Coordination
-
-**For Ethereum depositors**:
-- Selecting **"Boost this wallet"** -  boosts your connected Neutron wallet
-- To boost your EVM wallet **You MUST select "Link an address"** to specify your EVM deposit address
-- Connect or paste your EVM address that you used for deposits
-- The system links your Neutron boost to your EVM deposits
-- Monitor your boost status on the [Balance page](https://app.neutron.org/balance)
-
-**Key Understanding**: "Boost this wallet" always boosts your currently connected Neutron wallet, NOT your EVM wallet.
+<Steps>
+  <Step title="Set up Neutron Wallet">
+    Set up a Neutron wallet (Keplr or Leap recommended). See our [User Quickstart Guide](/quickstart#for-users) for step-by-step wallet setup instructions.
+  </Step>
+  <Step title="Acquire NTRN Tokens">
+    Get NTRN tokens through exchanges, swaps, or bridges
+  </Step>
+  <Step title="Access Booster Feature">
+    Use the "Unlock your booster" feature on the Bitcoin Summer page
+  </Step>
+  <Step title="Link Your Address">
+    Select "Link an address" to specify your EVM deposit address
+  </Step>
+  <Step title="Lock NTRN">
+    Lock NTRN and earn up to 3x total rewards
+  </Step>
+  <Step title="Monitor Status">
+    Monitor your boost status on the [Balance page](https://app.neutron.org/balance)
+  </Step>
+</Steps>
 
 <Info>
 For complete boost strategies, NTRN locking mechanics, and detailed guidance, see [Rewards Guide](/btc-summer/rewards). For technical implementation details, see [Address Linking System](/btc-summer/technical/address-linking).
 </Info>
-
-
----
-
-## Phase-Specific Information
-
-Current phase details change over time. For the most up-to-date information:
-
-<Card title="Phase 1 Details" icon="calendar" href="/btc-summer/ethereum-path/phase-1">
-  Current vault listings, reward budgets, deposit caps, and availability status
-</Card>
 
 ---
 

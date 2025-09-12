@@ -9,100 +9,183 @@ icon: "calendar"
 
 This page contains phase-specific information for Ethereum vault participation. For general guidance and processes, see the main [Ethereum Path](/btc-summer/ethereum-path) guide.
 
----
+## Available Vaults (Phase 1)
 
-## Available Vaults
+#### LST Main Vaults: Lend & maxBTC LP
+<div className="overflow-x-auto my-2">
+  <table className="min-w-full border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Vault Name</th>
+        <th className="p-3 text-left">Deposit Asset</th>
+        <th className="p-3 text-left">Cap (in token amount)</th>
+        <th className="p-3 text-left">KYC</th>
+        <th className="p-3 text-left">Strategy</th>
+        <th className="p-3 text-left">Allocation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">uniBTC Main</td>
+        <td className="p-3">uniBTC</td>
+        <td className="p-3">50</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend uniBTC; maxBTC/uniBTC LP</td>
+        <td className="p-3">70% Lend, 30% Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">solvBTC Main</td>
+        <td className="p-3">solvBTC</td>
+        <td className="p-3">50</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend solvBTC; maxBTC/solvBTC LP</td>
+        <td className="p-3">70% Lend, 30% Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">LBTC Main</td>
+        <td className="p-3">LBTC</td>
+        <td className="p-3">50</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend LBTC; maxBTC/LBTC LP</td>
+        <td className="p-3">70% Lend, 30% Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">eBTC Main</td>
+        <td className="p-3">eBTC</td>
+        <td className="p-3">50</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend eBTC; maxBTC/eBTC LP</td>
+        <td className="p-3">70% Lend, 30% Supervault</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-### Active Vaults (Phase 1)
+#### wBTC Vaults
+<div className="overflow-x-auto my-2">
+  <table className="min-w-full border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Vault Name</th>
+        <th className="p-3 text-left">Deposit Asset</th>
+        <th className="p-3 text-left">Cap (in token amount)</th>
+        <th className="p-3 text-left">KYC</th>
+        <th className="p-3 text-left">Strategy</th>
+        <th className="p-3 text-left">Allocation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">wBTC with uniBTC LP</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">50</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend wBTC; wBTC/uniBTC LP</td>
+        <td className="p-3">70% Lend, 30% Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">wBTC with solvBTC LP</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">50</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend wBTC; wBTC/solvBTC LP</td>
+        <td className="p-3">70% Lend, 30% Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">wBTC with LBTC LP</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">50</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend wBTC; wBTC/LBTC LP</td>
+        <td className="p-3">70% Lend, 30% Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">wBTC with eBTC LP</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">50</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend wBTC; wBTC/eBTC LP</td>
+        <td className="p-3">70% Lend, 30% Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">Just Lend – wBTC / Mars</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">500</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend wBTC</td>
+        <td className="p-3">100% Mars</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">Just Lend – wBTC / Amber</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">500</td>
+        <td className="p-3">No</td>
+        <td className="p-3">Lend wBTC</td>
+        <td className="p-3">100% Amber</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-#### Simple Lending Strategies
+#### Structured Vaults
+<div className="overflow-x-auto my-2">
+  <table className="min-w-full border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Vault Name</th>
+        <th className="p-3 text-left">Deposit Asset</th>
+        <th className="p-3 text-left">Cap (in token amount)</th>
+        <th className="p-3 text-left">KYC</th>
+        <th className="p-3 text-left">Strategy</th>
+        <th className="p-3 text-left">Allocation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">MaxBTC Liquidity Vault</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">500</td>
+        <td className="p-3">Yes</td>
+        <td className="p-3">maxBTC/wBTC LP</td>
+        <td className="p-3">100% Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">MaxBTC Deposit Vault</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">500</td>
+        <td className="p-3">Yes</td>
+        <td className="p-3">Holding maxBTC</td>
+        <td className="p-3">100% MaxBTC & Hold</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<CardGroup cols={2}>
-  <Card title="Just Lend - wBTC on Amber" icon="hand-holding-dollar">
-    **Deposit**: wBTC  
-    **Strategy**: 100% lending on Amber Protocol  
-    **KYC**: Not required  
-    **Risk**: Low (lending only)
-  </Card>
-  
-  <Card title="Just Lend - wBTC on Mars" icon="hand-holding-dollar">
-    **Deposit**: wBTC  
-    **Strategy**: 100% lending on Mars Protocol  
-    **KYC**: Not required  
-    **Risk**: Low (lending only)
-  </Card>
-</CardGroup>
-
-#### maxBTC Access Vaults
-
-<CardGroup cols={2}>
-  <Card title="MaxBTC Liquidity Vault" icon="droplet">
-    **Deposit**: wBTC  
-    **Strategy**: maxBTC-wBTC LP  
-    **KYC**: **Required**  
-    **Risk**: Medium (LP exposure)
-  </Card>
-  
-  <Card title="MaxBTC Deposit Vault" icon="vault">
-    **Deposit**: wBTC  
-    **Strategy**: Direct maxBTC holding  
-    **KYC**: **Required**  
-    **Risk**: Low (holding strategy)
-  </Card>
-</CardGroup>
-
-#### Hybrid Strategy Vaults
-
-<CardGroup cols={3}>
-  <Card title="wBTC with eBTC LP" icon="layer-group">
-    **Deposit**: wBTC  
-    **Strategy**: Lend wBTC + wBTC-eBTC LP  
-    **KYC**: Not required
-  </Card>
-  
-  <Card title="wBTC with SolvBTC LP" icon="layer-group">
-    **Deposit**: wBTC  
-    **Strategy**: Lend wBTC + wBTC-SolvBTC LP  
-    **KYC**: Not required
-  </Card>
-  
-  <Card title="wBTC with uniBTC LP" icon="layer-group">
-    **Deposit**: wBTC  
-    **Strategy**: Lend wBTC + wBTC-uniBTC LP  
-    **KYC**: Not required
-  </Card>
-</CardGroup>
-
-#### LST Main Vaults
-
-<CardGroup cols={3}>
-  <Card title="eBTC Main" icon="bitcoin">
-    **Deposit**: eBTC  
-    **Strategy**: Lend eBTC + maxBTC-eBTC LP  
-    **KYC**: Not required
-  </Card>
-  
-  <Card title="SolvBTC Main" icon="bitcoin">
-    **Deposit**: SolvBTC  
-    **Strategy**: Lend SolvBTC + maxBTC-SolvBTC LP  
-    **KYC**: Not required
-  </Card>
-  
-  <Card title="uniBTC Main" icon="bitcoin">
-    **Deposit**: uniBTC  
-    **Strategy**: Lend uniBTC + maxBTC-uniBTC LP  
-    **KYC**: Not required
-  </Card>
-</CardGroup>
-
-#### Stablecoin Strategy
-
-<Card title="Just LP - USDC maxBTC LP" icon="dollar-sign">
-  **Deposit**: USDC  
-  **Strategy**: maxBTC-USDC LP  
-  **KYC**: Not required  
-  **Risk**: Medium (LP exposure to BTC volatility)
-</Card>
+#### Stablecoin Liquidity
+<div className="overflow-x-auto my-2">
+  <table className="min-w-full border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Vault Name</th>
+        <th className="p-3 text-left">Deposit Asset</th>
+        <th className="p-3 text-left">Cap (in token amount)</th>
+        <th className="p-3 text-left">KYC</th>
+        <th className="p-3 text-left">Strategy</th>
+        <th className="p-3 text-left">Allocation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">Just LP - USDC maxBTC</td>
+        <td className="p-3">USDC</td>
+        <td className="p-3">3,000,000</td>
+        <td className="p-3">No</td>
+        <td className="p-3">maxBTC/USDC LP</td>
+        <td className="p-3">100% Supervault</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ---
 
@@ -121,10 +204,56 @@ This page contains phase-specific information for Ethereum vault participation. 
 - **Reward Claims**: Available after phase end
 
 ### Deposit Caps
-- **Current status**: $0 caps listed (effectively no caps for Phase 1)
-- **KYC vaults**: May have undisclosed caps
-- **Monitoring**: Caps may be updated based on demand
+- **Current status**: Caps as listed in vault tables above
+- **KYC vaults**: Higher caps (500 tokens) for maxBTC vaults
+- **USDC vault**: Highest cap (3,000,000 USDC)
+- **LST vaults**: Lower caps (50 tokens each)
 
+---
+
+## Vault Behavior
+
+### Base Vaults
+
+The campaign's primary vaults seek to bootstrap liquidity and lending supply for key assets across the ecosystem. They can be sorted into 3 primary categories:
+
+- **1. BTC LST Vaults with maxBTC**
+    - Separate vault for each denomination: **eBTC, LBTC, uniBTC, solvBTC**.
+    - Each vault pairs the deposit asset with **maxBTC** in liquidity pools for **BTC yield** and **trading fees**.
+    - A portion of deposits is lent out to generate **lending yields**.
+- **2. wBTC Vaults**
+    - Accepts **wBTC deposits**.
+    - Pairs wBTC in an LP with one of the following per vault: **eBTC, LBTC, uniBTC, solvBTC.**
+    - Remaining wBTC is lent out to earn **stable, BTC-denominated yield**.
+- **3. USDC Liquidity Vaults**
+    - Accepts USDC **deposits**.
+    - Bridges USDC to Neutron via CCTP.
+    - Single sided deposits USDC to the USDC - maxBTC Supervault.
+
+### Bespoke Vaults
+
+The campaign also includes specific vaults with custom behaviors that perform specific roles such as introducing MaxBTC to the ecosystem.
+
+- **4. MaxBTC Deposit Vault (KYC Required)**
+    
+    <Note>
+    Contrary to other vaults, the MaxBTC Deposit Vault is not incentivized as part of the campaign, and not subject to withdrawal penalties. Depositors are encouraged to withdraw maxBTC and use it across the DeFi ecosystem to generate additional rewards.
+    </Note>
+    
+    - Accepts wBTC deposits.
+        - For deposits < $100k, requires SumSub KYC via the application.
+        - For larger deposits, whiteglove service is available upon request via @structured_EarlyAccess on Telegram
+    - Mints and holds maxBTC.
+- **5. MaxBTC Liquidity Vault (KYC Required)**
+    - Accepts wBTC deposits.
+        - For deposits < $100k, requires SumSub KYC via the application.
+        - For larger deposits, whiteglove service is available upon request via @structured_EarlyAccess on Telegram
+    - Mints MaxBTC.
+    - Provides MaxBTC liquidity as a single sided deposit to the MaxBTC - wBTC pair.
+
+### Fees
+
+Phase 1 vaults charge a 0.025% deposit and withdrawal fee in order to cover the cost of bridging assets to Neutron.
 
 ---
 
