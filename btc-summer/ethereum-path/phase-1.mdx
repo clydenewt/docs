@@ -9,6 +9,55 @@ icon: "calendar"
 
 This page contains phase-specific information for Ethereum vault participation. For general guidance and processes, see the main [Ethereum Path](/btc-summer/ethereum-path) guide.
 
+## Eligible Assets
+
+Deposit assets for Phase 1 vaults will include the following denominations. Additional tokens may be accepted in future phases.
+
+
+<div className="overflow-x-auto my-2">
+  <table className="min-w-full border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Category</th>
+        <th className="p-3 text-left">Asset(s)</th>
+        <th className="p-3 text-left">Origin</th>
+        <th className="p-3 text-left">Bridge</th>
+        <th className="p-3 text-left">Notes</th>
+        <th className="p-3 text-left">Use Cases</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">BTC Wrapper</td>
+        <td className="p-3">wBTC</td>
+        <td className="p-3">Ethereum</td>
+        <td className="p-3">IBC</td>
+        <td className="p-3">Wrapped Bitcoin</td>
+        <td className="p-3">Lending + LP strategies</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">BTC LSTs</td>
+        <td className="p-3">LBTC, SolvBTC, eBTC, uniBTC</td>
+        <td className="p-3">Ethereum</td>
+        <td className="p-3">IBC</td>
+        <td className="p-3">Liquid Staking Tokens</td>
+        <td className="p-3">Main vaults + LP pairs</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">Stablecoins</td>
+        <td className="p-3">USDC</td>
+        <td className="p-3">Ethereum</td>
+        <td className="p-3">CCTP</td>
+        <td className="p-3">For maxBTC LP</td>
+        <td className="p-3">maxBTC liquidity</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+---
+
 ## Available Vaults (Phase 1)
 
 #### LST Main Vaults: Lend & maxBTC LP
@@ -23,169 +72,169 @@ This page contains phase-specific information for Ethereum vault participation. 
         <th className="p-3 text-left">Strategy</th>
         <th className="p-3 text-left">Allocation</th>
       </tr>
-    </thead>
-    <tbody>
-      <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">uniBTC Main</td>
-        <td className="p-3">uniBTC</td>
-        <td className="p-3">50</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend uniBTC; maxBTC/uniBTC LP</td>
-        <td className="p-3">70% Lend, 30% Supervault</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">solvBTC Main</td>
-        <td className="p-3">solvBTC</td>
-        <td className="p-3">50</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend solvBTC; maxBTC/solvBTC LP</td>
-        <td className="p-3">70% Lend, 30% Supervault</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">LBTC Main</td>
-        <td className="p-3">LBTC</td>
-        <td className="p-3">50</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend LBTC; maxBTC/LBTC LP</td>
-        <td className="p-3">70% Lend, 30% Supervault</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">eBTC Main</td>
-        <td className="p-3">eBTC</td>
-        <td className="p-3">50</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend eBTC; maxBTC/eBTC LP</td>
-        <td className="p-3">70% Lend, 30% Supervault</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        <tr className="border-t border-gray-300 dark:border-gray-700">
+          <td className="p-3 font-medium">uniBTC Main</td>
+          <td className="p-3">uniBTC</td>
+          <td className="p-3">50</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend uniBTC; maxBTC/uniBTC LP</td>
+          <td className="p-3">70% Lend, 30% Supervault</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+          <td className="p-3 font-medium">solvBTC Main</td>
+          <td className="p-3">solvBTC</td>
+          <td className="p-3">50</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend solvBTC; maxBTC/solvBTC LP</td>
+          <td className="p-3">70% Lend, 30% Supervault</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700">
+          <td className="p-3 font-medium">LBTC Main</td>
+          <td className="p-3">LBTC</td>
+          <td className="p-3">50</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend LBTC; maxBTC/LBTC LP</td>
+          <td className="p-3">70% Lend, 30% Supervault</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+          <td className="p-3 font-medium">eBTC Main</td>
+          <td className="p-3">eBTC</td>
+          <td className="p-3">50</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend eBTC; maxBTC/eBTC LP</td>
+          <td className="p-3">70% Lend, 30% Supervault</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-#### wBTC Vaults
-<div className="overflow-x-auto my-2">
-  <table className="min-w-full border border-gray-300 dark:border-gray-700">
-    <thead>
-      <tr className="bg-gray-100 dark:bg-gray-800">
-        <th className="p-3 text-left">Vault Name</th>
-        <th className="p-3 text-left">Deposit Asset</th>
-        <th className="p-3 text-left">Cap (in token amount)</th>
-        <th className="p-3 text-left">KYC</th>
-        <th className="p-3 text-left">Strategy</th>
-        <th className="p-3 text-left">Allocation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">wBTC with uniBTC LP</td>
-        <td className="p-3">wBTC</td>
-        <td className="p-3">50</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend wBTC; wBTC/uniBTC LP</td>
-        <td className="p-3">70% Lend, 30% Supervault</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">wBTC with solvBTC LP</td>
-        <td className="p-3">wBTC</td>
-        <td className="p-3">50</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend wBTC; wBTC/solvBTC LP</td>
-        <td className="p-3">70% Lend, 30% Supervault</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">wBTC with LBTC LP</td>
-        <td className="p-3">wBTC</td>
-        <td className="p-3">50</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend wBTC; wBTC/LBTC LP</td>
-        <td className="p-3">70% Lend, 30% Supervault</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">wBTC with eBTC LP</td>
-        <td className="p-3">wBTC</td>
-        <td className="p-3">50</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend wBTC; wBTC/eBTC LP</td>
-        <td className="p-3">70% Lend, 30% Supervault</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">Just Lend – wBTC / Mars</td>
-        <td className="p-3">wBTC</td>
-        <td className="p-3">500</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend wBTC</td>
-        <td className="p-3">100% Mars</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">Just Lend – wBTC / Amber</td>
-        <td className="p-3">wBTC</td>
-        <td className="p-3">500</td>
-        <td className="p-3">No</td>
-        <td className="p-3">Lend wBTC</td>
-        <td className="p-3">100% Amber</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  #### wBTC Vaults
+  <div className="overflow-x-auto my-2">
+    <table className="min-w-full border border-gray-300 dark:border-gray-700">
+      <thead>
+        <tr className="bg-gray-100 dark:bg-gray-800">
+          <th className="p-3 text-left">Vault Name</th>
+          <th className="p-3 text-left">Deposit Asset</th>
+          <th className="p-3 text-left">Cap (in token amount)</th>
+          <th className="p-3 text-left">KYC</th>
+          <th className="p-3 text-left">Strategy</th>
+          <th className="p-3 text-left">Allocation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="border-t border-gray-300 dark:border-gray-700">
+          <td className="p-3 font-medium">wBTC with uniBTC LP</td>
+          <td className="p-3">wBTC</td>
+          <td className="p-3">50</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend wBTC; wBTC/uniBTC LP</td>
+          <td className="p-3">70% Lend, 30% Supervault</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+          <td className="p-3 font-medium">wBTC with solvBTC LP</td>
+          <td className="p-3">wBTC</td>
+          <td className="p-3">50</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend wBTC; wBTC/solvBTC LP</td>
+          <td className="p-3">70% Lend, 30% Supervault</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700">
+          <td className="p-3 font-medium">wBTC with LBTC LP</td>
+          <td className="p-3">wBTC</td>
+          <td className="p-3">50</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend wBTC; wBTC/LBTC LP</td>
+          <td className="p-3">70% Lend, 30% Supervault</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+          <td className="p-3 font-medium">wBTC with eBTC LP</td>
+          <td className="p-3">wBTC</td>
+          <td className="p-3">50</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend wBTC; wBTC/eBTC LP</td>
+          <td className="p-3">70% Lend, 30% Supervault</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700">
+          <td className="p-3 font-medium">Just Lend – wBTC / Mars</td>
+          <td className="p-3">wBTC</td>
+          <td className="p-3">500</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend wBTC</td>
+          <td className="p-3">100% Mars</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+          <td className="p-3 font-medium">Just Lend – wBTC / Amber</td>
+          <td className="p-3">wBTC</td>
+          <td className="p-3">500</td>
+          <td className="p-3">No</td>
+          <td className="p-3">Lend wBTC</td>
+          <td className="p-3">100% Amber</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-#### Structured Vaults
-<div className="overflow-x-auto my-2">
-  <table className="min-w-full border border-gray-300 dark:border-gray-700">
-    <thead>
-      <tr className="bg-gray-100 dark:bg-gray-800">
-        <th className="p-3 text-left">Vault Name</th>
-        <th className="p-3 text-left">Deposit Asset</th>
-        <th className="p-3 text-left">Cap (in token amount)</th>
-        <th className="p-3 text-left">KYC</th>
-        <th className="p-3 text-left">Strategy</th>
-        <th className="p-3 text-left">Allocation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">MaxBTC Liquidity Vault</td>
-        <td className="p-3">wBTC</td>
-        <td className="p-3">500</td>
-        <td className="p-3">Yes</td>
-        <td className="p-3">maxBTC/wBTC LP</td>
-        <td className="p-3">100% Supervault</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">MaxBTC Deposit Vault</td>
-        <td className="p-3">wBTC</td>
-        <td className="p-3">500</td>
-        <td className="p-3">Yes</td>
-        <td className="p-3">Holding maxBTC</td>
-        <td className="p-3">100% MaxBTC & Hold</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  #### Structured Vaults
+  <div className="overflow-x-auto my-2">
+    <table className="min-w-full border border-gray-300 dark:border-gray-700">
+      <thead>
+        <tr className="bg-gray-100 dark:bg-gray-800">
+          <th className="p-3 text-left">Vault Name</th>
+          <th className="p-3 text-left">Deposit Asset</th>
+          <th className="p-3 text-left">Cap (in token amount)</th>
+          <th className="p-3 text-left">KYC</th>
+          <th className="p-3 text-left">Strategy</th>
+          <th className="p-3 text-left">Allocation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="border-t border-gray-300 dark:border-gray-700">
+          <td className="p-3 font-medium">MaxBTC Liquidity Vault</td>
+          <td className="p-3">wBTC</td>
+          <td className="p-3">500</td>
+          <td className="p-3">Yes</td>
+          <td className="p-3">maxBTC/wBTC LP</td>
+          <td className="p-3">100% Supervault</td>
+        </tr>
+        <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+          <td className="p-3 font-medium">MaxBTC Deposit Vault</td>
+          <td className="p-3">wBTC</td>
+          <td className="p-3">500</td>
+          <td className="p-3">Yes</td>
+          <td className="p-3">Holding maxBTC</td>
+          <td className="p-3">100% MaxBTC & Hold</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-#### Stablecoin Liquidity
-<div className="overflow-x-auto my-2">
-  <table className="min-w-full border border-gray-300 dark:border-gray-700">
-    <thead>
-      <tr className="bg-gray-100 dark:bg-gray-800">
-        <th className="p-3 text-left">Vault Name</th>
-        <th className="p-3 text-left">Deposit Asset</th>
-        <th className="p-3 text-left">Cap (in token amount)</th>
-        <th className="p-3 text-left">KYC</th>
-        <th className="p-3 text-left">Strategy</th>
-        <th className="p-3 text-left">Allocation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">Just LP - USDC maxBTC</td>
-        <td className="p-3">USDC</td>
-        <td className="p-3">3,000,000</td>
-        <td className="p-3">No</td>
-        <td className="p-3">maxBTC/USDC LP</td>
-        <td className="p-3">100% Supervault</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  #### Stablecoin Liquidity
+  <div className="overflow-x-auto my-2">
+    <table className="min-w-full border border-gray-300 dark:border-gray-700">
+      <thead>
+        <tr className="bg-gray-100 dark:bg-gray-800">
+          <th className="p-3 text-left">Vault Name</th>
+          <th className="p-3 text-left">Deposit Asset</th>
+          <th className="p-3 text-left">Cap (in token amount)</th>
+          <th className="p-3 text-left">KYC</th>
+          <th className="p-3 text-left">Strategy</th>
+          <th className="p-3 text-left">Allocation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="border-t border-gray-300 dark:border-gray-700">
+          <td className="p-3 font-medium">Just LP - USDC maxBTC</td>
+          <td className="p-3">USDC</td>
+          <td className="p-3">3,000,000</td>
+          <td className="p-3">No</td>
+          <td className="p-3">maxBTC/USDC LP</td>
+          <td className="p-3">100% Supervault</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 ---
 
