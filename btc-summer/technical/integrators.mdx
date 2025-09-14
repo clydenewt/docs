@@ -1,10 +1,10 @@
 ---
 title: "Integrators Guide"
-description: "Integration guide for developers, asset issuers, and partners building on BTC Summer infrastructure"
+description: "Integration guide for developers and partners building on BTC Summer infrastructure"
 icon: "plug"
 ---
 
-This guide provides technical specifications for developers, asset issuers, and partners integrating with the BTC Summer campaign infrastructure.
+This guide provides technical specifications for developers and partners integrating with the BTC Summer campaign infrastructure.
 
 ---
 
@@ -14,134 +14,76 @@ This guide provides technical specifications for developers, asset issuers, and 
 The Points API is currently in development. Specifications below are preliminary and subject to change.
 </Warning>
 
-### Planned API Endpoints
+### Planned API Structure
 
 **Base URL**: [API endpoint will be announced when available]
 
-#### User Data Endpoints
-```
-GET /points/{address}     # User points and rewards
-GET /positions/{address}  # Eligible positions
-GET /boost-status/{address} # Boost configuration
-```
+**Planned endpoints**:
+- User points and rewards data
+- Campaign status and phase information
+- Eligible protocol and position data
 
-#### Campaign Data Endpoints
-```
-GET /campaign/status      # Current phase and campaign status
-GET /epochs              # Phase information
-GET /eligible-protocols  # Qualifying protocols and multipliers
-```
+### Current Integration Method
 
-### Current Integration Options
+Use standard Neutron blockchain queries:
+- **CosmWasm queries**: For smart contract data
+- **Neutron RPC**: For on-chain state
+- **Event monitoring**: For real-time updates
 
-While the dedicated API is in development, integrators can:
-- **Query smart contracts directly**: Use CosmWasm query methods
-- **Use Neutron RPC**: Access on-chain data via standard Cosmos RPC
-- **Monitor events**: Listen to contract events for real-time updates
-
-See [Neutron Developer Documentation](/developers/overview) for current integration patterns.
+See [Neutron Developer Documentation](/developers/overview) for integration patterns.
 
 ---
 
 ## Asset Issuer Integration
 
-### For BTC LST Issuers
+### BTC LST Issuer Coordination
 
-Asset issuers can integrate their BTC LSTs with the campaign to:
-- Track performance of their assets in the campaign
-- Provide additional rewards to their users
+Asset issuers can coordinate with the campaign to:
+- Track their asset performance in the campaign
+- Potentially provide additional rewards to users
 - Gain exposure to Neutron's DeFi ecosystem
 
-### Integration Process
-1. **Initial contact**: Reach out through official channels
-2. **Technical review**: Asset compatibility assessment
-3. **Integration planning**: Timeline and requirements discussion
-4. **Testing phase**: Sandbox environment testing
-5. **Production deployment**: Live integration and monitoring
-
----
-
-## Partnership Integration
-
-### Partnership Opportunities
-
-1. **Frontend Partners**: Build alternative interfaces for campaign participation
-2. **Wallet Integrations**: Native campaign support in wallet applications
-3. **Asset Issuers**: BTC LST providers wanting deeper integration
-4. **Protocol Partners**: DeFi protocols wanting to collaborate on strategies
-
-### Technical Requirements
-- **Frontend development**: Ability to build user interfaces
-- **Smart contract integration**: Understanding of DeFi protocols
-- **Cross-chain coordination**: Support for multi-network users
+**Contact**: Reach out through official Neutron channels for coordination.
 
 ---
 
 ## Address Linking Implementation
 
-### Key Integration Points
+### Key Implementation Requirement
 
-**Boost Coordination**: Handle cross-chain boost scenarios
-- Single wallet connection (Ethereum only, Neutron only)
-- Multi-wallet scenarios with conflicts
-- Boost pointing and address linking
+Handle cross-chain boost scenarios where:
+- Users deposit via Ethereum vaults (EVM addresses)
+- Users generate boosts via Neutron (NTRN locking)
+- System must coordinate boosts to correct deposit addresses
 
-**Error Handling**: Common integration scenarios
-- Address conflicts and resolution
-- Boost target validation
-- Cross-chain coordination issues
-
-For complete implementation details, see [Address Linking System](/btc-summer/technical/address-linking).
+**Implementation details**: [Address Linking System](/btc-summer/technical/address-linking)
 
 ---
 
 ## Development Resources
 
-### Current Resources
+### Neutron Development Tools
 - [Neutron Developer Documentation](/developers/overview)
 - [Smart Contract Tutorials](/developers/tutorials/introduction_to_cosmwasm)
 - [SDK and Tools](/developers/sdk)
 - [Integration Examples](/developers/tutorials/overview)
 
 ### BTC Summer Specific
-- GitHub repository: [neutron-points-crawler](https://github.com/neutron-org/neutron-points-crawler/tree/feat/maxbtc-points-contract)
-- Smart contract ABIs and interfaces (when deployed)
-- Integration best practices guide (in development)
+- **GitHub repository**: [neutron-points-crawler](https://github.com/neutron-org/neutron-points-crawler/tree/feat/maxbtc-points-contract)
+- **Smart contract interfaces**: Available when contracts are deployed
 
 ---
 
-## Support & Contact
+## Support
 
 ### Technical Support
 - **Discord**: [Neutron Developer Channel](https://discord.com/invite/bzPBzbDvWC)
 - **Documentation**: Complete technical reference available
 
-### Partnership Inquiries
-- **Business development**: [Partnership contact information will be provided]
-- **Technical partnerships**: Integration and development collaboration
-
----
-
-## Integration Checklist
-
-### Before Integration
-- [ ] Review Neutron developer documentation
-- [ ] Understand address linking requirements
-- [ ] Plan for cross-chain user scenarios
-- [ ] Set up development environment
-
-### Development Phase
-- [ ] Use standard Cosmos SDK for smart contract interaction
-- [ ] Implement address conflict handling
-- [ ] Test cross-chain coordination flows
-- [ ] Prepare for API integration when available
-
-### Production Ready
-- [ ] Security review completed
-- [ ] Error handling implemented
-- [ ] User experience tested
-- [ ] Monitoring and alerting configured
+### Partnership Coordination
+- **Contact**: Through official Neutron channels
+- **Focus**: Technical integration and asset issuer coordination
 
 <Note>
-This integration guide focuses on currently available tools and realistic development timelines. API specifications will be updated as implementation progresses.
+This integration guide focuses on currently available tools and realistic development timelines. Detailed API specifications will be provided as implementation progresses.
 </Note>

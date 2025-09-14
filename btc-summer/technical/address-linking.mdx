@@ -1,171 +1,144 @@
 ---
 title: "Address Linking System"
-description: "Cross-chain address coordination system architecture and implementation guide for integrators"
+description: "Understanding cross-chain address coordination for BTC Summer rewards and boosts"
 icon: "link"
 ---
 
-The BTC Summer campaign implements an address linking system to coordinate deposits across Ethereum and Neutron with boost mechanisms that exist only on Neutron.
+The BTC Summer campaign uses an address linking system to coordinate rewards across different networks. This page explains why you might need to link addresses and how the system works.
 
 <Info>
-This documentation is for developers and integrators building interfaces that support cross-chain campaign participation. For user-facing guidance, see the [Ethereum Path](/btc-summer/ethereum-path) or [Neutron Path](/btc-summer/neutron-path) guides.
+This page provides detailed context for users and integrators who want to understand address linking better. The principal how-to sections for users can be found here: [Ethereum Path](/btc-summer/ethereum-path) and [Neutron Path](/btc-summer/neutron-path).
 </Info>
 
 ---
 
-## System Architecture
+## Why Address Linking Exists
 
-### The Challenge
+### The Cross-Chain Challenge
 
-**Deposit Networks:**
-- **Ethereum**: Via automated campaign vaults
-- **Neutron**: Direct deposits to Supervaults or Amber Protocol
+BTC Summer allows you to participate in two different ways:
+- **Deposit on Ethereum**: Use familiar wallets like MetaMask with automated vaults
+- **Deposit on Neutron**: Use Cosmos wallets like Keplr for direct protocol access
 
-**Boost Mechanisms:**
-- **NTRN Locking**: Only available on Neutron
-- **NFT Collections**: Only Neutron-based collections count
+However, **boost mechanisms only work on Neutron**:
+- **NTRN Locking**: You can only lock NTRN tokens on Neutron
+- **NFT Boosts**: Only Neutron-based NFT collections provide boosts
 
-**Solution**: User-controlled "pointing" system where users explicitly designate which address should receive boost benefits.
+If you deposit via Ethereum vaults but want to boost your rewards by locking NTRN:
+- Your **deposits** are tracked to your Ethereum address
+- Your **NTRN boost** is generated on your Neutron address
+- The system needs to know these addresses belong to the same person
 
-### Core Components
-
-**Boost Pointer Contract**:
-- Simple staking contract accepting NFT deposits
-- Accepts both Ethereum and Neutron address formats
-- No unbonding periods - purely accounting mechanism
-- Maps boost sources to target deposit addresses
-
-**Lock Receipt NFTs**:
-- Functional NFTs representing locked NTRN positions
-- Store lock duration and amount information
-- Transferable on secondary markets (e.g., Superbolt)
-- Must be staked to Pointer Contract to activate boost
+**Without address linking**: Your boost wouldn't apply to your deposits, and you'd miss out on reward multipliers.
 
 ---
 
-## Address Resolution Logic
+## How Address Linking Works
 
-### Single Wallet Connection Scenarios
+### The "Pointing" System
 
-| Scenario | ETH Connected | Neutron Connected | Both Connected |
-|----------|---------------|-------------------|----------------|
-| ETH deposits, no boost | Shows deposits | Empty | Shows deposits |
-| Neutron deposits, no boost | Empty | Shows deposits | Shows deposits |
-| ETH deposits + ETH-pointed boost | Complete view | Empty | Complete view |
-| ETH deposits + Neutron-pointed boost | Deposits only | Boost only | **Conflict** |
-| Neutron deposits + ETH-pointed boost | Boost only | Deposits only | **Conflict** |
-| Neutron deposits + Neutron-pointed boost | Empty | Complete view | Complete view |
+Instead of trying to automatically guess which addresses belong together, the campaign uses a simple **user-controlled system**:
 
-### Conflict Resolution
+1. **You explicitly tell the system** which address holds your deposits
+2. **When you create a boost** (by locking NTRN), you "point" it to your deposit address
+3. **The system connects** your Neutron-based boost to your deposit address for reward calculations
 
-**Conflict Types**:
-1. **Cross-network boost**: Deposits on one network, boost pointed to another
-2. **Multiple deposits**: Deposits on both networks simultaneously
-3. **Total conflict**: Complex scenarios requiring user resolution
+This operation of connecting your boost to your deposit address is called "**pointing**."
 
-**UI Patterns**:
-- Display dominant network data with conflict warnings
-- Provide clear resolution suggestions
-- Allow users to disconnect secondary wallets
+### When You Need Address Linking
 
----
+**Ethereum Path Users (Most Common)**:
+- You deposit using MetaMask (Ethereum address)
+- You want to boost rewards by locking NTRN (requires Neutron wallet)
+- **You must point your NTRN boost to your Ethereum deposit address**
 
-## Implementation Examples
+**Neutron Path Users**:
+- You deposit using Keplr (Neutron address)
+- You boost with the same Neutron wallet
+- **No linking needed** - everything happens on the same address
 
-### Boost Pointer Contract Interface
-
-```solidity
-interface IBoostPointer {
-    function pointBoost(address target) external;
-    function getBoostTarget(address user) external view returns (address);
-    function getBoostMultiplier(address user) external view returns (uint256);
-    function updateBoostTarget(address newTarget) external;
-}
-```
-
-### Address Format Support
-
-**Ethereum addresses**: Standard 0x format
-```
-0x742d35Cc6634C0532925a3b8D4e8F0532E7C45 (example format)
-```
-
-**Neutron addresses**: Bech32 format with neutron prefix
-```
-neutron1w29vh2hjnjef9e2dujc5j4ear4g5th955vetjrx42m7eedeg8ydq3v9zee (example format)
-```
+**Mixed Scenario**:
+- You have deposits on both Ethereum and Neutron
+- You need to choose which address to boost (you can only boost one at a time)
 
 ---
 
-## Integration Requirements
+## How the System Works Technically
 
-### Minimum Implementation
-1. **Address detection**: Support both Ethereum and Neutron wallets
-2. **Conflict handling**: Basic conflict detection and resolution
-3. **Boost pointing**: Interface for users to point boosts to deposit addresses
-4. **Status display**: Show current boost configuration
+### Boost Pointer Contract
 
-### Recommended Implementation
-1. **Advanced conflict resolution**: Sophisticated UI for complex scenarios
-2. **Real-time validation**: Live checking of boost/deposit alignment
-3. **Multi-network support**: Seamless switching between networks
+The campaign uses a smart contract called the "Boost Pointer Contract" that:
+- **Accepts your boost** (NTRN lock receipt NFT)
+- **Records your chosen target address** (where your deposits are)
+- **Calculates your boost multiplier** based on deposits at that address
+- **Applies rewards** to the correct deposit location
 
----
+### User Experience
 
-## Testing Scenarios
+**In the Campaign Interface**:
+1. **"Boost this wallet"**: Applies boost to your currently connected Neutron wallet
+2. **"Link an address"**: Lets you specify a different address (like your Ethereum address)
 
-### Test Cases
-1. **Single wallet scenarios**: Ethereum only, Neutron only (with/without boosts)
-2. **Multi-wallet scenarios**: Both wallets with deposits (conflict handling)
-3. **Cross-network boost**: Proper address linking validation
-4. **Edge cases**: Wallet disconnection, address format validation
+**For Ethereum depositors**: Always use "Link an address" and enter your Ethereum address
+**For Neutron depositors**: Can use "Boost this wallet" since deposits and boosts are on the same network
 
-```javascript
-// Example test structure for address linking integration
-describe('Address Linking Integration', () => {
-  test('handles single wallet connection', async () => {
-    // Test single wallet scenarios
-    // Implementation details will be provided with SDK
-  });
-  
-  test('detects cross-network conflicts', async () => {
-    // Test multi-wallet conflict detection  
-    // Implementation details will be provided with SDK
-  });
-});
-```
+This approach prioritizes user control over automatic matching - you explicitly decide which address gets boosted, and all boost pointing is recorded on-chain for transparency and verification. NTRN lock NFTs are transferable, but boost benefits follow the NFT holder.
 
 ---
 
-## Technical Specifications
+## Common Scenarios
 
-### Key Contract Methods
+<AccordionGroup>
+  <Accordion title="Scenario 1: Ethereum Vault + NTRN Boost">
+    **What you do**:
+    - Deposit to Ethereum vaults using MetaMask
+    - Set up Neutron wallet and acquire NTRN
+    - Lock NTRN and point boost to your Ethereum address
+    - Earn base rewards + boost multiplier
+    
+    **Key point**: You must link your Neutron boost to your Ethereum deposit address.
+  </Accordion>
 
-Based on the boost pointer contract implementation:
-- `pointBoost(address target)`: Point boost to specific address
-- `getBoostTarget(address user)`: Get current boost target
-- `getBoostMultiplier(address user)`: Get boost multiplier value
+  <Accordion title="Scenario 2: Direct Neutron + Boost">
+    **What you do**:
+    - Deposit directly to Neutron protocols using Keplr
+    - Lock NTRN from the same Neutron wallet
+    - Boost automatically applies to your Neutron address
+    - Earn base rewards + boost multiplier
+    
+    **Key point**: No linking needed since deposits and boosts are on the same network.
+  </Accordion>
 
-### Integration Patterns
-
-For current integration approaches, see:
-- [Neutron Developer Documentation](/developers/overview)
-- [CosmWasm Integration Guide](/developers/tutorials/introduction_to_cosmwasm)
-- [Smart Contract Interaction](/developers/sdk)
+  <Accordion title="Scenario 3: Multiple Addresses">
+    **What you do**:
+    - Choose your primary deposit address
+    - Point all boosts to that one address
+    - Other addresses earn base rewards only
+    - Maximize rewards on your main address
+    
+    **Key point**: You can only boost one address at a time, so consolidation maximizes rewards.
+  </Accordion>
+</AccordionGroup>
 
 ---
 
-## Support Resources
+## Key Takeaways
 
-<CardGroup cols={2}>
-  <Card title="Technical Reference" icon="book" href="/btc-summer/technical/reference">
-    Complete contract addresses and technical specifications
-  </Card>
-  
-  <Card title="Integration Guide" icon="plug" href="/btc-summer/technical/integrators">
-    API specifications and partnership opportunities
-  </Card>
-</CardGroup>
+**For Users**:
+- Address linking lets you boost deposits made on different networks
+- You must explicitly connect your boosts to your deposit addresses
+- The system prioritizes user control over automatic matching
+
+**For Understanding Rewards**:
+- Your boost only applies to the address you point it to
+- You can only boost one address at a time
+- Pointing incorrectly means your boost won't work
+
+**For Planning**:
+- Choose one primary address for deposits if possible
+- Understand that cross-chain coordination requires extra steps
+- The system is designed to be transparent and user-controlled
 
 <Note>
-This system prioritizes user control and transparency. Complex edge cases are handled through clear error messaging and user guidance rather than automatic backend matching.
+Address linking ensures you can maximize your rewards even when participating across multiple networks, while maintaining transparency and user control over the boost system.
 </Note>

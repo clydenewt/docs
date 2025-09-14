@@ -99,9 +99,9 @@ Cosmos Hub → Neutron: IBC
 
 ---
 
-## Smart Contract Integration
+## Integration Approach
 
-### Current Integration Method
+### Smart Contract Queries
 
 Use standard Cosmos SDK tools for smart contract interaction:
 
@@ -119,51 +119,33 @@ const userPoints = await client.queryContractSmart(
 );
 ```
 
-### Development Libraries
+---
 
-<Note>
-Dedicated BTC Summer SDKs are planned for future development. Currently, use standard Cosmos and Neutron development tools.
-</Note>
+## Development Tools
 
-**Current Integration Options**:
+### Current Options
 - **CosmJS**: JavaScript/TypeScript Cosmos SDK
 - **Neutron SDK**: [Developer Tools](/developers/sdk)
 - **CosmWasm**: [Smart Contract Development](/developers/tutorials/introduction_to_cosmwasm)
-- **Integration Examples**: [Developer Tutorials](/developers/tutorials/overview)
 
----
-
-## Usage Notes
-
-- **Token denoms** are used for IBC transfers and protocol interactions
-- **Supervault addresses** are contract addresses for liquidity provision
-- **Oracle addresses** provide price feeds for campaign calculations
-- **All addresses** are on Neutron mainnet unless otherwise specified
-
-<Warning>
-All addresses and denominations are specific to the BTC Summer campaign implementation on Neutron mainnet. Verify current addresses before integration.
-</Warning>
+### BTC Summer Specific
+- **GitHub**: [neutron-points-crawler](https://github.com/neutron-org/neutron-points-crawler/tree/feat/maxbtc-points-contract)
+- **Contract interfaces**: Available when deployed
 
 ---
 
 ## Additional Resources
 
 <CardGroup cols={2}>
-  <Card title="Integration Guide" icon="plug" href="/btc-summer/technical/integrators">
-    Complete integration requirements and processes
-  </Card>
-  
   <Card title="Address Linking" icon="link" href="/btc-summer/technical/address-linking">
     Cross-chain coordination implementation details
   </Card>
-</CardGroup>
-
-<CardGroup cols={2}>
+  
   <Card title="Neutron Developer Docs" icon="code" href="/developers/overview">
     Complete Neutron development resources
   </Card>
-  
-  <Card title="Campaign Details" icon="info" href="/btc-summer/campaign-details">
-    User-facing campaign mechanics for context
-  </Card>
 </CardGroup>
+
+<Note>
+This reference focuses on factual, implemented components. API specifications will be added as development progresses.
+</Note>
