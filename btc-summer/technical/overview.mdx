@@ -4,172 +4,91 @@ description: "High-level architecture and system components of the BTC Summer ca
 icon: "diagram-project"
 ---
 
-The BTC Summer campaign leverages Neutron's integrated blockchain infrastructure to deliver sophisticated Bitcoin DeFi strategies through a robust, transparent, and scalable technical architecture.
+The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to deliver Bitcoin DeFi strategies through transparent, on-chain reward tracking.
 
 ---
 
-## System Components
+## System Architecture
 
-### Points & Rewards Infrastructure
+### Points System
 
-**Points Contract**: Smart contract system for transparent reward tracking and distribution
+**Points Contract**: On-chain smart contract for reward tracking and distribution
 - Stores user points and reward calculations on-chain
 - Supports both Ethereum and Neutron address formats
-- Enables real-time reward projections and verification
+- Enables transparent reward verification
+
+**Points Crawler**: Modified version of [Droplets](https://droplets.drop.money/) points campaign functionality 
+- Gathers data on deposit size and duration
+- Publishes data on-chain to the points contract
+- Uses daily snapshots for fair reward distribution
 
 **Reward Distribution**: Dollar-denominated rewards converted to NTRN at phase end
 - Protects users from token price volatility during phases
 - Aligns campaign costs with network growth
-- Enables predictable reward planning
 
-### Cross-Chain Coordination
+### Address Linking System
 
-**Address Linking System**: User-controlled cross-chain reward coordination
-- Boost Pointer Contract for linking rewards across networks
-- Support for both EVM and Neutron address formats
+**Boost Pointer Contract**: Links Neutron-based boosts to deposit addresses
+- Accepts both Ethereum and Neutron address formats
 - User-controlled "pointing" system for boost coordination
+- No unbonding periods - purely accounting mechanism
 
-**Bridge Infrastructure**: Secure asset bridging for Ethereum vault participants
-- Automated bridging through established protocols
-- Asset deployment to Neutron DeFi positions
-- Withdrawal processing back to user wallets
+**Cross-Chain Coordination**: Handles deposits across Ethereum and Neutron
+- Ethereum deposits via automated vaults
+- Direct Neutron deposits to protocols
+- Unified reward calculation system
+- Complete implementation: [Address Linking System](/btc-summer/technical/address-linking)
 
-### DeFi Integration Layer
+### Protocol Integration
 
-**Protocol Connectivity**: Direct integration with Neutron's DeFi ecosystem
-- Amber Protocol for lending and leveraged strategies
-- Supervaults for automated market making
-- Mars Protocol for perpetuals trading (integration pending)
-
-**Real-Time Data**: Live position tracking and reward calculations
-- Daily snapshots for fair reward distribution
-- Cross-protocol position aggregation
-- Transparent on-chain verification
-
----
-
-## Security Considerations
-
-### On-Chain Transparency
-- All points and rewards data stored on-chain
-- Public verification of reward calculations
-- No centralized backend dependencies for core functions
-
-### Manipulation Prevention
-- Random snapshot timing prevents gaming
-- Time-averaged calculations reduce manipulation impact
-- Cross-protocol validation ensures data accuracy
-
-### Smart Contract Security
-- Established protocols with proven track records
-- Multiple security audits for critical components
-- Gradual rollout with monitoring and safeguards
-
----
-
-## Integration Architecture
-
-### For Frontend Developers
-- REST API endpoints for points and reward data
-- WebSocket connections for real-time updates
-- Standard wallet integration patterns
-
-### For Asset Issuers
-- Points API integration for tracking asset performance
-- Reward distribution coordination
-- Partnership integration opportunities
-
-### For Protocol Partners
-- Direct protocol integration specifications
-- Cross-chain coordination support
-- Revenue sharing and partnership frameworks
-
----
-
-## Performance & Scalability
-
-### Neutron Infrastructure Advantages
-- **High-frequency oracles**: Per-block price updates for accurate calculations
-- **Native automation**: Built-in scheduling for reward distributions
-- **Integrated orderbook**: Efficient liquidity management
-- **Cross-chain modules**: Trust-minimized bridge coordination
-
-### Campaign Scalability
-- Designed to handle thousands of participants
-- Efficient batch processing for reward calculations
-- Modular architecture for future campaign expansion
-
----
-
-## Data Flow
-
-### User Deposits
-1. **Ethereum Path**: Vault → Bridge → Neutron Protocol → Points Tracking
-2. **Neutron Path**: Direct Protocol → Points Tracking
-3. **Reward Calculation**: Daily snapshots → Points accumulation → Epoch distribution
-
-### Boost Mechanisms
-1. **NTRN Locking**: Lock contract → Receipt NFT → Boost calculation
-2. **Address Linking**: Boost pointing → Cross-chain coordination → Reward enhancement
-3. **Verification**: On-chain validation → Real-time boost application
-
----
-
-## Technical Resources
-
-<CardGroup cols={2}>
-  <Card title="Integration Guide" icon="plug" href="/btc-summer/technical/integrators">
-    Complete guide for developers building integrations
+<CardGroup cols={3}>
+  <Card title="Amber Protocol" icon="fire" href="https://app.amberfi.io/">
+    Lending and leveraged strategies for BTC derivatives. Direct integration with campaign reward system.
   </Card>
   
-  <Card title="Address Linking" icon="link" href="/btc-summer/technical/address-linking">
-    Cross-chain coordination system for advanced implementations
-  </Card>
-</CardGroup>
-
-<CardGroup cols={2}>
-  <Card title="Technical Reference" icon="book" href="/btc-summer/technical/reference">
-    Contract addresses, ABIs, and complete technical specifications
+  <Card title="Supervaults" icon="vault" href="/defi/supervaults">
+    Automated market making for BTC derivative pairs. LP positions tracked via vault shares.
   </Card>
   
-  <Card title="Campaign Details" icon="info" href="/btc-summer/campaign-details">
-    User-facing campaign mechanics and participation guide
+  <Card title="Timewave Vault Infrastructure" icon="bridge" href="https://docs.valence.zone/examples/crosschain_vaults.html">
+    Automated bridging and deployment for Ethereum users via established protocols.
   </Card>
 </CardGroup>
 
 ---
 
-## Development Status
+## Technical Implementation
 
-### Current Implementation
+### Current Status
 - Points contract and reward calculation system
 - Address linking and boost coordination
 - Amber Protocol integration
 - Supervaults integration
 - Ethereum vault infrastructure
 
-### In Development
-- Points API for external integrations
-- Mars Protocol perpetuals integration
-- Enhanced boost mechanisms
-- Additional asset issuer partnerships
-
-### Future Enhancements
-- Advanced analytics and reporting
-- Mobile-optimized interfaces
-- Additional protocol integrations
-- Enhanced cross-chain coordination
+### GitHub Repository
+Active development: [neutron-points-crawler](https://github.com/neutron-org/neutron-points-crawler/tree/feat/maxbtc-points-contract)
 
 ---
 
-## Support & Documentation
+## For Developers
 
-For technical implementation support:
-- **Integration questions**: Use technical documentation sections
-- **API specifications**: See integrators guide
-- **Smart contract details**: Reference technical specifications
-- **Partnership inquiries**: Contact through official channels
+<CardGroup cols={2}>
+  <Card title="Integration Guide" icon="plug" href="/btc-summer/technical/integrators">
+    API specifications and integration requirements
+  </Card>
+  
+  <Card title="Address Linking" icon="link" href="/btc-summer/technical/address-linking">
+    Cross-chain coordination implementation details
+  </Card>
+</CardGroup>
 
-<Note>
-This technical overview provides the foundation for understanding BTC Summer's architecture. For detailed implementation guides, see the specific technical documentation sections.
-</Note>
+<CardGroup cols={2}>
+  <Card title="Technical Reference" icon="book" href="/btc-summer/technical/reference">
+    Contract addresses, token denominations, and specifications
+  </Card>
+  
+  <Card title="Neutron Developer Docs" icon="code" href="/developers/overview">
+    Complete Neutron development resources and tutorials
+  </Card>
+</CardGroup>

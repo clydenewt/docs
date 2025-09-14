@@ -1,161 +1,67 @@
 ---
 title: "Integrators Guide"
-description: "Complete integration guide for developers, asset issuers, and partners building on BTC Summer infrastructure"
+description: "Integration guide for developers, asset issuers, and partners building on BTC Summer infrastructure"
 icon: "plug"
 ---
 
-This guide provides comprehensive technical specifications for developers, asset issuers, and partners who want to integrate with the BTC Summer campaign infrastructure.
+This guide provides technical specifications for developers, asset issuers, and partners integrating with the BTC Summer campaign infrastructure.
 
 ---
 
 ## Points API Integration
 
-### API Overview
-
 <Warning>
-The Points API is currently in development. Specifications below are preliminary and subject to change. Contact the development team for current integration status.
+The Points API is currently in development. Specifications below are preliminary and subject to change.
 </Warning>
 
-The Points API will provide real-time access to campaign data, reward calculations, and user positions.
+### Planned API Endpoints
 
 **Base URL**: [API endpoint will be announced when available]
 
-**Current Integration**: Use standard Neutron RPC and smart contract queries
-
-**Future API**: Dedicated REST API planned for easier integration
-
-### Core Endpoints
-
-#### User Points & Rewards
-
-```bash
-GET /points/{address}
+#### User Data Endpoints
+```
+GET /points/{address}     # User points and rewards
+GET /positions/{address}  # Eligible positions
+GET /boost-status/{address} # Boost configuration
 ```
 
-**Response**:
-```json
-{
-  "address": "neutron1...",
-  "total_points": 1500000,
-  "current_phase_points": 500000,
-  "projected_rewards_usd": 125.50,
-  "boost_multiplier": 1.5,
-  "last_updated": "2024-01-15T10:30:00Z"
-}
+#### Campaign Data Endpoints
+```
+GET /campaign/status      # Current phase and campaign status
+GET /epochs              # Phase information
+GET /eligible-protocols  # Qualifying protocols and multipliers
 ```
 
-#### Campaign Status
+### Current Integration Options
 
-```bash
-GET /campaign/status
-```
+While the dedicated API is in development, integrators can:
+- **Query smart contracts directly**: Use CosmWasm query methods
+- **Use Neutron RPC**: Access on-chain data via standard Cosmos RPC
+- **Monitor events**: Listen to contract events for real-time updates
 
-**Response**:
-```json
-{
-  "current_phase": 1,
-  "phase_start": "2024-01-01T00:00:00Z",
-  "phase_end": "2024-03-01T00:00:00Z",
-  "total_budget_usd": 250000,
-  "total_participants": 1250,
-  "total_tvl_usd": 5000000
-}
-```
-
-#### Eligible Positions
-
-```bash
-GET /positions/{address}
-```
-
-**Response**:
-```json
-{
-  "positions": [
-    {
-      "protocol": "amber",
-      "asset": "wBTC",
-      "type": "lending",
-      "value_usd": 50000,
-      "eligible": true
-    }
-  ]
-}
-```
+See [Neutron Developer Documentation](/developers/overview) for current integration patterns.
 
 ---
 
 ## Asset Issuer Integration
 
-### Overview for BTC LST Issuers
+### For BTC LST Issuers
 
 Asset issuers can integrate their BTC LSTs with the campaign to:
 - Track performance of their assets in the campaign
 - Provide additional rewards to their users
 - Gain exposure to Neutron's DeFi ecosystem
 
-### Integration Requirements
-
-#### Technical Requirements
-- **Asset bridging**: Support for IBC transfers to Neutron
-- **Oracle integration**: Price feeds for accurate valuation
-- **Protocol compatibility**: Integration with Amber/Supervaults
-
-#### Partnership Process
+### Integration Process
 1. **Initial contact**: Reach out through official channels
 2. **Technical review**: Asset compatibility assessment
 3. **Integration planning**: Timeline and requirements discussion
 4. **Testing phase**: Sandbox environment testing
 5. **Production deployment**: Live integration and monitoring
 
-### Asset Performance Tracking
-
-```bash
-GET /assets/{asset_denom}/performance
-```
-
-**Response**:
-```json
-{
-  "asset": "ibc/LBTC_DENOM",
-  "total_deposits_usd": 1500000,
-  "active_participants": 450,
-  "avg_deposit_size_usd": 3333,
-  "reward_distribution_usd": 15000,
-  "phase_performance": {
-    "yield_generated": 0.12,
-    "campaign_rewards": 0.08
-  }
-}
-```
-
 ---
 
 ## Partnership Integration
-
-### Revenue Sharing Framework
-
-**Model**: Partners can earn revenue based on:
-- **TVL generated**: Percentage of total value locked through partnership
-- **User acquisition**: Rewards for bringing new participants
-- **Technical integration**: Compensation for development work
-
-**Payment structure**: 
-- Monthly settlements in NTRN or USDC
-- Performance-based bonuses for milestone achievements
-- Long-term partnership incentives
-
-### Partnership Requirements
-
-#### Technical Capabilities
-- **Frontend development**: Ability to build user interfaces
-- **Smart contract integration**: Understanding of DeFi protocols
-- **Cross-chain coordination**: Support for multi-network users
-
-#### Business Requirements
-- **User base**: Existing community or user acquisition capability
-- **Compliance**: Appropriate regulatory framework
-- **Support capacity**: Ability to provide user support
 
 ### Partnership Opportunities
 
@@ -164,192 +70,78 @@ GET /assets/{asset_denom}/performance
 3. **Asset Issuers**: BTC LST providers wanting deeper integration
 4. **Protocol Partners**: DeFi protocols wanting to collaborate on strategies
 
----
-
-## Frontend Integration Patterns
-
-### Wallet Connection Handling
-
-```javascript
-// Handle multi-wallet scenarios
-const handleWalletConnection = async () => {
-  const ethWallet = await connectEthereumWallet();
-  const neutronWallet = await connectNeutronWallet();
-  
-  // Check for address conflicts
-  const conflicts = await checkAddressConflicts(ethWallet, neutronWallet);
-  
-  if (conflicts.length > 0) {
-    // Display conflict resolution UI
-    showConflictResolution(conflicts);
-  }
-};
-```
-
-### Boost Coordination UI
-
-```javascript
-// Boost pointing interface
-const BoostPointingComponent = ({ userAddresses, deposits }) => {
-  const [targetAddress, setTargetAddress] = useState(null);
-  
-  // Validate boost target matches deposit address
-  const validateBoostTarget = (target) => {
-    return deposits.some(deposit => deposit.address === target);
-  };
-  
-  return (
-    <BoostSelector 
-      addresses={userAddresses}
-      onSelect={setTargetAddress}
-      validator={validateBoostTarget}
-    />
-  );
-};
-```
-
-### Error Handling Patterns
-
-```javascript
-// Common error scenarios
-const handleCampaignErrors = (error) => {
-  switch (error.type) {
-    case 'BOOST_ADDRESS_MISMATCH':
-      return 'Boost must point to address with deposits';
-    case 'INSUFFICIENT_NTRN':
-      return 'Not enough NTRN for locking';
-    case 'CROSS_CHAIN_CONFLICT':
-      return 'Multiple wallets detected, please use one';
-    default:
-      return 'Unknown error occurred';
-  }
-};
-```
+### Technical Requirements
+- **Frontend development**: Ability to build user interfaces
+- **Smart contract integration**: Understanding of DeFi protocols
+- **Cross-chain coordination**: Support for multi-network users
 
 ---
 
-## Testing & Development
+## Address Linking Implementation
 
-### Sandbox Environment
+### Key Integration Points
 
-**Testnet access**: 
-- Neutron testnet endpoints for development
-- Test NTRN tokens for testing boost mechanisms
-- Mock vault contracts for integration testing
-
-**Testing scenarios**:
+**Boost Coordination**: Handle cross-chain boost scenarios
 - Single wallet connection (Ethereum only, Neutron only)
 - Multi-wallet scenarios with conflicts
 - Boost pointing and address linking
-- Reward calculation verification
 
-### Development Resources
+**Error Handling**: Common integration scenarios
+- Address conflicts and resolution
+- Boost target validation
+- Cross-chain coordination issues
 
-**Current Resources**:
+For complete implementation details, see [Address Linking System](/btc-summer/technical/address-linking).
+
+---
+
+## Development Resources
+
+### Current Resources
 - [Neutron Developer Documentation](/developers/overview)
 - [Smart Contract Tutorials](/developers/tutorials/introduction_to_cosmwasm)
 - [SDK and Tools](/developers/sdk)
 - [Integration Examples](/developers/tutorials/overview)
 
-**BTC Summer Specific** (in development):
-- GitHub repository with campaign-specific examples
-- Smart contract ABIs and interfaces
-- Integration best practices guide
+### BTC Summer Specific
+- GitHub repository: [neutron-points-crawler](https://github.com/neutron-org/neutron-points-crawler/tree/feat/maxbtc-points-contract)
+- Smart contract ABIs and interfaces (when deployed)
+- Integration best practices guide (in development)
 
 ---
 
-## Smart Contract Integration
-
-### Key Contracts
-
-**Points Contract**: Core reward tracking and distribution
-```solidity
-interface IPointsContract {
-    function getUserPoints(address user) external view returns (uint256);
-    function getCurrentEpoch() external view returns (uint256);
-    function getRewardProjection(address user) external view returns (uint256);
-}
-```
-
-**Boost Pointer Contract**: Cross-chain address coordination
-```solidity
-interface IBoostPointer {
-    function pointBoost(address target) external;
-    function getBoostTarget(address user) external view returns (address);
-    function getBoostMultiplier(address user) external view returns (uint256);
-}
-```
-
-### Integration Examples
-
-**Query user rewards**:
-```javascript
-const getUserCampaignData = async (userAddress) => {
-  const points = await pointsContract.getUserPoints(userAddress);
-  const boost = await boostContract.getBoostMultiplier(userAddress);
-  const projection = await pointsContract.getRewardProjection(userAddress);
-  
-  return { points, boost, projection };
-};
-```
-
----
-
-## Support & Resources
+## Support & Contact
 
 ### Technical Support
+- **Discord**: [Neutron Developer Channel](https://discord.com/invite/bzPBzbDvWC)
+- **Documentation**: Complete technical reference available
 
-**Integration support**:
-- Discord: [Neutron Developer Channel](https://discord.com/invite/bzPBzbDvWC)
-- Email: [Developer contact information will be provided]
-- Documentation: Complete technical reference available
-
-**Partnership inquiries**:
-- Business development: [Partnership contact information will be provided]
-- Strategic partnerships: Focus on mutual value creation
-- Technical partnerships: Integration and development collaboration
-
-### Additional Resources
-
-<CardGroup cols={2}>
-  <Card title="Address Linking System" icon="link" href="/btc-summer/technical/address-linking">
-    Detailed cross-chain coordination implementation guide
-  </Card>
-  
-  <Card title="Technical Reference" icon="book" href="/btc-summer/technical/reference">
-    Complete contract addresses, ABIs, and technical specifications
-  </Card>
-</CardGroup>
-
-<CardGroup cols={2}>
-  <Card title="Campaign Details" icon="info" href="/btc-summer/campaign-details">
-    User-facing campaign mechanics for context
-  </Card>
-  
-  <Card title="Developer Resources" icon="book" href="/developers/overview">
-    Neutron developer documentation and integration guides
-  </Card>
-</CardGroup>
+### Partnership Inquiries
+- **Business development**: [Partnership contact information will be provided]
+- **Technical partnerships**: Integration and development collaboration
 
 ---
 
 ## Integration Checklist
 
-### Before Going Live
-- [ ] API integration tested in sandbox environment
-- [ ] Error handling implemented for all scenarios
-- [ ] Cross-chain coordination properly handled
-- [ ] User experience tested with real wallets
-- [ ] Security review completed
-- [ ] Performance optimization verified
+### Before Integration
+- [ ] Review Neutron developer documentation
+- [ ] Understand address linking requirements
+- [ ] Plan for cross-chain user scenarios
+- [ ] Set up development environment
 
-### Launch Requirements
-- [ ] Production API access configured
-- [ ] Monitoring and alerting set up
-- [ ] User support documentation prepared
-- [ ] Rollback procedures established
-- [ ] Partnership agreements finalized
+### Development Phase
+- [ ] Use standard Cosmos SDK for smart contract interaction
+- [ ] Implement address conflict handling
+- [ ] Test cross-chain coordination flows
+- [ ] Prepare for API integration when available
+
+### Production Ready
+- [ ] Security review completed
+- [ ] Error handling implemented
+- [ ] User experience tested
+- [ ] Monitoring and alerting configured
 
 <Note>
-This integration guide is actively maintained. For the latest API specifications and partnership opportunities, check the technical reference or contact the development team.
+This integration guide focuses on currently available tools and realistic development timelines. API specifications will be updated as implementation progresses.
 </Note>

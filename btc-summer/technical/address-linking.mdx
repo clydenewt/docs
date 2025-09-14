@@ -4,7 +4,7 @@ description: "Cross-chain address coordination system architecture and implement
 icon: "link"
 ---
 
-The BTC Summer campaign implements a sophisticated address linking system to coordinate deposits across Ethereum and Neutron with boost mechanisms that exist only on Neutron.
+The BTC Summer campaign implements an address linking system to coordinate deposits across Ethereum and Neutron with boost mechanisms that exist only on Neutron.
 
 <Info>
 This documentation is for developers and integrators building interfaces that support cross-chain campaign participation. For user-facing guidance, see the [Ethereum Path](/btc-summer/ethereum-path) or [Neutron Path](/btc-summer/neutron-path) guides.
@@ -22,83 +22,29 @@ This documentation is for developers and integrators building interfaces that su
 
 **Boost Mechanisms:**
 - **NTRN Locking**: Only available on Neutron
-- **NFT Collections**: Only Superbolt collections on Neutron count
+- **NFT Collections**: Only Neutron-based collections count
 
-**The Problem**: How do we connect deposits on Ethereum with boosts generated on Neutron for accurate reward calculations?
+**Solution**: User-controlled "pointing" system where users explicitly designate which address should receive boost benefits.
 
-### Technical Solution
+### Core Components
 
-The campaign implements a user-controlled **"pointing"** system where users explicitly designate which address should receive boost benefits.
-
-**System Components:**
-- **Deposits**: Can occur on Ethereum (vaults) or Neutron (direct protocols)
-- **Boosts**: Only generated on Neutron via NTRN locking or NFT collections  
-- **Boost Pointer Contract**: Links Neutron-based boosts to any deposit address
-- **Pointing Operation**: User explicitly connects their boost to their deposit address
-
----
-
-## Core Components
-
-### Boost Pointer Contract
-
-**Functionality**:
+**Boost Pointer Contract**:
 - Simple staking contract accepting NFT deposits
 - Accepts both Ethereum and Neutron address formats
 - No unbonding periods - purely accounting mechanism
 - Maps boost sources to target deposit addresses
 
-**Key Methods**:
-```solidity
-interface IBoostPointer {
-    function pointBoost(address target) external;
-    function getBoostTarget(address user) external view returns (address);
-    function getBoostMultiplier(address user) external view returns (uint256);
-    function updateBoostTarget(address newTarget) external;
-}
-```
-
-### Lock Receipt NFTs
-
-**Properties**:
+**Lock Receipt NFTs**:
 - Functional NFTs representing locked NTRN positions
 - Store lock duration and amount information
-- Transferable on secondary markets (Superbolt)
+- Transferable on secondary markets (e.g., Superbolt)
 - Must be staked to Pointer Contract to activate boost
-
-**NFT Metadata**:
-```json
-{
-  "lock_amount": "1000000000",
-  "lock_duration": "126144000",
-  "creation_block": "12345678",
-  "boost_multiplier": "1.5"
-}
-```
 
 ---
 
 ## Address Resolution Logic
 
 ### Single Wallet Connection Scenarios
-
-**Ethereum only**: 
-- Shows Ethereum deposits + any boosts pointed to Ethereum address
-- Clean interface, no conflicts
-
-**Neutron only**: 
-- Shows Neutron deposits + any boosts pointed to Neutron address
-- Direct access to boost mechanisms
-
-### Dual Wallet Connection Scenarios
-
-The system uses a priority system when both wallets are connected:
-
-1. **Deposit + Boost info** > **Deposit or Boost only** > **No info**
-2. Displays data from the "dominant network"
-3. Shows warnings for conflicting configurations
-
-### Scenario Matrix for Integrators
 
 | Scenario | ETH Connected | Neutron Connected | Both Connected |
 |----------|---------------|-------------------|----------------|
@@ -108,169 +54,31 @@ The system uses a priority system when both wallets are connected:
 | ETH deposits + Neutron-pointed boost | Deposits only | Boost only | **Conflict** |
 | Neutron deposits + ETH-pointed boost | Boost only | Deposits only | **Conflict** |
 | Neutron deposits + Neutron-pointed boost | Empty | Complete view | Complete view |
-| Both networks deposits, no boost | ETH balance | Neutron balance | **Conflict** |
-| Both networks deposits + ETH boost | Complete ETH | Neutron only | **Conflict** |
-| Both networks deposits + Neutron boost | ETH only | Complete Neutron | **Conflict** |
+
+### Conflict Resolution
+
+**Conflict Types**:
+1. **Cross-network boost**: Deposits on one network, boost pointed to another
+2. **Multiple deposits**: Deposits on both networks simultaneously
+3. **Total conflict**: Complex scenarios requiring user resolution
+
+**UI Patterns**:
+- Display dominant network data with conflict warnings
+- Provide clear resolution suggestions
+- Allow users to disconnect secondary wallets
 
 ---
 
-## Error Handling & Resolution
-
-### Conflict Types
-
-#### 1. Conflicting Networks
-**Problem**: Deposits on one network, boost pointed to another  
-**Resolution**: Display warning suggesting single wallet connection
-**UI Pattern**: Show conflict indicator with resolution suggestions
-
-#### 2. Conflicting Balances
-**Problem**: Deposits on both networks simultaneously  
-**Resolution**: Show dominant network data with conflict warning
-**UI Pattern**: Display primary data with toggle to view secondary
-
-#### 3. Dominant Network Conflict
-**Problem**: Multiple networks with partial information  
-**Resolution**: Display dominant network info with warning toast
-**UI Pattern**: Clear indication of which network is shown
-
-#### 4. Total Conflict
-**Problem**: Boosts pointed to both networks  
-**Resolution**: Request user to disconnect one wallet
-**UI Pattern**: Modal requiring user action to resolve
-
-### Implementation Examples
-
-```javascript
-// Conflict detection
-const detectConflicts = (ethData, neutronData) => {
-  const conflicts = [];
-  
-  if (ethData.deposits && neutronData.deposits) {
-    conflicts.push('MULTIPLE_DEPOSITS');
-  }
-  
-  if (ethData.deposits && neutronData.boosts && !ethData.boosts) {
-    conflicts.push('CROSS_NETWORK_BOOST');
-  }
-  
-  return conflicts;
-};
-
-// Conflict resolution UI
-const ConflictResolution = ({ conflicts, onResolve }) => {
-  return (
-    <div className="conflict-modal">
-      <h3>Address Coordination Required</h3>
-      <p>Multiple wallets detected with conflicting configurations.</p>
-      <button onClick={() => onResolve('disconnect_secondary')}>
-        Use Primary Wallet Only
-      </button>
-      <button onClick={() => onResolve('link_addresses')}>
-        Link Addresses
-      </button>
-    </div>
-  );
-};
-```
-
----
-
-## Integration Best Practices
-
-### UI/UX Recommendations
-
-**Address Selection**:
-- Clear indication of which address will receive boosts
-- Visual confirmation of boost pointing
-- Warning for cross-network configurations
-
-**Conflict Resolution**:
-- Progressive disclosure of complexity
-- Clear action items for resolution
-- Fallback to single-wallet mode
-
-**Status Indicators**:
-- Real-time boost status display
-- Clear indication of active/inactive boosts
-- Visual confirmation of successful pointing
-
-### Development Guidelines
-
-**State Management**:
-- Handle asynchronous wallet connections
-- Maintain consistent address state across components
-- Implement proper error boundaries
-
-**Performance**:
-- Cache address resolution results
-- Batch API calls for efficiency
-- Implement proper loading states
-
-**Security**:
-- Validate address formats before API calls
-- Implement proper signature verification
-- Handle wallet disconnection gracefully
-
----
-
-## Testing Scenarios
-
-### Comprehensive Test Cases
-
-1. **Single Wallet Scenarios**:
-   - Ethereum only with deposits
-   - Neutron only with deposits
-   - Each with and without boosts
-
-2. **Multi-Wallet Scenarios**:
-   - Both wallets with deposits (conflict)
-   - Cross-network boost pointing (conflict)
-   - Proper address linking (success)
-
-3. **Edge Cases**:
-   - Wallet disconnection during boost pointing
-   - Address format validation failures
-   - Network switching scenarios
-
-### Test Implementation
-
-```javascript
-// Example test structure for address linking integration
-describe('Address Linking Integration', () => {
-  test('handles single wallet connection', async () => {
-    // Test single wallet scenarios
-    // Implementation details will be provided with SDK
-  });
-  
-  test('detects cross-network conflicts', async () => {
-    // Test multi-wallet conflict detection  
-    // Implementation details will be provided with SDK
-  });
-});
-```
-
----
-
-## Technical Specifications
+## Implementation Examples
 
 ### Boost Pointer Contract Interface
 
 ```solidity
-contract BoostPointer {
-    mapping(address => address) public boostTargets;
-    mapping(address => uint256) public boostMultipliers;
-    
-    event BoostPointed(address indexed user, address indexed target, uint256 multiplier);
-    
-    function pointBoost(address target) external {
-        require(target != address(0), "Invalid target address");
-        boostTargets[msg.sender] = target;
-        emit BoostPointed(msg.sender, target, getBoostMultiplier(msg.sender));
-    }
-    
-    function getBoostTarget(address user) external view returns (address) {
-        return boostTargets[user];
-    }
+interface IBoostPointer {
+    function pointBoost(address target) external;
+    function getBoostTarget(address user) external view returns (address);
+    function getBoostMultiplier(address user) external view returns (uint256);
+    function updateBoostTarget(address newTarget) external;
 }
 ```
 
@@ -291,42 +99,73 @@ neutron1w29vh2hjnjef9e2dujc5j4ear4g5th955vetjrx42m7eedeg8ydq3v9zee (example form
 ## Integration Requirements
 
 ### Minimum Implementation
-
 1. **Address detection**: Support both Ethereum and Neutron wallets
 2. **Conflict handling**: Basic conflict detection and resolution
 3. **Boost pointing**: Interface for users to point boosts to deposit addresses
-4. **Status display**: Show current boost configuration and conflicts
+4. **Status display**: Show current boost configuration
 
 ### Recommended Implementation
-
 1. **Advanced conflict resolution**: Sophisticated UI for complex scenarios
 2. **Real-time validation**: Live checking of boost/deposit alignment
 3. **Multi-network support**: Seamless switching between networks
-4. **Performance optimization**: Efficient state management and API usage
-
-### Full Integration
-
-1. **Custom UI components**: Branded interface matching partner design
-2. **Advanced analytics**: Detailed reward projections and optimization
-3. **White-label solutions**: Complete campaign interface customization
-4. **Priority support**: Dedicated technical support and consultation
 
 ---
 
-## Technical Glossary
+## Testing Scenarios
 
-| Term | Definition |
-|------|------------|
-| **Boost Pointer Contract** | Smart contract mapping boost sources to target addresses |
-| **Pointing** | Operation of designating which address receives boost benefits |
-| **Dominant Network** | Network with both deposit and boost information in conflict scenarios |
-| **Lock Receipt NFTs** | Functional NFTs representing locked NTRN positions |
-| **Address Binding** | Technical process of linking Ethereum and Neutron addresses |
+### Test Cases
+1. **Single wallet scenarios**: Ethereum only, Neutron only (with/without boosts)
+2. **Multi-wallet scenarios**: Both wallets with deposits (conflict handling)
+3. **Cross-network boost**: Proper address linking validation
+4. **Edge cases**: Wallet disconnection, address format validation
 
-<Warning>
-This system prioritizes user control and transparency over automatic backend matching. Complex edge cases are handled through clear error messaging and user guidance.
-</Warning>
+```javascript
+// Example test structure for address linking integration
+describe('Address Linking Integration', () => {
+  test('handles single wallet connection', async () => {
+    // Test single wallet scenarios
+    // Implementation details will be provided with SDK
+  });
+  
+  test('detects cross-network conflicts', async () => {
+    // Test multi-wallet conflict detection  
+    // Implementation details will be provided with SDK
+  });
+});
+```
+
+---
+
+## Technical Specifications
+
+### Key Contract Methods
+
+Based on the boost pointer contract implementation:
+- `pointBoost(address target)`: Point boost to specific address
+- `getBoostTarget(address user)`: Get current boost target
+- `getBoostMultiplier(address user)`: Get boost multiplier value
+
+### Integration Patterns
+
+For current integration approaches, see:
+- [Neutron Developer Documentation](/developers/overview)
+- [CosmWasm Integration Guide](/developers/tutorials/introduction_to_cosmwasm)
+- [Smart Contract Interaction](/developers/sdk)
+
+---
+
+## Support Resources
+
+<CardGroup cols={2}>
+  <Card title="Technical Reference" icon="book" href="/btc-summer/technical/reference">
+    Complete contract addresses and technical specifications
+  </Card>
+  
+  <Card title="Integration Guide" icon="plug" href="/btc-summer/technical/integrators">
+    API specifications and partnership opportunities
+  </Card>
+</CardGroup>
 
 <Note>
-The address linking system ensures users maintain control over cross-chain reward coordination while providing a robust foundation for integrator implementations.
+This system prioritizes user control and transparency. Complex edge cases are handled through clear error messaging and user guidance rather than automatic backend matching.
 </Note>
