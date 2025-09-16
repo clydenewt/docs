@@ -77,18 +77,20 @@ Unlike traditional token farming, rewards are calculated in **dollar terms** thr
 
 This structure means campaign costs decrease if NTRN price appreciates, aligning incentives with network growth.
 
-### Points System
+<AccordionGroup>
+  <Accordion title="Points System">
+    Rewards use a points-based accounting system to ensure fair distribution:
 
-Rewards use a points-based accounting system to ensure fair distribution:
+    $$
+    \text{Points} = \text{USD Value of Deposit} \times \text{Days Staked} \times (1 + \text{Bonus Multipliers})
+    $$
 
-$$
-\text{Points} = \text{USD Value of Deposit} \times \text{Days Staked} \times (1 + \text{Bonus Multipliers})
-$$
-
-- **Daily Calculation**: Points accrue daily based on USD deposit value  
-- **Pro-rata Distribution**: Phase budget distributed proportionally to total points earned
-- **Bonus Multipliers**: Additional rewards for advanced strategies ([learn more](/btc-summer/rewards#understanding-multipliers))
-- **Protection from Dilution**: Daily calculation locks in dollar-denominated rewards
+    - **Daily Calculation**: Points accrue daily based on USD deposit value  
+    - **Pro-rata Distribution**: Phase budget distributed proportionally to total points earned
+    - **Bonus Multipliers**: Additional rewards for advanced strategies ([learn more](/btc-summer/rewards#understanding-multipliers))
+    - **Protection from Dilution**: Daily calculation locks in dollar-denominated rewards
+  </Accordion>
+</AccordionGroup>
 
 ---
 
@@ -119,7 +121,7 @@ Campaign vaults use a "forfeitable" reward structure to encourage full phase par
 
 **Example**: If you deposit 10 BTC at phase start but withdraw 5 BTC mid-phase, you forfeit rewards corresponding to the withdrawn amount.
 
-Learn more about NTRN multipliers in [Boost Mechanisms & Multipliers](/btc-summer/rewards#boost-mechanisms--multipliers)
+Learn more about NTRN multipliers in [Boost Mechanisms & Multipliers](/btc-summer/rewards#understanding-multipliers)
 
 ---
 
