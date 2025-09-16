@@ -6,14 +6,12 @@ icon: "book"
 
 Complete technical reference for BTC Summer campaign implementation, including smart contract addresses, token denominations, and integration specifications.
 
----
-
 ## Smart Contract Addresses
 
 ### Points & Rewards Contracts
 
 <Note>
-Contract addresses will be added upon deployment. Check the [GitHub repository](https://github.com/neutron-org/neutron-points-crawler/tree/feat/maxbtc-points-contract) for the latest contract implementations.
+Contract addresses will be added upon deployment.
 </Note>
 
 ```jsx
@@ -84,8 +82,8 @@ ebtc:    neutron15kejswf0xwghy6jj89y0wvdkxuztdrhpacx29l448zlfkl206u5q2vjwt2
 
 ```jsx
 Chain ID: neutron-1
-RPC: https://rpc-neutron.keplr.app
-REST: https://rest-neutron.keplr.app
+RPC: https://rpc-vertexa.neutron-1.neutron.org
+REST: https://rest-solara.neutron-1.neutron.org
 ```
 
 ### Supported Bridges
@@ -123,13 +121,17 @@ const userPoints = await client.queryContractSmart(
 
 ## Additional Resources
 
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card title="Address Linking" icon="link" href="/btc-summer/technical/address-linking">
     Cross-chain coordination implementation details
   </Card>
   
   <Card title="Neutron Developer Docs" icon="code" href="/developers/overview">
     Complete Neutron development resources
+  </Card>
+  
+  <Card title="Network Endpoints" icon="network-wired" href="/resources/endpoints">
+    RPC, REST, and GRPC endpoints for Neutron networks and node information
   </Card>
 </CardGroup>
 

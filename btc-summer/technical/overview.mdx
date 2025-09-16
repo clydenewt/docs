@@ -6,8 +6,6 @@ icon: "diagram-project"
 
 The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to deliver Bitcoin DeFi strategies through transparent, on-chain reward tracking.
 
----
-
 ## System Architecture
 
 ### Points System
@@ -51,7 +49,7 @@ The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to d
   </Card>
   
   <Card title="Timewave Vault Infrastructure" icon="bridge" href="https://docs.valence.zone/examples/crosschain_vaults.html">
-    Automated bridging and deployment for Ethereum users via established protocols.
+    Automated bridging and deployment for Ethereum users via established protocols. Core contracts audited.
   </Card>
 </CardGroup>
 
@@ -66,6 +64,13 @@ The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to d
 - Supervaults integration
 - Ethereum vault infrastructure
 
+### Security & Audits
+
+**Timewave Vault Infrastructure**: Core contracts have been audited including processor, accounts, and authorization contracts. A small addition was made to support zero-knowledge functionality but was not significant enough to warrant a new audit.
+
+- **Audit Reports**: [timewave-computer/valence-protocol/audits](https://github.com/timewave-computer/valence-protocol/tree/main/audits)
+- **Deployment Code**: [neutron-cross-chain-vault-deployment](https://github.com/timewave-computer/neutron-cross-chain-vault-deployment/tree/main)
+
 ### GitHub Repository
 Active development: [neutron-points-crawler](https://github.com/neutron-org/neutron-points-crawler/tree/feat/maxbtc-points-contract)
 
@@ -73,17 +78,12 @@ Active development: [neutron-points-crawler](https://github.com/neutron-org/neut
 
 ## For Developers
 
-<CardGroup cols={2}>
-  <Card title="Integration Guide" icon="plug" href="/btc-summer/technical/integrators">
-    API specifications and integration requirements
-  </Card>
+<CardGroup cols={3}>
   
   <Card title="Address Linking" icon="link" href="/btc-summer/technical/address-linking">
     Cross-chain coordination implementation details
   </Card>
-</CardGroup>
-
-<CardGroup cols={2}>
+  
   <Card title="Technical Reference" icon="book" href="/btc-summer/technical/reference">
     Contract addresses, token denominations, and specifications
   </Card>
