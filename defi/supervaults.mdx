@@ -7,15 +7,51 @@ icon: "vault"
 <Note> Supervaults <a href="https://app.neutron.org/supervaults" target="_blank" className="text-primary hover:underline font-bold">are now live</a>! Start earning optimized yields with automated liquidity management. Ready to get started? Check out the <a href="#how-to-deposit-into-supervaults" className="text-primary hover:underline">how-to deposit section</a> below for step-by-step instructions.</Note>
 
 
-Supervaults (mmvault contracts) are Neutron's flagship DeFi innovation that manage liquidity on behalf of users by efficiently allocating deposits into the Neutron DEX (Duality). Using Neutron's integrated infrastructure, they automatically rebalance positions across different price ranges and fee tiers, achieving maximal capital efficiency and improving outcomes for both traders and liquidity providers.
+## Strategic Objectives
 
-The vault contract abstracts away direct DEX interactions from end users, allowing users to interact through standardized deposit and withdrawal flows while the vault autonomously manages liquidity provisioning via Cron-triggered rebalancing logic.
+Supervaults democratize market making profits to beat the competition on pricing and attract liquidity at scale. They achieve two key strategic goals:
+
+1. **Offer the tightest spreads (best prices)** for on-chain spot markets in a sustainable way
+2. **Maximize supply capacity** for non-USDC assets as collateral for lending/borrowing and perpetuals to unlock new trades
+
+The design allows efficient crowdsourcing of capital to bootstrap markets, rapidly win aggregation volume, and increase lending/borrowing capacity. This leads to organic fees that sustain liquidity and enable market scaling for larger traders.
+
+## What are Supervaults?
+
+Supervaults (mmvault contracts) are CosmWasm contracts that leverage price feeds from Neutron's enshrined [Slinky oracle](/operators/oracle-setup) and native automation via the [Cron module](/developers/modules/cron) to provide liquidity with tight spreads on the [Duality orderbook](/defi/duality).
 
 Unlike traditional yield vaults or static liquidity pools, Supervaults actively optimize capital deployment to:
 
 - Minimize slippage for traders through concentrated liquidity
-- Maximize fees earned by liquidity providers across multiple fee tiers
+- Maximize fees earned by liquidity providers across multiple fee tiers  
 - Reduce impermanent loss through dynamic position management and rebalancing
+- Bootstrap supply capacity for lending and perpetual protocols
+
+## Key Terms
+
+Understanding Supervaults requires familiarity with core market making concepts:
+
+- **[Duality](/defi/duality)**: Neutron's enshrined orderbook with advanced order types designed to minimize risks and costs for market makers. Features impossible to build outside an app-specific chain.
+- **[Slinky](/operators/oracle-setup)**: Neutron's enshrined, high-performance oracle operated by validators as part of consensus, guaranteeing up-to-date prices at every block for any CEX asset.
+- **[Cron Module](/developers/modules/cron)**: Neutron module enabling guaranteed scheduled smart-contract execution at the start or end of each block.
+- **Spread**: Price gap between highest buy order and lowest sell order. Smaller spreads mean better prices for traders. Market makers profit by buying slightly lower and selling slightly higher.
+- **Adverse Selection**: Losses from arbitrageurs taking advantage of outdated pricing. Too tight spreads risk adverse selection; too wide spreads lose order flow.
+- **Gas Fees**: Cost to perform on-chain computation.
+- **Inventory Costs**: Costs of holding volatile/low liquidity assets from risks and opportunity cost.
+
+The fundamental economics of market making:
+
+$$
+\text{costs of market making} = \text{gas fees} + \text{inventory costs} + \text{adverse selection}
+$$
+
+$$
+\text{profit of market making} = \text{revenue} - \text{costs}
+$$
+
+## Who Benefits from Supervaults?
+
+Supervaults create value for multiple participants in the Neutron ecosystem:
 
 <CardGroup cols={2}>
   <Card title="For Liquidity Providers" icon="coins" iconType="duotone">
@@ -27,86 +63,130 @@ Unlike traditional yield vaults or static liquidity pools, Supervaults actively 
   </Card>
 </CardGroup>
 
-## Capital Efficiency Advantages
+## Why Supervaults Beat Traditional AMMs
 
-Supervaults achieve exceptional capital efficiency through several mechanisms:
+Traditional market-making is challenging on-chain due to latency, censoring incentives, and high costs (inventory, gas, and opportunity costs). Traditional AMMs use simple, static algorithms and lack external price feeds, causing them to rely on off-chain arbitrageurs to inform them about true asset prices. This results in **immense value leakage** to arbitrageurs who profit at the expense of liquidity providers.
+
+Supervaults overcome these fundamental limitations through Neutron's unique infrastructure:
 
 <CardGroup cols={2}>
-  <Card title="Concentrated Liquidity Management" icon="layer-group" iconType="duotone">
-    Unlike passive AMMs, Supervaults actively concentrate liquidity around current market prices across multiple fee tiers, maximizing capital utilization.
+  <Card title="Slinky Oracle Integration" icon="globe" iconType="duotone">
+    Unlike traditional AMMs with no price feeds, Supervaults leverage [Slinky's](/operators/oracle-setup) high-frequency, censorship-resistant price feeds to stay current with CEX prices without leaking value to arbitrageurs.
   </Card>
   
-  <Card title="Automated Fee Tier Optimization" icon="chart-pie" iconType="duotone">
-    The vault automatically allocates liquidity across different fee tiers based on market conditions, optimizing for both volume and fee generation.
+  <Card title="Automated Cron Execution" icon="clock" iconType="duotone">
+    The [Cron module](/developers/modules/cron) enables reliably automated strategies without expensive and unreliable keeper systems, eliminating gas costs and execution risks.
   </Card>
   
-  <Card title="Dynamic Rebalancing" icon="arrow-trend-up" iconType="duotone">
-    Continuous rebalancing ensures liquidity stays optimally positioned as market conditions change, without requiring manual intervention.
+  <Card title="MEV Protection & Priority Access" icon="shield" iconType="duotone">
+    Begin and end block execution enables high-value, order-sensitive transactions to avoid front-running while giving Supervaults priority access to arbitrage opportunities.
   </Card>
   
-  <Card title="Proportional Share System" icon="database" iconType="duotone">
-    The token factory-based LP share system ensures fair distribution of rewards and accurate tracking of user ownership through all rebalancing operations.
+  <Card title="100% Capital Utilization" icon="layer-group" iconType="duotone">
+    Unlike passive AMMs where large portions of liquidity sit unused far from mid-price, Supervaults actively concentrate and rebalance all liquidity around current market prices.
   </Card>
 </CardGroup>
 
-## Comparison to Traditional Approaches
+### Detailed Feature Comparison
 
 <div className="overflow-x-auto my-8">
   <table className="min-w-full border border-gray-300 dark:border-gray-700">
     <thead>
       <tr className="bg-gray-100 dark:bg-gray-800">
         <th className="p-3 text-left">Feature</th>
-        <th className="p-3 text-left">Standard AMM (e.g., Uniswap v2)</th>
-        <th className="p-3 text-left">Concentrated Liquidity (e.g., Uniswap v3)</th>
+        <th className="p-3 text-left">Standard AMM</th>
+        <th className="p-3 text-left">Concentrated Liquidity</th>
+        <th className="p-3 text-left">Traditional Market Makers</th>
         <th className="p-3 text-left">Neutron Supervaults</th>
       </tr>
     </thead>
     <tbody>
       <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">Liquidity Positioning</td>
-        <td className="p-3">Passive, across infinite price range</td>
-        <td className="p-3">Manual selection of price ranges</td>
-        <td className="p-3">Automated dynamic positioning across multiple ranges</td>
+        <td className="p-3 font-medium">Capital Utilization</td>
+        <td className="p-3">~10-20% effective</td>
+        <td className="p-3">~60-80% effective</td>
+        <td className="p-3">~90-95% effective</td>
+        <td className="p-3 font-medium">100% effective</td>
       </tr>
       <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">Fee Tier Management</td>
-        <td className="p-3">Single fee tier</td>
-        <td className="p-3">Manual fee tier selection</td>
-        <td className="p-3">Automated allocation across multiple fee tiers</td>
+        <td className="p-3 font-medium">Gas Costs</td>
+        <td className="p-3">Low (infrequent)</td>
+        <td className="p-3">Medium (rebalancing)</td>
+        <td className="p-3">High (frequent updates)</td>
+        <td className="p-3 font-medium">Zero (Cron exempt)</td>
       </tr>
       <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">Rebalancing</td>
-        <td className="p-3">None needed</td>
-        <td className="p-3">Manual or via third-party services</td>
-        <td className="p-3">Automated via Cron module every block</td>
+        <td className="p-3 font-medium">Adverse Selection Risk</td>
+        <td className="p-3">High (no oracle)</td>
+        <td className="p-3">Medium (manual updates)</td>
+        <td className="p-3">Low (frequent updates)</td>
+        <td className="p-3 font-medium">Minimal (per-block updates)</td>
       </tr>
       <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">LP Experience</td>
-        <td className="p-3">Simple but inefficient</td>
-        <td className="p-3">Complex, requires active monitoring</td>
-        <td className="p-3">Simple deposit with automated optimization</td>
+        <td className="p-3 font-medium">Lending Integration</td>
+        <td className="p-3">Limited depth</td>
+        <td className="p-3">Better but fragmented</td>
+        <td className="p-3">Not designed for lending</td>
+        <td className="p-3 font-medium">Purpose-built (-5% depth)</td>
       </tr>
       <tr className="border-t border-gray-300 dark:border-gray-700">
-        <td className="p-3 font-medium">Oracle Integration</td>
-        <td className="p-3">None</td>
-        <td className="p-3">Third-party (if any)</td>
-        <td className="p-3">Native Slinky oracle integration</td>
-      </tr>
-      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">Share Tracking</td>
-        <td className="p-3">ERC-20 LP tokens</td>
-        <td className="p-3">NFT positions</td>
-        <td className="p-3">Token factory LP shares with proportional rewards</td>
+        <td className="p-3 font-medium">Arbitrage Capture</td>
+        <td className="p-3">Loses to arbitrageurs</td>
+        <td className="p-3">Loses to arbitrageurs</td>
+        <td className="p-3">Competes with arbitrageurs</td>
+        <td className="p-3 font-medium">Priority capture (begin-block)</td>
       </tr>
     </tbody>
   </table>
 </div>
 
+## System Design & Market Making Strategy
+
+### Two-Tier Liquidity Strategy
+
+At the beginning of each block, Supervaults execute a sophisticated market making strategy:
+
+<Steps>
+  <Step title="Balance Assessment">
+    The vault notes its internal token balances and checks for any imbalances between paired assets.
+  </Step>
+  <Step title="Price Discovery">
+    Gets current token prices from Slinky oracle for precise positioning calculations.
+  </Step>
+  <Step title="Tight Spread Deployment">
+    Provides primary liquidity at tight spreads around the current Slinky price for optimal trading.
+  </Step>
+  <Step title="Reserve Liquidity Deployment">
+    Deploys remaining liquidity at larger spreads (~±5% depth) to bootstrap supply capacity for lending protocols.
+  </Step>
+</Steps>
+
+### Reserve Liquidity for Lending Protocols
+
+Unlike traditional market making where reserve liquidity remains unused, Supervaults strategically provide it at ~±5% depth to bootstrap **supply capacity** for lending/borrowing protocols.
+
+Mars Protocol's risk methodology determines collateral caps by examining how much of an asset can be atomically traded into USDC. Since Mars liquidation bounties are 5% above debt value, they specifically examine -5% depth liquidity.
+
+**Benefits for the ecosystem:**
+- **20x higher collateral caps** for Mars compared to XYK pools
+- **Enhanced LP profitability**: LPs buy liquidated assets at ~5% discounts (potentially 5% APY in single trades)
+- **Significant gains** compared to concentrated liquidity approaches
+
+At each block's end, vaults withdraw all liquidity and redeploy at fresh Slinky prices with optimized spreads.
+
+### Smart Rebalancing
+
+When demand imbalances occur (more of one asset than the other), Supervaults automatically rebalance by offering more of the oversupplied token at the tightest spreads. This increases supply of the oversupplied asset and gradually brings the vault back to parity.
+
+### Priority Arbitrage Capture
+
+When Duality orderbook prices diverge from Slinky prices, arbitrage opportunities emerge. Since Supervaults operate at the beginning of each block, they have **priority access** to capture this arbitrage before other market participants.
+
+The vault purchases mispriced liquidity using its reserves, then continues normal liquidity deployment. This "vault-owned-MEV" generates additional profits for liquidity providers while keeping arbitrage value within the ecosystem.
+
 ## How Supervaults Work
 
-Supervaults integrate with Neutron's core modules to enable continuous, trustless operation:
-
-### User Flows
+### User Experience
 
 <CardGroup cols={2}>
   <Card title="Deposit Process" icon="wallet" iconType="duotone">
@@ -118,27 +198,13 @@ Supervaults integrate with Neutron's core modules to enable continuous, trustles
   </Card>
 </CardGroup>
 
-### Automated Rebalancing with Cron and Slinky Oracle
+### Technical Implementation
 
-<CardGroup cols={3}>
-  <Card title="Slinky Oracle Integration" icon="globe" iconType="duotone">
-    Supervaults leverage Neutron's Slinky price oracle to fetch fresh price data for precise rebalancing calculations and liquidity positioning.
-  </Card>
-  
-  <Card title="Two-Phase Rebalancing" icon="clock" iconType="duotone">
-    The Cron module triggers a two-phase rebalancing process each block: first withdrawing all active positions, then redeploying liquidity based on current market conditions.
-  </Card>
-  
-  <Card title="Multi-Tier Deployment" icon="layer-group" iconType="duotone">
-    Liquidity is strategically deployed across different price ranges and fee tiers, optimizing for both capital efficiency and fee generation.
-  </Card>
-</CardGroup>
+Each block, Supervaults execute a precise rebalancing sequence:
 
-The complete rebalancing flow works as follows:
-
-1. **dex_withdrawal()**: Each block, Cron first triggers withdrawal of all active DEX positions owned by the vault
-2. **dex_deposit()**: Immediately after, it fetches fresh prices from Slinky oracle and recomputes optimal liquidity deployment
-3. **Strategic Positioning**: Based on fee tier allocation, token imbalance, and configured parameters, liquidity is deployed across multiple price ranges
+1. **dex_withdrawal()**: Withdraw all active DEX positions owned by the vault
+2. **dex_deposit()**: Fetch fresh prices from Slinky oracle and recompute optimal liquidity deployment
+3. **Strategic Positioning**: Deploy liquidity across multiple price ranges based on fee tier allocation, token imbalance, and configured parameters
 4. **Full Custody**: The vault maintains complete custody of all funds throughout the process
 
 
@@ -182,8 +248,122 @@ Follow these simple steps to start earning optimized yields with Supervaults:
   </Step>
 </Steps>
 
-<div className="p-4 border-l-4 border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 rounded my-6">
-  <strong>Note:</strong> Withdrawals are on a pro-rata basis from the total vault value and will return proportional amounts of both assets in the pair.
+<Note> Withdrawals are on a pro-rata basis from the total vault value and will return proportional amounts of both assets in the pair.
+</Note>
+
+## Ecosystem Integration & Strategic Impact
+
+### Unified Liquidity on Duality Orderbook
+
+Supervaults provide liquidity to Duality, Neutron's enshrined orderbook, which aggregates liquidity from multiple sources:
+
+<CardGroup cols={3}>
+  <Card title="Supervaults" icon="vault" iconType="duotone">
+    Automated market making with CEX-grade pricing and tight spreads
+  </Card>
+  <Card title="Astroport AMMs" icon="arrows-rotate" iconType="duotone">
+    PCL and other automated market maker strategies
+  </Card>
+  <Card title="Professional MMs" icon="chart-line" iconType="duotone">
+    Traditional market makers and limit orders
+  </Card>
+</CardGroup>
+
+This unified approach enables the orderbook to offer tighter spreads, higher depth, and internalized arbitrage profits.
+
+### Arbitrage Internalization Benefits
+
+**Traditional Fragmented Approach:**
+- AMM pools (Astroport, Astrovault) operate independently
+- Rely on sophisticated third-parties for CEX/DEX arbitrage
+- Pay integration costs for aggregator availability, liquidation routing, and front-end integrations
+- **Value continuously leaks** to external arbitrageurs and service providers
+
+**Neutron's Unified Approach:**
+- All AMMs compile onto the same Duality orderbook
+- Every market making strategy benefits from shared volume without individual integration costs
+- Supervaults conduct automatic CEX/DEX arbitrage by trading against mispriced liquidity
+- **Arbitrage profits stay within the ecosystem** and compound back into the orderbook
+
+### Network Effects for All Participants
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+  <div className="p-6 border border-gray-300 dark:border-gray-700 rounded-lg">
+    <h4 className="font-semibold text-blue-600 dark:text-blue-400 mb-3">Traditional AMM Pools</h4>
+    <ul className="space-y-2 text-sm">
+      <li>• No longer rely on third-party arbitrageurs for fresh prices</li>
+      <li>• Benefit from increased volume without paying integration costs</li>
+      <li>• Share in ecosystem-wide fee generation</li>
+    </ul>
+  </div>
+  <div className="p-6 border border-gray-300 dark:border-gray-700 rounded-lg">
+    <h4 className="font-semibold text-green-600 dark:text-green-400 mb-3">All Liquidity Providers</h4>
+    <ul className="space-y-2 text-sm">
+      <li>• Enhanced yields from captured arbitrage opportunities</li>
+      <li>• Reduced value leakage to external parties</li>
+      <li>• Access to aggregated trading volume and fees</li>
+    </ul>
+  </div>
+</div>
+
+<div className="p-4 border-l-4 border-primary bg-primary/5 rounded my-6">
+  <strong>Strategic Result:</strong> Supervaults bootstrap markets rapidly, win aggregation volume, and create sustainable organic fees that enable further market scaling to support larger traders and deeper liquidity.
+</div>
+
+## Risk Management
+
+Understanding potential risks helps users make informed decisions about Supervault participation:
+
+<div className="overflow-x-auto my-8">
+  <table className="min-w-full border border-gray-300 dark:border-gray-700">
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Risk Category</th>
+        <th className="p-3 text-left">Potential Impact</th>
+        <th className="p-3 text-left">Mitigation Strategies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">Smart Contract</td>
+        <td className="p-3">
+          • UX degradation<br/>
+          • Stuck funds<br/>
+          • Loss of funds (exploit/hack)
+        </td>
+        <td className="p-3">
+          • Best development practices<br/>
+          • Comprehensive audits<br/>
+          • Bridge rate limits<br/>
+          • Governance-enforced contract migration
+        </td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">Oracle</td>
+        <td className="p-3">
+          • Performance degradation<br/>
+          • APR degradation
+        </td>
+        <td className="p-3">
+          • Prices sourced across numerous CEXs/providers<br/>
+          • Aggregated across all validators<br/>
+          • Redundant price feeds
+        </td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">Platform</td>
+        <td className="p-3">
+          • UX degradation<br/>
+          • Performance degradation
+        </td>
+        <td className="p-3">
+          • Best development practices<br/>
+          • Regular audits<br/>
+          • Social coordination for restart/upgrade
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 ## Technical Architecture
