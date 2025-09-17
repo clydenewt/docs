@@ -170,6 +170,7 @@ To verify the number of points earned during the campaign, users can check the r
 
 An initial $10M in NTRN rewards (max 10% of supply) is earmarked for the campaign. Rewards will be distributed as USD Value, and converted into NTRN at the time of claiming to preserve value and prevent dilution.
 
+
 <AccordionGroup>
   <Accordion title="Example">
     Bob deposits 1 wBTC worth \$100,000 to a campaign vault earning \$1,000 per day during the Phase. Each day, Bob's accrued rewards increase by \$1,000. Bob holds his position until the end of the Phase, by which point he has accumulated \$60,000 in rewards.
@@ -179,6 +180,71 @@ An initial $10M in NTRN rewards (max 10% of supply) is earmarked for the campaig
     Learn more: [Claiming NTRN Rewards](/btc-summer/campaign-details#claiming-ntrn-rewards)
   </Accordion>
 </AccordionGroup>
+
+
+### NTRN Rewards Multipliers
+
+Different DeFi activities earn different NTRN reward multipliers, with higher-risk or more strategic positions earning greater rewards:
+
+<div className="overflow-x-auto my-2">
+  <table className="table-fixed border-collapse border border-gray-300 dark:border-gray-700" style={{width: 'fit-content'}}>
+    <colgroup>
+      <col style={{width: '100px'}} />
+      <col style={{width: '400px'}} />
+    </colgroup>
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Multiplier</th>
+        <th className="p-3 text-left">Activity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">6x</td>
+        <td className="p-3">LP in the maxBTC/USDC Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">5x</td>
+        <td className="p-3">LP in the WBTC/USDC Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">4x</td>
+        <td className="p-3">LP in the maxBTC/WBTC Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">3x</td>
+        <td className="p-3">Lend WBTC on Amber</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium align-top">2x</td>
+        <td className="p-3">
+          <div className="space-y-1">
+            <div>LP in the maxBTC/uniBTC Supervault</div>
+            <div>LP in the maxBTC/solvBTC Supervault</div>
+            <div>LP in the maxBTC/eBTC Supervault</div>
+            <div>LP in the maxBTC/LBTC Supervault</div>
+            <div>Lend uniBTC, solvBTC, eBTC, or LBTC on Amber</div>
+            <div>LP in the WBTC/uniBTC Supervault</div>
+            <div>LP in the WBTC/solvBTC Supervault</div>
+            <div>LP in the WBTC/eBTC Supervault</div>
+            <div>LP in the WBTC/LBTC Supervault</div>
+            <div>Lend WBTC on Mars</div>
+          </div>
+        </td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">1x</td>
+        <td className="p-3">Hold maxBTC</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Key Insights:**
+- **Highest rewards (6x-5x)**: USDC paired strategies that provide crucial stablecoin liquidity
+- **High rewards (4x-3x)**: Core BTC strategies and WBTC lending
+- **Standard rewards (2x)**: LST strategies and cross-BTC derivative liquidity
+- **Base rewards (1x)**: Simple maxBTC holding for passive exposure
 
 ---
 

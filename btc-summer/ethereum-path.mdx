@@ -31,45 +31,47 @@ All vault withdrawals and campaign rewards are processed on Neutron - you'll nee
 
 ## Step-by-Step Process
 
-### 1. Prepare Your Wallet
+<AccordionGroup>
+  <Accordion title="1. Prepare Your Wallet">
+    **Compatible Wallets**:
+    - MetaMask (recommended)
 
-**Compatible Wallets**:
-- MetaMask (recommended)
+    **Required Assets**: 
+    - Supported BTC derivatives (wBTC, eBTC, SolvBTC, uniBTC)
+    - ETH for gas fees
+    - USDC (for USDC-maxBTC vault only)
+  </Accordion>
 
-**Required Assets**: 
-- Supported BTC derivatives (wBTC, eBTC, SolvBTC, uniBTC)
-- ETH for gas fees
-- USDC (for USDC-maxBTC vault only)
+  <Accordion title="2. Navigate to Bitcoin Summer">
+    Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access the vault interface.
+  </Accordion>
 
-### 2. Navigate to Bitcoin Summer
+  <Accordion title="3. Complete Deposit">
+    <Steps>
+      <Step title="Select Vault">
+        Choose a vault from the available options
+      </Step>
+      <Step title="Connect Ethereum Wallet">
+        Connect your Ethereum wallet when prompted at the bottom of the deposit modal
+      </Step>
+      <Step title="Enter Deposit Amount">
+        Enter amount or click "Use Max" to deposit your entire balance
+      </Step>
+      <Step title="Confirm Transaction">
+        Click the "Deposit" button and approve the transaction in your wallet
+      </Step>
+      <Step title="Monitor Position">
+        Track your position on the [Balance page](https://app.neutron.org/balance) or Bitcoin Summer interface
+      </Step>
+    </Steps>
+  </Accordion>
 
-Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access the vault interface.
-
-### 3. Complete Deposit
-
-<Steps>
-  <Step title="Select Vault">
-    Choose a vault from the available options
-  </Step>
-  <Step title="Connect Ethereum Wallet">
-    Connect your Ethereum wallet when prompted at the bottom of the deposit modal
-  </Step>
-  <Step title="Enter Deposit Amount">
-    Enter amount or click "Use Max" to deposit your entire balance
-  </Step>
-  <Step title="Confirm Transaction">
-    Click the "Deposit" button and approve the transaction in your wallet
-  </Step>
-  <Step title="Monitor Position">
-    Track your position on the [Balance page](https://app.neutron.org/balance) or Bitcoin Summer interface
-  </Step>
-</Steps>
-
-### 4. Monitor Rewards
-
-- **Campaign Rewards**: NTRN incentives based on your deposit size and duration
-- **DeFi Yields**: Underlying protocol rewards (lending rates, LP fees)
-- **Asset Issuer Rewards**: Potential additional rewards from LST issuers
+  <Accordion title="4. Monitor Rewards">
+    - **Campaign Rewards**: NTRN incentives based on your deposit size and duration. Different activities earn 1x-6x multipliers - see [NTRN Rewards Multipliers](/btc-summer/rewards#ntrn-rewards-multipliers)
+    - **DeFi Yields**: Underlying protocol rewards (lending rates, LP fees)
+    - **Asset Issuer Rewards**: Potential additional rewards from LST issuers
+  </Accordion>
+</AccordionGroup>
 
 ---
 
@@ -83,15 +85,20 @@ Visit [app.neutron.org/btc-summer](https://app.neutron.org/btc-summer) to access
 
 
 ### What You Receive
-**Simple Lending Vaults** (Just Lend):
-- **Underlying assets** (wBTC, eBTC, etc.) sent to your Neutron wallet
-- **Campaign rewards** (NTRN tokens) sent to your Neutron wallet
 
-**LP Strategy Vaults** (Hybrid, LST Main, maxBTC):
-- **Supervault LP tokens** (Neutron-native tokens)
-- **Lending assets** (underlying BTC derivatives)
-- **Campaign rewards** (NTRN tokens)
-- **All sent to your Neutron wallet**
+<AccordionGroup>
+  <Accordion title="Simple Lending Vaults (Just Lend)">
+    - **Underlying assets** (wBTC, eBTC, etc.) sent to your Neutron wallet
+    - **Campaign rewards** (NTRN tokens) sent to your Neutron wallet
+  </Accordion>
+
+  <Accordion title="LP Strategy Vaults (Hybrid, LST Main, maxBTC)">
+    - **Supervault LP tokens** (Neutron-native tokens)
+    - **Lending assets** (underlying BTC derivatives)
+    - **Campaign rewards** (NTRN tokens)
+    - **All sent to your Neutron wallet**
+  </Accordion>
+</AccordionGroup>
 
 Your positions can be tracked on the [Balance page of the Neutron App](https://app.neutron.org/balance)
 
