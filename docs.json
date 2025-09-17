@@ -456,6 +456,24 @@
               "resources/contracts/mainnet",
               "resources/contracts/testnet"
             ]
+          },
+          {
+            "group": "Legal Documents",
+            "icon": "scale-balanced",
+            "pages": [
+              "legal/risks-and-disclaimers",
+              {
+                "group": "Neutron Terms and Conditions",
+                "icon": "handshake",
+                "pages": [
+                  "legal/terms-and-conditions/main",
+                  "legal/terms-and-conditions/third-party-rewards",
+                  "legal/terms-and-conditions/bitcoin-summer-campaign",
+                  "legal/terms-and-conditions/supervaults"
+                ]
+              },
+              "legal/privacy-policy"
+            ]
           }
         ]
       }
