@@ -102,9 +102,13 @@ The vesting mechanism promotes long-term ecosystem participation and prevents su
 
 ## Vault Rewards Model
 
-### Soft-Lock Structure
+### Vault Structure & Liquidity
 
-Campaign vaults use a "forfeitable" reward structure to encourage full phase participation:
+<Info>
+This forfeitable model does not apply to Structured vaults.
+</Info>
+
+Campaign vaults use a "forfeitable" reward structure designed to balance liquidity with participation incentives:
 
 | Component | Terms | Details |
 | --------- | ----- | ------- |
@@ -113,7 +117,9 @@ Campaign vaults use a "forfeitable" reward structure to encourage full phase par
 | NTRN Rewards | Forfeitable | Withdrawing mid-Phase forfeits that Phase's rewards. |
 | Partner Aidrops | No lockup by default | In general, BTC LST Issuers do not enforce forfeitable incentives. We encourage you to reach out to the relevant asset issuers to confirm their approach. |
 
-**Example**: If you deposit 10 BTC at phase start but withdraw 5 BTC mid-phase, you forfeit rewards corresponding to the withdrawn amount.
+**Key Mechanic**: Users can withdraw deposits at any time, but NTRN rewards are forfeited proportionally to withdrawals made before phase completion.
+
+For detailed reward optimization strategies and risk considerations, including worked examples of the forfeitable model: [→ NTRN Reward Structure & Examples](/btc-summer/rewards#forfeitable-reward-structure)
 
 Learn more about NTRN multipliers in [Boost Mechanisms & Multipliers](/btc-summer/rewards#understanding-multipliers)
 

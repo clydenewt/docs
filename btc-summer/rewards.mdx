@@ -170,6 +170,34 @@ To verify the number of points earned during the campaign, users can check the r
 
 An initial $10M in NTRN rewards (max 10% of supply) is earmarked for the campaign. Rewards will be distributed as USD Value, and converted into NTRN at the time of claiming to preserve value and prevent dilution.
 
+### Forfeitable Reward Structure
+
+<Info>
+This does not apply to Structured vaults.
+</Info>
+
+**Critical for Reward Optimization**: Understanding the forfeitable model is essential for maximizing your NTRN rewards and managing risk exposure.
+
+NTRN rewards use a "soft-lock" forfeitable structure that directly impacts your reward optimization strategy:
+- **Reward Risk**: Mid-phase withdrawals forfeit proportional NTRN rewards
+- **Optimization Strategy**: Full phase participation maximizes NTRN earning potential  
+- **Liquidity Trade-off**: Principal remains liquid, but NTRN rewards require commitment
+
+**How it affects your rewards**: To secure your full NTRN reward allocation from a Phase, maintain your deposit throughout the entire period. Any withdrawal forfeits the pro-rata share of NTRN rewards corresponding to the withdrawn amount.
+
+<AccordionGroup>
+  <Accordion title="Detailed Example: Mid-Phase Withdrawal Impact">
+    Bob deposits 10 BTC at the start of the Phase, then adds another 10 BTC by Day 5 (total: 20 BTC). On Day 6, market volatility makes him nervous and he decides to withdraw 5 BTC before the end of the Phase.
+    
+    → Bob keeps the NTRN rewards initially accrued with 10 BTC, as well as that accrued with 15 BTC on day 3-5, but he loses the extra NTRN rewards corresponding to the TVL he has since withdrawn.
+
+    <Frame>
+      <img src="/images/softLock.png" alt="Illustration of soft-lock forfeitable reward structure" />
+    </Frame>
+  </Accordion>
+</AccordionGroup>
+
+For complete campaign mechanics and other reward components, see: [Campaign Details](/btc-summer/campaign-details#soft-lock--forfeitable-model)
 
 <AccordionGroup>
   <Accordion title="Example">
