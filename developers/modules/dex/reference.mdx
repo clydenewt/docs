@@ -134,7 +134,7 @@ neutrond tx dex multi-hop-swap [receiver] [routes] [amount-in] [exit-limit-price
 - `receiver`: Address to receive output tokens
 - `routes`: Semicolon-separated list of hop routes, where each route is comma-separated hops (format: `route1;route2` where route1=`tokenA,tokenB,tokenC`)
 - `amount-in`: Amount of input tokens
-- `exit-limit-price`: Minimum acceptable price
+- `exit-limit-price`: Minimum allowable price for `amount_out/amount_in`. If the route price is less than this exit limit price, the route will fail and the next route (if provided) will be tried. Formula: `exit-limit-price = minimum_output_amount / input_amount`
 - `pick-best-route`: Whether to automatically pick the best route (boolean)
 
 **Example:**
