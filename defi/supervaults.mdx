@@ -18,7 +18,7 @@ The design allows efficient crowdsourcing of capital to bootstrap markets, rapid
 
 ## What are Supervaults?
 
-Supervaults (mmvault contracts) are CosmWasm contracts that leverage price feeds from Neutron's enshrined [Slinky oracle](/operators/oracle-setup) and native automation via the [Cron module](/developers/modules/cron) to provide liquidity with tight spreads on the [Duality orderbook](/defi/duality).
+Supervaults are Neutron's flagship DeFi innovation that manage liquidity on behalf of users by efficiently allocating deposits into the Neutron DEX [Duality](/defi/duality).
 
 Unlike traditional yield vaults or static liquidity pools, Supervaults actively optimize capital deployment to:
 
@@ -339,6 +339,68 @@ Understanding potential risks helps users make informed decisions about Supervau
     </tbody>
   </table>
 </div>
+
+## Vault Performance Calculations
+
+Understanding how Supervault performance is measured helps users make informed investment decisions and interpret the metrics displayed in the interface.
+
+### 30D APY/Hold
+
+The primary metric for calculating vault returns is **APY vs Hold**. This compares the returns of the vault to holding a 50/50 portfolio of the underlying assets.
+
+Looking at the last 30 days, we calculate total returns for the vault ignoring new deposits and withdrawals:
+
+$$
+vault\_return\_30d = (tvl\_close + value\_withdrawals) - (tvl\_open + value\_deposits)
+$$
+
+We then compare this to the 30-day returns for holding an equivalent value of the two underlying vault assets. The resulting value is annualized to produce the final 30D APY/Hold value:
+
+$$
+\Bigg( \dfrac{1 + vault\_return\_30d}{1 + hold\_return\_30d}  \Bigg)^{\tfrac{365}{30}} - 1
+$$
+
+<Info>
+**APY vs Hold** shows whether the active market making strategy outperformed a simple buy-and-hold approach, accounting for fees earned minus any impermanent loss effects.
+</Info>
+
+### Volume (Vol)
+
+Volume represents the total amount of trading activity for a vault, encompassing two types:
+
+1. **Maker Volume**: When the vault provides liquidity that other users trade through
+2. **Taker Volume**: When the vault trades through existing liquidity on the orderbook
+
+Higher volume generally correlates with increased fee generation and better vault performance.
+
+### Total Value Locked (TVL)
+
+TVL is the total value of tokens in the vault, effectively representing the sum of net deposits and accumulated vault revenue. This metric indicates:
+
+- The scale of the vault's operations
+- Market confidence in the vault strategy
+- Available liquidity for traders
+
+### Vault Capacity
+
+Most vaults have a maximum deposit capacity to optimize capital efficiency and maintain high APYs. When TVL equals or exceeds vault capacity, new deposits are temporarily disabled.
+
+**Benefits of capacity limits:**
+- Ensures optimal capital utilization
+- Maintains competitive APY rates
+- Prevents dilution of returns for existing depositors
+
+### Pool Balance
+
+Pool balance represents the current amount of each token held by the vault. Key implications:
+
+- **Withdrawal proportions**: Users receive their pro-rata share of vault TVL in the current pool balance ratio
+- **Imbalance risk**: Higher imbalances indicate greater inventory risk, where the over-supplied token's market performance disproportionately affects vault APY
+- **Rebalancing indicators**: Shows how effectively the vault's automated rebalancing maintains target allocations
+
+<Tip>
+Monitor pool balance ratios to understand your withdrawal composition and assess the vault's current risk profile.
+</Tip>
 
 ## Technical Architecture
 

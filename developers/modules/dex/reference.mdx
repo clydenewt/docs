@@ -1,5 +1,5 @@
 ---
-title: "DEX Reference"
+title: "Reference"
 description: "Complete technical reference for the DEX module including CLI commands, messages, queries, events, state, and data structures"
 ---
 
@@ -134,7 +134,7 @@ neutrond tx dex multi-hop-swap [receiver] [routes] [amount-in] [exit-limit-price
 - `receiver`: Address to receive output tokens
 - `routes`: Semicolon-separated list of hop routes, where each route is comma-separated hops (format: `route1;route2` where route1=`tokenA,tokenB,tokenC`)
 - `amount-in`: Amount of input tokens
-- `exit-limit-price`: Minimum allowable price for `amount_out/amount_in`. If the route price is less than this exit limit price, the route will fail and the next route (if provided) will be tried. Formula: `exit-limit-price = minimum_output_amount / input_amount`
+- `exit-limit-price`: Minimum allowable price ratio. If the actual price ratio (amount_out/amount_in) is less than this value, the route will fail. Use very low values (e.g., "0.001") for maximum flexibility, as this represents the absolute minimum acceptable rate.
 - `pick-best-route`: Whether to automatically pick the best route (boolean)
 
 **Example:**
@@ -888,6 +888,138 @@ Simulates withdrawing from a filled limit order without executing it.
 
 **Query Parameters:**
 - `msg`: MsgWithdrawFilledLimitOrder message in JSON format
+
+#### Simulate Multi-Hop Swap
+
+```
+GET /neutron/dex/simulate_multi_hop_swap
+```
+
+Simulates a multi-hop swap operation without executing it.
+
+**Query Parameters:**
+- `msg`: MsgMultiHopSwap message in JSON format
+
+<AccordionGroup>
+<Accordion title="exitLimitPrice Usage Example">
+
+The `exitLimitPrice` parameter can be easily misunderstood. Here's a comprehensive example showing correct usage:
+
+<Warning>
+**Common Mistake**: Using simulation results directly to calculate `exitLimitPrice` often fails due to the 10^27 decimal format and price precision requirements.
+</Warning>
+
+**Scenario:** Swap 145 DYDX → OSMO with 1% slippage protection
+
+<Steps>
+<Step title="First simulation with low exitLimitPrice">
+  ```javascript
+  // First simulation with very low exitLimitPrice for flexibility
+  const firstSimulation = {
+    msg: {
+      creator: "neutron1...",
+      receiver: "neutron1...",
+      routes: [{
+        hops: [
+          'ibc/2CB87BCE0937B1D1DFCEE79BE4501AAF3C265E923509AEAC410AD85D27F35130', // DYDX
+          'ibc/B559A80D62249C8AA07A380E2A2BEA6E5CA9A6F079C912C3A9E9B494105E4F81', // Intermediate
+          'ibc/376222D6D9DAE23092E29740E56B758580935A6D77C24C2ABD57A6A78A1F3955'  // OSMO
+        ]
+      }],
+      amountIn: "145000000000000000000", // 145 DYDX (18 decimals)
+      exitLimitPrice: "1000000", // Very low minimum price
+      pickBestRoute: false,
+    }
+  };
+  
+  // Result: ~602 OSMO out
+  // Response: { coinOut: { amount: "602731536", denom: "ibc/376..." } }
+  ```
+</Step>
+
+<Step title="Calculate proper exitLimitPrice">
+  ```javascript
+  // INCORRECT approach that will fail:
+  const outputAmount = new BigNumber("602731536"); // 602.731536 OSMO (6 decimals)
+  const inputAmount = new BigNumber("145000000000000000000"); // 145 DYDX (18 decimals)
+  
+  // What the code actually calculates as currentPrice:
+  const currentPrice = outputAmount.dividedBy(inputAmount); // 602731536 / 145000000000000000000 = ~4.16e-12
+  
+  // WRONG: User thinks in terms of OSMO per DYDX (human-readable rates)
+  const humanRate = outputAmount.shiftedBy(-6).dividedBy(inputAmount.shiftedBy(-18)); // 602.73 / 145 = ~4.16
+  const badExitPrice = humanRate.multipliedBy(0.99).toFixed(); // "4.11..." 
+  // This will FAIL because 4.11 > 4.16e-12 (exitLimitPrice > currentPrice)
+  
+  // CORRECT approaches:
+  
+  // Option 1: Use very low exitLimitPrice for maximum flexibility
+  const safeExitPrice = "0.000001"; // Very small minimum price
+  
+  // Option 2: Use neutron-sdk PrecDec for proper decimal handling
+  import { PrecDec } from '@neutron-org/neutron-sdk';
+  const properExitPrice = PrecDec.fromUserInput("0.001", 18).toString(); // 0.001 as minimum
+  
+  // Option 3: Calculate conservatively using the actual raw ratio
+  const conservativePrice = currentPrice.multipliedBy(0.1).toFixed(); // Only 10% of raw currentPrice (~4.16e-13)
+  ```
+</Step>
+
+<Step title="Execute with proper exitLimitPrice">
+  ```javascript
+  const finalSwap = {
+    msg: {
+      creator: "neutron1...",
+      receiver: "neutron1...",
+      routes: [{
+        hops: [
+          'ibc/2CB87BCE0937B1D1DFCEE79BE4501AAF3C265E923509AEAC410AD85D27F35130',
+          'ibc/B559A80D62249C8AA07A380E2A2BEA6E5CA9A6F079C912C3A9E9B494105E4F81',
+          'ibc/376222D6D9DAE23092E29740E56B758580935A6D77C24C2ABD57A6A78A1F3955'
+        ]
+      }],
+      amountIn: "145000000000000000000",
+      exitLimitPrice: safeExitPrice, // Use one of the correct approaches above
+      pickBestRoute: false,
+    }
+  };
+  ```
+</Step>
+
+<Step title="Alternative: Post-execution slippage check">
+  ```javascript
+  // Instead of using exitLimitPrice for slippage protection,
+  // simulate first, then check results before executing
+  
+  const simulation = await query.dex.simulateMultiHopSwap(firstSimulation);
+  const expectedOutput = new BigNumber(simulation.coinOut.amount);
+  const minimumAcceptable = expectedOutput.multipliedBy(0.99); // 1% slippage
+  
+  // Execute the actual swap with low exitLimitPrice
+  const actualSwap = await tx.dex.multiHopSwap({
+    ...finalSwap.msg,
+    exitLimitPrice: "1000000"
+  });
+  
+  // Check if actual output meets slippage requirements
+  const actualOutput = new BigNumber(actualSwap.coinOut.amount);
+  if (actualOutput.isLessThan(minimumAcceptable)) {
+    throw new Error(`Slippage too high: got ${actualOutput}, expected min ${minimumAcceptable}`);
+  }
+  ```
+</Step>
+</Steps>
+
+<Tip>
+**Best Practice**: For slippage protection, either use very low `exitLimitPrice` values with post-execution checks, or use the neutron-sdk PrecDec type for proper decimal handling.
+</Tip>
+
+<Info>
+**exitLimitPrice Format**: The value uses PrecDec format and can be provided as simple decimal strings like "0.9" or "0.001". It represents the **minimum** acceptable price ratio (amountOut/amountIn) using raw token amounts.
+</Info>
+
+</Accordion>
+</AccordionGroup>
 
 ### Deprecated Endpoints
 
