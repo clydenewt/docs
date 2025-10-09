@@ -64,6 +64,7 @@ message Schedule {
   uint64 period = 2;                         // Blocks between executions  
   repeated MsgExecuteContract msgs = 3;      // Messages to execute
   uint64 last_execute_height = 4;           // Last execution block height
+  ExecutionStage execution_stage = 5;       // Execution stage (BEGIN_BLOCKER or END_BLOCKER)
 }
 
 message MsgExecuteContract {
@@ -76,11 +77,15 @@ message MsgExecuteContract {
 
 The Cron module supports two execution stages:
 
-1. **BEGIN_BLOCKER**: Schedules are executed at the beginning of the block, before any transactions. This is useful for operations that need to happen before other transactions in the block.
+1. **EXECUTION_STAGE_BEGIN_BLOCKER** (value: 1): Schedules are executed at the beginning of the block, before any transactions. This is useful for operations that need to happen before other transactions in the block.
 
-2. **END_BLOCKER**: Schedules are executed at the end of the block, after all transactions. This is useful for operations that should occur after all other transactions in the block have been processed.
+2. **EXECUTION_STAGE_END_BLOCKER** (value: 0, default): Schedules are executed at the end of the block, after all transactions. This is useful for operations that should occur after all other transactions in the block have been processed.
 
 The choice of execution stage is important for dependencies between operations. For example, if a scheduled operation depends on the state resulting from regular transactions, it should use the END_BLOCKER stage.
+
+<Info>
+Each execution stage is processed independently during its respective blocker phase. The `limit` parameter applies separately to each stage, meaning up to `limit` schedules can execute in BeginBlock and up to `limit` schedules can execute in EndBlock within the same block.
+</Info>
 
 ### Governance-Based Management
 
@@ -97,9 +102,9 @@ The Cron module implements several mechanisms to ensure security and prevent abu
 ### Execution Limits
 
 To prevent DoS attacks and excessive resource consumption:
-- There's a network-wide `limit` parameter (default: configurable) that restricts the number of schedules processed in a single block
+- There's a network-wide `limit` parameter (default: 5) that restricts the number of schedules processed per execution stage in a single block
 - If more schedules are due than the limit allows, some are delayed until subsequent blocks
-- Schedules are processed in deterministic order (by last execution height, then alphabetically by name)
+- Schedules are processed in KVStore iteration order (typically alphabetical by schedule name)
 
 ### Message Validation
 
@@ -160,11 +165,11 @@ The governance-only access pattern serves several important purposes:
 
 ### Schedule Execution Order
 
-When multiple schedules are due for execution in the same block, they are processed in a deterministic order:
-1. First by `last_execution_height` (schedules that haven't run in longer get priority)
-2. Then by name (alphabetical order for ties)
+When multiple schedules are due for execution in the same block, they are processed in the order they appear during KVStore iteration. Since schedule names are used as keys in the store, schedules are typically processed in alphabetical order by name.
 
-This ordering ensures fairness and prevents starvation of schedules.
+<Note>
+The execution order is determined by the KVStore iteration order, not by `last_execution_height`. If multiple schedules are ready for execution and the limit is reached, later schedules (alphabetically) will be deferred to the next block where they become eligible.
+</Note>
 
 ### Failure Handling
 
@@ -193,10 +198,14 @@ msg := wasmtypes.MsgExecuteContract{
 
 Network-wide parameters that can be adjusted through governance:
 
-| Parameter | Description | Purpose |
-|-----------|-------------|---------|
-| `security_address` | Address authorized to remove schedules | Emergency schedule removal |
-| `limit` | Maximum schedules executed per block | Resource management and DoS prevention |
+| Parameter | Description | Default | Constraints |
+|-----------|-------------|---------|-------------|
+| `security_address` | Address authorized for security operations | `""` (empty) | Must be valid bech32 address or empty |
+| `limit` | Maximum schedules executed per execution stage per block | `5` | Must be greater than 0 |
+
+<Note>
+The `limit` parameter applies separately to each execution stage (BEGIN_BLOCKER and END_BLOCKER), meaning up to `limit` schedules can execute during BeginBlock and up to `limit` schedules during EndBlock in the same block.
+</Note>
 
 ## Metrics and Monitoring
 
