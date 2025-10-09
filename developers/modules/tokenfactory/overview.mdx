@@ -107,12 +107,16 @@ message WhitelistedHook {
 }
 ```
 
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `denom_creation_fee` | []Coin | Fee required to create a new denomination |
-| `denom_creation_gas_consume` | uint64 | Additional gas cost for denomination creation |
-| `fee_collector_address` | string | Address receiving creation fees |
-| `whitelisted_hooks` | []WhitelistedHook | Approved contracts for before-send hooks |
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `denom_creation_fee` | []Coin | `[]` (empty) | Fee required to create a new denomination |
+| `denom_creation_gas_consume` | uint64 | `0` | Additional gas cost for denomination creation |
+| `fee_collector_address` | string | `""` (empty) | Address receiving creation fees |
+| `whitelisted_hooks` | []WhitelistedHook | `[]` (empty) | Approved contracts for before-send hooks |
+
+<Note>
+The `denom_creation_fee` and `fee_collector_address` parameters must be both set or both unset. By default, both are empty, meaning denom creation is free.
+</Note>
 
 ## Before-Send Hooks
 

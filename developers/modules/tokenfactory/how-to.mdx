@@ -72,7 +72,13 @@ neutrond tx tokenfactory mint \
 ```
 
 **Mint to specific address:**
-The `mint` command only mints to the sender. To mint to a different address, you need to use the `MsgMint` transaction directly or transfer after minting.
+The CLI `mint` command only mints to the sender's address. To mint to a different address, you can either:
+- Use `MsgMint` directly with the `mint_to_address` field
+- Mint to yourself first, then transfer the tokens
+
+<Note>
+The `MsgMint` message supports a `mint_to_address` field that allows minting to any address. If left empty, it defaults to the sender's address. The CLI command doesn't expose this parameter, so you'll need to construct the message manually or use transfer after minting.
+</Note>
 
 ### Burning Tokens
 

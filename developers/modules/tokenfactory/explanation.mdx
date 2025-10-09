@@ -94,9 +94,9 @@ Each token has an **admin** who controls its lifecycle:
 **TrackBeforeSend:**
 ```go
 type TrackBeforeSendMsg struct {
-    From   string
-    To     string  
-    Amount Coin
+    From   string           `json:"from"`
+    To     string           `json:"to"`
+    Amount wasmvmtypes.Coin `json:"amount"`
 }
 ```
 - Used for monitoring/tracking transfers
@@ -106,9 +106,9 @@ type TrackBeforeSendMsg struct {
 **BlockBeforeSend:**
 ```go
 type BlockBeforeSendMsg struct {
-    From   string
-    To     string
-    Amount Coin
+    From   string           `json:"from"`
+    To     string           `json:"to"`
+    Amount wasmvmtypes.Coin `json:"amount"`
 }
 ```
 - Used for blocking/controlling transfers
