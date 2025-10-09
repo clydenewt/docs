@@ -19,11 +19,11 @@ The Cron module's execution timing is based on block heights rather than precise
 
 ### Execution Order
 
-The order in which schedules are executed within a block is not deterministic and depends on the underlying storage implementation. Applications should not rely on specific execution ordering.
+The order in which schedules are executed within a block is determined by KVStore iteration order, which is typically alphabetical by schedule name. However, execution order is not based on factors like execution history or priority. Applications should not rely on specific execution ordering between independent schedules, as the order is implementation-dependent and may change.
 
 ### Resource Limits
 
-The module has a configurable limit on the number of schedules that can be executed per block. If many schedules are due simultaneously, some may be delayed to subsequent blocks.
+The module has a configurable limit (default: 5) on the number of schedules that can be executed per execution stage per block. If many schedules are due simultaneously, some may be delayed to subsequent blocks. The limit applies separately to BEGIN_BLOCKER and END_BLOCKER execution stages.
 
 ## Reporting Issues
 
