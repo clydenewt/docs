@@ -167,7 +167,7 @@ There are two ways to find an appropriate IBC connection ID:
 
 To ensure the ledger is kept clean of unused or outdated queries, a deposit mechanism is implemented. When a contract sends a [RegisterInterchainQuery](/developers/modules/interchain-queries/reference#registerinterchainquery) message, the required deposit is deducted from the contract's balance as an escrow payment for the query creation. This deposit is refunded when the query is removed by issuing a [RemoveInterchainQuery](/developers/modules/interchain-queries/reference#removeinterchainquery) message.
 
-The amount required for the deposit is defined by the `query_deposit` [module parameter](/developers/modules/interchain-queries/reference#params).
+The amount required for the deposit is defined by the `query_deposit` [module parameter](/developers/modules/interchain-queries/reference#params) (default: **1,000,000 untrn** or **1 NTRN**).
 
 In essence, query owners are expected to remove their queries once they are no longer needed. If a query is not used within the `query_submit_timeout` period and the owner does not remove it, any network user is allowed to clean up the chain by removing the unused query. As a reward, the deposited assets are transferred to the user who performs the cleanup.
 

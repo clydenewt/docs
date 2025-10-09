@@ -82,10 +82,14 @@ Since raw error messages may not be deterministic across nodes, the module redac
 
 ## Failure Resubmission
 
-Contracts can resubmit their failures for processing outside the relayer context. This feature allows:
+Contracts can resubmit their failures for processing. This feature allows:
 
-1. Contracts to retry processing of a failed sudo call with more gas available.
-2. Developers to fix contract bugs and then process previously failed acknowledgments.
+1. Contracts to retry processing of a failed sudo call after fixing bugs or optimizing gas usage.
+2. Developers to update contract logic and then process previously failed acknowledgments.
+
+<Warning>
+Resubmission uses the same gas limits as the original sudo call. If your failure was due to exceeding the sudo gas limit, you must optimize your contract's sudo handler to use less gas, or request a governance proposal to increase the `sudo_call_gas_limit` parameter.
+</Warning>
 
 The resubmission is permissioned - only the contract that originally received the IBC message can resubmit its failures.
 
@@ -104,13 +108,13 @@ This ensures that even if a contract's sudo handler partially executes before fa
 ```mermaid
 flowchart TD
     A[IBC Module] --> B[Contract Manager<br>IBC Middleware]
-    B --> C{Sudo Call}
+    B --> C{Sudo Call<br>Gas Limited}
     C -->|Success| D[Commit<br>State Changes]
     C -->|Failure| E[Store Failure<br>Record]
     E --> F[Emit Error<br>Event]
     G[CosmWasm Contract] --> H[Resubmit<br>Failure]
     H --> I[Contract Manager<br>Keeper]
-    I --> J[Retry Sudo<br>With Full Gas]
+    I --> J[Retry Sudo<br>Same Gas Limit]
 ```
 
 This architecture ensures robust handling of IBC acknowledgments while protecting the network from potentially harmful contract behavior. 

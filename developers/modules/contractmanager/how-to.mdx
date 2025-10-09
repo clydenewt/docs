@@ -113,8 +113,12 @@ pub fn resubmit_failure(
 
 Important rules for resubmission:
 1. Only the original contract that received the IBC message can resubmit the failure
-2. Resubmission runs with full gas, not limited by the usual sudo gas constraints
-3. You should fix any issues in your contract before resubmitting
+2. Resubmission still runs with the same sudo gas limit constraints as the original call
+3. You should fix any issues in your contract before resubmitting (e.g., optimize gas usage or simplify logic)
+
+<Warning>
+If your contract failed due to running out of gas within the sudo gas limit, simply resubmitting will likely fail again. You must either optimize your contract's sudo handler to use less gas, or the sudo gas limit parameter must be increased through governance.
+</Warning>
 
 ## Implementing Error Handling Patterns
 

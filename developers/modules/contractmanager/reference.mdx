@@ -7,9 +7,9 @@ The Contract Manager module manages sudo call failures and provides resubmission
 
 ## Parameters
 
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `sudo_call_gas_limit` | uint64 | Maximum gas that can be used during a sudo call to a contract |
+| Parameter | Type | Default | Description |
+| --- | --- | --- | --- |
+| `sudo_call_gas_limit` | uint64 | `1000000` | Maximum gas that can be used during a sudo call to a contract |
 
 ## Queries
 
@@ -30,7 +30,7 @@ neutrond query contractmanager params
 ```json
 {
   "params": {
-    "sudo_call_gas_limit": "2000000"
+    "sudo_call_gas_limit": "1000000"
   }
 }
 ```

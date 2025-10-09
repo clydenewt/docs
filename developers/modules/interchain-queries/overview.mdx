@@ -78,7 +78,11 @@ The `RemoveInterchainQuery` message can be executed by:
 - The query owner at any time
 - Any Neutron account after the query's "service period" has ended
 
-The service period is calculated as: `latest query result submission height + (query update period) * 20`
+The service period is calculated as: `latest query result submission height + submit_timeout`
+
+<Note>
+The `submit_timeout` is set from the `query_submit_timeout` module parameter (default: 1,036,800 blocks, approximately 1 month) at the time of query registration. The service period renews each time the query is updated.
+</Note>
 
 ## Transaction Filters
 
