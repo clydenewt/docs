@@ -31,3 +31,5 @@ yarn-error.log*
 CLAUDE.md
 
 /.cursor
+
+/neutron-points-crawler
