@@ -1,0 +1,114 @@
+---
+title: "v8.1.1"
+description: "Upgrade instructions for Neutron v8.1.1 patch release"
+icon: "arrow-up-right-dots"
+---
+
+- **Release type**: Non-consensus breaking patch release (rolling upgrade)
+- **Go version**: `v1.23.4`
+- **Release**: [v8.1.1](https://github.com/neutron-org/neutron/releases/tag/v8.1.1)
+
+This is a **non-consensus breaking patch release** that can be applied in a rolling manner. Validators should update **as soon as possible**.
+
+---
+
+## What's Changed
+
+- **CometBFT security patch**: Bumped CometBFT to v0.38.19 which contains a security patch
+
+For the full changelog, see the [release notes](https://github.com/neutron-org/neutron/releases/tag/v8.1.1).
+
+---
+
+## Upgrade Type
+
+This is a **rolling upgrade** (non-consensus breaking), meaning:
+- No coordinated upgrade height required
+- Validators can upgrade at their convenience
+- No chain halt or network-wide coordination needed
+- **Update as soon as possible** due to security patch
+
+---
+
+## Installation
+
+### Build from Source
+
+```shell
+cd $HOME/neutron
+git pull
+git fetch --tags
+git checkout v8.1.1
+make install
+```
+
+### Verify Installation
+
+Check the new neutron version:
+
+```shell
+$ neutrond version --long
+build_tags: netgo,ledger
+commit: cc6b050
+cosmos_sdk_version: v0.50.13-neutron.0.20250512094026-b5afd837c4de
+go: go version go1.23.4 linux/amd64
+name: neutron
+server_name: neutrond
+version: 8.1.1
+```
+
+### Or Verify Downloaded Binary
+
+Check checksum of the binary if you decided to [download it](https://github.com/neutron-org/neutron/releases/tag/v8.1.1):
+
+```shell
+$ shasum -a 256 neutrond-linux-amd64
+71cafce7c75c8a9846d35be6ef6f8650c8f97dea0346333580a0c972b62c3050  neutrond-linux-amd64
+```
+
+---
+
+## Upgrade Process
+
+Since this is a rolling upgrade, simply:
+
+<Steps>
+  <Step title="Stop Your Node">
+    ```shell
+    sudo systemctl stop neutrond
+    ```
+  </Step>
+  <Step title="Replace Binary">
+    Replace the existing neutrond binary with v8.1.1 (either by building from source or downloading the binary).
+  </Step>
+  <Step title="Restart Your Node">
+    ```shell
+    sudo systemctl start neutrond
+    ```
+  </Step>
+  <Step title="Verify Upgrade">
+    Check that your node is running the new version:
+    ```shell
+    neutrond version
+    ```
+  </Step>
+</Steps>
+
+---
+
+## LibWasm Version
+
+The libwasm version remains `2.2.4`. You can verify:
+
+```shell
+$ neutrond q wasm libwasmvm-version
+2.2.4
+```
+
+---
+
+## Support
+
+For upgrade support:
+- **Discord**: [Neutron Validator Channel](https://discord.com/invite/bzPBzbDvWC)
+- **Telegram**: [Neutron Community](https://t.me/neutron_community)

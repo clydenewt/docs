@@ -52,10 +52,10 @@ This guide will walk you through the process of setting up and running a Neutron
   </Step>
   <Step title="Install Go">
     ```bash
-    # Install Go 1.21 or higher
-    wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
-    sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
-    rm go1.21.0.linux-amd64.tar.gz
+    # Install Go 1.23.4 or higher
+    wget https://go.dev/dl/go1.23.4.linux-amd64.tar.gz
+    sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.23.4.linux-amd64.tar.gz
+    rm go1.23.4.linux-amd64.tar.gz
     ```
 
     Add Go to your PATH:
@@ -71,13 +71,13 @@ This guide will walk you through the process of setting up and running a Neutron
         ```bash
         git clone https://github.com/neutron-org/neutron.git
         cd neutron
-        git checkout v6.0.2 # replace with the current version
+        git checkout v8.1.1 # replace with the current version
         make install
         ```
       </Tab>
       <Tab title="Download Binary">
         ```bash
-        wget https://github.com/neutron-org/neutron/releases/download/v6.0.2/neutrond-linux-amd64
+        wget https://github.com/neutron-org/neutron/releases/download/v8.1.1/neutrond-linux-amd64
         chmod +x neutrond-linux-amd64
         sudo mv neutrond-linux-amd64 /usr/local/bin/neutrond
         ```
