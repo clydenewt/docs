@@ -1,0 +1,330 @@
+---
+title: "Operations & Monitoring"
+description: "Monitor oracle performance and maintain validator uptime requirements"
+icon: "chart-mixed"
+---
+
+This guide focuses on Neutron-specific operational requirements for the Connect oracle. For comprehensive troubleshooting and metrics details, see [Skip's Connect documentation](https://docs.skip.build/connect/validators/metrics).
+
+## Performance Requirements
+
+<Warning>
+Oracle performance directly impacts validator rewards. Maintain **≥95% success rate** for full compensation.
+</Warning>
+
+### Reward Tiers
+
+| Success Rate | Reward Level |
+|--------------|--------------|
+| ≥98% | Full rewards ($3,000/month) |
+| 95-98% | Proportional rewards |
+| \<95% | No rewards |
+
+Validators below 95% for 2 consecutive months or 3 months in a 6-month period may be rotated out. See [Validator Incentives](/operators/economics/validator-incentives).
+
+## Monitoring Oracle Success Rate
+
+### Quick Health Check
+
+Create a monitoring script:
+
+```bash
+#!/bin/bash
+# /usr/local/bin/check-oracle.sh
+
+echo "=== Neutron Oracle Health Check ==="
+
+# Check Connect service
+if systemctl is-active --quiet connect; then
+    echo "✓ Connect service running"
+else
+    echo "✗ Connect service stopped"
+    exit 1
+fi
+
+# Check Connect API
+if curl -sf http://localhost:8080/connect/oracle/v2/prices > /dev/null; then
+    TIMESTAMP=$(curl -s http://localhost:8080/connect/oracle/v2/prices | jq -r '.timestamp')
+    echo "✓ Connect API responding (last update: $TIMESTAMP)"
+else
+    echo "✗ Connect API not responding"
+fi
+
+# Calculate success rate
+TOTAL=$(curl -s http://localhost:26660/metrics 2>/dev/null | grep 'app_oracle_responses{.*status="Success"}' | awk '{print $2}')
+FAILURES=$(curl -s http://localhost:26660/metrics 2>/dev/null | grep 'app_oracle_responses{.*status="Failure"}' | awk '{print $2}')
+
+if [ -n "$TOTAL" ] && [ -n "$FAILURES" ]; then
+    SUCCESS_RATE=$(awk "BEGIN {print ($TOTAL / ($TOTAL + $FAILURES)) * 100}")
+
+    if (( $(echo "$SUCCESS_RATE >= 98" | bc -l) )); then
+        echo "✓ Success rate: ${SUCCESS_RATE}% (Full rewards)"
+    elif (( $(echo "$SUCCESS_RATE >= 95" | bc -l) )); then
+        echo "⚠ Success rate: ${SUCCESS_RATE}% (Partial rewards - improve performance)"
+    else
+        echo "✗ Success rate: ${SUCCESS_RATE}% (No rewards - action required)"
+    fi
+else
+    echo "⚠ No metrics data yet"
+fi
+
+echo "=== End Health Check ==="
+```
+
+Make it executable:
+
+```bash
+sudo chmod +x /usr/local/bin/check-oracle.sh
+/usr/local/bin/check-oracle.sh
+```
+
+### Continuous Monitoring
+
+Run periodic checks via cron:
+
+```bash
+# Add to crontab
+crontab -e
+```
+
+```cron
+# Check oracle health every 10 minutes
+*/10 * * * * /usr/local/bin/check-oracle.sh >> /var/log/oracle-health.log 2>&1
+```
+
+## Key Metrics
+
+### Oracle Response Metrics
+
+```bash
+# View success/failure counts
+curl -s http://localhost:26660/metrics | grep app_oracle_responses
+```
+
+**Output:**
+```
+app_oracle_responses{chain_id="neutron-1",status="Failure"} 128
+app_oracle_responses{chain_id="neutron-1",status="Success"} 841042
+```
+
+### Connect Service Metrics
+
+```bash
+# View Connect-specific metrics
+curl -s http://localhost:8002/metrics | grep connect_
+```
+
+For detailed metrics documentation, see [Skip's Metrics Guide](https://docs.skip.build/connect/validators/metrics).
+
+## Common Issues
+
+### Low Success Rate
+
+**Symptoms**: Success rate below 95%
+
+**Quick Diagnostics:**
+
+```bash
+# 1. Check Connect logs
+sudo journalctl -u connect -n 100 | grep error
+
+# 2. Test Connect API responsiveness
+time curl -s http://localhost:8080/connect/oracle/v2/prices > /dev/null
+
+# 3. Verify node gRPC
+grpcurl -plaintext localhost:9090 list
+```
+
+**Common Fixes:**
+
+<AccordionGroup>
+  <Accordion title="Connect service stopped">
+    ```bash
+    sudo systemctl restart connect
+    sudo systemctl status connect
+    ```
+  </Accordion>
+
+  <Accordion title="Slow Connect responses">
+    Increase timeout in `app.toml`:
+    ```toml
+    client_timeout = "5s"  # Increase from 2s
+    ```
+    Then restart neutrond:
+    ```bash
+    sudo systemctl restart neutrond
+    ```
+  </Accordion>
+
+  <Accordion title="Network connectivity issues">
+    Test outbound connections:
+    ```bash
+    curl -I https://api.binance.com
+    curl -I https://api.coinbase.com
+    ```
+
+    Ensure firewall allows outbound HTTPS (port 443).
+  </Accordion>
+
+  <Accordion title="gRPC connection issues">
+    Verify gRPC is enabled in `app.toml`:
+    ```toml
+    [grpc]
+    enable = true
+    address = "0.0.0.0:9090"
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### Missing Prices (Normal)
+
+**Log message:**
+```
+{"level":"info","msg":"failed to calculate prices for price feeds","missing_prices":["RNDR/USD","AGIX/USD"]}
+```
+
+<Info>
+This is **normal**—Connect logs missing prices for feeds temporarily unavailable from providers. This does not affect your success rate unless **all** major pairs (BTC, ETH, NTRN) are missing.
+</Info>
+
+**When to Act:**
+- All prices missing for >5 minutes
+- Major pairs (BTC/USD, ETH/USD, NTRN/USD) consistently missing
+
+**Fix:** Restart Connect:
+```bash
+sudo systemctl restart connect
+```
+
+### WebSocket Errors (Usually Normal)
+
+**Log message:**
+```
+{"level":"error","provider":"binance_ws","error":"websocket connection handler failed"}
+```
+
+<Info>
+WebSocket disconnections are common and Connect automatically reconnects. Only worry if:
+- All WebSocket providers fail simultaneously for >30 minutes
+- Accompanied by low success rate
+</Info>
+
+## Alerting Setup
+
+### Simple Alert Script
+
+Create an alert script for low success rate:
+
+```bash
+#!/bin/bash
+# /usr/local/bin/alert-oracle.sh
+
+THRESHOLD=95
+WEBHOOK_URL="YOUR_DISCORD_OR_SLACK_WEBHOOK"
+
+TOTAL=$(curl -s http://localhost:26660/metrics | grep 'app_oracle_responses{.*status="Success"}' | awk '{print $2}')
+FAILURES=$(curl -s http://localhost:26660/metrics | grep 'app_oracle_responses{.*status="Failure"}' | awk '{print $2}')
+
+if [ -n "$TOTAL" ] && [ -n "$FAILURES" ]; then
+    SUCCESS_RATE=$(awk "BEGIN {print ($TOTAL / ($TOTAL + $FAILURES)) * 100}")
+
+    if (( $(echo "$SUCCESS_RATE < $THRESHOLD" | bc -l) )); then
+        MESSAGE="🚨 Oracle Alert: Success rate is ${SUCCESS_RATE}% (threshold: ${THRESHOLD}%)"
+
+        # Send to webhook (Discord/Slack)
+        curl -H "Content-Type: application/json" \
+             -d "{\"content\":\"$MESSAGE\"}" \
+             "$WEBHOOK_URL"
+    fi
+fi
+```
+
+Run via cron every 30 minutes:
+
+```cron
+*/30 * * * * /usr/local/bin/alert-oracle.sh
+```
+
+## Prometheus + Grafana
+
+For production monitoring, use Prometheus and Grafana:
+
+### Prometheus Configuration
+
+Add to `prometheus.yml`:
+
+```yaml
+scrape_configs:
+  # Connect metrics
+  - job_name: 'connect_oracle'
+    static_configs:
+      - targets: ['localhost:8002']
+    scrape_interval: 15s
+
+  # Neutron oracle metrics
+  - job_name: 'neutron_oracle'
+    static_configs:
+      - targets: ['localhost:8001']
+    scrape_interval: 15s
+
+  # Neutron node metrics
+  - job_name: 'neutron_node'
+    static_configs:
+      - targets: ['localhost:26660']
+    scrape_interval: 15s
+```
+
+### Key Prometheus Queries
+
+**Oracle success rate:**
+```promql
+rate(app_oracle_responses{status="Success"}[5m])
+/
+(rate(app_oracle_responses{status="Success"}[5m]) + rate(app_oracle_responses{status="Failure"}[5m])) * 100
+```
+
+**Connect provider latency (95th percentile):**
+```promql
+histogram_quantile(0.95, rate(connect_provider_query_duration_seconds_bucket[5m]))
+```
+
+For complete metrics documentation, see [Skip's Metrics Overview](https://docs.skip.build/connect/validators/metrics/overview).
+
+## Advanced Setups
+
+### Remote Signers
+
+If using remote signers (Horcrux, TMKMS), Connect runs **on the validator node**, not the signer:
+
+**Compatible versions:**
+- **Horcrux**: v3.3.0+ ([setup guide](https://docs.skip.build/connect/validators/advanced-setups#using-horcrux))
+- **TMKMS**: v0.13.1+ ([setup guide](https://docs.skip.build/connect/validators/advanced-setups#using-tmkms))
+
+See [Skip's Advanced Setups](https://docs.skip.build/connect/validators/advanced-setups) for configuration details.
+
+### Distributed Validators
+
+For distributed validator setups, run Connect **on each validator node**:
+
+- Ensures fast failover
+- Maintains oracle state on all nodes
+- No oracle warm-up time during failover
+
+See [Skip's Advanced Setups](https://docs.skip.build/connect/validators/advanced-setups#distributed-validators) for detailed configurations.
+
+## Additional Resources
+
+<CardGroup cols={2}>
+  <Card title="Skip Docs: Troubleshooting" icon="wrench" href="https://docs.skip.build/connect/validators/faqs">
+    Comprehensive troubleshooting and FAQs
+  </Card>
+  <Card title="Skip Docs: Metrics" icon="chart-line" href="https://docs.skip.build/connect/validators/metrics">
+    Complete metrics reference
+  </Card>
+  <Card title="Oracle Setup" icon="gear" href="/operators/oracle/setup">
+    Review setup and configuration
+  </Card>
+  <Card title="Validator Incentives" icon="coins" href="/operators/economics/validator-incentives">
+    Understand reward calculations
+  </Card>
+</CardGroup>

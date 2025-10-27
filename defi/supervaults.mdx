@@ -32,7 +32,7 @@ Unlike traditional yield vaults or static liquidity pools, Supervaults actively 
 Understanding Supervaults requires familiarity with core market making concepts:
 
 - **[Duality](/defi/duality)**: Neutron's enshrined orderbook with advanced order types designed to minimize risks and costs for market makers. Features impossible to build outside an app-specific chain.
-- **[Slinky](/operators/oracle-setup)**: Neutron's enshrined, high-performance oracle operated by validators as part of consensus, guaranteeing up-to-date prices at every block for any CEX asset.
+- **[Slinky](/operators/oracle/overview)**: Neutron's enshrined, high-performance oracle operated by validators as part of consensus, guaranteeing up-to-date prices at every block for any CEX asset.
 - **[Cron Module](/developers/modules/cron)**: Neutron module enabling guaranteed scheduled smart-contract execution at the start or end of each block.
 - **Spread**: Price gap between highest buy order and lowest sell order. Smaller spreads mean better prices for traders. Market makers profit by buying slightly lower and selling slightly higher.
 - **Adverse Selection**: Losses from arbitrageurs taking advantage of outdated pricing. Too tight spreads risk adverse selection; too wide spreads lose order flow.
@@ -71,7 +71,7 @@ Supervaults overcome these fundamental limitations through Neutron's unique infr
 
 <CardGroup cols={2}>
   <Card title="Slinky Oracle Integration" icon="globe" iconType="duotone">
-    Unlike traditional AMMs with no price feeds, Supervaults leverage [Slinky's](/operators/oracle-setup) high-frequency, censorship-resistant price feeds to stay current with CEX prices without leaking value to arbitrageurs.
+    Unlike traditional AMMs with no price feeds, Supervaults leverage [Slinky's](/operators/oracle/overview) high-frequency, censorship-resistant price feeds to stay current with CEX prices without leaking value to arbitrageurs.
   </Card>
   
   <Card title="Automated Cron Execution" icon="clock" iconType="duotone">

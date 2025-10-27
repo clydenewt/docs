@@ -1,0 +1,84 @@
+---
+title: "Oracle Overview"
+description: "Understanding Neutron's high-frequency price oracle powered by Connect"
+icon: "chart-line"
+---
+
+Neutron's high-frequency oracle provides accurate, secure price data to the blockchain every block. As a validator, you **must** run the Connect oracle service to participate in consensus and earn rewards.
+
+## What is Connect?
+
+Connect delivers off-chain price data on-chain using the validator set's security—no trusted third parties. Neutron maintains a fork of [Skip's Connect oracle](https://github.com/skip-mev/connect) at [neutron-org/connect](https://github.com/neutron-org/connect).
+
+**How it works:**
+1. Connect fetches prices from exchanges (Binance, Coinbase, etc.) and APIs
+2. Your node queries Connect every block via local HTTP API (`localhost:8080`)
+3. Price data included in vote extensions (ABCI++)
+4. Network aggregates prices from all validators on-chain
+
+## Why It Matters
+
+### Validators
+- **Mandatory for rewards**: ≥95% oracle success rate required
+- **Monthly compensation**: $3,000 for validators meeting performance thresholds
+- **Part of consensus**: Vote extensions with price data validate blocks
+
+<Warning>
+Success rates below 95% mean reduced or zero rewards. See [Validator Incentives](/operators/economics/validator-incentives).
+</Warning>
+
+### The Network
+- **High-frequency**: Fresh prices every block (~1-2 seconds)
+- **2000+ pairs**: Supports extensive currency pair coverage
+- **Native security**: No external oracle operators needed
+- **Low latency**: Millisecond-fresh updates without UX compromise
+
+### Applications
+Powers Neutron's DeFi ecosystem:
+- **[Supervaults](/defi/supervaults)**: Automated liquidity with real-time pricing
+- **[Duality DEX](/developers/modules/dex/overview)**: Accurate price feeds for trading
+- **Lending/Derivatives**: Reliable collateral valuation and settlement
+
+## Architecture
+
+**Sidecar Process**
+- Runs separately from your validator node
+- Can restart independently without affecting node
+- Separate resource management (CPU/memory)
+
+**Data Sources**
+- CEXs: Binance, Coinbase, Kraken, OKX
+- DEXs: Uniswap, Raydium, Osmosis
+- Price APIs: CoinGecko, CoinMarketCap
+- WebSocket feeds for real-time streaming
+
+**Vote Extensions (ABCI++)**
+- `ExtendVote`: Attach oracle prices to votes
+- `VerifyVoteExtension`: Verify prices from other validators
+- `PrepareProposal`: Proposer includes aggregated prices
+- `ProcessProposal`: Validators verify proposed prices
+
+## Version Compatibility
+
+<Info>
+**Always use v1.x releases** from [neutron-org/connect](https://github.com/neutron-org/connect). Skip's upstream is on v2.x and not compatible with Neutron.
+</Info>
+
+Neutron integrates with the `x/oracle` and `x/revenue` modules for price storage and validator compensation. See [Revenue Module](/developers/modules/revenue/overview) for technical details.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Setup Guide" icon="gear" href="/operators/oracle/setup">
+    Install and configure Connect for your validator
+  </Card>
+  <Card title="Operations & Monitoring" icon="chart-mixed" href="/operators/oracle/operations">
+    Monitor oracle performance and maintain uptime requirements
+  </Card>
+  <Card title="Skip Connect Docs" icon="book" href="https://docs.skip.build/connect/validators/quickstart">
+    Comprehensive validator documentation (general concepts apply to Neutron)
+  </Card>
+  <Card title="Neutron Connect Repo" icon="github" href="https://github.com/neutron-org/connect">
+    Neutron's v1.x fork - download releases here
+  </Card>
+</CardGroup>

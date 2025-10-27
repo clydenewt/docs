@@ -391,8 +391,16 @@
             "pages": [
               "operators/overview",
               "operators/running-a-node",
-              "operators/oracle-setup",
               "operators/becoming-a-validator"
+            ]
+          },
+          {
+            "group": "Oracle",
+            "icon": "chart-line",
+            "pages": [
+              "operators/oracle/overview",
+              "operators/oracle/setup",
+              "operators/oracle/operations"
             ]
           },
           {

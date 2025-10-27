@@ -1,0 +1,293 @@
+---
+title: "Oracle Setup"
+description: "Install and configure Connect for your Neutron validator"
+icon: "gear"
+---
+
+This guide covers the Neutron-specific setup for the Connect oracle service. For detailed configuration options and advanced setups, see [Skip's Connect documentation](https://docs.skip.build/connect/validators/quickstart).
+
+<Warning>
+Neutron uses **Connect v1.x**, not v2.x. All binaries must come from [neutron-org/connect](https://github.com/neutron-org/connect).
+</Warning>
+
+## Prerequisites
+
+- A running Neutron validator node (see [Running a Node](/operators/running-a-node))
+- Root or sudo access to your server
+- gRPC enabled on your Neutron node (port 9090 by default)
+- Outbound internet access for Connect to reach price providers
+
+<Info>
+You **must** run Connect if you are operating a validator. Non-validator nodes do not need Connect.
+</Info>
+
+## Installation
+
+Choose your preferred installation method:
+
+<Tabs>
+  <Tab title="From GitHub Releases (Recommended)">
+    Download the latest release from Neutron's Connect fork:
+
+    ```bash
+    # Download the latest release (check for current version)
+    wget https://github.com/neutron-org/connect/releases/download/v1.2.2/connect-linux-amd64
+
+    # Move to system path
+    sudo mv connect-linux-amd64 /usr/local/bin/connect
+
+    # Make executable
+    sudo chmod +x /usr/local/bin/connect
+
+    # Verify installation
+    connect version
+    ```
+
+    Visit [neutron-org/connect releases](https://github.com/neutron-org/connect/releases) for the latest version.
+  </Tab>
+
+  <Tab title="Build from Source">
+    Build Connect from source:
+
+    ```bash
+    # Clone the Neutron fork
+    git clone https://github.com/neutron-org/connect.git
+    cd connect
+
+    # Checkout the latest v1.x release
+    git checkout v1.2.2
+
+    # Build and install
+    make install
+
+    # Verify
+    connect version
+    ```
+  </Tab>
+</Tabs>
+
+## Configure Neutron Node
+
+Edit your node's `app.toml` to enable oracle functionality:
+
+```bash
+nano ~/.neutrond/config/app.toml
+```
+
+Add or update the `[oracle]` section:
+
+```toml
+###############################################################################
+###                                  Oracle                                 ###
+###############################################################################
+[oracle]
+
+# Enable oracle (required for validators)
+enabled = "true"
+
+# Connect sidecar address
+oracle_address = "0.0.0.0:8080"
+
+# Timeout for oracle responses
+client_timeout = "2s"
+
+# Enable metrics
+metrics_enabled = "true"
+
+# Update interval (should match block time)
+interval = "1500ms"
+
+# Maximum price age before considered stale
+price_ttl = "10s"
+
+# Prometheus metrics address
+prometheus_server_address = "0.0.0.0:8001"
+```
+
+<Warning>
+**Configuration notes:**
+- Use lowercase `"true"` for boolean values (not `"True"`)
+- Ensure gRPC is enabled in the same file (typically port 9090)
+- The `oracle_address` must match where Connect will listen
+</Warning>
+
+Verify gRPC is enabled:
+
+```toml
+[grpc]
+enable = true
+address = "0.0.0.0:9090"
+```
+
+Restart your Neutron node:
+
+```bash
+sudo systemctl restart neutrond
+```
+
+## Configure Connect Service
+
+Create a systemd service file:
+
+```bash
+sudo nano /etc/systemd/system/connect.service
+```
+
+Add the following:
+
+```ini
+[Unit]
+Description=Connect Price Oracle Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=neutron
+Group=neutron
+ExecStart=/usr/local/bin/connect \
+  --market-map-endpoint="127.0.0.1:9090" \
+  --host="0.0.0.0" \
+  --port="8080" \
+  --log-std-out-level="info" \
+  --metrics-enabled="true" \
+  --metrics-prometheus-address="0.0.0.0:8002"
+
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=connect
+
+[Install]
+WantedBy=multi-user.target
+```
+
+<Info>
+Replace `neutron:neutron` with the user/group that runs your validator node.
+</Info>
+
+## Start Connect
+
+Enable and start the service:
+
+```bash
+# Reload systemd
+sudo systemctl daemon-reload
+
+# Enable on boot
+sudo systemctl enable connect
+
+# Start service
+sudo systemctl start connect
+
+# Check status
+sudo systemctl status connect
+```
+
+## Verify Setup
+
+### 1. Check Connect is Running
+
+```bash
+sudo journalctl -u connect -n 50 -f
+```
+
+Look for successful startup messages and price updates.
+
+### 2. Query Connect API
+
+```bash
+curl -s http://localhost:8080/connect/oracle/v2/prices | jq -r '.timestamp'
+```
+
+Should show a recent timestamp (within last few seconds).
+
+### 3. Verify Oracle Integration
+
+```bash
+curl -s http://localhost:26660/metrics | grep 'app_oracle_responses'
+```
+
+Expected output:
+
+```
+app_oracle_responses{chain_id="neutron-1",status="Failure"} 42
+app_oracle_responses{chain_id="neutron-1",status="Success"} 15847
+```
+
+The `Success` count should be continuously increasing.
+
+## Common Issues
+
+<AccordionGroup>
+  <Accordion title="Connect can't connect to node">
+    **Error**: `failed to connect to market map endpoint`
+
+    **Solution**: Verify gRPC is enabled and accessible:
+    ```bash
+    grpcurl -plaintext localhost:9090 list
+    ```
+
+    Ensure `--market-map-endpoint` matches your node's gRPC address.
+  </Accordion>
+
+  <Accordion title="Boolean configuration errors">
+    **Error**: `invalid boolean value "True"`
+
+    **Solution**: Use lowercase in `app.toml`:
+    ```toml
+    enabled = "true"  # ✅ Correct
+    enabled = "True"  # ❌ Wrong
+    ```
+  </Accordion>
+
+  <Accordion title="Permission denied">
+    **Solution**: Check service user has proper permissions:
+    ```bash
+    # Verify user in service file matches actual user
+    ps aux | grep neutrond
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Neutron-Specific Considerations
+
+### Version Compatibility
+
+<Warning>
+Always use **v1.x releases** from [neutron-org/connect](https://github.com/neutron-org/connect). Skip's upstream v2.x is not compatible with Neutron.
+</Warning>
+
+### Performance Requirements
+
+Maintain **≥95% oracle success rate** for validator rewards:
+
+```bash
+# Quick success rate check
+TOTAL=$(curl -s http://localhost:26660/metrics | grep 'app_oracle_responses{.*status="Success"}' | awk '{print $2}')
+FAILURES=$(curl -s http://localhost:26660/metrics | grep 'app_oracle_responses{.*status="Failure"}' | awk '{print $2}')
+SUCCESS_RATE=$(awk "BEGIN {print ($TOTAL / ($TOTAL + $FAILURES)) * 100}")
+echo "Oracle success rate: ${SUCCESS_RATE}%"
+```
+
+See [Validator Incentives](/operators/economics/validator-incentives) for reward details.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Operations & Monitoring" icon="chart-mixed" href="/operators/oracle/operations">
+    Monitor oracle performance and maintain high uptime
+  </Card>
+  <Card title="Validator Incentives" icon="coins" href="/operators/economics/validator-incentives">
+    Understand how oracle performance affects rewards
+  </Card>
+  <Card title="Skip Docs: Configuration" icon="gear" href="https://docs.skip.build/connect/validators/configuration">
+    All configuration flags and options
+  </Card>
+  <Card title="Skip Docs: Advanced Setups" icon="server" href="https://docs.skip.build/connect/validators/advanced-setups">
+    Remote signers and distributed validators
+  </Card>
+</CardGroup>
