@@ -14,6 +14,9 @@ This section contains tutorials focused on writing integration tests for your Ne
   <Card title="Smart Contract Tests" icon="file-code" iconType="duotone" href="/developers/tutorials/integration-tests/smart-contracts">
     Test your CosmWasm smart contracts in a realistic chain environment
   </Card>
+  <Card title="Mainnet Fork Testing" icon="code-fork" iconType="duotone" href="/developers/tutorials/integration-tests/mainnet-fork">
+    Test using a full mainnet fork with Rehearsal for production-like validation
+  </Card>
 </CardGroup>
 
 More tutorials coming soon covering:
@@ -33,10 +36,12 @@ Integration testing goes beyond basic unit tests by:
 
 For testing Neutron applications, we recommend:
 
-- **cw-multi-test**: A framework for testing CosmWasm contracts
+- **[Rehearsal](https://github.com/hadronlabs-org/rehearsal)**: Mainnet fork for production-like testing
+- **cw-multi-test**: Framework for testing CosmWasm contracts
 - **Rust's testing framework**: For unit testing individual functions
 - **Neutron's testing utilities**: For simulating Neutron-specific features
 - **Docker**: For setting up isolated testing environments
+- **Vitest**: JavaScript/TypeScript testing framework (used by Rehearsal)
 
 ## Prerequisites
 

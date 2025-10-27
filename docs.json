@@ -178,7 +178,8 @@
                 "pages": [
                   "developers/tutorials/integration-tests/overview",
                   "developers/tutorials/integration-tests/chain",
-                  "developers/tutorials/integration-tests/smart-contracts"
+                  "developers/tutorials/integration-tests/smart-contracts",
+                  "developers/tutorials/integration-tests/mainnet-fork"
                 ]
               },
               {

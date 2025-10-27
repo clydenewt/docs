@@ -1,0 +1,358 @@
+---
+title: "Mainnet Fork Testing"
+description: "Test contracts and proposals using a Neutron mainnet fork"
+---
+
+For testing major upgrades, governance proposals, or contracts in a production-like environment, use [Rehearsal](https://github.com/hadronlabs-org/rehearsal)—a tool that creates a mainnet fork with signature verification disabled for simplified testing.
+
+## What is Rehearsal?
+
+Rehearsal automates the creation of a Neutron mainnet fork, allowing you to:
+- Test contracts and modules in a production-like environment
+- Validate governance proposals before submitting to mainnet
+- Debug issues by reproducing mainnet state locally
+- Train developers without risking real assets
+
+<Warning>
+The fork disables signature verification—you can send transactions from any account. This is **only for testing**. Never use fork data in production.
+</Warning>
+
+## Prerequisites
+
+**Hardware Requirements:**
+- CPU: 4 cores minimum (8 recommended)
+- RAM: 16GB minimum (32GB recommended)
+- Storage: 20GB free on SSD (NVMe recommended)
+- Network: 100 Mbps minimum
+
+**Software:**
+- [Docker](https://docs.docker.com/get-docker/)
+- Node.js 16+
+- Git
+
+## Quick Start
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/hadronlabs-org/rehearsal.git
+cd rehearsal
+```
+
+### 2. Build and Start Fork
+
+```bash
+# Download latest mainnet snapshot (auto-downloaded if not present)
+make create-mainnet-snapshot
+
+# Build the fork image
+make build-mainnet-fork-image
+
+# Start the fork
+make start-mainnet-fork
+
+# Build and start oracle sidecar (Connect/Slinky)
+make build-oracle
+make start-oracle
+```
+
+The fork will be available at:
+- RPC: `http://localhost:26657`
+- API: `http://localhost:1317`
+- gRPC: `localhost:9090`
+
+### 3. Verify Fork is Running
+
+```bash
+# Check node status
+curl http://localhost:26657/status
+
+# Query latest block
+curl http://localhost:1317/cosmos/base/tendermint/v1beta1/blocks/latest
+```
+
+## Using the Fork
+
+### Sending Transactions from Any Account
+
+Since signature verification is disabled, you can send transactions from any mainnet account:
+
+```bash
+# 1. Create transaction offline
+neutrond tx bank send <your-account> neutron1f6s4550dzyu0yzp7q2acn47mp5u25k0xa96pqy 5000000untrn \
+  --chain-id neutron-1 \
+  --offline \
+  --node http://localhost:26657
+
+# 2. Sign transaction (saves to tx.json)
+neutrond tx sign tx.json \
+  --chain-id neutron-1 \
+  --from <your-account> \
+  > signed-tx.json
+
+# 3. Modify from_address to ANY mainnet account
+# Edit signed-tx.json and change "from_address" field
+
+# 4. Broadcast transaction
+neutrond tx broadcast signed-tx.json \
+  --node http://localhost:26657
+```
+
+### Testing Contracts
+
+Deploy and test contracts normally:
+
+```bash
+# Store contract
+neutrond tx wasm store contract.wasm \
+  --from <any-account> \
+  --node http://localhost:26657 \
+  --chain-id neutron-1 \
+  --gas auto \
+  --gas-adjustment 1.5
+
+# Instantiate contract
+neutrond tx wasm instantiate <code-id> '{"init_msg": "value"}' \
+  --from <any-account> \
+  --label "my-contract" \
+  --admin <any-account> \
+  --node http://localhost:26657 \
+  --chain-id neutron-1
+
+# Execute contract
+neutrond tx wasm execute <contract-address> '{"execute_msg": "value"}' \
+  --from <any-account> \
+  --node http://localhost:26657 \
+  --chain-id neutron-1
+```
+
+### Testing Governance Proposals
+
+Submit and test proposals:
+
+```bash
+# Submit proposal as any account (e.g., DAO address)
+neutrond tx gov submit-proposal proposal.json \
+  --from neutron1f6s4550dzyu0yzp7q2acn47mp5u25k0xa96pqy \
+  --node http://localhost:26657 \
+  --chain-id neutron-1
+
+# Vote from validator accounts
+neutrond tx gov vote 1 yes \
+  --from <validator-account> \
+  --node http://localhost:26657 \
+  --chain-id neutron-1
+```
+
+## Integration Tests with Vitest
+
+Rehearsal includes a test framework using [Vitest](https://vitest.dev/):
+
+### Running Tests
+
+```bash
+# Run all tests
+yarn test
+
+# Watch mode for development
+yarn watch
+```
+
+### Writing Tests
+
+Create test files in the repository:
+
+```typescript
+// tests/my-test.spec.ts
+import { describe, it, expect } from 'vitest';
+import { sendTransaction, queryContract } from './helpers';
+
+describe('My Contract Tests', () => {
+  it('should execute contract correctly', async () => {
+    const result = await sendTransaction({
+      type: 'execute',
+      contract: 'neutron1...',
+      msg: { do_something: {} },
+      from: 'neutron1...'
+    });
+
+    expect(result.code).toBe(0);
+  });
+});
+```
+
+## Customizing Genesis
+
+Modify the genesis state for your specific test needs:
+
+### 1. Create Custom Script
+
+```bash
+# custom/custom.sh
+#!/bin/bash
+
+CURRENT_GENESIS="$1"
+MODIFIED_GENESIS="$2"
+
+# Example: Modify parameter
+jq '.app_state.gov.voting_params.voting_period = "60s"' \
+  $CURRENT_GENESIS > $MODIFIED_GENESIS
+```
+
+### 2. Mount in Docker Compose
+
+Edit `docker-compose.yml`:
+
+```yaml
+volumes:
+  - ./custom/:/opt/neutron/custom
+```
+
+The `custom.sh` script will automatically run during fork initialization.
+
+## Advanced Usage
+
+### Environment Variables
+
+Configure fork behavior in `docker-compose.yml`:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `RPC_NODE` | - | RPC node for snapshot creation |
+| `INTERVAL` | - | Block interval for snapshot requests |
+| `NEUTROND_P2P_MAX_NUM_OUTBOUND_PEERS` | - | Max outbound peers |
+| `NEUTROND_P2P_MAX_NUM_INBOUND_PEERS` | - | Max inbound peers |
+
+### Using Pre-built Docker Images
+
+Instead of building locally, use Docker Hub images:
+
+```bash
+docker pull neutronorg/neutron-mainnet-fork:latest
+```
+
+### Running PingPub Explorer
+
+View the fork in a block explorer:
+
+```bash
+docker run --rm \
+  -p 5173:5173 \
+  -p 1318:1318 \
+  -p 26858:26858 \
+  --env API_URL=http://dev_server:1317 \
+  --env RPC_URL=http://dev_server:26657 \
+  neutronorg/pingpub
+```
+
+Access at: `http://localhost:5173`
+
+## Managing the Fork
+
+### Stop Fork
+
+```bash
+make stop-mainnet-fork
+make stop-oracle
+```
+
+### Rebuild from Latest Snapshot
+
+```bash
+# Remove old snapshot
+rm -rf snapshot/snapshot.json
+
+# Download latest
+make create-mainnet-snapshot
+
+# Rebuild and restart
+make build-mainnet-fork-image
+make start-mainnet-fork
+```
+
+### Clean Up
+
+```bash
+# Stop all containers
+make stop-mainnet-fork
+make stop-oracle
+
+# Remove containers
+docker-compose down
+
+# Remove volumes
+docker volume prune
+```
+
+## Use Cases
+
+<CardGroup cols={2}>
+  <Card title="Proposal Testing" icon="gavel">
+    Test governance proposals before mainnet submission
+  </Card>
+  <Card title="Contract Debugging" icon="bug">
+    Reproduce mainnet issues locally
+  </Card>
+  <Card title="Upgrade Validation" icon="arrow-up">
+    Validate chain upgrades before execution
+  </Card>
+  <Card title="Developer Training" icon="graduation-cap">
+    Safe environment for learning without risk
+  </Card>
+</CardGroup>
+
+## Rehearsal vs Rehearsal Tools
+
+There are two related projects:
+
+- **[rehearsal](https://github.com/hadronlabs-org/rehearsal)** (public): Full-featured mainnet fork (~3-4 hours setup)
+- **[rehearsal-tools](https://github.com/hadronlabs-org/rehearsal-tools)** (private): Faster fork setup (~20-30 minutes) maintained by Emilio
+
+For most use cases, use the public **rehearsal** repo. Contact the Neutron team if you need access to **rehearsal-tools** for faster iteration.
+
+## Troubleshooting
+
+### Snapshot Download Fails
+
+If automatic snapshot download fails:
+
+```bash
+# Manually download from snapshot service
+curl -o snapshot/snapshot.json https://snapshot.neutron.org/latest.json
+```
+
+### Fork Won't Start
+
+Check Docker logs:
+
+```bash
+docker logs neutron-mainnet-fork
+
+# Check oracle sidecar
+docker logs neutron-oracle
+```
+
+### Out of Disk Space
+
+Snapshots are large (~5-10GB). Ensure sufficient disk space:
+
+```bash
+df -h
+```
+
+## Resources
+
+<CardGroup cols={2}>
+  <Card title="Rehearsal Repo" icon="github" href="https://github.com/hadronlabs-org/rehearsal">
+    Source code and latest updates
+  </Card>
+  <Card title="Other Integration Tests" icon="vial" href="/developers/tutorials/integration-tests/overview">
+    Alternative testing approaches
+  </Card>
+  <Card title="Smart Contract Tests" icon="file-code" href="/developers/tutorials/integration-tests/smart-contracts">
+    Unit and integration tests for contracts
+  </Card>
+  <Card title="Neutron Discord" icon="discord" href="https://discord.com/invite/bzPBzbDvWC">
+    Get help with testing
+  </Card>
+</CardGroup>
