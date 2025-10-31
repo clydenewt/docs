@@ -101,19 +101,11 @@
             "pages": [
               "btc-summer/overview",
               "btc-summer/campaign-details",
+              "btc-summer/how-to-deposit",
               {
-                "group": "Ethereum Path",
-                "icon": "ethereum",
+                "group": "Phases",
+                "icon": "calendar",
                 "pages": [
-                  "btc-summer/ethereum-path",
-                  "btc-summer/ethereum-path/phase-1"
-                ]
-              },
-              {
-                "group": "Neutron Path",
-                "icon": "circle-dot",
-                "pages": [
-                  "btc-summer/neutron-path",
                   "btc-summer/neutron-path/phase-1"
                 ]
               },
