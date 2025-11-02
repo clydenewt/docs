@@ -4,7 +4,7 @@ description: "Complete guide to BTC Summer campaign mechanics, phases, rewards, 
 icon: "calendar-days"
 ---
 
-Bitcoin Summer is a multi-phase campaign in partnership with [Lombard](https://www.lombard.finance/), [EtherFi](https://www.ether.fi/), [Solv](https://solv.finance/), [Bedrock](https://www.bedrock.technology/), [Wrapped Bitcoin](https://wbtc.network/), [Structured](https://structured.money/), [Valence](https://valence.zone/), [Mars](https://marsprotocol.io/), [Amber Finance](https://amberfi.io/), and [Babylon](https://babylonlabs.io/) that brings real yield opportunities to BTC and unlocks leveraged BTC looping for the first time. The campaign distributes up to $10M in NTRN rewards, in addition to partner airdrops, over multiple phases to participants who provide liquidity and engage with Neutron's DeFi protocols.
+Bitcoin Summer is a multi-phase campaign in partnership with [Lombard](https://www.lombard.finance/), [EtherFi](https://www.ether.fi/), [Solv](https://solv.finance/), [Bedrock](https://www.bedrock.technology/), [Wrapped Bitcoin](https://wbtc.network/), [Structured](https://structured.money/), [Mars](https://marsprotocol.io/), [Amber Finance](https://amberfi.io/), and [Babylon](https://babylonlabs.io/) that brings real yield opportunities to BTC and unlocks leveraged BTC looping for the first time. The campaign distributes up to $10M in NTRN rewards, in addition to partner airdrops, over multiple phases to participants who provide liquidity and engage with Neutron's DeFi protocols.
 
 
 Neutron is uniquely positioned thanks to three innovations:
@@ -39,7 +39,7 @@ For detailed reward and incentive mechanics, see [Rewards Guide](/btc-summer/rew
 The campaign is structured in successive **2-month phases**, with at least 6 phases planned (12+ months total duration). Each phase has predetermined parameters set before launch:
 
 - **Phase Budget**: Dollar value distributed as incentives (e.g., Phase 1: $250,000 in NTRN Rewards)
-- **Eligible Opportunities**: List of participating vaults and protocols
+- **Eligible Opportunities**: List of participating positions and protocols
 - **NTRN Reward Multipliers**: Boost mechanisms and qualification criteria
 
 Earlier phases have smaller budgets to account for initial visibility, while later phases scale up to drive broader participation.
@@ -52,13 +52,11 @@ Earlier phases have smaller budgets to account for initial visibility, while lat
 
 ## How Rewards Work
 
-The campaign rewards actual **DeFi positions on Neutron**, not just vault deposits. This means:
+<Warning>
+**Ethereum vaults were deprecated on November 1st, 2025** following Valence's wind down. All deposits now go directly to Neutron positions. [Learn more](https://medium.com/neutronblog/sunsetting-bitcoin-summer-ethereum-vaults-8c60de1b9da0)
+</Warning>
 
-- **Vault participants** receive pro-rata shares of rewards earned by their vault's underlying positions
-- **Direct participants** earn rewards by depositing directly into eligible Neutron protocols
-- **Tiered accounting** ensures fair distribution across multiple layers of deposits
-
-Whether you deposit through Ethereum vaults or directly on Neutron, you're earning rewards from the same underlying DeFi positions.
+The campaign rewards actual **DeFi positions on Neutron**. Participants earn rewards by depositing directly into eligible Neutron protocols ([Amber](https://app.amberfi.io/) lending or [Supervaults](https://app.neutron.org/earn/supervaults) LP).
 
 ### Dollar-Denominated Rewards
 
@@ -100,42 +98,30 @@ The vesting mechanism promotes long-term ecosystem participation and prevents su
 
 ---
 
-## Vault Rewards Model
+## Forfeitable Rewards Structure
 
-### Vault Structure & Liquidity
-
-<Info>
-This forfeitable model does not apply to Structured vaults.
-</Info>
-
-Campaign vaults use a "forfeitable" reward structure designed to balance liquidity with participation incentives:
+Bitcoin Summer uses a "forfeitable" reward structure designed to balance liquidity with participation incentives:
 
 | Component | Terms | Details |
 | --------- | ----- | ------- |
-| Principal | No lockup | Your principal remains fully liquid at all times. |
-| DeFi Rewards | No lockup | Market making spreads and lending yields are automatically compounded into your position and can be withdrawn at any time. |
-| NTRN Rewards | Forfeitable | Withdrawing mid-Phase forfeits that Phase's rewards. |
-| Partner Aidrops | No lockup by default | In general, BTC LST Issuers do not enforce forfeitable incentives. We encourage you to reach out to the relevant asset issuers to confirm their approach. |
+| **Principal** | No lockup | Your principal remains fully liquid at all times. |
+| **DeFi Rewards** | No lockup | Lending yields and swap fees are automatically compounded into your position and can be withdrawn at any time. |
+| **NTRN Rewards** | Forfeitable | Withdrawing mid-Phase forfeits that Phase's NTRN rewards proportionally. |
+| **Partner Rewards** | No lockup by default | BTC LST issuers generally do not enforce forfeitable incentives. Check with specific asset issuers to confirm their approach. |
 
 **Key Mechanic**: Users can withdraw deposits at any time, but NTRN rewards are forfeited proportionally to withdrawals made before phase completion.
 
-For detailed reward optimization strategies and risk considerations, including worked examples of the forfeitable model: [NTRN Reward Structure & Examples](/btc-summer/rewards#forfeitable-reward-structure)
+**Example**: If you withdraw 50% of your deposit halfway through a phase, you'll forfeit 50% of the NTRN rewards for that phase. Your principal, DeFi yields, and partner rewards remain fully accessible.
+
+For detailed reward optimization strategies and worked examples: [NTRN Reward Structure & Examples](/btc-summer/rewards#forfeitable-reward-structure)
 
 Learn more about NTRN multipliers in [Boost Mechanisms & Multipliers](/btc-summer/rewards#understanding-multipliers)
 
 ---
 
-## Choose Your Participation Path
+## How to Participate
 
-<CardGroup cols={2}>
-  <Card title="Coming from Ethereum" icon="ethereum" href="/btc-summer/ethereum-path">
-    **Best for**: Simple exposure with MetaMask and EVM wallets. 
-    Automated vault strategies with deposits bridged to Neutron DeFi.
-  </Card>
-  
-  <Card title="Native Neutron" icon={<svg width="16" height="16" viewBox="0 0 357.21 376.34" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M41.34.71c-4.54-2.63-9.53,2.59-6.72,6.99l84.33,132.81c2.45,3.81-1.63,8.44-5.76,6.54L5.3,96.94c-3.68-1.68-7.04,2.86-4.31,5.85l69.22,82.2c1.54,1.86,1.54,4.54,0,6.35L.99,273.55c-2.68,3,.64,7.53,4.31,5.85l107.94-50.11c4.13-1.91,8.17,2.72,5.76,6.54l-84.33,132.81c-2.81,4.4,2.22,9.62,6.72,6.99l312.42-181.56c4.54-2.63,4.54-9.21,0-11.8L41.34.71Z" fill="currentColor"/></svg>} href="/btc-summer/neutron-path">
-    **Best for**: Maximum control and advanced features
-    Use Keplr, Leap, or Cosmostation wallets. Direct protocol interaction with immediate boost access and higher reward potential.
-  </Card>
-</CardGroup>
+<Card title="How to Deposit" icon="wallet" href="/btc-summer/how-to-deposit">
+  Complete step-by-step guide covering wallet setup (Keplr), bridging assets to Neutron, depositing into eligible positions, and earning rewards.
+</Card>
 

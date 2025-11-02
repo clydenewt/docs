@@ -4,6 +4,12 @@ description: "Contract addresses, token denominations, and technical specificati
 icon: "book"
 ---
 
+<Warning>
+**Ethereum vaults were deprecated on November 1st, 2025** following Valence's wind down. [Learn more](https://medium.com/neutronblog/sunsetting-bitcoin-summer-ethereum-vaults-8c60de1b9da0)
+
+Ethereum vault addresses below are for historical reference only.
+</Warning>
+
 Complete technical reference for BTC Summer campaign implementation, including smart contract addresses, token denominations, and integration specifications.
 
 ## Smart Contract Addresses
@@ -55,9 +61,13 @@ solvbtc: neutron1vve4kr2j8ftydrh3gjqpns4p86l8x5unpvvheqdwlhpvawarea2suu8972
 unibtc:  neutron1704tmu9nvgk0l8xmpua0su6dq3r89mht0adlx8gxte695qapstks6lzmma
 ```
 
-### Strategy Vault Addresses
+### Strategy Vault Addresses (Deprecated)
 
-Cross-chain strategy vault configurations with Ethereum and Neutron contract addresses and their respective authorization contracts.
+<Warning>
+These Ethereum vault addresses are **deprecated** and provided for historical reference only. All new deposits should go directly to Neutron positions.
+</Warning>
+
+Cross-chain strategy vault configurations (no longer active):
 
 | Strategy | Vault Address (Ethereum) | Ethereum Authorizations | Neutron Authorizations |
 |----------|---------------------------|--------------------------|-------------------------|
@@ -71,10 +81,6 @@ Cross-chain strategy vault configurations with Ethereum and Neutron contract add
 | wbtc_lend | `0x9eeb468751a293d584d93bfaffa9e853c540cfff` | `0x1bf609ea7719412c63f45db689ce6a44fe22dff7` | `neutron18ts9jpk9twh2fa52dmag6c4g4dac4se7kfxgjpgfnzp339t9at5szmz9ah` |
 | wbtc_solvbtc | `0x4dc0058ad13293a468a724660f4be0bbc46c9383` | `0x345c9c32136b61b0a1332806257df9d6360eefbf` | `neutron1t5p2dql29lpkv0235vxfc8qe87ym6kwk5mdvp8unrmeyu88kcguqggfnra` |
 | wbtc_unibtc | `0x1d2042c6770d01f4c91cfe128cfc3aff1ec1561c` | `0xf824408582f4368074303ba4025b1e6a02d026f6` | `neutron1cfytp0g2d049n7tc635q9p6hryfdf6kfgcz5lhhzh5jrnshvdm6qpsft5n` |
-
-<Info>
-Strategy vaults enable cross-chain yield optimization by coordinating between Ethereum and Neutron protocols. Each strategy has dedicated authorization contracts for secure cross-chain operations.
-</Info>
 
 ---
 

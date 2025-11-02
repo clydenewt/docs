@@ -4,6 +4,12 @@ description: "High-level architecture and system components of the BTC Summer ca
 icon: "diagram-project"
 ---
 
+<Warning>
+**Ethereum vaults were deprecated on November 1st, 2025** following Valence's wind down. [Learn more](https://medium.com/neutronblog/sunsetting-bitcoin-summer-ethereum-vaults-8c60de1b9da0)
+
+All deposits now go directly to Neutron positions, simplifying the technical architecture.
+</Warning>
+
 The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to deliver Bitcoin DeFi strategies through transparent, on-chain reward tracking.
 
 ## System Architecture
@@ -12,10 +18,10 @@ The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to d
   <Accordion title="Points System" icon="chart-line" description="On-chain reward tracking and distribution infrastructure" defaultOpen={true}>
     **Points Contract**: On-chain smart contract for reward tracking and distribution
     - Stores user points and reward calculations on-chain
-    - Supports both Ethereum and Neutron address formats
+    - Supports Neutron address formats
     - Enables transparent reward verification
 
-    **Points Crawler**: Modified version of [Droplets](https://droplets.drop.money/) points campaign functionality 
+    **Points Crawler**: Modified version of [Droplets](https://droplets.drop.money/) points campaign functionality
     - Gathers data on deposit size and duration
     - Publishes data on-chain to the points contract
     - Uses daily snapshots for fair reward distribution
@@ -25,33 +31,29 @@ The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to d
     - Aligns campaign costs with network growth
   </Accordion>
 
-  <Accordion title="Address Linking System" icon="link" description="Cross-chain coordination and boost management">
+  <Accordion title="Address Linking System" icon="link" description="Simplified boost management on Neutron">
     **Boost Pointer Contract**: Links Neutron-based boosts to deposit addresses
-    - Accepts both Ethereum and Neutron address formats
+    - Accepts Neutron address formats
     - User-controlled "pointing" system for boost coordination
     - No unbonding periods - purely accounting mechanism
 
-    **Cross-Chain Coordination**: Handles deposits across Ethereum and Neutron
-    - Ethereum deposits via automated vaults
-    - Direct Neutron deposits to protocols
-    - Unified reward calculation system
+    **Simplified Architecture**: All deposits and boosts on Neutron
+    - Direct Neutron deposits to positions (Amber, Supervaults)
+    - Boosts apply to the same Neutron address
+    - Streamlined reward calculation system
     - Complete implementation: [Address Linking System](/btc-summer/technical/address-linking)
   </Accordion>
 </AccordionGroup>
 
 ### Protocol Integration
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="AmberFi Protocol" icon="fire" href="https://docs.amberfi.io/">
     Lending and leveraged strategies for BTC derivatives. Direct integration with campaign reward system. [Documentation →](https://docs.amberfi.io/) | [Points Campaigns →](https://docs.amberfi.io/user-guide/points-campaigns)
   </Card>
-  
+
   <Card title="Supervaults" icon="vault" href="/defi/supervaults">
     Automated market making for BTC derivative pairs. LP positions tracked via vault shares.
-  </Card>
-  
-  <Card title="Timewave Vault Infrastructure" icon="bridge" href="https://docs.valence.zone/examples/crosschain_vaults.html">
-    Automated bridging and deployment for Ethereum users via established protocols. Core contracts audited.
   </Card>
 </CardGroup>
 
@@ -62,9 +64,10 @@ The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to d
 <AccordionGroup>
 
   <Accordion title="Security & Audits" icon="shield-check" description="Security assessments and audit information">
-    **Timewave Vault Infrastructure**: Core contracts have been audited including processor, accounts, and authorization contracts. A small addition was made to support zero-knowledge functionality but was not significant enough to warrant a new audit.
+    **Campaign Infrastructure**: Bitcoin Summer contracts and infrastructure have been audited by Informal Systems.
 
-    - **Audit Reports**: [timewave-computer/valence-protocol/audits](https://github.com/timewave-computer/valence-protocol/tree/main/audits)
+    - **Audit Report**: [Informal Systems Audit](https://github.com/informalsystems/audits/blob/main/Neutron/2025-07-18%20Neutron-Timewave%20Q2%202025%20_%20Valence%20Protocol%20Audit%20Report_Final.pdf)
+    - **Bug Bounty**: [Neutron Immunefi Program](https://immunefi.com/bug-bounty/neutron/information/)
   </Accordion>
 </AccordionGroup>
 
