@@ -236,7 +236,7 @@ Different DeFi activities earn different NTRN reward multipliers, with higher-ri
         <td className="p-3">LP in the maxBTC/WBTC Supervault</td>
       </tr>
       <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
-        <td className="p-3 font-medium">3x</td>
+        <td className="p-3 font-medium">4x</td>
         <td className="p-3">Lend WBTC on Amber</td>
       </tr>
       <tr className="border-t border-gray-300 dark:border-gray-700">
@@ -266,7 +266,7 @@ Different DeFi activities earn different NTRN reward multipliers, with higher-ri
 
 **Key Insights:**
 - **Highest rewards (6x-5x)**: USDC paired strategies that provide crucial stablecoin liquidity
-- **High rewards (4x-3x)**: Core BTC strategies and WBTC lending
+- **High rewards (4x)**: Core BTC strategies and WBTC lending on Amber
 - **Standard rewards (2x)**: LST strategies and cross-BTC derivative liquidity
 - **Base rewards (1x)**: Simple maxBTC holding for passive exposure
 
@@ -285,22 +285,26 @@ $$
 
 ### NTRN Stake & Lock Boost
 
-Bitcoin Summer participants can stake NTRN for up to 4 years to boost their Bitcoin Summer NTRN rewards up to 3x while earning staking rewards.
+Bitcoin Summer participants can stake NTRN to boost their Bitcoin Summer NTRN rewards up to 3x while earning staking rewards.
+
+<Info>
+**Phase 2 Update**: Max boost now requires only a **1-year lock** (previously 4 years). See [Phase 2 details](/btc-summer/neutron-path/phase-2) for more information.
+</Info>
 
 #### How It Works
-1. **Stake NTRN tokens** for up to 4 years
+1. **Stake NTRN tokens** for up to 1 year (for max boost)
 2. **Receive a receipt NFT** representing your staked position  
 3. **Earn 3% APR** on locked NTRN through liquid staking with Drop
 4. **Get boost multiplier** based on lock amount and duration
 
 #### Boost Formula
 $$
-\text{Boost} = \min(2, \frac{\text{NTRN}_{\text{Locked}}}{\text{TVL}_{\text{Deposited}}} \times \frac{\text{Duration}_{\text{user}}}{\text{Duration}_{\text{max}}} \times 2)
+\text{Boost} = \min(2, \frac{\text{NTRN}_{\text{Locked}}}{\text{TVL}_{\text{Deposited}}} \times \frac{\text{Duration}_{\text{user}}}{\text{Duration}_{\text{max (1 year)}}} \times 2)
 $$
 
 **Key factors**:
 - **Locked NTRN amount** relative to your BTC deposits
-- **Lock duration** (longer = higher boost)
+- **Lock duration** (1 year for max boost)
 - **Maximum boost**: 3x total rewards
 
 #### Receipt NFT Benefits
@@ -330,7 +334,7 @@ $$
     Get NTRN tokens through exchanges, swaps, or bridges. See our [User Quickstart Guide](/quickstart#for-users) for detailed instructions on acquiring NTRN.
   </Step>
   <Step title="Choose Lock Parameters">
-    Select lock amount and duration (up to 4 years for maximum boost)
+    Select lock amount and duration (1 year for maximum boost in Phase 2)
   </Step>
   <Step title="Specify Target Address">
     **Critical**:
@@ -362,16 +366,16 @@ $$
 
   <Accordion title="Example 2: With NTRN Staking">
     - **Deposit**: 1 BTC (\$100,000) for full phase
-    - **NTRN staked**: \$50,000 worth for 2 years
-    - **Boost calculation**: (50,000/100,000) × (2/4) × 2 = 0.5 boost
+    - **NTRN staked**: \$50,000 worth for 6 months
+    - **Boost calculation**: (50,000/100,000) × (0.5/1) × 2 = 0.5 boost
     - **Total multiplier**: 1 + 0.5 = 1.5x
     - **Points**: \$100,000 × 60 × 1.5 = 9,000,000 points
   </Accordion>
 
   <Accordion title="Example 3: Maximum Boost">
     - **Deposit**: 1 BTC (\$100,000) for full phase
-    - **NTRN staked**: \$200,000 worth for 4 years  
-    - **Boost calculation**: (200,000/100,000) × (4/4) × 2 = 4.0, capped at 2.0
+    - **NTRN staked**: \$100,000 worth for 1 year  
+    - **Boost calculation**: (100,000/100,000) × (1/1) × 2 = 2.0 (max boost)
     - **Total multiplier**: 1 + 2.0 = 3x
     - **Points**: \$100,000 × 60 × 3 = 18,000,000 points
   </Accordion>

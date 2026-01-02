@@ -106,6 +106,7 @@
                 "group": "Phases",
                 "icon": "calendar",
                 "pages": [
+                  "btc-summer/neutron-path/phase-2",
                   "btc-summer/neutron-path/phase-1"
                 ]
               },

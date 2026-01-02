@@ -1,0 +1,378 @@
+---
+title: "Phase 2"
+description: "Simplified boosting, improved multipliers, and Neutron-native Bitcoin flows for BTC Summer Phase 2"
+icon: "calendar"
+---
+
+**Duration**: 2 months  
+**Reward Budget**: $300,000 in NTRN rewards  
+**Status**: Active (ends mid-January 2026)
+
+This page contains phase-specific information for Bitcoin Summer Phase 2. For complete step-by-step deposit instructions, see the [How to Deposit](/btc-summer/how-to-deposit) guide.
+
+---
+
+## What's New in Phase 2
+
+Phase 2 introduces meaningful upgrades to vault mechanics and reward structures, making participation simpler, more efficient, and more rewarding for long-term users.
+
+<AccordionGroup>
+  <Accordion title="wBTC Lending Multiplier Increased to 4x">
+    wBTC remains the backbone of on-chain Bitcoin liquidity. To strengthen its role, **the wBTC lending multiplier on Amber has increased from 3x to 4x**, improving capital efficiency for the most important lending asset in the system.
+  </Accordion>
+
+  <Accordion title="Simpler, More Accessible Boosting">
+    The Boost mechanism has received a major upgrade.
+    
+    Previously, achieving max boost required locking NTRN for four years. Starting in Phase 2, **you can reach max boost with just a one-year lock**, while still earning staking rewards on your locked NTRN.
+    
+    This change makes it easier for new participants to get started and for existing users to optimize their positions.
+    
+    **Updated Boost Formula:**
+    $$
+    \text{Boost} = \min(2, \frac{\text{NTRN}_{\text{Locked}}}{\text{TVL}_{\text{Deposited}}} \times \frac{\text{Duration}_{\text{user}}}{\text{Duration}_{\text{max (1 year)}}} \times 2)
+    $$
+  </Accordion>
+
+  <Accordion title="Updated Looping Incentives">
+    Amber's looping vaults have an updated reward structure.
+    
+    **Key change**: Incentives are now distributed based on your **collateral minus debt** rather than on the full notional amount leveraged.
+    
+    This change balances accessibility with sustainability, ensuring looping remains one of the most powerful yield strategies in the ecosystem while creating a more equitable reward distribution.
+  </Accordion>
+
+  <Accordion title="Ethereum Vaults Sunset & Neutron-Native maxBTC">
+    Phase 2 completes Bitcoin Summer's full transition to Neutron.
+    
+    - All Ethereum-based vaults have been sunset
+    - **maxBTC is now mintable directly on Neutron**, simplifying the user journey
+    - This unlocks the full benefits of Neutron's scalability and interoperability
+    - Users now have a single hub for Bitcoin-denominated yield strategies
+    
+    <Info>
+    maxBTC minting on Neutron still requires KYC verification through Structured.
+    </Info>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Eligible Protocols
+
+<AccordionGroup>
+  <Accordion title="Amber Protocol (AmberFi)">
+    #### wBTC Lending on Amber
+    **Eligible positions**: wBTC lending positions  
+    **Reward multiplier**: 4x base (eligible for NTRN locking boosts)
+
+    #### BTC LST Lending on Amber  
+    **Eligible positions**: BTC LST lending (eBTC, solvBTC, uniBTC)  
+    **Reward multiplier**: 2x base (eligible for NTRN locking boosts)
+
+    #### Looping Strategies on Amber
+    **Eligible positions**: maxBTC looping with wBTC, uniBTC, solvBTC, eBTC  
+    **Reward calculation**: Based on collateral minus debt  
+    **Reward multiplier**: Varies by pair (eligible for NTRN locking boosts)
+
+    <Info>
+    For complete NTRN multiplier details across all activities (1x-6x), see [NTRN Rewards Multipliers](/btc-summer/rewards#ntrn-rewards-multipliers).
+    </Info>
+
+    **Access**:
+    - **Deposit**: [app.amberfi.io/](https://app.amberfi.io/)
+    - **Strategies**: [app.amberfi.io/strategies](https://app.amberfi.io/strategies)
+  </Accordion>
+
+  <Accordion title="Supervaults">
+    #### maxBTC Supervaults
+    **Eligible positions**: maxBTC paired with various assets (wBTC, USDC, LSTs)  
+    **Reward multiplier**: 2x-6x depending on pair (eligible for NTRN locking boosts)
+
+    #### BTC LST Supervaults
+    **Eligible positions**: BTC LST pairs (eBTC, solvBTC, uniBTC with wBTC or maxBTC)  
+    **Reward multiplier**: 2x base (eligible for NTRN locking boosts)
+
+    **Access**: Through [app.neutron.org/earn/supervaults](https://app.neutron.org/earn/supervaults) or Neutron app interfaces
+  </Accordion>
+
+  <Accordion title="Mars Protocol">
+    **Eligible positions**:
+    - wBTC lending positions
+    - BTC derivative collateral strategies
+
+    **Access**: Through Mars Protocol interfaces
+  </Accordion>
+
+  <Accordion title="Astroport DEX">
+    **Eligible positions**: Various BTC asset LP pairs  
+    **Reward multiplier**: Varies by pair
+
+    Active pairs include:
+    - USDC/wBTC
+    - maxBTC/wBTC
+    - USDC/maxBTC
+    - Various LST pairs
+
+    **Access**: Through [app.astroport.fi](https://app.astroport.fi)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Supported Assets
+
+<Info>
+All assets are bridged to Neutron via **IBC Eureka** for secure cross-chain transfers. maxBTC is now mintable directly on Neutron.
+</Info>
+
+<div className="overflow-x-auto my-2">
+  <table className="table-fixed border-collapse border border-gray-300 dark:border-gray-700" style={{width: 'fit-content'}}>
+    <colgroup>
+      <col style={{width: '140px'}} />
+      <col style={{width: '280px'}} />
+      <col style={{width: '300px'}} />
+    </colgroup>
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Asset</th>
+        <th className="p-3 text-left">Description</th>
+        <th className="p-3 text-left">Eligible Protocols</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">wBTC</td>
+        <td className="p-3">Wrapped Bitcoin (most liquid)</td>
+        <td className="p-3">Amber, Supervaults, Mars, Astroport</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">maxBTC</td>
+        <td className="p-3">Structured Protocol's yield-bearing BTC (now mintable on Neutron)</td>
+        <td className="p-3">Supervaults, Amber (looping), Astroport</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">solvBTC</td>
+        <td className="p-3">Solv Protocol Bitcoin</td>
+        <td className="p-3">Amber, Supervaults</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">eBTC</td>
+        <td className="p-3">EtherFi Protocol derivative</td>
+        <td className="p-3">Amber, Supervaults</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">uniBTC</td>
+        <td className="p-3">Bedrock uniBTC</td>
+        <td className="p-3">Amber, Supervaults</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">USDC</td>
+        <td className="p-3">Noble USDC for LP strategies</td>
+        <td className="p-3">Supervaults, Astroport</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Phase 2 NTRN Rewards Multipliers
+
+<div className="overflow-x-auto my-2">
+  <table className="table-fixed border-collapse border border-gray-300 dark:border-gray-700" style={{width: 'fit-content'}}>
+    <colgroup>
+      <col style={{width: '100px'}} />
+      <col style={{width: '400px'}} />
+    </colgroup>
+    <thead>
+      <tr className="bg-gray-100 dark:bg-gray-800">
+        <th className="p-3 text-left">Multiplier</th>
+        <th className="p-3 text-left">Activity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">6x</td>
+        <td className="p-3">LP in the maxBTC/USDC Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium">5x</td>
+        <td className="p-3">LP in the WBTC/USDC Supervault</td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">4x</td>
+        <td className="p-3">
+          <div className="space-y-1">
+            <div>LP in the maxBTC/WBTC Supervault</div>
+            <div>Lend WBTC on Amber</div>
+          </div>
+        </td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <td className="p-3 font-medium align-top">2x</td>
+        <td className="p-3">
+          <div className="space-y-1">
+            <div>LP in the maxBTC/uniBTC Supervault</div>
+            <div>LP in the maxBTC/solvBTC Supervault</div>
+            <div>LP in the maxBTC/eBTC Supervault</div>
+            <div>Lend uniBTC, solvBTC, or eBTC on Amber</div>
+            <div>LP in the WBTC/uniBTC Supervault</div>
+            <div>LP in the WBTC/solvBTC Supervault</div>
+            <div>LP in the WBTC/eBTC Supervault</div>
+            <div>Lend WBTC on Mars</div>
+          </div>
+        </td>
+      </tr>
+      <tr className="border-t border-gray-300 dark:border-gray-700">
+        <td className="p-3 font-medium">1x</td>
+        <td className="p-3">Hold maxBTC</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+**Key Changes from Phase 1:**
+- **wBTC Lending on Amber**: Increased from 3x to **4x**
+- **Looping Strategies**: Now calculated on collateral minus debt
+
+---
+
+## Phase 2 Boost Mechanics
+
+### Max Boost with 1-Year Lock
+
+The most significant change in Phase 2 is the simplified boost system:
+
+| Phase | Lock Duration for Max Boost | Max Boost Multiplier |
+| ----- | --------------------------- | -------------------- |
+| Phase 1 | 4 years | 3x |
+| **Phase 2** | **1 year** | **3x** |
+
+This means:
+- **New participants** can achieve max boost with a significantly shorter commitment
+- **Existing lockers** with locks >1 year already qualify for max boost
+- You continue earning staking rewards (~3% APR) on locked NTRN
+
+### Updated Boost Examples
+
+<AccordionGroup>
+  <Accordion title="Example 1: Reaching Max Boost in Phase 2">
+    - **Deposit**: 1 BTC (\$100,000)
+    - **NTRN locked**: \$100,000 worth for 1 year
+    - **Boost calculation**: (100,000/100,000) × (1/1) × 2 = 2.0 (max boost)
+    - **Total multiplier**: 1 + 2.0 = **3x**
+    
+    *In Phase 1, this same 3x boost would have required a 4-year lock.*
+  </Accordion>
+
+  <Accordion title="Example 2: Partial Boost">
+    - **Deposit**: 1 BTC (\$100,000)
+    - **NTRN locked**: \$50,000 worth for 6 months
+    - **Boost calculation**: (50,000/100,000) × (0.5/1) × 2 = 0.5
+    - **Total multiplier**: 1 + 0.5 = **1.5x**
+  </Accordion>
+
+  <Accordion title="Example 3: Existing Long-Term Lockers">
+    - **Deposit**: 1 BTC (\$100,000)
+    - **NTRN locked**: \$100,000 worth for 4 years (locked in Phase 1)
+    - **Phase 2 boost**: Already qualifies for max boost (lock > 1 year)
+    - **Total multiplier**: **3x**
+    
+    *Existing long-term lockers automatically benefit from the new system.*
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Claiming Phase 1 Rewards
+
+If you participated in Phase 1, you have three options for claiming your NTRN rewards:
+
+<CardGroup cols={3}>
+  <Card title="Lock & Boost" icon="lock">
+    Lock your rewards immediately to boost Phase 2 earnings and earn staking rewards
+  </Card>
+  
+  <Card title="Instant Claim" icon="bolt">
+    Claim 50% immediately and forfeit the remaining 50%
+  </Card>
+  
+  <Card title="Standard Vest" icon="hourglass">
+    Vest over 2 months to claim the full 100%
+  </Card>
+</CardGroup>
+
+<Warning>
+**Strategy Note**: If you plan to continue participating in Bitcoin Summer, locking your Phase 1 rewards can help you reach max boost faster while earning additional staking rewards.
+</Warning>
+
+---
+
+## Monitoring Your Positions
+
+<AccordionGroup>
+  <Accordion title="Campaign Rewards">
+    - **Dashboard**: Track points and projected rewards at [app.neutron.org/balance](https://app.neutron.org/balance)
+    - **Calculations**: Updated daily based on position values
+    - **Boost status**: Verify NTRN locking boost is properly applied
+    - **Multiplier display**: Your current multiplier is shown on the Bitcoin Summer page
+  </Accordion>
+
+  <Accordion title="Protocol Yields">
+    - **Amber positions**: Monitor through [app.amberfi.io/](https://app.amberfi.io/)
+    - **Supervault positions**: Track through Neutron DeFi interfaces
+    - **Astroport positions**: Track through [app.astroport.fi](https://app.astroport.fi)
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Phase 2 Specifics
+
+<AccordionGroup>
+  <Accordion title="Reward Allocation">
+    - **Total Budget**: $300,000 in NTRN rewards
+    - **Distribution**: Pro-rata based on points earned
+    - **Calculation**: Daily snapshots of deposit values
+    - **Boost eligible**: All protocols support NTRN locking boosts
+    - **Activity Multipliers**: Different activities earn different NTRN multipliers (1x-6x)
+  </Accordion>
+
+  <Accordion title="Important Dates">
+    - **Phase Start**: November 17, 2025
+    - **Phase End**: Mid-January 2026
+    - **Duration**: 2 months
+    - **Reward Claims**: Available after phase end
+  </Accordion>
+
+  <Accordion title="Key Differences from Phase 1">
+    | Change | Phase 1 | Phase 2 |
+    | ------ | ------- | ------- |
+    | Reward Budget | $250,000 | $300,000 |
+    | wBTC Lending Multiplier | 3x | **4x** |
+    | Max Boost Lock Duration | 4 years | **1 year** |
+    | Looping Reward Basis | Full notional | **Collateral minus debt** |
+    | Ethereum Vaults | Deprecated Nov 1 | Fully sunset |
+    | maxBTC Minting | Via bridge | **Native on Neutron** |
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Get Started
+
+<Card title="Start Participating" icon="rocket" href="https://app.neutron.org">
+  Visit the Neutron app to begin your Phase 2 participation
+</Card>
+
+<CardGroup cols={2}>
+  <Card title="How to Deposit" icon="wallet" href="/btc-summer/how-to-deposit">
+    Complete step-by-step deposit guide with wallet setup
+  </Card>
+
+  <Card title="Rewards Optimization" icon="chart-line" href="/btc-summer/rewards">
+    Learn about NTRN locking and boost strategies
+  </Card>
+</CardGroup>
+
