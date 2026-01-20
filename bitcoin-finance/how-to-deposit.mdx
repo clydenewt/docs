@@ -1,0 +1,304 @@
+---
+title: "How to Deposit"
+description: "Step-by-step guide for participating in BTCFi on Neutron"
+icon: "wallet"
+---
+
+BTCFi participants can earn rewards by depositing assets directly into eligible DeFi positions on Neutron. This guide walks you through the complete process, from setting up your wallet to depositing and tracking your rewards.
+
+## Overview
+
+When you participate in BTCFi on Neutron, you:
+
+1. **Bridge** your BTC assets to Neutron
+2. **Deposit** directly to eligible protocols ([Amber](https://app.amberfi.io/) lending or [Supervaults](https://app.neutron.org/earn/supervaults) LP)
+3. **Earn** rewards from DeFi yields + NTRN campaign incentives + partner rewards
+
+<Info>
+This guide covers the evergreen deposit process. For current Phase-specific eligibility and reward multipliers, see [Phase 3 Details](/bitcoin-finance/neutron-path/phase-3).
+</Info>
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- A Neutron-compatible wallet (Keplr recommended)
+- Eligible BTC assets (check [Phase 3 Details](/bitcoin-finance/neutron-path/phase-3) for current eligible assets)
+- Small amount of NTRN for transaction fees on Neutron
+
+## Step 1: Set up Keplr to Transact on Neutron
+
+[Keplr](https://www.keplr.app/) is the recommended wallet to interact with the Neutron ecosystem.
+
+<Steps>
+  <Step title="Download Keplr">
+    Go to [keplr.app/get](https://www.keplr.app/get) and select your browser to download the wallet extension.
+  </Step>
+  <Step title="Create or Import Wallet">
+    Once installed, select "Create a new wallet" or "Connect a hardware device" and follow the prompts.
+
+    <Warning>
+    **Important**: Save your seed phrase securely. Never share it with anyone.
+    </Warning>
+  </Step>
+  <Step title="Enable Neutron Network">
+    On the network selection step, make sure to tick the **Neutron** network. You can untick all other networks and enable them later via the browser extension's settings if needed.
+  </Step>
+</Steps>
+
+<Tip>
+Need detailed wallet setup help? Check out this [video guide](https://youtu.be/cmxx_hIulz8?si=tfrvnw4EEAdN4R-k) (the UI has changed slightly but the flow remains similar).
+</Tip>
+
+## Step 2: Bridge Assets to Neutron
+
+You can bridge BTC assets to Neutron from multiple source networks including Ethereum, Babylon Genesis, or Cosmos Hub.
+
+<Steps>
+  <Step title="Navigate to Neutron Bridge">
+    Go to [app.neutron.org/bridge](https://app.neutron.org/bridge?src_chain=1&dest_chain=neutron-1).
+
+    The interface should pre-select common routes, but you can customize:
+    - **Source chain**: Choose where your assets are currently held (e.g., Ethereum, Babylon Genesis, Cosmos Hub)
+    - **Destination chain**: Neutron
+    - **Asset**: Select your eligible BTC asset
+  </Step>
+  <Step title="Connect Your Wallets">
+    1. Click the primary button to connect your source wallet (e.g., MetaMask for Ethereum)
+    2. Select your wallet provider and confirm the connection
+    3. Click "Set destination address" and connect your Keplr wallet
+  </Step>
+  <Step title="Configure Bridge Transfer">
+    1. **Enter amount**: Input the amount you wish to bridge
+    2. **Select route**: Choose between "Fastest" (using intents) or "Cheapest" routes
+
+    <Tip>
+    For large amounts, we recommend "Cheapest" routes to minimize costs. For bridging from Ethereum, expect ~15-20 minutes due to Ethereum's finality time.
+    </Tip>
+
+    3. **Review details**: Check bridge transfer time, gas fees, and the rate (bridge fee for simple transfers)
+  </Step>
+  <Step title="Execute Bridge Transaction">
+    1. Click "Confirm" to initiate the bridge
+    2. Sign the spending cap request in your source wallet
+    3. Sign the bridging transaction
+    4. Wait for bridging to complete (typically 15-20 minutes from Ethereum)
+  </Step>
+  <Step title="Verify Assets Arrived">
+    Your assets should now be visible in your Keplr browser extension on the Neutron network.
+  </Step>
+</Steps>
+
+<Info>
+**Getting NTRN for gas**: You'll need a small amount of NTRN to pay transaction fees on Neutron. Get NTRN by swapping from other assets on [app.neutron.org/swap](https://app.neutron.org/swap) or bridging from exchanges.
+</Info>
+
+## Step 3: Deposit into BTCFi Positions
+
+Once your assets are on Neutron, you can deposit them into eligible positions to start earning rewards. There are two main protocols: **Amber Finance** (lending) and **Supervaults** (LP).
+
+### Option A: Lending on Amber Finance
+
+Amber offers isolated lending markets where you can lend BTC assets and earn lending yield + NTRN campaign rewards + partner points.
+
+<Steps>
+  <Step title="Navigate to Amber">
+    Go to [app.amberfi.io](https://app.amberfi.io/deposit) or access Amber positions through the [BTCFi dashboard](https://app.neutron.org/bitcoin-finance).
+  </Step>
+  <Step title="Connect Wallet">
+    Click "Connect Wallet" in the top right corner and connect your Keplr wallet.
+  </Step>
+  <Step title="Select Asset and Amount">
+    1. Choose the eligible BTC asset you want to lend
+    2. Enter the amount to lend
+  </Step>
+  <Step title="Confirm Deposit">
+    1. Click "Deposit [Asset]"
+    2. Review and sign the transaction in Keplr
+    3. Wait for confirmation
+  </Step>
+</Steps>
+
+<Info>
+**What you'll earn**: Lending yields + NTRN rewards + partner rewards (e.g., protocol points, airdrop eligibility from asset issuers).
+</Info>
+
+### Option B: Providing Liquidity to Supervaults
+
+Supervaults are automated market-making vaults that provide tight spreads and institutional-grade performance. You can provide single-sided or paired liquidity.
+
+<Steps>
+  <Step title="Navigate to Supervaults">
+    Go to the [BTCFi dashboard](https://app.neutron.org/bitcoin-finance) or directly to [Supervaults](https://app.neutron.org/earn/supervaults).
+  </Step>
+  <Step title="Choose a Supervault">
+    Select a BTCFi eligible Supervault. Click on the vault to see details about:
+    - APY and fees
+    - Eligible asset pairs
+    - NTRN reward multipliers
+  </Step>
+  <Step title="Select Deposit Amount">
+    In the deposit widget:
+    1. Enter the amount for one or both assets in the pair
+    2. For single-sided deposits, leave the other asset empty
+
+    <Info>
+    **Single-sided liquidity**: When providing single-sided liquidity, your deposited assets are not swapped or converted. Therefore, single-sided deposits do not incur slippage.
+    </Info>
+  </Step>
+  <Step title="Confirm Deposit">
+    1. Review the deposit details
+    2. Click "Confirm deposit"
+    3. Sign the transaction in Keplr
+  </Step>
+  <Step title="Verify Position">
+    After confirmation, your position will be visible under **My Position TVL** on the vault page and on your [Balance page](https://app.neutron.org/balance).
+  </Step>
+</Steps>
+
+<Info>
+**What you'll earn**: Trading fees (auto-compounded) + NTRN rewards (multipliers vary by pair) + partner rewards (e.g., protocol points from participating partners).
+</Info>
+
+## Step 4: Boost Your NTRN Rewards (Optional)
+
+You can boost your NTRN rewards by up to 3x by staking and locking NTRN tokens for up to 12 months.
+
+<Steps>
+  <Step title="Access Booster Feature">
+    On the [BTCFi dashboard](https://app.neutron.org/bitcoin-finance), click the **"Unlock your booster"** button.
+  </Step>
+  <Step title="Select Boost Target">
+    Confirm your connected Neutron wallet or link another address to receive boosted rewards.
+  </Step>
+  <Step title="Stake & Lock NTRN">
+    1. Click **"View boost overview"** to see your current boost status
+    2. Select **"Stake & Lock"** to configure your boost
+    3. Choose amount and lock duration (up to 12 months for max boost)
+
+    <Tip>
+    **Maximize your boost**: Lock NTRN equal to your deposit value for 1 year to achieve 3x multiplier. During the lock period, you'll earn ~3% NTRN staking rewards + boosted BTCFi rewards.
+    </Tip>
+  </Step>
+  <Step title="Confirm and Wait">
+    Sign the transaction and wait up to 15 minutes for the multiplier to appear on the dashboard.
+  </Step>
+</Steps>
+
+<Card title="Rewards Guide" icon="chart-line" href="/bitcoin-finance/rewards">
+  Learn detailed strategies for maximizing your NTRN rewards through boost mechanisms and optimal staking configurations.
+</Card>
+
+## Step 5: Track Your Positions and Rewards
+
+Monitor your deposits and accrued rewards in multiple places:
+
+- **Balance page**: [app.neutron.org/balance](https://app.neutron.org/balance) - Overview of all your positions and total rewards
+- **BTCFi dashboard**: [app.neutron.org/bitcoin-finance](https://app.neutron.org/bitcoin-finance) - Detailed performance metrics (hover over APY column to see reward breakdown)
+- **Protocol interfaces**: Direct protocol pages (Amber, Supervault vault pages) show position-specific details
+
+<Tip>
+Hover over the APY column on the BTCFi dashboard to see a detailed breakdown of:
+- Base DeFi yields (lending rates, swap fees)
+- NTRN campaign rewards
+- Partner rewards (points, airdrops)
+- Your personal multipliers
+</Tip>
+
+## How to Withdraw
+
+When you're ready to withdraw, the process depends on the protocol:
+
+### Withdrawing from Amber
+
+<Steps>
+  <Step title="Navigate to Amber">
+    Go to [app.amberfi.io](https://app.amberfi.io) and connect your wallet.
+  </Step>
+  <Step title="Select Withdraw">
+    Find your lending position, click "Withdraw", and enter the amount.
+  </Step>
+  <Step title="Confirm">
+    Sign the transaction in Keplr to receive your assets + accrued lending yields.
+  </Step>
+</Steps>
+
+### Withdrawing from Supervaults
+
+<Steps>
+  <Step title="Navigate to Vault">
+    Go to the specific Supervault where you have a deposit.
+  </Step>
+  <Step title="Switch to Withdrawal Mode">
+    Toggle from **Deposit** to **Withdraw** mode in the vault interface.
+  </Step>
+  <Step title="Enter Amount">
+    Select the percentage or amount you'd like to withdraw.
+  </Step>
+  <Step title="Confirm">
+    Sign the transaction. You'll receive both tokens in the vault based on current pool balance, regardless of whether you deposited single- or double-sided.
+  </Step>
+</Steps>
+
+<Warning>
+**Phase Timing & Forfeitable Rewards**: BTCFi is divided into 2-month Phases. Withdrawing before the end of a Phase will cause you to forfeit NTRN rewards for that Phase, proportional to the amount withdrawn.
+
+Other rewards (principal, DeFi yields, partner points) are never forfeited and remain fully liquid. [Learn more about forfeitable rewards](/bitcoin-finance/campaign-details).
+</Warning>
+
+## What You'll Earn
+
+Participants in BTCFi earn multiple types of rewards:
+
+| Reward Type | Source | Description |
+|-------------|--------|-------------|
+| **DeFi Yields** | Protocols | Lending rates (Amber) or swap fees (Supervaults), auto-compounded |
+| **NTRN Rewards** | Campaign | Base rewards + up to 3x boost multipliers |
+| **Partner Rewards** | Asset issuers & protocols | Points and airdrop eligibility from participating partners (e.g., protocol points, fragments, diamonds) |
+| **Asset Yields** | BTC LSTs | Native yields from yield-bearing BTC assets |
+
+<Card title="Phase 3 Details" icon="calendar" href="/bitcoin-finance/neutron-path/phase-3">
+  See current Phase 3 specific rates, multipliers, and eligible positions.
+</Card>
+
+## Claiming Rewards
+
+NTRN campaign rewards can be claimed at the end of each 2-month Phase. You'll have three claiming options:
+
+| Option | Description |
+|--------|-------------|
+| **Instant Claim** | Instantly receive 50% of your rewards (forfeit the other 50%) |
+| **Vest** | Vest rewards over the next 2 months to receive your full allocation |
+| **Lock & Boost** | Lock rewards for at least 2 months to receive boosted rewards in future campaigns |
+
+<Info>
+DeFi yields and partner rewards follow their own claiming schedules and are typically available immediately or according to the partner's terms.
+</Info>
+
+---
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card title="FAQ" icon="circle-question" href="/bitcoin-finance/faq">
+    Common questions, troubleshooting, and detailed guidance
+  </Card>
+
+  <Card title="Campaign Details" icon="info" href="/bitcoin-finance/campaign-details">
+    Complete campaign mechanics, phases, and requirements
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Rewards Guide" icon="chart-line" href="/bitcoin-finance/rewards">
+    Detailed NTRN reward strategies and boost optimization
+  </Card>
+
+  <Card title="Technical Docs" icon="code" href="/bitcoin-finance/technical/overview">
+    Security information and system architecture
+  </Card>
+</CardGroup>
+
+<Info>
+**Live Support**: Join the Neutron community on [Telegram](https://t.me/neutron_community) or [Discord](https://discord.neutron.org) to connect with live support and other participants.
+</Info>

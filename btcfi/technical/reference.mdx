@@ -1,16 +1,10 @@
 ---
 title: "Technical Reference"
-description: "Contract addresses, token denominations, and technical specifications for BTC Summer campaign"
+description: "Contract addresses, token denominations, and technical specifications for BTCFi campaign"
 icon: "book"
 ---
 
-<Warning>
-**Ethereum vaults were deprecated on November 1st, 2025** following Valence's wind down. [Learn more](https://medium.com/neutronblog/sunsetting-bitcoin-summer-ethereum-vaults-8c60de1b9da0)
-
-Ethereum vault addresses below are for historical reference only.
-</Warning>
-
-Complete technical reference for BTC Summer campaign implementation, including smart contract addresses, token denominations, and integration specifications.
+Complete technical reference for BTCFi campaign implementation, including smart contract addresses, token denominations, and integration specifications.
 
 ## Smart Contract Addresses
 
@@ -60,27 +54,6 @@ pumpbtc: neutron16x9rk787mdaatmd58cevex6sc3p55uhshjmzyf3aa9atx0dgauvs8u8tj0
 solvbtc: neutron1vve4kr2j8ftydrh3gjqpns4p86l8x5unpvvheqdwlhpvawarea2suu8972
 unibtc:  neutron1704tmu9nvgk0l8xmpua0su6dq3r89mht0adlx8gxte695qapstks6lzmma
 ```
-
-### Strategy Vault Addresses (Deprecated)
-
-<Warning>
-These Ethereum vault addresses are **deprecated** and provided for historical reference only. All new deposits should go directly to Neutron positions.
-</Warning>
-
-Cross-chain strategy vault configurations (no longer active):
-
-| Strategy | Vault Address (Ethereum) | Ethereum Authorizations | Neutron Authorizations |
-|----------|---------------------------|--------------------------|-------------------------|
-| ebtc_maxbtc | `0x821b6a88eb6c2ccde24104760e8167afdc81ad50` | `0xe420dbde44d995360c8d1e74831456a7fed31b78` | `neutron1xu2uyr8d7q83x96zudcn5mdnd9uzfp9yy006rwfgefnxff65tgxsczthvh` |
-| maxbtc_mint | `0x119e4c0e9ccec2684233e139e3260057f57547f3` | `0xf2fe9bbcddc150de801fdc4df6f2ca85ac25dd05` | `neutron1m9f8n8j4cg6gqqu2d9g4n0g48jgctfv7ry6a8v7j7dpy5sd3ygssa54qq0` |
-| maxbtc_mint_and_supervault | `0x65bce996fee6b43c899fb6a0a621bdc4bd49fde4` | `0x4dab84fa0e2fd07dfb21dc47894bde345c608ba8` | `neutron1tn6pumcljcfkryeng48xgux5v7r7ycczcs4acaxggyhjmy7n4kwshx74sf` |
-| solvbtc_maxbtc | `0x03397fec419ea8461aa63b6f293c4ea1e6ea5c86` | `0x38a183046717bcba32d7b137ae3699dedd9c548c` | `neutron1kef9xgcttyr2s3kvgmpsvfjvh9f30eedumvcvyy8yx95dht0h45sva55tg` |
-| unibtc_maxbtc | `0x9d6900be765ef542d984eabda75f65a7609713d7` | `0xbe3519d1ef717cce56d7f2bf9f149c2424239b1d` | `neutron1q2e5ah08ck5qp8rvwlwystfnq0ju8s90eckd2nw0y857tnrds5rqdasxsw` |
-| usdc | `0xac2f425e902cd25ba286b14ce4a7f9162a859294` | `0x5e81cfc1c5a765694df3fe8f8788363524befe11` | `neutron15j2yzvy0ph9f0f6mwdz9k89mu6k9xveaemyrs5my8zvvxulz969q3kh23h` |
-| wbtc_ebtc | `0xbee15e5a0c3f2fbd8f4d39c3563eedd5564e9fe7` | `0xa66afe902dc28dd6552ad108e1c5a41d87c9fde2` | `neutron14svm63pn59ueapkeq02x6g6s5c032c2rj7zp0qwg08lec6x9e2dsu935kw` |
-| wbtc_lend | `0x9eeb468751a293d584d93bfaffa9e853c540cfff` | `0x1bf609ea7719412c63f45db689ce6a44fe22dff7` | `neutron18ts9jpk9twh2fa52dmag6c4g4dac4se7kfxgjpgfnzp339t9at5szmz9ah` |
-| wbtc_solvbtc | `0x4dc0058ad13293a468a724660f4be0bbc46c9383` | `0x345c9c32136b61b0a1332806257df9d6360eefbf` | `neutron1t5p2dql29lpkv0235vxfc8qe87ym6kwk5mdvp8unrmeyu88kcguqggfnra` |
-| wbtc_unibtc | `0x1d2042c6770d01f4c91cfe128cfc3aff1ec1561c` | `0xf824408582f4368074303ba4025b1e6a02d026f6` | `neutron1cfytp0g2d049n7tc635q9p6hryfdf6kfgcz5lhhzh5jrnshvdm6qpsft5n` |
 
 ---
 
@@ -134,7 +107,7 @@ const userPoints = await client.queryContractSmart(
 ## Additional Resources
 
 <CardGroup cols={3}>
-  <Card title="Address Linking" icon="link" href="/btc-summer/technical/address-linking">
+  <Card title="Address Linking" icon="link" href="/btcfi/technical/address-linking">
     Cross-chain coordination implementation details
   </Card>
   

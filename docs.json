@@ -96,29 +96,30 @@
             ]
           },
           {
-            "group": "BTC Summer",
+            "group": "BTCFi",
             "icon": "bitcoin",
             "pages": [
-              "btc-summer/overview",
-              "btc-summer/campaign-details",
-              "btc-summer/how-to-deposit",
+              "btcfi/overview",
+              "btcfi/campaign-details",
+              "btcfi/how-to-deposit",
               {
                 "group": "Phases",
                 "icon": "calendar",
                 "pages": [
-                  "btc-summer/neutron-path/phase-2",
-                  "btc-summer/neutron-path/phase-1"
+                  "btcfi/phases/phase-3",
+                  "btcfi/phases/phase-2",
+                  "btcfi/phases/phase-1"
                 ]
               },
-              "btc-summer/rewards",
-              "btc-summer/faq",
+              "btcfi/rewards",
+              "btcfi/faq",
               {
                 "group": "Technical Documentation",
                 "icon": "code",
                 "pages": [
-                  "btc-summer/technical/overview",
-                  "btc-summer/technical/address-linking",
-                  "btc-summer/technical/reference"
+                  "btcfi/technical/overview",
+                  "btcfi/technical/address-linking",
+                  "btcfi/technical/reference"
                 ]
               }
             ]
@@ -474,7 +475,7 @@
                 "pages": [
                   "legal/terms-and-conditions/main",
                   "legal/terms-and-conditions/third-party-rewards",
-                  "legal/terms-and-conditions/bitcoin-summer-campaign",
+                  "legal/terms-and-conditions/btcfi-campaign",
                   "legal/terms-and-conditions/supervaults"
                 ]
               },

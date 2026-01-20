@@ -1,0 +1,122 @@
+---
+title: "Campaign Details"
+description: "Complete guide to BTCFi campaign mechanics, phases, rewards, and participation requirements"
+icon: "calendar-days"
+---
+
+The BTCFi Campaign is a multi-phase campaign in partnership with [Lombard](https://www.lombard.finance/), [EtherFi](https://www.ether.fi/), [Solv](https://solv.finance/), [Bedrock](https://www.bedrock.technology/), [Wrapped Bitcoin](https://wbtc.network/), [Structured](https://structured.money/), [Amber Finance](https://amberfi.io/), and [Babylon](https://babylonlabs.io/) that brings real yield opportunities to BTC and unlocks leveraged BTC looping for the first time. The campaign distributes up to $10M in NTRN rewards, in addition to partner airdrops, over multiple phases to participants who provide liquidity and engage with Neutron's DeFi protocols.
+
+
+Neutron is uniquely positioned thanks to three innovations:
+
+<CardGroup cols={3}>
+  <Card title="maxBTC" icon="bitcoin" href="https://docs.structured.money/introduction">
+    A high, real yield BTC derivative. MaxBTC has been live for > 230 days with an average BTC APY of ~10% before incentives.
+  </Card>
+  
+  <Card title="Supervaults" icon="vault" href="/defi/supervaults">
+    Advanced automated market makers that leverage in-consensus oracles to protect LPs from loss while offering best execution to traders.
+  </Card>
+  
+  <Card title="AmberFi" icon="fire" href="https://app.amberfi.io/">
+    A secure and efficient isolated lending/borrowing protocol for Bitcoin derivatives. [Documentation →](https://docs.amberfi.io/)
+  </Card>
+</CardGroup>
+
+For users, this campaign represents an opportunity to:
+
+- Earn sustainable risk-adjusted BTC rewards without the hassle of frequently cycling through ecosystem campaigns.
+- Manage your exposure according to your preferences: from most conservative (lending yields) to most aggressive (Leveraged Looped MaxBTC positions).
+
+<Info>
+For detailed reward and incentive mechanics, see [Rewards Guide](/btcfi/rewards). For important eligibility requirements and campaign terms, please review [BTCFi Campaign Terms](/legal/terms-and-conditions/btcfi-campaign).
+</Info>
+
+## Campaign Structure
+
+### Phases & Timeline
+
+The campaign is structured in successive **2-month phases**, with at least 6 phases planned (12+ months total duration). Each phase has predetermined parameters set before launch:
+
+- **Phase Budget**: Dollar value distributed as incentives (e.g., Phase 3: $300,000 in NTRN Rewards)
+- **Eligible Opportunities**: List of participating positions and protocols
+- **NTRN Reward Multipliers**: Boost mechanisms and qualification criteria
+
+Earlier phases have smaller budgets to account for initial visibility, while later phases scale up to drive broader participation.
+
+<Frame>
+  <img src="/images/epoch.png" alt="Breakdown of campaign timeline and epochs" />
+</Frame>
+
+---
+
+## How Rewards Work
+
+The campaign rewards actual **DeFi positions on Neutron**. Participants earn rewards by depositing directly into eligible Neutron protocols ([Amber](https://app.amberfi.io/) lending or [Supervaults](https://app.neutron.org/earn/supervaults) LP).
+
+### Dollar-Denominated Rewards
+
+Unlike traditional token farming, rewards are calculated in **dollar terms** throughout each phase and converted to NTRN tokens at phase end based on the final NTRN price.
+
+**Example:**
+- Alice deposits 1 BTC ($100,000) at phase start
+- Earns $1,660 in rewards over 2 months (~10% APR)
+- At phase end, if NTRN = $1, Alice receives ~1,660 NTRN tokens
+
+This structure means campaign costs decrease if NTRN price appreciates, aligning incentives with network growth.
+
+<AccordionGroup>
+  <Accordion title="Points System">
+    Rewards use a points-based accounting system to ensure fair distribution:
+
+    $$
+    \text{Points} = \text{USD Value of Deposit} \times \text{Days Staked} \times (1 + \text{Bonus Multipliers})
+    $$
+
+    - **Daily Calculation**: Points accrue daily based on USD deposit value  
+    - **Pro-rata Distribution**: Phase budget distributed proportionally to total points earned
+    - **Bonus Multipliers**: Additional rewards for advanced strategies ([learn more](/btcfi/rewards#understanding-multipliers))
+    - **Protection from Dilution**: Daily calculation locks in dollar-denominated rewards
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Reward Claiming & Vesting
+
+After each BTCFi phase ends, participants have three options to claim NTRN rewards:
+
+1. **Boost & Earn Staking Rewards**: Stake and lock instantly to boost NTRN rewards in upcoming phases by up to 3x and earn NTRN staking rewards
+2. **Instant Claim**: Instantly claim 50% and forfeit the other 50%
+3. **Standard Vesting**: Vest over 2 months to claim the full amount
+
+The vesting mechanism promotes long-term ecosystem participation and prevents sudden token supply releases.
+
+---
+
+## Forfeitable Rewards Structure
+
+The BTCFi Campaign uses a "forfeitable" reward structure designed to balance liquidity with participation incentives:
+
+| Component | Terms | Details |
+| --------- | ----- | ------- |
+| **Principal** | No lockup | Your principal remains fully liquid at all times. |
+| **DeFi Rewards** | No lockup | Lending yields and swap fees are automatically compounded into your position and can be withdrawn at any time. |
+| **NTRN Rewards** | Forfeitable | Withdrawing mid-Phase forfeits that Phase's NTRN rewards proportionally. |
+| **Partner Rewards** | No lockup by default | BTC LST issuers generally do not enforce forfeitable incentives. Check with specific asset issuers to confirm their approach. |
+
+**Key Mechanic**: Users can withdraw deposits at any time, but NTRN rewards are forfeited proportionally to withdrawals made before phase completion.
+
+**Example**: If you withdraw 50% of your deposit halfway through a phase, you'll forfeit 50% of the NTRN rewards for that phase. Your principal, DeFi yields, and partner rewards remain fully accessible.
+
+For detailed reward optimization strategies and worked examples: [NTRN Reward Structure & Examples](/btcfi/rewards#forfeitable-reward-structure)
+
+Learn more about NTRN multipliers in [Boost Mechanisms & Multipliers](/btcfi/rewards#understanding-multipliers)
+
+---
+
+## How to Participate
+
+<Card title="How to Deposit" icon="wallet" href="/btcfi/how-to-deposit">
+  Complete step-by-step guide covering wallet setup (Keplr), bridging assets to Neutron, depositing into eligible positions, and earning rewards.
+</Card>

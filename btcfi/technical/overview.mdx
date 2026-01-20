@@ -1,16 +1,10 @@
 ---
 title: "Technical Overview"
-description: "High-level architecture and system components of the BTC Summer campaign infrastructure"
+description: "High-level architecture and system components of the BTCFi campaign infrastructure"
 icon: "diagram-project"
 ---
 
-<Warning>
-**Ethereum vaults were deprecated on November 1st, 2025** following Valence's wind down. [Learn more](https://medium.com/neutronblog/sunsetting-bitcoin-summer-ethereum-vaults-8c60de1b9da0)
-
-All deposits now go directly to Neutron positions, simplifying the technical architecture.
-</Warning>
-
-The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to deliver Bitcoin DeFi strategies through transparent, on-chain reward tracking.
+The BTCFi campaign uses Neutron's integrated blockchain infrastructure to deliver Bitcoin DeFi strategies through transparent, on-chain reward tracking.
 
 ## System Architecture
 
@@ -41,7 +35,7 @@ The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to d
     - Direct Neutron deposits to positions (Amber, Supervaults)
     - Boosts apply to the same Neutron address
     - Streamlined reward calculation system
-    - Complete implementation: [Address Linking System](/btc-summer/technical/address-linking)
+    - Complete implementation: [Address Linking System](/btcfi/technical/address-linking)
   </Accordion>
 </AccordionGroup>
 
@@ -64,7 +58,7 @@ The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to d
 <AccordionGroup>
 
   <Accordion title="Security & Audits" icon="shield-check" description="Security assessments and audit information">
-    **Campaign Infrastructure**: Bitcoin Summer contracts and infrastructure have been audited by Informal Systems.
+    **Campaign Infrastructure**: BTCFi contracts and infrastructure have been audited by Informal Systems.
 
     - **Audit Report**: [Informal Systems Audit](https://github.com/informalsystems/audits/blob/main/Neutron/2025-07-18%20Neutron-Timewave%20Q2%202025%20_%20Valence%20Protocol%20Audit%20Report_Final.pdf)
     - **Bug Bounty**: [Neutron Immunefi Program](https://immunefi.com/bug-bounty/neutron/information/)
@@ -77,11 +71,11 @@ The BTC Summer campaign uses Neutron's integrated blockchain infrastructure to d
 
 <CardGroup cols={3}>
   
-  <Card title="Address Linking" icon="link" href="/btc-summer/technical/address-linking">
+  <Card title="Address Linking" icon="link" href="/btcfi/technical/address-linking">
     Cross-chain coordination implementation details
   </Card>
   
-  <Card title="Technical Reference" icon="book" href="/btc-summer/technical/reference">
+  <Card title="Technical Reference" icon="book" href="/btcfi/technical/reference">
     Contract addresses, token denominations, and specifications
   </Card>
   
